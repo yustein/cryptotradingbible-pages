@@ -28,6 +28,8 @@
       color: var(--text);
       min-height: 100vh;
     }
+    body.app-locked { overflow: hidden; }
+    body.app-locked .wrap { filter: blur(8px); pointer-events: none; user-select: none; }
     .wrap { max-width: 1700px; margin: 0 auto; padding: 18px; }
     .terminal { background: rgba(3,7,18,0.9); border: 1px solid #172033; border-radius: 22px; box-shadow: var(--shadow); overflow: hidden; }
     .topbar { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:16px 18px; background:linear-gradient(180deg, rgba(17,24,39,0.95), rgba(10,14,25,0.95)); border-bottom:1px solid #182235; flex-wrap:wrap; }
@@ -36,6 +38,20 @@
     .actions { display:flex; gap:10px; flex-wrap:wrap; }
     .view-link { display:inline-flex; align-items:center; padding:10px 12px; border-radius:10px; border:1px solid #263145; background:#111827; color:var(--text); text-decoration:none; font-weight:700; }
     .view-link:hover { border-color:var(--blue); color:white; }
+    .promo-banner { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:16px 18px; border-bottom:1px solid #182235; background:linear-gradient(90deg, rgba(245,158,11,0.12), rgba(139,92,246,0.12)); flex-wrap:wrap; }
+    .promo-copy { display:grid; gap:4px; }
+    .promo-eyebrow { color:#fcd34d; font-size:0.78rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; }
+    .promo-title { font-size:1rem; font-weight:800; color:#fff7ed; }
+    .promo-text { color:#cbd5e1; font-size:0.92rem; }
+    .promo-link { display:inline-flex; align-items:center; justify-content:center; padding:12px 16px; border-radius:12px; background:linear-gradient(135deg, #f59e0b, #f97316); color:white; text-decoration:none; font-weight:800; box-shadow:0 12px 30px rgba(249,115,22,0.25); }
+    .promo-link:hover { filter:brightness(1.06); }
+    .disclaimer-overlay { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(2, 6, 23, 0.78); backdrop-filter: blur(6px); }
+    .disclaimer-modal { max-width: 760px; width: 100%; background: linear-gradient(180deg, rgba(15,23,42,0.99), rgba(17,24,39,0.98)); border: 1px solid #334155; border-radius: 22px; box-shadow: var(--shadow); padding: 28px; }
+    .disclaimer-modal h2 { margin: 0 0 12px; font-size: 1.5rem; }
+    .disclaimer-modal p { color: #cbd5e1; line-height: 1.6; margin: 0 0 14px; }
+    .disclaimer-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+    .agree-btn { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; border: none; padding: 12px 18px; border-radius: 12px; font-weight: 800; cursor: pointer; }
+    .exit-link { display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border-radius: 12px; border: 1px solid #334155; color: #cbd5e1; text-decoration: none; font-weight: 700; background: #0f172a; }
     button, select { background:#111827; color:var(--text); border:1px solid #263145; padding:10px 12px; border-radius:10px; font-weight:700; }
     button { cursor:pointer; }
     .content { padding:18px; }
@@ -99,7 +115,20 @@
     @media (max-width: 700px) { .summary-grid { grid-template-columns:1fr 1fr; } .asset-grid { grid-template-columns:1fr; } }
   </style>
 </head>
-<body>
+<body class="app-locked">
+  <div id="disclaimerOverlay" class="disclaimer-overlay">
+    <div class="disclaimer-modal">
+      <h2>Disclaimer</h2>
+      <p>This site is provided without any guarantees or warranties of any kind.</p>
+      <p>The data, charts, signals, analytics, and commentary shown here can be stale, delayed, incomplete, or wrong, and may change without notice.</p>
+      <p>Nothing on this site is financial, investment, legal, tax, or trading advice. You use this site entirely at your own risk.</p>
+      <p>We accept no responsibility whatsoever for any financial loss, trading loss, missed opportunity, or any other damages arising from the use of this site.</p>
+      <div class="disclaimer-actions">
+        <button class="agree-btn" onclick="acceptDisclaimer()">I Agree</button>
+        <a class="exit-link" href="https://www.google.com" rel="noopener noreferrer">Leave Site</a>
+      </div>
+    </div>
+  </div>
   <div class="wrap">
     <div class="terminal">
       <div class="topbar">
@@ -114,6 +143,14 @@
           <a class="view-link" href="./dashboard-enhanced.html">Open Slim Enhanced View</a>
           <a class="view-link" href="./dashboard-v3.html">Open V3 Preview</a>
         </div>
+      </div>
+      <div class="promo-banner">
+        <div class="promo-copy">
+          <div class="promo-eyebrow">Featured Book</div>
+          <div class="promo-title">Crypto Trading Bible</div>
+          <div class="promo-text">Go deeper on market structure, conviction, and execution with the book on Amazon.</div>
+        </div>
+        <a class="promo-link" href="https://a.co/d/07JMWVf1" target="_blank" rel="noopener noreferrer">Buy on Amazon</a>
       </div>
       <div class="content">
         <div class="summary-grid">
@@ -227,6 +264,12 @@
   </div>
 
   <script>
+    function acceptDisclaimer() {
+      document.body.classList.remove('app-locked');
+      const overlay = document.getElementById('disclaimerOverlay');
+      if (overlay) overlay.style.display = 'none';
+    }
+
     let dashboardData = null;
     let enhancedData = null;
     let newsData = null;
