@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ALL Details Test - Complete Dashboard</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #0a0a0a; color: white; }
+        .test { margin: 10px 0; padding: 15px; border: 1px solid #333; border-radius: 8px; }
+        .success { color: #22c55e; }
+        .error { color: #ef4444; }
+        .warning { color: #f59e0b; }
+        .loading { color: #94a3b8; }
+        button { background: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin: 5px; }
+        .detail-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0; }
+        .detail-item { padding: 15px; border: 1px solid #333; border-radius: 6px; background: #1a1a1a; }
+        .tab { display: inline-block; padding: 5px 10px; margin: 2px; background: #1a2236; border-radius: 4px; font-size: 12px; }
+    </style>
+</head>
+<body>`r`n<div style="background:#7f1d1d;color:#fee2e2;padding:12px 16px;font-family:Segoe UI,Arial,sans-serif;font-size:14px;font-weight:700;text-align:center;border-bottom:3px solid #ef4444;">Legacy dashboard view: this page is archived and unsupported. Use ../index.html for the primary dashboard or ../dashboard-enhanced.html for the slim enhanced view.</div>
+    <h1>ALL Details Test - Complete Dashboard</h1>
+    
+    <div class="test">
+        <h3>Test 1: Load Complete Dashboard</h3>
+        <div id="test1" class="loading">Ready to test...</div>
+        <button onclick="testCompleteDashboard()">Test ALL Details</button>
+        <button onclick="openDashboard()">Open Complete Dashboard</button>
+    </div>
+    
+    <div class="test">
+        <h3>Test 2: Enhanced Metrics Details</h3>
+        <div id="test2" class="loading">Enhanced metrics will appear here...</div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 3: Trading Signals Details</h3>
+        <div id="test3" class="loading">Trading signals will appear here...</div>
+    </div>
+    
+    <div style="margin-top: 30px; padding: 15px; background: #1a1a1a; border-radius: 8px; border: 1px solid #333;">
+        <h3 style="color: #f59e0b;">Expected Details (All Should Show Data):</h3>
+        <div class="detail-grid">
+            <div class="detail-item">
+                <h4>🗺️ Liquidity Heatmap</h4>
+                <div class="tab">Support Zones</div>
+                <div class="tab">Resistance Zones</div>
+                <div class="tab">Strength Indicators</div>
+                <div class="tab">Volume Analysis</div>
+            </div>
+            <div class="detail-item">
+                <h4>📈 Order Flow Analysis</h4>
+                <div class="tab">Maker/Taker Ratios</div>
+                <div class="tab">Buy/Sell Volume</div>
+                <div class="tab">Flow Imbalance</div>
+                <div class="tab">Large vs Small Trades</div>
+            </div>
+            <div class="detail-item">
+                <h4>🏗️ Market Structure</h4>
+                <div class="tab">Structural Layer</div>
+                <div class="tab">Participant Layer</div>
+                <div class="tab">Psychological Layer</div>
+                <div class="tab">Three-Layer Analysis</div>
+            </div>
+            <div class="detail-item">
+                <h4>🚦 Trading Signals</h4>
+                <div class="tab">Active Signals (7)</div>
+                <div class="tab">Signal Analysis</div>
+                <div class="tab">Confidence Levels</div>
+                <div class="tab">Type Distribution</div>
+            </div>
+            <div class="detail-item">
+                <h4>🛡️ Risk Management</h4>
+                <div class="tab">Risk Assessment</div>
+                <div class="tab">Position Sizing</div>
+                <div class="tab">Stop Loss Levels</div>
+                <div class="tab">Risk/Reward Ratios</div>
+            </div>
+            <div class="detail-item">
+                <h4>📖 Cryptobible Insights</h4>
+                <div class="tab">Chapter References</div>
+                <div class="tab">Trading Principles</div>
+                <div class="tab">Framework Details</div>
+                <div class="tab">Applied Knowledge</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        console.log('=== ALL DETAILS TEST START ===');
+        
+        function updateTest(id, message, status) {
+            const el = document.getElementById(id);
+            let colorClass = 'loading';
+            let prefix = '';
+            
+            if (status === 'success') {
+                colorClass = 'success';
+                prefix = '✅ ';
+            } else if (status === 'error') {
+                colorClass = 'error';
+                prefix = '❌ ';
+            } else if (status === 'warning') {
+                colorClass = 'warning';
+                prefix = '⚠️ ';
+            }
+            
+            el.innerHTML = `<span class="${colorClass}">${prefix}${message}</span>`;
+        }
+        
+        async function testCompleteDashboard() {
+            console.log('Testing complete dashboard with ALL details...');
+            
+            try {
+                updateTest('test1', 'Loading market data...', 'loading');
+                
+                const marketResponse = await fetch('dashboard-enhanced.json');
+                const marketData = await marketResponse.json();
+                
+                updateTest('test1', `✅ Data loaded: ${marketData.summary.version}`, 'success');
+                console.log('✅ Data loaded successfully');
+                
+                // Test ALL enhanced metrics
+                testEnhancedMetrics(marketData);
+                
+                // Test ALL trading signals
+                testTradingSignals(marketData);
+                
+            } catch (error) {
+                updateTest('test1', `❌ Data loading failed: ${error.message}`, 'error');
+                console.error('❌ Data loading error:', error);
+            }
+        }
+        
+        function testEnhancedMetrics(marketData) {
+            console.log('Testing ALL enhanced metrics...');
+            
+            let metricsHtml = '';
+            let passed = 0;
+            let total = 0;
+            
+            const enhanced = marketData.enhanced_metrics || {};
+            
+            const tests = [
+                {
+                    name: 'Liquidity Heatmap',
+                    test: () => enhanced.liquidity_heatmap,
+                    desc: 'Support/resistance zones with strength'
+                },
+                {
+                    name: 'Order Flow Analysis',
+                    test: () => enhanced.order_flow,
+                    desc: 'Maker/taker ratios and volume'
+                },
+                {
+                    name: 'Market Structure Layers',
+                    test: () => enhanced.market_structure_layers,
+                    desc: 'Three-layer market analysis'
+                },
+                {
+                    name: 'Risk Management',
+                    test: () => enhanced.risk_management,
+                    desc: 'Risk assessment and position sizing'
+                },
+                {
+                    name: 'Cryptobible Insights',
+                    test: () => enhanced.cryptobible_insights,
+                    desc: 'Chapter references and principles'
+                }
+            ];
+            
+            tests.forEach(test => {
+                total++;
+                try {
+                    const data = test.test();
+                    if (data) {
+                        passed++;
+                        metricsHtml += `<div style="color: #22c55e; margin: 5px 0;">✅ ${test.name}: ${test.desc}</div>`;
+                        
+                        // Show some data
+                        if (typeof data === 'object') {
+                            const keys = Object.keys(data);
+                            if (Array.isArray(data)) {
+                                metricsHtml += `<div style="margin-left: 20px; font-size: 12px; color: #94a3b8;">${data.length} items</div>`;
+                            } else {
+                                metricsHtml += `<div style="margin-left: 20px; font-size: 12px; color: #94a3b8;">${keys.length} data points</div>`;
+                            }
+                        }
+                        
+                        console.log(`✅ ${test.name}: data found`);
+                    } else {
+                        metricsHtml += `<div style="color: #f59e0b; margin: 5px 0;">⚠️ ${test.name}: ${test.desc} (data missing)</div>`;
+                        console.log(`⚠️ ${test.name}: data missing`);
+                    }
+                } catch (error) {
+                    metricsHtml += `<div style="color: #ef4444; margin: 5px 0;">❌ ${test.name}: ${test.desc} (error: ${error.message})</div>`;
+                    console.error(`❌ ${test.name}:`, error);
+                }
+            });
+            
+            updateTest('test2', `${passed}/${total} enhanced metrics passed`, passed === total ? 'success' : 'warning');
+            document.getElementById('test2').innerHTML += metricsHtml;
+        }
+        
+        function testTradingSignals(marketData) {
+            console.log('Testing ALL trading signals...');
+            
+            let signalsHtml = '';
+            const signals = marketData.signals || [];
+            
+            if (signals.length > 0) {
+                updateTest('test3', `✅ ${signals.length} trading signals found`, 'success');
+                
+                signalsHtml += `<div style="margin: 10px 0;">
+                    <div style="font-weight: bold; color: #3b82f6;">Trading Signals Analysis:</div>
+                    <div>• Total signals: ${signals.length}</div>
+                    <div>• Buy signals: ${signals.filter(s => s.type === 'BUY').length}</div>
+                    <div>• Sell signals: ${signals.filter(s => s.type === 'SELL').length}</div>
+                    <div>• Hold signals: ${signals.filter(s => s.type === 'HOLD').length}</div>
+                </div>`;
+                
+                // Show first 3 signals
+                signals.slice(0, 3).forEach(signal => {
+                    signalsHtml += `<div style="margin: 5px 0; padding: 8px; background: #1a1a1a; border-radius: 4px; border-left: 4px solid ${signal.type === 'BUY' ? '#22c55e' : signal.type === 'SELL' ? '#ef4444' : '#f59e0b'};">`;
+                    signalsHtml += `<div style="font-weight: bold;">${signal.type} ${signal.symbol}</div>`;
+                    signalsHtml += `<div style="font-size: 12px; color: #94a3b8;">Price: $${signal.price?.toFixed(2) || 'N/A'} • Confidence: ${signal.confidence}%</div>`;
+                    signalsHtml += `</div>`;
+                });
+                
+                console.log(`✅ ${signals.length} trading signals found`);
+            } else {
+                updateTest('test3', '⚠️ No trading signals found', 'warning');
+                signalsHtml = '<div style="color: #f59e0b;">No trading signals in data</div>';
+                console.log('⚠️ No trading signals');
+            }
+            
+            document.getElementById('test3').innerHTML += signalsHtml;
+        }
+        
+        function openDashboard() {
+            window.location.href = 'index.html';
+        }
+        
+        // Auto-run tests
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('All details test ready');
+            updateTest('test1', 'Ready to test complete dashboard', 'loading');
+            updateTest('test2', 'Click "Test ALL Details" button above', 'loading');
+            updateTest('test3', 'Waiting for trading signals...', 'loading');
+        });
+    </script>
+</body>
+</html>

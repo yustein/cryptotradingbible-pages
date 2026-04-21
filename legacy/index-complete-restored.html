@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complete Market Terminal v2.01 - ALL FEATURES RESTORED</title>
+  <!-- Include Plotly for charts -->
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  <style>
+    /* COMPLETE DARK THEME WITH ALL STYLES */
+    :root {
+      --bg: #050816;
+      --bg2: #0b1220;
+      --bg3: #1a2236;
+      --text: #e5e7eb;
+      --text-muted: #94a3b8;
+      --border: #2d3748;
+      --primary: #3b82f6;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --info: #06b6d4;
+      --purple: #8b5cf6;
+      --cyan: #22d3ee;
+      --pink: #ec4899;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      --glow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg); 
+      color: var(--text); 
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    .container { max-width: 1800px; margin: 0 auto; padding: 24px; }
+    
+    /* HEADER */
+    .header { 
+      background: var(--bg2); 
+      border-radius: 20px; 
+      padding: 32px 40px; 
+      margin-bottom: 32px; 
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      border-left: 6px solid var(--primary);
+    }
+    
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary), var(--purple), var(--cyan), var(--pink));
+      animation: gradientShift 8s ease infinite;
+      background-size: 400% 400%;
+    }
+    
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .header h1 { 
+      font-size: 36px; 
+      font-weight: 800; 
+      margin-bottom: 12px; 
+      background: linear-gradient(90deg, var(--primary), var(--purple), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+    
+    .header .subtitle { 
+      color: var(--text-muted); 
+      font-size: 18px; 
+      margin-bottom: 24px;
+      font-weight: 400;
+    }
+    
+    .header .meta { 
+      display: flex; 
+      gap: 32px; 
+      margin-top: 20px; 
+      font-size: 15px; 
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+    
+    .header .meta span { 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+      padding: 8px 16px;
+      background: var(--bg3);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    
+    /* TABS */
+    .tab-container {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 32px;
+      padding: 8px;
+      background: var(--bg2);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    
+    .tab {
+      padding: 14px 28px;
+      border-radius: 12px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .tab.active {
+      background: linear-gradient(135deg, var(--primary), var(--purple));
+      color: white;
+      box-shadow: var(--glow);
+    }
+    
+    .tab:hover:not(.active) {
+      background: var(--bg3);
+      color: var(--text);
+    }
+    
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* GRID SYSTEM */
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
+      gap: 24px; 
+      margin-bottom: 32px; 
+    }
+    
+    .grid-wide {
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    }
+    
+    /* CARDS */
+    .card { 
+      background: var(--bg2); 
+      border-radius: 20px; 
+      padding: 28px; 
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow), var(--glow);
+    }
+    
+    .card-header { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      margin-bottom: 24px; 
+      padding-bottom: 16px; 
+      border-bottom: 2px solid var(--border); 
+    }
+    
+    .card-header h2 { 
+      font-size: 22px; 
+      font-weight: 700; 
+      color: var(--text); 
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .card-header h2::before {
+      content: '';
+      width: 6px;
+      height: 24px;
+      background: var(--primary);
+      border-radius: 3px;
+    }
+    
+    .badge { 
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 16px; 
+      border-radius: 20px; 
+      font-size: 13px; 
+      font-weight: 700; 
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    
+    .badge.primary { background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1)); color: var(--primary); border-color: rgba(59, 130, 246, 0.4); }
+    .badge.success { background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.1)); color: var(--success); border-color: rgba(34, 197, 94, 0.4); }
+    .badge.warning { background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1)); color: var(--warning); border-color: rgba(245, 158, 11, 0.4); }
+    .badge.danger { background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(239, 68, 68, 0.1)); color: var(--danger); border-color: rgba(239, 68, 68, 0.4); }
+    .badge.info { background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(6, 182, 212, 0.1)); color: var(--info); border-color: rgba(6, 182, 212, 0.4); }
+    .badge.purple { background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.1)); color: var(--purple); border-color: rgba(139, 92, 246, 0.4); }
+    .badge.cyan { background: linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(34, 211, 238, 0.1)); color: var(--cyan); border-color: rgba(34, 211, 238, 0.4); }
+    
+    /* METRICS */
+    .metric { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 16px 0; 
+      border-bottom: 1px solid var(--border); 
+      transition: all 0.2s ease;
+    }
+    
+    .metric:hover {
+      background: var(--bg3);
+      padding: 16px 12px;
+      border-radius: 12px;
+      transform: translateX(5px);
+    }
+    
+    .metric:last-child { border-bottom: none; }
+    
+    .metric .label { 
+      color: var(--text-muted); 
+      font-size: 15px; 
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .metric .value { 
+      font-weight: 700; 
+      font-size: 18px; 
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    }
+    
+    .metric .value.positive { color: var(--success); }
+    .metric .value.negative { color: var(--danger); }
+    .metric .value.neutral { color: var(--warning); }
+    .metric .value.info { color: var(--info); }
+    
+    /* INSIGHTS & VISUALIZATIONS */
+    .insight { 
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05)); 
+      border-left: 6px solid var(--primary); 
+      padding: 20px; 
+      margin: 16px 0; 
+      border-radius: 12px; 
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    
+    .insight.warning { 
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05)); 
+      border-left-color: var(--warning); 
+    }
+    
+    .insight.danger { 
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05)); 
+      border-left-color: var(--danger); 
+    }
+    
+    .insight.success { 
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05)); 
+      border-left-color: var(--success); 
+    }
+    
+    .insight.purple { 
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.05)); 
+      border-left-color: var(--purple); 
+    }
+    
+    /* LIQUIDITY ZONES */
+    .liquidity-zone { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 14px 16px; 
+      margin: 10px 0; 
+      background: var(--bg3); 
+      border-radius: 12px; 
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+    
+    .liquidity-zone:hover {
+      transform: translateX(5px);
+      border-color: var(--primary);
+    }
+    
+    .liquidity-zone.support { 
+      border-left: 6px solid var(--success);
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), var(--bg3));
+    }
+    
+    .liquidity-zone.resistance { 
+      border-left: 6px solid var(--danger);
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), var(--bg3));
+    }
+    
+    .zone-strength {
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: var(--bg);
+    }
+    
+    .zone-strength.high { background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(239, 68, 68, 0.1)); color: var(--danger); }
+    .zone-strength.medium { background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1)); color: var(--warning); }
+    .zone-strength.low { background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.1)); color: var(--success); }
+    
+    /* CRYPTOBIBLE INSIGHTS */
+    .chapter-ref { 
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.05)); 
+      border-radius: 12px; 
+      padding: 20px; 
+      margin: 12px 0; 
+      border-left: 6px solid var(--purple);
+    }
+    
+    .chapter-ref .chapter { 
+      font-weight: 800; 
+      color: var(--purple); 
+      font-size: 16px; 
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .chapter-ref .description { 
+      color: var(--text-muted); 
+      font-size: 14px; 
+      line-height: 1.6;
+    }
+    
+    /* THREE-LAYER MARKET STRUCTURE */
+    .three-layer { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr 1fr; 
+      gap: 20px; 
+    }
+    
+    .layer { 
+      background: var(--bg3); 
+      padding: 24px; 
+      border-radius: 16px; 
+      border-top: 6px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    
+    .layer:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+    
+    .layer h3 { 
+      font-size: 18px; 
+      font-weight: 700; 
+      margin-bottom: 12px; 
+      color: var(--text); 
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .layer.structure { border-top-color: var(--primary); }
+    .layer.participant { border-top-color: var(--success); }
+    .layer.psychological { border-top-color: var(--warning); }
+    
+    .layer-item {
+      background: var(--bg);
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 10px;
+      font-size: 14px;
+      border-left: 4px solid var(--border);
+    }
+    
+    /* CHARTS */
+    .chart-container {
+      background: var(--bg3);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 20px 0;
+      height: 300px;
+      position: relative;
+    }
+    
+    .chart-title {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      z-index: 10;
+    }
+    
+    /* BUTTONS */
+    .refresh-btn {
+      background: linear-gradient(135deg, var(--primary), var(--purple)); 
+      color: white; 
+      border: none; 
+      padding: 16px 32px; 
+      border-radius: 14px; 
+      font-weight: 700; 
+      cursor: pointer; 
+      font-size: 16px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow);
+    }
+    
+    .refresh-btn:hover { 
+      transform: translateY(-3px); 
+      box-shadow: var(--shadow), var(--glow);
+      background: linear-gradient(135deg, var(--purple), var(--primary));
+    }
+    
+    .refresh-btn:active {
+      transform: translateY(-1px);
+    }
+    
+    /* LOADING STATES */
+    .loading { 
+      text-align: center; 
+      padding: 60px 20px; 
+      color: var(--text-muted); 
+      font-style: italic;
+      font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .loading::after {
+      content: '';
+      width: 40px;
+      height: 40px;
+      border: 4px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* NEWS SECTION */
+    .news-section {
+      background: var(--bg2);
+      border-radius: 20px;
+      padding: 32px;
+      margin: 40px 0;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-left: 6px solid var(--info);
+    }
+    
+    .news-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+    }
+    
+    .news-header h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    /* SIGNAL CARDS */
+    .signal-card {
+      background: linear-gradient(135deg, var(--bg3), var(--bg2));
+      border-radius: 16px;
+      padding: 20px;
+      margin: 12px 0;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    
+    .signal-card.buy {
+      border-left: 6px solid var(--success);
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), var(--bg3));
+    }
+    
+    .signal-card.sell {
+      border-left: 6px solid var(--danger);
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), var(--bg3));
+    }
+    
+    .signal-card:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow);
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 1200px) {
+      .three-layer { grid-template-columns: 1fr; }
+      .grid-wide { grid-template-columns: 1fr; }
+    }
+    
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+      .header .meta { flex-direction: column; gap: 12px; }
+      .container { padding: 16px; }
+      .header { padding: 24px; }
+      .header h1 { font-size: 28px; }
+      .tab-container { flex-wrap: wrap; }
+      .tab { flex: 1; min-width: 120px; justify-content: center; }
+    }
+    
+    /* UTILITY */
+    .text-gradient {
+      background: linear-gradient(90deg, var(--primary), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>`r`n<div style="background:#7f1d1d;color:#fee2e2;padding:12px 16px;font-family:Segoe UI,Arial,sans-serif;font-size:14px;font-weight:700;text-align:center;border-bottom:3px solid #ef4444;">Legacy dashboard view: this page is archived and unsupported. Use ../index.html for the primary dashboard or ../dashboard-enhanced.html for the slim enhanced view.</div>
+  <div class="container">
+    <!-- HEADER -->
+    <div class="header">
+      <h1>📊 Complete Market Terminal v2.01</h1>
+      <div class="subtitle">All Features Restored: Liquidity Heatmaps • Order Flow • Market Structure • Risk Management • Cryptobible Insights • Trading Signals • News Intelligence</div>
+      <div class="meta">
+        <span>🕒 Updated: <span id="updatedLocal" class="pulse">Loading...</span></span>
+        <span>📊 Assets: <span id="trackedAssets">7</span></span>
+        <span>📈 Market Bias: <span id="marketBias">-</span></span>
+        <span>📋 Version: <span id="version">Enhanced v2.01</span></span>
+        <span>📰 News: <span id="newsCount">15</span> articles</span>
+      </div>
+    </div>
+    
+    <!-- TABS -->
+    <div class="tab-container">
+      <button class="tab active" onclick="switchTab('market')">
+        📈 Market Analytics
+      </button>
+      <button class="tab" onclick="switchTab('cryptobible')">
+        📖 Cryptobible Insights
+      </button>
+      <button class="tab" onclick="switchTab('signals')">
+        🚦 Trading Signals
+      </button>
+      <button class="tab" onclick="switchTab('news')">
+        📰 News Intelligence
+      </button>
+      <button class="tab" onclick="switchTab('risk')">
+        🛡️ Risk Management
+      </button>
+    </div>
+    
+    <!-- MARKET ANALYTICS TAB -->
+    <div id="marketTab" class="tab-content" style="display: block;">
+      <div class="grid">
+        <!-- LIQUIDITY HEATMAP -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Liquidity Heatmap</h2>
+            <span class="badge purple">Cryptobible Chapter 9</span>
+          </div>
+          <div id="liquidityHeatmap">
+            <div class="loading">Loading liquidity visualization...</div>
+          </div>
+          <div id="liquidityZones" style="margin-top: 20px;"></div>
+        </div>
+        
+        <!-- ORDER FLOW ANALYSIS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Order Flow Analysis</h2>
+            <span class="badge info">Market Makers vs Takers</span>
+          </div>
+          <div id="orderFlowChart" class="chart-container">
+            <div class="chart-title">Order Flow Distribution</div>
+          </div>
+          <div id="orderFlowMetrics" style="margin-top: 20px;"></div>
+        </div>
+        
+        <!-- MARKET STRUCTURE -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Market Structure</h2>
+            <span class="badge primary">Three-Layer Framework</span>
+          </div>
+          <div id="marketStructure">
+            <div class="loading">Loading market structure analysis...</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid">
+        <!-- TECHNICAL ANALYSIS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Technical Analysis</h2>
+            <span class="badge warning">Advanced Indicators</span>
+          </div>
+          <div id="technicalAnalysis">
+            <div class="loading">Loading technical indicators...</div>
+          </div>
+        </div>
+        
+        <!-- ASSET PERFORMANCE -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Asset Performance</h2>
+            <span class="badge success">7 Assets Tracked</span>
+          </div>
+          <div id="assetPerformance">
+            <div class="loading">Loading asset data...</div>
+          </div>
+        </div>
+        
+        <!-- MARKET SUMMARY -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Market Summary</h2>
+            <span class="badge cyan">Real-time Snapshot</span>
+          </div>
+          <div id="marketSummary">
+            <div class="loading">Loading market summary...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CRYPTOBIBLE INSIGHTS TAB -->
+    <div id="cryptobibleTab" class="tab-content">
+      <div class="grid">
+        <!-- CHAPTER REFERENCES -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Chapter References</h2>
+            <span class="badge purple">Educational Framework</span>
+          </div>
+          <div id="chapterReferences">
+            <div class="loading">Loading cryptobible insights...</div>
+          </div>
+        </div>
+        
+        <!-- TRADING PRINCIPLES -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Trading Principles</h2>
+            <span class="badge success">Applied Knowledge</span>
+          </div>
+          <div id="tradingPrinciples">
+            <div class="loading">Loading trading principles...</div>
+          </div>
+        </div>
+        
+        <!-- RISK WARNINGS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Risk Warnings</h2>
+            <span class="badge danger">Critical Alerts</span>
+          </div>
+          <div id="riskWarnings">
+            <div class="loading">Loading risk warnings...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- TRADING SIGNALS TAB -->
+    <div id="signalsTab" class="tab-content">
+      <div class="grid-wide">
+        <!-- ACTIVE SIGNALS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Active Trading Signals</h2>
+            <span class="badge primary">7 Signals Detected</span>
+          </div>
+          <div id="tradingSignals">
+            <div class="loading">Loading trading signals...</div>
+          </div>
+        </div>
+        
+        <!-- SIGNAL ANALYSIS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Signal Analysis</h2>
+            <span class="badge info">Confidence & Timeframes</span>
+          </div>
+          <div id="signalAnalysis">
+            <div class="loading">Loading signal analysis...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- NEWS INTELLIGENCE TAB -->
+    <div id="newsTab" class="tab-content">
+      <div class="news-section">
+        <div class="news-header">
+          <h2>📰 News Intelligence Dashboard</h2>
+          <span class="badge info">Real-time Analysis</span>
+        </div>
+        
+        <div class="grid">
+          <!-- NEWS SENTIMENT -->
+          <div class="card">
+            <div class="card-header">
+              <h2>News Sentiment</h2>
+              <span class="badge info">Semantic Analysis</span>
+            </div>
+            <div id="newsSentiment">
+              <div class="loading">Loading sentiment analysis...</div>
+            </div>
+          </div>
+          
+          <!-- BREAKING NEWS -->
+          <div class="card">
+            <div class="card-header">
+              <h2>Breaking News</h2>
+              <span class="badge warning">High Impact</span>
+            </div>
+            <div id="breakingNews">
+              <div class="loading">Loading breaking news...</div>
+            </div>
+          </div>
+          
+          <!-- NEWS CATEGORIES -->
+          <div class="card">
+            <div class="card-header">
+              <h2>News Categories</h2>
+              <span class="badge purple">Distribution</span>
+            </div>
+            <div id="newsCategories">
+              <div class="loading">Loading category data...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- RISK MANAGEMENT TAB -->
+    <div id="riskTab" class="tab-content">
+      <div class="grid">
+        <!-- RISK ASSESSMENT -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Risk Assessment</h2>
+            <span class="badge danger">Cryptobible Chapter 62</span>
+          </div>
+          <div id="riskAssessment">
+            <div class="loading">Loading risk assessment...</div>
+          </div>
+        </div>
+        
+        <!-- POSITION SIZING -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Position Sizing</h2>
+            <span class="badge warning">Recommendations</span>
+          </div>
+          <div id="positionSizing">
+            <div class="loading">Loading position sizing...</div>
+          </div>
+        </div>
+        
+        <!-- STOP LOSS LEVELS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Stop Loss Levels</h2>
+            <span class="badge danger">Critical Protection</span>
+          </div>
+          <div id="stopLossLevels">
+            <div class="loading">Loading stop loss levels...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- REFRESH BUTTON -->
+    <div style="text-align: center; margin-top: 40px; padding-top: 40px; border-top: 2px solid var(--border);">
+      <button class="refresh-btn" onclick="loadCompleteDashboard()">
+        🔄 Load Complete Dashboard
+      </button>
+      <div style="margin-top: 16px; font-size: 14px; color: var(--text-muted);">
+        All features restored • Dark theme • Real-time data • Advanced analytics
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPLETE JAVASCRIPT WITH ALL FEATURES -->
+  <script src="complete-dashboard.js"></script>
+  
+  <!-- TAB SWITCHING AND INITIALIZATION -->
+  <script>
+    // Tab switching function
+    function switchTab(tabName) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.style.display = 'none';
+      });
+      
+      // Remove active class from all tabs
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      // Show selected tab
+      document.getElementById(tabName + 'Tab').style.display = 'block';
+      
+      // Add active class to clicked tab
+      event.target.classList.add('active');
+    }
+    
+    // Utility functions
+    function formatPrice(price) {
+      if (!price) return '-';
+      return '$' + price.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+    
+    function formatPercent(value) {
+      if (value === undefined || value === null) return '-';
+      const sign = value >= 0 ? '+' : '';
+      return sign + value.toFixed(2) + '%';
+    }
+    
+    function getRSILevel(rsi) {
+      if (!rsi) return '';
+      if (rsi > 70) return '(Overbought)';
+      if (rsi < 30) return '(Oversold)';
+      return '(Neutral)';
+    }
+    
+    function showError(message) {
+      console.error('Dashboard error:', message);
+      // Show error in first card
+      const el = document.getElementById('liquidityHeatmap') || document.querySelector('.card');
+      if (el) {
+        el.innerHTML = `<div class="insight danger">${message}</div>`;
+      }
+    }
+    
+    // Initialize dashboard when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('🚀 Complete Market Terminal v2.01 - Initializing...');
+      
+      // Load dashboard after a short delay to ensure DOM is ready
+      setTimeout(() => {
+        if (typeof loadCompleteDashboard === 'function') {
+          loadCompleteDashboard();
+        } else {
+          console.error('loadCompleteDashboard function not found!');
+          showError('JavaScript failed to load. Please refresh.');
+        }
+      }, 500);
+      
+      // Auto-refresh every 2 minutes
+      setInterval(() => {
+        if (typeof loadCompleteDashboard === 'function') {
+          console.log('🔄 Auto-refreshing dashboard...');
+          loadCompleteDashboard();
+        }
+      }, 120000);
+    });
+    
+    // Make functions available globally
+    window.switchTab = switchTab;
+    window.formatPrice = formatPrice;
+    window.formatPercent = formatPercent;
+    
+    console.log('✅ Dashboard framework loaded successfully');
+  </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard Debug</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+        .test { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>`r`n<div style="background:#7f1d1d;color:#fee2e2;padding:12px 16px;font-family:Segoe UI,Arial,sans-serif;font-size:14px;font-weight:700;text-align:center;border-bottom:3px solid #ef4444;">Legacy dashboard view: this page is archived and unsupported. Use ../index.html for the primary dashboard or ../dashboard-enhanced.html for the slim enhanced view.</div>
+    <h1>Dashboard Debug Test</h1>
+    
+    <div class="test">
+        <h3>Test 1: JavaScript Loading</h3>
+        <div id="test1">Testing...</div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 2: Data File Access</h3>
+        <div id="test2">Testing...</div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 3: Console Output</h3>
+        <div id="test3">Check browser console (F12)</div>
+    </div>
+    
+    <script>
+        console.log('=== DASHBOARD DEBUG START ===');
+        
+        // Test 1: JavaScript is running
+        document.getElementById('test1').innerHTML = 
+            '<span class="success">✅ JavaScript is executing!</span>';
+        
+        // Test 2: Try to load data
+        fetch('dashboard-enhanced.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('HTTP error ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('test2').innerHTML = 
+                    `<span class="success">✅ Data loaded: ${data.summary.version}</span>`;
+                console.log('Data loaded successfully:', data.summary);
+            })
+            .catch(error => {
+                document.getElementById('test2').innerHTML = 
+                    `<span class="error">❌ Data error: ${error.message}</span>`;
+                console.error('Data load error:', error);
+            });
+        
+        // Test 3: Check for common issues
+        const issues = [];
+        
+        // Check CORS (if served via file://)
+        if (window.location.protocol === 'file:') {
+            issues.push('Serving via file:// protocol (CORS may block some features)');
+        }
+        
+        // Check console
+        console.log('Debug tests complete');
+        console.log('Issues detected:', issues);
+        
+        if (issues.length > 0) {
+            document.getElementById('test3').innerHTML = 
+                `<span class="error">⚠️ Issues: ${issues.join(', ')}</span>`;
+        } else {
+            document.getElementById('test3').innerHTML = 
+                '<span class="success">✅ No major issues detected</span>';
+        }
+    </script>
+    
+    <div style="margin-top: 20px;">
+        <h3>Next Steps:</h3>
+        <ol>
+            <li>Open browser console (F12) to see any errors</li>
+            <li>Check if data files are accessible</li>
+            <li>Verify JavaScript is not blocked</li>
+            <li><a href="index.html">Back to main dashboard</a></li>
+        </ol>
+    </div>
+</body>
+</html>

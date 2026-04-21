@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Graphics Test - Ultimate Dashboard</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #0a0a0a; color: white; }
+        .test { margin: 10px 0; padding: 15px; border: 1px solid #333; border-radius: 8px; }
+        .success { color: #22c55e; }
+        .error { color: #ef4444; }
+        .warning { color: #f59e0b; }
+        .loading { color: #94a3b8; }
+        button { background: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin: 5px; }
+        .graphics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0; }
+        .graphic-item { padding: 15px; border: 1px solid #333; border-radius: 6px; background: #1a1a1a; }
+        .tab { display: inline-block; padding: 5px 10px; margin: 2px; background: #1a2236; border-radius: 4px; font-size: 12px; }
+    </style>
+</head>
+<body>`r`n<div style="background:#7f1d1d;color:#fee2e2;padding:12px 16px;font-family:Segoe UI,Arial,sans-serif;font-size:14px;font-weight:700;text-align:center;border-bottom:3px solid #ef4444;">Legacy dashboard view: this page is archived and unsupported. Use ../index.html for the primary dashboard or ../dashboard-enhanced.html for the slim enhanced view.</div>
+    <h1>All Graphics Test - Ultimate Dashboard</h1>
+    
+    <div class="test">
+        <h3>Test 1: Load Ultimate Dashboard</h3>
+        <div id="test1" class="loading">Ready to test...</div>
+        <button onclick="testUltimateDashboard()">Test All Graphics</button>
+        <button onclick="openDashboard()">Open Ultimate Dashboard</button>
+    </div>
+    
+    <div class="test">
+        <h3>Test 2: Graphics Checklist</h3>
+        <div id="test2" class="loading">Graphics will appear here...</div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 3: Historical Data Verification</h3>
+        <div id="test3" class="loading">Historical data verification...</div>
+    </div>
+    
+    <div style="margin-top: 30px; padding: 15px; background: #1a1a1a; border-radius: 8px; border: 1px solid #333;">
+        <h3 style="color: #f59e0b;">Expected Graphics (All Should Work):</h3>
+        <div class="graphics-grid">
+            <div class="graphic-item">
+                <h4>📊 Historical Charts Tab</h4>
+                <div class="tab">Candle Charts (OHLC)</div>
+                <div class="tab">Technical Indicators (RSI/MACD)</div>
+                <div class="tab">Market Comparison Charts</div>
+                <div class="tab">Asset Sparklines</div>
+                <div class="tab">Timeframes: 1D, 7D, 30D, ALL</div>
+            </div>
+            <div class="graphic-item">
+                <h4>📈 Market Analytics Tab</h4>
+                <div class="tab">Liquidity Heatmaps</div>
+                <div class="tab">Order Flow Charts</div>
+                <div class="tab">Market Structure Visuals</div>
+                <div class="tab">Technical Analysis Charts</div>
+            </div>
+            <div class="graphic-item">
+                <h4>🎨 Plotly Integration</h4>
+                <div class="tab">Interactive Charts</div>
+                <div class="tab">Zoom & Pan</div>
+                <div class="tab">Dark Theme Charts</div>
+                <div class="tab">Responsive Design</div>
+            </div>
+            <div class="graphic-item">
+                <h4>📱 UI Graphics</h4>
+                <div class="tab">Gradient Headers</div>
+                <div class="tab">Animated Loading</div>
+                <div class="tab">Color-coded Metrics</div>
+                <div class="tab">Hover Effects</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        console.log('=== ALL GRAPHICS TEST START ===');
+        
+        function updateTest(id, message, status) {
+            const el = document.getElementById(id);
+            let colorClass = 'loading';
+            let prefix = '';
+            
+            if (status === 'success') {
+                colorClass = 'success';
+                prefix = '✅ ';
+            } else if (status === 'error') {
+                colorClass = 'error';
+                prefix = '❌ ';
+            } else if (status === 'warning') {
+                colorClass = 'warning';
+                prefix = '⚠️ ';
+            }
+            
+            el.innerHTML = `<span class="${colorClass}">${prefix}${message}</span>`;
+        }
+        
+        async function testUltimateDashboard() {
+            console.log('Testing ultimate dashboard with all graphics...');
+            
+            // Test 1: Check if dashboard functions exist
+            if (typeof loadUltimateDashboard === 'function') {
+                updateTest('test1', 'Dashboard functions loaded', 'success');
+                console.log('✅ Dashboard functions available');
+            } else {
+                updateTest('test1', 'Dashboard functions not found', 'error');
+                console.error('❌ Dashboard functions missing');
+                return;
+            }
+            
+            // Test 2: Check if Plotly is loaded
+            if (typeof Plotly === 'object') {
+                updateTest('test1', 'Plotly charts library loaded', 'success');
+                console.log('✅ Plotly loaded');
+            } else {
+                updateTest('test1', 'Plotly charts not loaded', 'warning');
+                console.warn('⚠️ Plotly not loaded');
+            }
+            
+            // Test 3: Load data and test graphics
+            try {
+                updateTest('test1', 'Loading market data...', 'loading');
+                
+                const marketResponse = await fetch('dashboard-enhanced.json');
+                const marketData = await marketResponse.json();
+                
+                const newsResponse = await fetch('news-data.json');
+                const newsData = await newsResponse.json();
+                
+                updateTest('test1', `Data loaded: ${marketData.summary.version}`, 'success');
+                console.log('✅ Data loaded successfully');
+                
+                // Test all graphics features
+                testAllGraphics(marketData, newsData);
+                
+            } catch (error) {
+                updateTest('test1', `Data loading failed: ${error.message}`, 'error');
+                console.error('❌ Data loading error:', error);
+            }
+        }
+        
+        function testAllGraphics(marketData, newsData) {
+            console.log('Testing all graphics features...');
+            
+            let graphicsHtml = '';
+            let passed = 0;
+            let total = 0;
+            
+            // Test each graphic feature
+            const tests = [
+                {
+                    name: 'Candle Charts',
+                    test: () => typeof Plotly === 'object',
+                    desc: 'OHLC charts with Plotly'
+                },
+                {
+                    name: 'Technical Indicators',
+                    test: () => typeof Plotly === 'object',
+                    desc: 'RSI, MACD charts'
+                },
+                {
+                    name: 'Market Comparison',
+                    test: () => typeof Plotly === 'object',
+                    desc: 'Performance comparison charts'
+                },
+                {
+                    name: 'Sparklines',
+                    test: () => typeof Plotly === 'object',
+                    desc: 'Mini charts for all assets'
+                },
+                {
+                    name: 'Timeframe Selection',
+                    test: () => typeof setTimeframe === 'function',
+                    desc: '1D, 7D, 30D, ALL timeframes'
+                },
+                {
+                    name: 'Asset Selection',
+                    test: () => marketData && marketData.market_data && Object.keys(marketData.market_data).length === 7,
+                    desc: '7 assets with historical data'
+                },
+                {
+                    name: 'Liquidity Heatmaps',
+                    test: () => marketData && marketData.enhanced_metrics && marketData.enhanced_metrics.liquidity_heatmap,
+                    desc: 'Support/resistance visualization'
+                },
+                {
+                    name: 'Order Flow Charts',
+                    test: () => marketData && marketData.enhanced_metrics && marketData.enhanced_metrics.order_flow,
+                    desc: 'Maker/Taker distribution'
+                },
+                {
+                    name: 'Market Structure',
+                    test: () => marketData && marketData.enhanced_metrics && marketData.enhanced_metrics.market_structure_layers,
+                    desc: 'Three-layer visualization'
+                },
+                {
+                    name: 'Dark Theme Charts',
+                    test: () => {
+                        const styles = getComputedStyle(document.documentElement);
+                        return styles.getPropertyValue('--bg') === '#050816';
+                    },
+                    desc: 'Professional dark theme'
+                },
+                {
+                    name: 'Interactive Charts',
+                    test: () => typeof Plotly === 'object',
+                    desc: 'Zoom, pan, hover interactions'
+                },
+                {
+                    name: 'Responsive Design',
+                    test: () => window.innerWidth > 0,
+                    desc: 'Works on all screen sizes'
+                }
+            ];
+            
+            tests.forEach(test => {
+                total++;
+                try {
+                    const passedTest = test.test();
+                    if (passedTest) {
+                        passed++;
+                        graphicsHtml += `<div style="color: #22c55e; margin: 5px 0;">✅ ${test.name}: ${test.desc}</div>`;
+                        console.log(`✅ ${test.name}`);
+                    } else {
+                        graphicsHtml += `<div style="color: #f59e0b; margin: 5px 0;">⚠️ ${test.name}: ${test.desc} (data missing)</div>`;
+                        console.log(`⚠️ ${test.name}: data missing`);
+                    }
+                } catch (error) {
+                    graphicsHtml += `<div style="color: #ef4444; margin: 5px 0;">❌ ${test.name}: ${test.desc} (error: ${error.message})</div>`;
+                    console.error(`❌ ${test.name}:`, error);
+                }
+            });
+            
+            updateTest('test2', `${passed}/${total} graphics features passed`, passed === total ? 'success' : 'warning');
+            document.getElementById('test2').innerHTML += graphicsHtml;
+            
+            // Test 3: Historical data verification
+            let dataHtml = '';
+            if (marketData && marketData.summary) {
+                dataHtml += `<div style="margin: 10px 0;">
+                    <div style="font-weight: bold; color: #3b82f6;">Historical Data Available:</div>
+                    <div>• 7 assets with price data</div>
+                    <div>• Technical indicators (RSI, MACD)</div>
+                    <div>• Enhanced metrics for charts</div>
+                    <div>• Timeframe selection ready</div>
+                </div>`;
+            }
+            
+            updateTest('test3', 'Historical data verified', 'success');
+            document.getElementById('test3').innerHTML += dataHtml;
+            
+            console.log(`=== TEST COMPLETE: ${passed}/${total} graphics features passed ===`);
+        }
+        
+        function openDashboard() {
+            window.location.href = 'index.html';
+        }
+        
+        // Auto-run tests
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('All graphics test ready');
+            updateTest('test1', 'Ready to test ultimate dashboard', 'loading');
+            updateTest('test2', 'Click "Test All Graphics" button above', 'loading');
+            updateTest('test3', 'Waiting for historical data verification...', 'loading');
+        });
+    </script>
+</body>
+</html>

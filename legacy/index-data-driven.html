@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data-Driven Market Terminal v2.01 - REAL DATA</title>
+  <!-- Include Plotly for charts -->
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  <style>
+    /* DATA-DRIVEN DARK THEME */
+    :root {
+      --bg: #050816;
+      --bg2: #0b1220;
+      --bg3: #1a2236;
+      --text: #e5e7eb;
+      --text-muted: #94a3b8;
+      --border: #2d3748;
+      --primary: #3b82f6;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --info: #06b6d4;
+      --purple: #8b5cf6;
+      --cyan: #22d3ee;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg); 
+      color: var(--text); 
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    
+    .container { max-width: 1800px; margin: 0 auto; padding: 24px; }
+    
+    /* HEADER */
+    .header { 
+      background: var(--bg2); 
+      border-radius: 20px; 
+      padding: 32px 40px; 
+      margin-bottom: 32px; 
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-left: 6px solid var(--primary);
+    }
+    
+    .header h1 { 
+      font-size: 36px; 
+      font-weight: 800; 
+      margin-bottom: 12px; 
+      color: var(--text);
+    }
+    
+    .header .subtitle { 
+      color: var(--text-muted); 
+      font-size: 18px; 
+      margin-bottom: 24px;
+    }
+    
+    .header .meta { 
+      display: flex; 
+      gap: 32px; 
+      margin-top: 20px; 
+      font-size: 15px; 
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+    
+    .header .meta span { 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+    }
+    
+    /* TABS */
+    .tab-container { 
+      display: flex; 
+      gap: 12px; 
+      margin-bottom: 32px; 
+      flex-wrap: wrap;
+    }
+    
+    .tab { 
+      background: var(--bg2); 
+      border: 1px solid var(--border); 
+      color: var(--text-muted); 
+      padding: 16px 28px; 
+      border-radius: 14px; 
+      font-weight: 600; 
+      cursor: pointer; 
+      font-size: 16px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .tab:hover { 
+      background: var(--bg3); 
+      border-color: var(--primary); 
+      color: var(--text); 
+    }
+    
+    .tab.active { 
+      background: var(--primary); 
+      color: white; 
+      border-color: transparent; 
+    }
+    
+    /* TAB CONTENT */
+    .tab-content { 
+      display: none; 
+    }
+    
+    /* GRID LAYOUTS */
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+      gap: 24px; 
+      margin-bottom: 32px; 
+    }
+    
+    /* CARDS */
+    .card { 
+      background: var(--bg2); 
+      border-radius: 20px; 
+      padding: 24px; 
+      border: 1px solid var(--border);
+    }
+    
+    .card-header { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      margin-bottom: 20px; 
+      padding-bottom: 16px; 
+      border-bottom: 2px solid var(--border); 
+    }
+    
+    .card-header h2 { 
+      font-size: 20px; 
+      font-weight: 700; 
+      color: var(--text); 
+    }
+    
+    /* BADGES */
+    .badge { 
+      padding: 6px 12px; 
+      border-radius: 20px; 
+      font-size: 12px; 
+      font-weight: 700; 
+    }
+    
+    .badge.primary { background: rgba(59, 130, 246, 0.15); color: var(--primary); }
+    .badge.success { background: rgba(34, 197, 94, 0.15); color: var(--success); }
+    .badge.warning { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+    .badge.danger { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+    
+    /* METRICS */
+    .metric { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 12px 0; 
+      border-bottom: 1px solid var(--border); 
+    }
+    
+    .metric:last-child { border-bottom: none; }
+    
+    .metric .label { 
+      color: var(--text-muted); 
+      font-size: 14px; 
+    }
+    
+    .metric .value { 
+      font-weight: 700; 
+      font-size: 16px; 
+    }
+    
+    .metric .value.positive { color: var(--success); }
+    .metric .value.negative { color: var(--danger); }
+    
+    /* CHARTS */
+    .chart-container { 
+      background: var(--bg3); 
+      border-radius: 12px; 
+      padding: 16px; 
+      margin: 16px 0; 
+      border: 1px solid var(--border);
+      min-height: 300px;
+    }
+    
+    /* LOADING STATES */
+    .loading { 
+      text-align: center; 
+      padding: 40px 20px; 
+      color: var(--text-muted); 
+      font-style: italic;
+    }
+    
+    /* INSIGHTS */
+    .insight { 
+      background: var(--bg3); 
+      padding: 12px; 
+      border-radius: 8px; 
+      margin: 8px 0; 
+      border-left: 4px solid var(--info);
+      font-size: 14px;
+    }
+    
+    .insight.success { border-left-color: var(--success); }
+    .insight.warning { border-left-color: var(--warning); }
+    .insight.danger { border-left-color: var(--danger); }
+    
+    /* BUTTONS */
+    .refresh-btn {
+      background: var(--primary); 
+      color: white; 
+      border: none; 
+      padding: 12px 24px; 
+      border-radius: 10px; 
+      font-weight: 600; 
+      cursor: pointer; 
+      font-size: 14px;
+    }
+    
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+      .header .meta { flex-direction: column; gap: 12px; }
+      .container { padding: 16px; }
+      .header { padding: 24px; }
+      .header h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>`r`n<div style="background:#7f1d1d;color:#fee2e2;padding:12px 16px;font-family:Segoe UI,Arial,sans-serif;font-size:14px;font-weight:700;text-align:center;border-bottom:3px solid #ef4444;">Legacy dashboard view: this page is archived and unsupported. Use ../index.html for the primary dashboard or ../dashboard-enhanced.html for the slim enhanced view.</div>
+  <div class="container">
+    <!-- HEADER -->
+    <div class="header">
+      <h1>📊 Data-Driven Market Terminal</h1>
+      <div class="subtitle">Showing REAL data from your JSON files • No simulated data</div>
+      <div class="meta">
+        <span>🕒 Updated: <span id="updatedLocal">Loading...</span></span>
+        <span>📊 Assets: <span id="trackedAssets">7</span></span>
+        <span>📈 Market Bias: <span id="marketBias">-</span></span>
+        <span>📋 Version: <span id="version">v2.01</span></span>
+      </div>
+    </div>
+    
+    <!-- TABS -->
+    <div class="tab-container">
+      <button class="tab active" onclick="switchTab('realCharts')">
+        📈 Real Charts
+      </button>
+      <button class="tab" onclick="switchTab('marketData')">
+        📊 Market Data
+      </button>
+      <button class="tab" onclick="switchTab('signals')">
+        🚦 Trading Signals
+      </button>
+      <button class="tab" onclick="switchTab('cryptobible')">
+        📖 Cryptobible
+      </button>
+    </div>
+    
+    <!-- REAL CHARTS TAB -->
+    <div id="realChartsTab" class="tab-content" style="display: block;">
+      <div class="grid">
+        <!-- BTC CANDLE CHART -->
+        <div class="card">
+          <div class="card-header">
+            <h2>BTC Candle Chart</h2>
+            <span class="badge primary">119 Candles</span>
+          </div>
+          <div id="btcCandleChart" class="chart-container">
+            <div class="loading">Loading BTC OHLC data...</div>
+          </div>
+          <div style="margin-top: 16px; font-size: 14px; color: var(--text-muted);">
+            Real OHLC data from your JSON file
+          </div>
+        </div>
+        
+        <!-- ASSET PERFORMANCE -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Asset Performance</h2>
+            <span class="badge success">7 Assets</span>
+          </div>
+          <div id="assetPerformance">
+            <div class="loading">Loading asset data...</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid">
+        <!-- TECHNICAL ANALYSIS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Technical Analysis</h2>
+            <span class="badge warning">Real Indicators</span>
+          </div>
+          <div id="technicalAnalysis">
+            <div class="loading">Loading technical data...</div>
+          </div>
+        </div>
+        
+        <!-- MARKET SUMMARY -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Market Summary</h2>
+            <span class="badge info">Live Data</span>
+          </div>
+          <div id="marketSummary">
+            <div class="loading">Loading market summary...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- MARKET DATA TAB -->
+    <div id="marketDataTab" class="tab-content">
+      <div class="grid">
+        <!-- LIQUIDITY HEATMAP -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Liquidity Heatmap</h2>
+            <span class="badge primary">Real Data</span>
+          </div>
+          <div id="liquidityHeatmap">
+            <div class="loading">Loading liquidity data...</div>
+          </div>
+        </div>
+        
+        <!-- ORDER FLOW -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Order Flow</h2>
+            <span class="badge info">Real Metrics</span>
+          </div>
+          <div id="orderFlow">
+            <div class="loading">Loading order flow data...</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid">
+        <!-- MARKET STRUCTURE -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Market Structure</h2>
+            <span class="badge warning">Three Layers</span>
+          </div>
+          <div id="marketStructure">
+            <div class="loading">Loading market structure...</div>
+          </div>
+        </div>
+        
+        <!-- RISK MANAGEMENT -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Risk Management</h2>
+            <span class="badge danger">Real Assessment</span>
+          </div>
+          <div id="riskManagement">
+            <div class="loading">Loading risk data...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- TRADING SIGNALS TAB -->
+    <div id="signalsTab" class="tab-content">
+      <div class="grid">
+        <!-- ACTIVE SIGNALS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Active Trading Signals</h2>
+            <span class="badge primary">7 Signals</span>
+          </div>
+          <div id="tradingSignals">
+            <div class="loading">Loading trading signals...</div>
+          </div>
+        </div>
+        
+        <!-- SIGNAL ANALYSIS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Signal Analysis</h2>
+            <span class="badge info">Real Analysis</span>
+          </div>
+          <div id="signalAnalysis">
+            <div class="loading">Loading signal analysis...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CRYPTOBIBLE TAB -->
+    <div id="cryptobibleTab" class="tab-content">
+      <div class="grid">
+        <!-- CHAPTER REFERENCES -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Chapter References</h2>
+            <span class="badge success">Real Insights</span>
+          </div>
+          <div id="chapterReferences">
+            <div class="loading">Loading cryptobible insights...</div>
+          </div>
+        </div>
+        
+        <!-- TRADING PRINCIPLES -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Trading Principles</h2>
+            <span class="badge warning">Applied Knowledge</span>
+          </div>
+          <div id="tradingPrinciples">
+            <div class="loading">Loading trading principles...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- REFRESH BUTTON -->
+    <div style="text-align: center; margin-top: 40px;">
+      <button class="refresh-btn" onclick="loadRealData()">
+        🔄 Load Real Data
+      </button>
+      <div style="margin-top: 12px; font-size: 14px; color: var(--text-muted);">
+        Uses actual data from your JSON files • No simulations
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA-DRIVEN JAVASCRIPT -->
+  <script>
+    console.log('🚀 Data-Driven Market Terminal - Loading REAL data');
+    
+    let marketData = null;
+    
+    async function loadRealData() {
+        console.log('Loading REAL data from JSON files...');
+        
+        try {
+            // Show loading state
+            document.getElementById('updatedLocal').textContent = 'Loading...';
+            
+            // Load market data
+            const marketResponse = await fetch('dashboard-enhanced.json');
+            marketData = await marketResponse.json();
+            console.log('✅ REAL data loaded:', marketData.summary.version);
+            
+            // Update header
+            updateHeader();
+            
+            // Render REAL data (not simulated)
+            renderRealData();
+            
+            console.log('🎉 Real data dashboard loaded successfully!');
+            
+        } catch (error) {
+            console.error('❌ Error loading data:', error);
+            showError('Failed to load data. Check console.');
+        }
+    }
+    
+    function updateHeader() {
+        if (!marketData || !marketData.summary) return;
+        
+        const now = new Date();
+        document.getElementById('updatedLocal').textContent = now.toLocaleString();
+        
+        const summary = marketData.summary;
+        document.getElementById('trackedAssets').textContent = summary.tracked_assets;
+        document.getElementById('marketBias').textContent = summary.market_bias;
+        document.getElementById('version').textContent = summary.version;
+    }
+    
+    function renderRealData() {
+        // REAL CHARTS TAB
+        renderBTCCandleChart();
+        renderAssetPerformance();
+        renderTechnicalAnalysis();
+        renderMarketSummary();
+        
+        // MARKET DATA TAB
+        renderLiquidityHeatmap();
+        renderOrderFlow();
+        renderMarketStructure();
+        renderRiskManagement();
+        
+        // SIGNALS TAB
+        renderTradingSignals();
+        
+        // CRYPTOBIBLE TAB
+        renderCryptobibleInsights();
+    }
+    
+    // ==================== REAL CHARTS TAB ====================
+    
+    function renderBTCCandleChart() {
+        const el = document.getElementById('btcCandleChart');
+        
+        if (!marketData || !marketData.market_data || !marketData.market_data.BTC || !marketData.market_data.BTC.ohlc) {
+            el.innerHTML = '<div class="insight">No BTC OHLC data available</div>';
+            return;
+        }
+        
+        const btcData = marketData.market_data.BTC;
+        const ohlc = btcData.ohlc;
+        
+        if (!ohlc || ohlc.length === 0) {
+            el.innerHTML = '<div class="insight">BTC OHLC data is empty</div>';
+            return;
+        }
+        
+        console.log(`Rendering ${ohlc.length} BTC candles`);
+        
+        // Convert timestamps to Date objects
+        const dates = ohlc.map(candle => new Date(candle.timestamp));
+        
+        const candleData = [{
+            x: dates,
+            open: ohlc.map(c => c.open),
+            high: ohlc.map(c => c.high),
+            low: ohlc.map(c => c.low),
+            close: ohlc.map(c => c.close),
+            type: 'candlestick',
+            name: 'BTC',
+            increasing: {line: {color: '#22c55e'}},
+            decreasing: {line: {color: '#ef4444'}}
+        }];
+        
+        const layout = {
+            margin: {t: 10, r: 10, b: 40, l: 60},
+            paper_bgcolor: '#0f172a',
+            plot_bgcolor: '#0f172a',
+            font: {color: '#e5e7eb'},
+            xaxis: {title: 'Time', gridcolor: '#1f2937'},
+            yaxis: {title: 'Price (USD)', gridcolor: '#1f2937'},
+            showlegend: false
+        };
+        
+        try {
+            Plotly.newPlot('btcCandleChart', candleData, layout, {responsive: true});
+        } catch (error) {
+            console.error('Could not create BTC candle chart:', error);
+            el.innerHTML = `<div class="insight">Error creating chart: ${error.message}</div>`;
+        }
+    }
+    
+    function renderAssetPerformance() {
+        const el = document.getElementById('assetPerformance');
+        if (!marketData || !marketData.market_data) return;
+        
+        const assets = marketData.market_data;
+        let html = '';
+        
+        Object.entries(assets).forEach(([symbol, data]) => {
+            const change = data.change_pct || 0;
+            const price = data.price || 0;
+            
+            html += `<div class="metric">
+                <div class="label">${symbol}</div>
+                <div class="value ${change >= 0 ? 'positive' : 'negative'}">
+                    ${formatPrice(price)} (${formatPercent(change)})
+                </div>
+            </div>`;
+        });
+        
+        el.innerHTML = html;
+    }
+    
+    function renderTechnicalAnalysis() {
+        const el = document.getElementById('technicalAnalysis');
+        if (!marketData || !marketData.technical_analysis) return;
+        
+        const ta = marketData.technical_analysis;
+        let html = '';
+        
+        // BTC Analysis
+        if (ta.BTC) {
+            const btc = ta.BTC;
+            html += `<div class="metric">
+                <div class="label">BTC RSI</div>
+                <div class="value ${btc.rsi > 70 ? 'danger' : btc.rsi < 30 ? 'success' : ''}">${btc.rsi?.toFixed(1) || '-'}</div>
+            </div>`;
+            
+            html += `<div class="metric">
+                <div class="label">BTC MACD</div>
+                <div class="value ${btc.macd > 0 ? 'success' : 'danger'}">${btc.macd?.toFixed(2) || '-'}</div>
+            </div>`;
+        }
+        
+        // ETH Analysis
+        if (ta.ETH) {
+            const eth = ta.ETH;
+            html += `<div class="metric">
+                <div class="label">ETH RSI</div>
+                <div class="value ${eth.rsi > 70 ? 'danger' : eth.rsi < 30 ? 'success' : ''}">${eth.rsi?.toFixed(1) || '-'}</div>
+            </div>`;
+        }
+        
+        el.innerHTML = html;
+    }
+    
+    function renderMarketSummary() {
+        const el = document.getElementById('marketSummary');
+        if (!marketData || !marketData.summary) return;
+        
+        const summary = marketData.summary;
+        let html = '';
+        
+        html += `<div class="metric">
+            <div class="label">Market Bias</div>
+            <div class="value ${summary.market_bias === 'BULLISH' ? 'positive' : 'negative'}">${summary.market_bias}</div>
+        </div>`;
+        
+        html += `<div class="metric">
+            <div class="label">Top Gainer</div>
+            <div class="value positive">${summary.top_gainer}</div>
+        </div>`;
+        
+        html += `<div class="metric">
+            <div class="label">Top Loser</div>
+            <div class="value negative">${summary.top_loser}</div>
+        </div>`;
+        
+        html += `<div class="metric">
+            <div class="label">Avg Change</div>
+            <div class="value ${summary.avg_change_pct >= 0 ? 'positive' : 'negative'}">${formatPercent(summary.avg_change_pct)}</div>
+        </div>`;
+        
+        el.innerHTML = html;
+    }
+    
+    // ==================== MARKET DATA TAB ====================
+    
+    function renderLiquidityHeatmap() {
+        const el = document.getElementById('liquidityHeatmap');
+        
+        if (!marketData || !marketData.enhanced_metrics?.liquidity_heatmap) {
+            el.innerHTML = '<div class="insight">No liquidity heatmap data</div>';
+            return;
+        }
+        
+        const heatmap = marketData.enhanced_metrics.liquidity_heatmap;
+        let html = '<div style="display: grid; gap: 12px;">';
+        
+        // Support zones
+        if (heatmap.support_zones?.length) {
+            html += '<div><div style="font-weight: 600; color: var(--success); margin-bottom: 8px;">Support Zones:</div>';
+            heatmap.support_zones.slice(0, 3).forEach(zone => {
+                html += `<div class="insight success">${zone.symbol}: ${formatPrice(zone.price)} (${zone.strength})</div>`;
+            });
+            html += '</div>';
+        }
+        
+        // Resistance zones
+        if (heatmap.resistance_zones?.length) {
+            html += '<div><div style="font-weight: 600; color: var(--danger); margin-bottom: 8px;">Resistance Zones:</div>';
+            heatmap.resistance_zones.slice(0, 3).forEach(zone => {
+                html += `<div class="insight danger">${zone.symbol}: ${formatPrice(zone.price)} (${zone.strength})</div>`;
+            });
+            html += '</div>';
+        }
+        
+        html += '</div>';
+        el.innerHTML = html;
+    }
+    
+    function renderOrderFlow() {
+        const el = document.getElementById('orderFlow');
+        
+        if (!marketData || !marketData.enhanced_metrics?.order_flow) {
+            el.innerHTML = '<div class="insight">No order flow data</div>';
+            return;
+        }
+        
+        const flow = marketData.enhanced_metrics.order_flow;
+        let html = '';
+        
+        html += `<div class="metric">
+            <div class="label">Market Makers</div>
+            <div class="value">${(flow.maker_ratio * 100).toFixed(1)}%</div>
+        </div>`;
+        
+        html += `<div class="metric">
+            <div class="label">Takers</div>
+            <div class="value">${(flow.taker_ratio * 100).toFixed(1)}%</div>
+        </div>`;
+        
+        html += `<div class="metric">
+            <div class="label">Flow Imbalance</div>
+            <div class="value ${flow.imbalance > 0 ? 'positive' : 'negative'}">${formatPercent(flow.imbalance * 100)}</div>
+        </div>`;
+        
+        el.innerHTML = html;
+    }
+    
+    function renderMarketStructure() {
+        const el = document.getElementById('marketStructure');
+        
+        if (!marketData || !marketData.enhanced_metrics?.market_structure_layers) {
+            el.innerHTML = '<div class="insight">No market structure data</div>';
+            return;
+        }
+        
+        const structure = marketData.enhanced_metrics.market_structure_layers;
+        let html = '';
+        
+        // Structural layer
+        if (structure.structural?.length) {
+            html += '<div style="margin-bottom: 16px;"><div style="font-weight: 600; color: var(--primary); margin-bottom: 8px;">Structural Layer:</div>';
+            structure.structural.slice(0, 2).forEach(item => {
+                html += `<div class="insight">${item}</div>`;
+            });
+            html += '</div>';
+        }
+        
+        // Participant layer
+        if (structure.participant?.length) {
+            html += '<div style="margin-bottom: 16px;"><div style="font-weight: 600; color: var(--info); margin-bottom: 8px;">Participant Layer:</div>';
+            structure.participant.slice(0, 2).forEach(item => {
+                html += `<div class="insight">${item}</div>`;
+            });
+            html += '</div>';
+        }
+        
+        // Psychological layer
+        if (structure.psychological?.length) {
+            html += '<div><div style="font-weight: 600; color: var(--purple); margin-bottom: 8px;">Psychological Layer:</div>';
+            structure.psychological.slice(0, 2).forEach(item => {
+                html += `<div class="insight">${item}</div>`;
+            });
+            html += '</div>';
+        }
+        
+        el.innerHTML = html;
+    }
+    
+    function renderRiskManagement() {
+        const el = document.getElementById('riskManagement');
+        
+        if (!marketData || !marketData.enhanced_metrics?.risk_management) {
+            el.innerHTML = '<div class="insight">No risk management data</div>';
+            return;
+        }
+        
+        const risk = marketData.enhanced_metrics.risk_management;
+        let html = '';
+        
+        html += `<div class="metric">
+            <div class="label">Overall Risk</div>
+            <div class="value ${risk.overall_risk === 'HIGH' ? 'danger' : risk.overall_risk === 'MEDIUM' ? 'warning' : 'success'}">${risk.overall_risk}</div>
+        </div>`;
+        
+        html += `<div class="metric">
+            <div class="label">Risk Score</div>
+            <div class="value">${risk.risk_score || 'N/A'}/100</div>
+        </div>`;
+        
+        html += `<div class="metric">
+            <div class="label">Position Size</div>
+            <div class="value">${risk.position_size_recommendation || 'N/A'}</div>
+        </div>`;
+        
+        el.innerHTML = html;
+    }
+    
+    // ==================== TRADING SIGNALS TAB ====================
+    
+    function renderTradingSignals() {
+        const signalsEl = document.getElementById('tradingSignals');
+        const analysisEl = document.getElementById('signalAnalysis');
+        
+        if (!marketData || !marketData.signals || marketData.signals.length === 0) {
+            signalsEl.innerHTML = '<div class="insight">No trading signals</div>';
+            analysisEl.innerHTML = '<div class="insight">No signal analysis</div>';
+            return;
+        }
+        
+        const signals = marketData.signals;
+        
+        // Render signals
+        let signalsHtml = '';
+        signals.forEach(signal => {
+            const typeClass = signal.type === 'BUY' ? 'success' : 'danger';
+            signalsHtml += `<div class="insight ${typeClass}">
+                <div style="font-weight: 600;">${signal.type} ${signal.symbol}</div>
+                <div style="font-size: 13px; color: var(--text-muted);">
+                    Price: ${formatPrice(signal.price)} • Confidence: ${signal.confidence}%
+                </div>
+            </div>`;
+        });
+        
+        signalsEl.innerHTML = signalsHtml;
+        
+        // Render signal analysis
+        let analysisHtml = '';
+        
+        const buySignals = signals.filter(s => s.type === 'BUY').length;
+        const sellSignals = signals.filter(s => s.type === 'SELL').length;
+        
+        analysisHtml += `<div class="metric">
+            <div class="label">Buy Signals</div>
+            <div class="value positive">${buySignals}</div>
+        </div>`;
+        
+        analysisHtml += `<div class="metric">
+            <div class="label">Sell Signals</div>
+            <div class="value negative">${sellSignals}</div>
+        </div>`;
+        
+        analysisHtml += `<div class="metric">
+            <div class="label">Total Signals</div>
+            <div class="value">${signals.length}</div>
+        </div>`;
+        
+        analysisEl.innerHTML = analysisHtml;
+    }
+    
+    // ==================== CRYPTOBIBLE TAB ====================
+    
+    function renderCryptobibleInsights() {
+        // Chapter References
+        const chaptersEl = document.getElementById('chapterReferences');
+        if (marketData?.enhanced_metrics?.cryptobible_insights?.chapter_references) {
+            const chapters = marketData.enhanced_metrics.cryptobible_insights.chapter_references;
+            let html = '';
+            
+            chapters.slice(0, 3).forEach(ref => {
+                html += `<div class="insight">
+                    <div style="font-weight: 600; color: var(--purple);">${ref.chapter}</div>
+                    <div style="font-size: 13px; color: var(--text-muted);">${ref.description}</div>
+                </div>`;
+            });
+            chaptersEl.innerHTML = html;
+        }
+        
+        // Trading Principles
+        const principlesEl = document.getElementById('tradingPrinciples');
+        if (marketData?.enhanced_metrics?.cryptobible_insights?.trading_principles) {
+            const principles = marketData.enhanced_metrics.cryptobible_insights.trading_principles;
+            let html = '';
+            
+            principles.slice(0, 3).forEach(principle => {
+                html += `<div class="insight success">✅ ${principle}</div>`;
+            });
+            principlesEl.innerHTML = html;
+        }
+    }
+    
+    // ==================== UTILITY FUNCTIONS ====================
+    
+    function formatPrice(price) {
+        if (!price) return '-';
+        return '$' + price.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    }
+    
+    function formatPercent(value) {
+        if (value === undefined || value === null) return '-';
+        const sign = value >= 0 ? '+' : '';
+        return sign + value.toFixed(2) + '%';
+    }
+    
+    function showError(message) {
+        console.error('Dashboard error:', message);
+        const subtitle = document.querySelector('.header .subtitle');
+        if (subtitle) {
+            subtitle.innerHTML = `<span style="color: var(--danger);">❌ ${message}</span>`;
+        }
+    }
+    
+    // Tab switching function
+    function switchTab(tabName) {
+        // Hide all tabs
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.style.display = 'none';
+        });
+        
+        // Remove active class from all tabs
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        // Show selected tab
+        document.getElementById(tabName + 'Tab').style.display = 'block';
+        
+        // Add active class to clicked tab
+        event.target.classList.add('active');
+    }
+    
+    // Make functions available globally
+    window.loadRealData = loadRealData;
+    window.switchTab = switchTab;
+    
+    // Auto-load data when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('🚀 Data-Driven Market Terminal - Auto-loading REAL data...');
+        
+        // Load data after a short delay
+        setTimeout(() => {
+            loadRealData();
+        }, 1000);
+    });
+    
+    console.log('✅ Data-driven dashboard ready');
+  </script>
+</body>
+</html>

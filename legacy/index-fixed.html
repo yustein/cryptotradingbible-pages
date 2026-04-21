@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complete Market Terminal v2.01</title>
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  <style>
+    :root {
+      --bg: #050816;
+      --bg2: #0b1220;
+      --line: #1f2937;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --green: #22c55e;
+      --red: #ef4444;
+      --blue: #38bdf8;
+      --amber: #f59e0b;
+      --purple: #a855f7;
+      --shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .header {
+      background: var(--bg2);
+      border-radius: 16px;
+      padding: 24px 32px;
+      margin-bottom: 24px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--purple), var(--amber));
+    }
+
+    .header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, var(--blue), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header .subtitle {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    .header-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .header-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .badge.success { background: rgba(34, 197, 94, 0.1); color: var(--green); border-color: rgba(34, 197, 94, 0.3); }
+    .badge.warning { background: rgba(245, 158, 11, 0.1); color: var(--amber); border-color: rgba(245, 158, 11, 0.3); }
+    .badge.danger { background: rgba(239, 68, 68, 0.1); color: var(--red); border-color: rgba(239, 68, 68, 0.3); }
+    .badge.info { background: rgba(56, 189, 248, 0.1); color: var(--blue); border-color: rgba(56, 189, 248, 0.3); }
+    .badge.purple { background: rgba(168, 85, 247, 0.1); color: var(--purple); border-color: rgba(168, 85, 247, 0.3); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--bg2);
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .card-header h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .metric:last-child {
+      border-bottom: none;
+    }
+
+    .metric .label {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .metric .value {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .metric .value.positive { color: var(--green); }
+    .metric .value.negative { color: var(--red); }
+    .metric .value.neutral { color: var(--amber); }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--muted);
+    }
+
+    .tab-container {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+    }
+
+    .tab {
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .tab.active {
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--blue);
+    }
+
+    .tab:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tab-content {
+      display: block;
+    }
+
+    .refresh-btn {
+      background: linear-gradient(90deg, var(--blue), var(--purple));
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+
+    .refresh-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+      .header-meta { flex-direction: column; gap: 8px; }
+      .container { padding: 12px; }
+    }
+  </style>
+</head>
+<body>`r`n<div style="background:#7f1d1d;color:#fee2e2;padding:12px 16px;font-family:Segoe UI,Arial,sans-serif;font-size:14px;font-weight:700;text-align:center;border-bottom:3px solid #ef4444;">Legacy dashboard view: this page is archived and unsupported. Use ../index.html for the primary dashboard or ../dashboard-enhanced.html for the slim enhanced view.</div>
+  <div class="container">
+    <div class="header">
+      <h1>Complete Market Terminal v2.01</h1>
+      <div class="subtitle">Real-time market data with news intelligence</div>
+      <div class="header-meta">
+        <span>🕒 Updated: <span id="updatedTime">Loading...</span></span>
+        <span>📊 Assets: <span id="trackedAssets">0</span></span>
+        <span>📈 Market Bias: <span id="marketBias">-</span></span>
+        <span>📰 News: <span id="newsCount">0</span> articles</span>
+        <span>📊 Sentiment: <span id="newsSentiment">-</span></span>
+      </div>
+    </div>
+
+    <div class="tab-container">
+      <button class="tab active" onclick="switchTab('market')">📈 Market Data</button>
+      <button class="tab" onclick="switchTab('news')">📰 News Intelligence</button>
+    </div>
+
+    <!-- Market Data Tab -->
+    <div id="marketTab" class="tab-content">
+      <div class="grid">
+        <!-- Market Summary -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Market Summary</h2>
+            <span class="badge info">Live</span>
+          </div>
+          <div id="marketSummary">
+            <div class="loading">Loading market data...</div>
+          </div>
+        </div>
+
+        <!-- Asset Performance -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Asset Performance</h2>
+            <span class="badge info">Real-time</span>
+          </div>
+          <div id="assetPerformance">
+            <div class="loading">Loading asset data...</div>
+          </div>
+        </div>
+
+        <!-- Technical Analysis -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Technical Analysis</h2>
+            <span class="badge purple">Advanced</span>
+          </div>
+          <div id="technicalAnalysis">
+            <div class="loading">Loading technical analysis...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- News Intelligence Tab -->
+    <div id="newsTab" class="tab-content" style="display: none;">
+      <div class="grid">
+        <!-- News Sentiment -->
+        <div class="card">
+          <div class="card-header">
+            <h2>News Sentiment</h2>
+            <span class="badge info">Semantic Analysis</span>
+          </div>
+          <div id="newsSentimentPanel">
+            <div class="loading">Loading sentiment analysis...</div>
+          </div>
+        </div>
+
+        <!-- Breaking News -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Breaking News</h2>
+            <span class="badge warning">High Impact</span>
+          </div>
+          <div id="breakingNewsPanel">
+            <div class="loading">Loading breaking news...</div>
+          </div>
+        </div>
+
+        <!-- News Categories -->
+        <div class="card">
+          <div class="card-header">
+            <h2>News Categories</h2>
+            <span class="badge purple">Distribution</span>
+          </div>
+          <div id="newsCategories">
+            <div class="loading">Loading category data...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <button class="refresh-btn" onclick="loadDashboard()">🔄 Refresh Dashboard</button>
+      <div style="margin-top: 12px; font-size: 12px; color: var(--muted);">
+        Auto-refresh every 5 minutes
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple dashboard JavaScript
+    let marketData = null;
+    let newsData = null;
+    
+    function switchTab(tabName) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.style.display = 'none';
+      });
+      
+      // Remove active class from all tabs
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      // Show selected tab
+      document.getElementById(tabName + 'Tab').style.display = 'block';
+      
+      // Add active class to clicked tab
+      event.target.classList.add('active');
+    }
+    
+    function formatPrice(price) {
+      if (!price) return '-';
+      return new Intl.NumberFormat('en-US', { 
+        style: 'currency', 
+        currency: 'USD',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(price);
+    }
+    
+    function formatPercent(value) {
+      if (value === undefined || value === null) return '-';
+      const sign = value >= 0 ? '+' : '';
+      return `${sign}${value.toFixed(2)}%`;
+    }
+    
+    function formatTime(dateString) {
+      if (!dateString) return '-';
+      const date = new Date(dateString);
+      return date.toLocaleString();
+    }
+    
+    async function loadMarketData() {
+      try {
+        const response = await fetch('dashboard-enhanced.json?_=' + Date.now());
+        marketData = await response.json();
+        
+        // Update header
+        if (marketData.summary) {
+          document.getElementById('updatedTime').textContent = formatTime(marketData.generated_at_local);
+          document.getElementById('trackedAssets').textContent = marketData.summary.tracked_assets;
+          document.getElementById('marketBias').textContent = marketData.summary.market_bias;
+        }
+        
+        // Render market summary
+        renderMarketSummary();
+        renderAssetPerformance();
+        renderTechnicalAnalysis();
+        
+      } catch (error) {
+        console.error('Error loading market data:', error);
+        document.getElementById('marketSummary').innerHTML = '<div class="loading">Error loading market data</div>';
+      }
+    }
+    
+    async function loadNewsData() {
+      try {
+        const response = await fetch('news-data.json?_=' + Date.now());
+        newsData = await response.json();
+        
+        // Update header
+        if (newsData.summary) {
+          document.getElementById('newsCount').textContent = newsData.summary.total_articles;
+          document.getElementById('newsSentiment').textContent = newsData.summary.overall_sentiment.toUpperCase();
+        }
+        
+        // Render news data
+        renderNewsSentiment();
+        renderBreakingNews();
+        renderNewsCategories();
+        
+      } catch (error) {
+        console.error('Error loading news data:', error);
+      }
+    }
+    
+    function renderMarketSummary() {
+      const el = document.getElementById('marketSummary');
+      if (!marketData || !marketData.summary) return;
+      
+      const summary = marketData.summary;
+      const biasColor = summary.market_bias === 'BULLISH' ? 'var(--green)' : 
+                       summary.market_bias === 'BEARISH' ? 'var(--red)' : 'var(--amber)';
+      
+      let html = '';
+      
+      html += `<div class="metric">
+        <div class="label">Market Bias</div>
+        <div class="value" style="color: ${biasColor}">${summary.market_bias}</div>
+      </div>`;
+      
+      html += `<div class="metric">
+        <div class="label">Avg Change</div>
+        <div class="value ${summary.avg_change_pct >= 0 ? 'positive' : 'negative'}">
+          ${formatPercent(summary.avg_change_pct)}
+        </div>
+      </div>`;
+      
+      if (summary.top_gainer && summary.top_loser) {
+        html += `<div class="metric">
+          <div class="label">Top Gainer</div>
+          <div class="value positive">${summary.top_gainer}</div>
+        </div>`;
+        
+        html += `<div class="metric">
+          <div class="label">Top Loser</div>
+          <div class="value negative">${summary.top_loser}</div>
+        </div>`;
+      }
+      
+      html += `<div class="metric">
+        <div class="label">Dashboard Version</div>
+        <div class="value">${summary.version}</div>
+      </div>`;
+      
+      el.innerHTML = html;
+    }
+    
+    function renderAssetPerformance() {
+      const el = document.getElementById('assetPerformance');
+      if (!marketData || !marketData.market_data) return;
+      
+      let html = '';
+      const assets = Object.entries(marketData.market_data);
+      
+      // Show top 6 assets
+      assets.slice(0, 6).forEach(([symbol, data]) => {
+        const change = data.change_pct || 0;
+        const price = data.price || 0;
+        
+        html += `<div class="metric">
+          <div class="label">${symbol}</div>
+          <div class="value ${change >= 0 ? 'positive' : 'negative'}">
+            ${formatPrice(price)} (${formatPercent(change)})
+          </div>
+        </div>`;
+      });
+      
+      el.innerHTML = html;
+    }
+    
+    function renderTechnicalAnalysis() {
+      const el = document.getElementById('technicalAnalysis');
+      if (!marketData || !marketData.technical_analysis) {
+        el.innerHTML = '<div class="loading">No technical analysis available</div>';
+        return;
+      }
+      
+      const ta = marketData.technical_analysis;
+      let html = '';
+      
+      if (ta.BTC) {
+        const btc = ta.BTC;
+        
+        if (btc.rsi !== undefined) {
+          const rsiColor = btc.rsi > 70 ? 'var(--red)' : btc.rsi < 30 ? 'var(--green)' : 'var(--amber)';
+          html += `<div class="metric">
+            <div class="label">BTC RSI</div>
+            <div class="value" style="color: ${rsiColor}">${btc.rsi.toFixed(1)}</div>
+          </div>`;
+        }
+        
+        if (btc.macd !== undefined) {
+          const macdColor = btc.macd > 0 ? 'var(--green)' : 'var(--red)';
+          html += `<div class="metric">
+            <div class="label">BTC MACD</div>
+            <div class="value" style="color: ${macdColor}">${btc.macd > 0 ? '+' : ''}${btc.macd.toFixed(2)}</div>
+          </div>`;
+        }
+      }
+      
+      el.innerHTML = html;
+    }
+    
+    function renderNewsSentiment() {
+      const el = document.getElementById('newsSentimentPanel');
+      if (!newsData || !newsData.summary) return;
+      
+      const summary = newsData.summary;
+      const sentiment = summary.overall_sentiment;
+      const breakdown = summary.sentiment_breakdown;
+      
+      let html = '';
+      
+      // Overall sentiment
+      const sentimentColor = sentiment === 'positive' ? 'var(--green)' : 
+                            sentiment === 'negative' ? 'var(--red)' : 'var(--amber)';
+      
+      html += `<div class="metric">
+        <div class="label">Overall Sentiment</div>
+        <div class="value" style="color: ${sentimentColor}">${sentiment.toUpperCase()}</div>
+      </div>`;
+      
+      // Sentiment breakdown
+      if (breakdown) {
+        html += `<div class="metric">
+          <div class="label">Positive</div>
+          <div class="value positive">${breakdown.positive || 0}%</div>
+        </div>`;
+        
+        html += `<div class="metric">
+          <div class="label">Neutral</div>
+          <div class="value neutral">${breakdown.neutral || 0}%</div>
+        </div>`;
+        
+        html += `<div class="metric">
+          <div class="label">Negative</div>
+          <div class="value negative">${breakdown.negative || 0}%</div>
+        </div>`;
+      }
+      
+      el.innerHTML = html;
+    }
+    
+    function renderBreakingNews() {
+      const el = document.getElementById('breakingNewsPanel');
+      if (!newsData || !newsData.trends || !newsData.trends.breaking_news) {
+        el.innerHTML = '<div class="loading">No breaking news at this time</div>';
+        return;
+      }
+      
+      const breakingNews = newsData.trends.breaking_news;
+      if (breakingNews.length === 0) {
+        el.innerHTML = '<div class="loading">No breaking news at this time</div>';
+        return;
+      }
+      
+      let html = '';
+      
+      breakingNews.forEach(item => {
+        const sentimentColor = item.sentiment === 'positive' ? 'var(--green)' : 
+                              item.sentiment === 'negative' ? 'var(--red)' : 'var(--amber)';
+        
+        html += `<div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; margin: 8px 0; border-left: 4px solid ${sentimentColor};">
+          <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">${item.title}</div>
+          <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--muted);">
+            <span>${item.source}</span>
+            <span style="color: ${sentimentColor}">${item.sentiment.toUpperCase()}</span>
+          </div>
+        </div>`;
+      });
+      
+      el.innerHTML = html;
+    }
+    
+    function renderNewsCategories() {
+      const el = document.getElementById('newsCategories');
+      if (!newsData || !newsData.trends || !newsData.trends.category_counts) {
+        el.innerHTML = '<div class="loading">No category data available</div>';
+        return;
+      }
+      
+      const categories = newsData.trends.category_counts;
+      let html = '';
+      
+      Object.entries(categories).forEach(([category, count]) => {
+        html += `<div class="metric">
+          <div class="label">${category.toUpperCase()}</div>
+          <div class="value">${count} articles</div>
+        </div>`;
+      });
+      
+      el.innerHTML = html;
+    }
+    
+    async function loadDashboard() {
+      await Promise.all([
+        loadMarketData(),
+        loadNewsData()
+      ]);
+      
+      console.log('Dashboard loaded successfully');
+    }
+    
+    // Initialize dashboard
+    document.addEventListener('DOMContentLoaded', () => {
+      loadDashboard();
+      
+      // Auto-refresh every 5 minutes
+      setInterval(loadDashboard, 300000);
+    });
+    
+    // Make functions available globally
+    window.loadDashboard = loadDashboard;
+    window.switchTab = switchTab;
+  </script>
+</body>
+</html>

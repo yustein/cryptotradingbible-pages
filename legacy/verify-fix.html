@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Loading Verification</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #0a0a0a; color: white; }
+        .test { margin: 10px 0; padding: 15px; border: 1px solid #333; border-radius: 8px; }
+        .success { color: #22c55e; }
+        .error { color: #ef4444; }
+        .loading { color: #f59e0b; }
+        button { background: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin: 5px; }
+    </style>
+</head>
+<body>`r`n<div style="background:#7f1d1d;color:#fee2e2;padding:12px 16px;font-family:Segoe UI,Arial,sans-serif;font-size:14px;font-weight:700;text-align:center;border-bottom:3px solid #ef4444;">Legacy dashboard view: this page is archived and unsupported. Use ../index.html for the primary dashboard or ../dashboard-enhanced.html for the slim enhanced view.</div>
+    <h1>Data Loading Verification - Complete Dashboard</h1>
+    
+    <div class="test">
+        <h3>Test 1: Check if complete dashboard loads</h3>
+        <div id="test1" class="loading">Click button to test...</div>
+        <button onclick="testCompleteDashboard()">Test Complete Dashboard</button>
+    </div>
+    
+    <div class="test">
+        <h3>Test 2: Check data files</h3>
+        <div id="test2" class="loading">Click button to test...</div>
+        <button onclick="testDataFiles()">Test Data Files</button>
+    </div>
+    
+    <div class="test">
+        <h3>Test 3: Open Dashboard</h3>
+        <div id="test3" class="loading">Ready to open...</div>
+        <button onclick="window.location.href='index.html'">Open Complete Dashboard</button>
+        <button onclick="window.open('index.html', '_blank')">Open in New Tab</button>
+    </div>
+    
+    <div style="margin-top: 30px; padding: 15px; background: #1a1a1a; border-radius: 8px; border: 1px solid #333;">
+        <h3 style="color: #f59e0b;">Instructions:</h3>
+        <ol>
+            <li>Click "Test Complete Dashboard" - should show green checkmarks</li>
+            <li>Click "Test Data Files" - should confirm files exist</li>
+            <li>Click "Open Complete Dashboard" - should load with ALL features</li>
+            <li>Dashboard should auto-load data within 1 second</li>
+            <li>If not, check browser console (F12 → Console tab)</li>
+        </ol>
+    </div>
+    
+    <script>
+        console.log('=== VERIFICATION TEST START ===');
+        
+        function updateTest(id, message, isSuccess) {
+            const el = document.getElementById(id);
+            el.innerHTML = `<span class="${isSuccess ? 'success' : 'error'}">${isSuccess ? '✅' : '❌'} ${message}</span>`;
+            el.className = '';
+        }
+        
+        async function testCompleteDashboard() {
+            console.log('Testing complete dashboard...');
+            
+            // Test 1: Check if JavaScript functions exist
+            if (typeof loadCompleteDashboard === 'function') {
+                updateTest('test1', 'Complete dashboard JavaScript loaded', true);
+                console.log('✅ loadCompleteDashboard function exists');
+            } else {
+                updateTest('test1', 'JavaScript functions not found', false);
+                console.error('❌ loadCompleteDashboard function missing');
+                return;
+            }
+            
+            // Test 2: Try to load data
+            try {
+                const marketResponse = await fetch('dashboard-enhanced.json');
+                const marketData = await marketResponse.json();
+                updateTest('test1', `Market data loaded: ${marketData.summary.version}`, true);
+                console.log('✅ Market data:', marketData.summary);
+                
+                const newsResponse = await fetch('news-data.json');
+                const newsData = await newsResponse.json();
+                updateTest('test1', `News data loaded: ${newsData.summary.total_articles} articles`, true);
+                console.log('✅ News data:', newsData.summary);
+                
+            } catch (error) {
+                updateTest('test1', `Data loading failed: ${error.message}`, false);
+                console.error('❌ Data loading error:', error);
+            }
+        }
+        
+        async function testDataFiles() {
+            console.log('Testing data files...');
+            
+            const files = [
+                { name: 'dashboard-enhanced.json', desc: 'Market data' },
+                { name: 'news-data.json', desc: 'News data' },
+                { name: 'index.html', desc: 'Dashboard HTML' }
+            ];
+            
+            let allPassed = true;
+            
+            for (const file of files) {
+                try {
+                    const response = await fetch(file.name);
+                    if (response.ok) {
+                        console.log(`✅ ${file.name} exists`);
+                    } else {
+                        console.error(`❌ ${file.name} missing: ${response.status}`);
+                        allPassed = false;
+                    }
+                } catch (error) {
+                    console.error(`❌ ${file.name} error:`, error);
+                    allPassed = false;
+                }
+            }
+            
+            if (allPassed) {
+                updateTest('test2', 'All data files exist and are accessible', true);
+            } else {
+                updateTest('test2', 'Some files are missing or inaccessible', false);
+            }
+        }
+        
+        updateTest('test3', 'Ready to open complete dashboard', true);
+        
+        console.log('=== VERIFICATION TEST READY ===');
+    </script>
+</body>
+</html>

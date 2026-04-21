@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real Data Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #0a0a0a; color: white; }
+        .test { margin: 10px 0; padding: 15px; border: 1px solid #333; border-radius: 8px; }
+        .success { color: #22c55e; }
+        .error { color: #ef4444; }
+        .loading { color: #f59e0b; }
+        button { background: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin: 5px; }
+    </style>
+</head>
+<body>`r`n<div style="background:#7f1d1d;color:#fee2e2;padding:12px 16px;font-family:Segoe UI,Arial,sans-serif;font-size:14px;font-weight:700;text-align:center;border-bottom:3px solid #ef4444;">Legacy dashboard view: this page is archived and unsupported. Use ../index.html for the primary dashboard or ../dashboard-enhanced.html for the slim enhanced view.</div>
+    <h1>Real Data Test - What's Actually in Your JSON</h1>
+    
+    <div class="test">
+        <h3>Test 1: Check Data Files</h3>
+        <div id="test1" class="loading">Click to test...</div>
+        <button onclick="testDataFiles()">Test Data Files</button>
+    </div>
+    
+    <div class="test">
+        <h3>Test 2: Check What Data We Have</h3>
+        <div id="test2" class="loading">Click to analyze...</div>
+        <button onclick="analyzeData()">Analyze Data</button>
+    </div>
+    
+    <div class="test">
+        <h3>Test 3: Open Data-Driven Dashboard</h3>
+        <div id="test3" class="loading">Ready...</div>
+        <button onclick="window.location.href='index.html'">Open Dashboard</button>
+    </div>
+    
+    <script>
+        async function testDataFiles() {
+            try {
+                const marketResponse = await fetch('dashboard-enhanced.json');
+                const marketData = await marketResponse.json();
+                
+                updateTest('test1', `✅ Market data loaded: ${marketData.summary.version}`, 'success');
+                
+                // Show what we have
+                let html = '<div style="margin-top: 10px;">';
+                html += `<div>• Assets: ${marketData.summary.tracked_assets}</div>`;
+                html += `<div>• Market bias: ${marketData.summary.market_bias}</div>`;
+                html += `<div>• Signals: ${marketData.signals?.length || 0}</div>`;
+                
+                // Check for BTC OHLC data
+                if (marketData.market_data?.BTC?.ohlc) {
+                    html += `<div>• BTC candles: ${marketData.market_data.BTC.ohlc.length}</div>`;
+                }
+                
+                // Check enhanced metrics
+                if (marketData.enhanced_metrics) {
+                    html += `<div>• Enhanced metrics: ${Object.keys(marketData.enhanced_metrics).length} categories</div>`;
+                }
+                
+                html += '</div>';
+                document.getElementById('test1').innerHTML += html;
+                
+            } catch (error) {
+                updateTest('test1', `❌ Failed to load data: ${error.message}`, 'error');
+            }
+        }
+        
+        async function analyzeData() {
+            try {
+                const marketResponse = await fetch('dashboard-enhanced.json');
+                const marketData = await marketResponse.json();
+                
+                let html = '<div style="margin-top: 10px;">';
+                
+                // Analyze market_data
+                html += '<div style="font-weight: bold; color: #3b82f6; margin: 10px 0;">Market Data:</div>';
+                Object.entries(marketData.market_data || {}).forEach(([symbol, data]) => {
+                    const hasOHLC = data.ohlc && data.ohlc.length > 0;
+                    html += `<div>${symbol}: Price $${data.price?.toFixed(2) || 'N/A'} ${hasOHLC ? '✅ OHLC' : '❌ No OHLC'}</div>`;
+                });
+                
+                // Analyze enhanced_metrics
+                html += '<div style="font-weight: bold; color: #3b82f6; margin: 10px 0;">Enhanced Metrics:</div>';
+                Object.entries(marketData.enhanced_metrics || {}).forEach(([key, value]) => {
+                    const hasData = value && Object.keys(value).length > 0;
+                    html += `<div>${key}: ${hasData ? '✅ Has data' : '❌ Empty'}</div>`;
+                });
+                
+                // Analyze signals
+                html += '<div style="font-weight: bold; color: #3b82f6; margin: 10px 0;">Signals:</div>';
+                if (marketData.signals?.length > 0) {
+                    marketData.signals.slice(0, 3).forEach(signal => {
+                        html += `<div>${signal.type} ${signal.symbol}: $${signal.price?.toFixed(2) || 'N/A'}</div>`;
+                    });
+                } else {
+                    html += '<div>No signals</div>';
+                }
+                
+                html += '</div>';
+                
+                updateTest('test2', '✅ Data analysis complete', 'success');
+                document.getElementById('test2').innerHTML += html;
+                
+            } catch (error) {
+                updateTest('test2', `❌ Analysis failed: ${error.message}`, 'error');
+            }
+        }
+        
+        function updateTest(id, message, status) {
+            const el = document.getElementById(id);
+            let colorClass = 'loading';
+            let prefix = '';
+            
+            if (status === 'success') {
+                colorClass = 'success';
+                prefix = '✅ ';
+            } else if (status === 'error') {
+                colorClass = 'error';
+                prefix = '❌ ';
+            }
+            
+            el.innerHTML = `<span class="${colorClass}">${prefix}${message}</span>`;
+        }
+        
+        updateTest('test3', '✅ Ready to open data-driven dashboard', 'success');
+    </script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Full Features Test - Complete Dashboard</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #0a0a0a; color: white; }
+        .test { margin: 10px 0; padding: 15px; border: 1px solid #333; border-radius: 8px; }
+        .success { color: #22c55e; }
+        .error { color: #ef4444; }
+        .warning { color: #f59e0b; }
+        .loading { color: #94a3b8; }
+        button { background: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin: 5px; }
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 20px 0; }
+        .feature-item { padding: 10px; border: 1px solid #333; border-radius: 6px; }
+        .tab { display: inline-block; padding: 5px 10px; margin: 2px; background: #1a2236; border-radius: 4px; font-size: 12px; }
+    </style>
+</head>
+<body>`r`n<div style="background:#7f1d1d;color:#fee2e2;padding:12px 16px;font-family:Segoe UI,Arial,sans-serif;font-size:14px;font-weight:700;text-align:center;border-bottom:3px solid #ef4444;">Legacy dashboard view: this page is archived and unsupported. Use ../index.html for the primary dashboard or ../dashboard-enhanced.html for the slim enhanced view.</div>
+    <h1>Full Features Test - Complete Dashboard</h1>
+    
+    <div class="test">
+        <h3>Test 1: Load Complete Dashboard</h3>
+        <div id="test1" class="loading">Ready to test...</div>
+        <button onclick="testCompleteDashboard()">Test All Features</button>
+        <button onclick="openDashboard()">Open Dashboard</button>
+    </div>
+    
+    <div class="test">
+        <h3>Test 2: Feature Checklist</h3>
+        <div id="test2" class="loading">Features will appear here...</div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 3: Data Verification</h3>
+        <div id="test3" class="loading">Data verification...</div>
+    </div>
+    
+    <div style="margin-top: 30px; padding: 15px; background: #1a1a1a; border-radius: 8px; border: 1px solid #333;">
+        <h3 style="color: #f59e0b;">Expected Features (All Should Work):</h3>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h4>📈 Market Analytics Tab</h4>
+                <div class="tab">Liquidity Heatmap</div>
+                <div class="tab">Order Flow Analysis</div>
+                <div class="tab">Market Structure</div>
+                <div class="tab">Technical Analysis</div>
+                <div class="tab">Asset Performance</div>
+                <div class="tab">Market Summary</div>
+            </div>
+            <div class="feature-item">
+                <h4>📖 Cryptobible Tab</h4>
+                <div class="tab">Chapter References</div>
+                <div class="tab">Trading Principles</div>
+                <div class="tab">Risk Warnings</div>
+            </div>
+            <div class="feature-item">
+                <h4>🚦 Trading Signals Tab</h4>
+                <div class="tab">Active Signals</div>
+                <div class="tab">Signal Analysis</div>
+            </div>
+            <div class="feature-item">
+                <h4>📰 News Intelligence Tab</h4>
+                <div class="tab">News Sentiment</div>
+                <div class="tab">Breaking News</div>
+                <div class="tab">News Categories</div>
+            </div>
+            <div class="feature-item">
+                <h4>🛡️ Risk Management Tab</h4>
+                <div class="tab">Risk Assessment</div>
+                <div class="tab">Position Sizing</div>
+                <div class="tab">Stop Loss Levels</div>
+            </div>
+            <div class="feature-item">
+                <h4>🎨 UI Features</h4>
+                <div class="tab">Dark Theme</div>
+                <div class="tab">5-Tab Navigation</div>
+                <div class="tab">Auto Refresh</div>
+                <div class="tab">Loading States</div>
+                <div class="tab">Error Handling</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        console.log('=== FULL FEATURES TEST START ===');
+        
+        function updateTest(id, message, status) {
+            const el = document.getElementById(id);
+            let colorClass = 'loading';
+            let prefix = '';
+            
+            if (status === 'success') {
+                colorClass = 'success';
+                prefix = '✅ ';
+            } else if (status === 'error') {
+                colorClass = 'error';
+                prefix = '❌ ';
+            } else if (status === 'warning') {
+                colorClass = 'warning';
+                prefix = '⚠️ ';
+            }
+            
+            el.innerHTML = `<span class="${colorClass}">${prefix}${message}</span>`;
+        }
+        
+        async function testCompleteDashboard() {
+            console.log('Testing complete dashboard with all features...');
+            
+            // Test 1: Check if dashboard functions exist
+            if (typeof loadCompleteDashboard === 'function') {
+                updateTest('test1', 'Dashboard functions loaded', 'success');
+                console.log('✅ Dashboard functions available');
+            } else {
+                updateTest('test1', 'Dashboard functions not found', 'error');
+                console.error('❌ Dashboard functions missing');
+                return;
+            }
+            
+            // Test 2: Load data and test features
+            try {
+                updateTest('test1', 'Loading market data...', 'loading');
+                
+                const marketResponse = await fetch('dashboard-enhanced.json');
+                const marketData = await marketResponse.json();
+                
+                const newsResponse = await fetch('news-data.json');
+                const newsData = await newsResponse.json();
+                
+                updateTest('test1', `Data loaded: ${marketData.summary.version}`, 'success');
+                console.log('✅ Data loaded successfully');
+                
+                // Test all features
+                testAllFeatures(marketData, newsData);
+                
+            } catch (error) {
+                updateTest('test1', `Data loading failed: ${error.message}`, 'error');
+                console.error('❌ Data loading error:', error);
+            }
+        }
+        
+        function testAllFeatures(marketData, newsData) {
+            console.log('Testing all features...');
+            
+            let featuresHtml = '';
+            let passed = 0;
+            let total = 0;
+            
+            // Test each feature
+            const tests = [
+                {
+                    name: 'Market Summary',
+                    test: () => marketData && marketData.summary,
+                    desc: 'Market bias, gainers, losers'
+                },
+                {
+                    name: 'Asset Performance',
+                    test: () => marketData && marketData.market_data && Object.keys(marketData.market_data).length === 7,
+                    desc: '7 assets with prices'
+                },
+                {
+                    name: 'Technical Analysis',
+                    test: () => marketData && marketData.technical_analysis && marketData.technical_analysis.BTC,
+                    desc: 'BTC RSI, MACD indicators'
+                },
+                {
+                    name: 'Trading Signals',
+                    test: () => marketData && marketData.signals && marketData.signals.length > 0,
+                    desc: 'Active BUY/SELL signals'
+                },
+                {
+                    name: 'Liquidity Heatmap',
+                    test: () => marketData && marketData.enhanced_metrics && marketData.enhanced_metrics.liquidity_heatmap,
+                    desc: 'Support/resistance zones'
+                },
+                {
+                    name: 'Order Flow Analysis',
+                    test: () => marketData && marketData.enhanced_metrics && marketData.enhanced_metrics.order_flow,
+                    desc: 'Maker/Taker distribution'
+                },
+                {
+                    name: 'Market Structure',
+                    test: () => marketData && marketData.enhanced_metrics && marketData.enhanced_metrics.market_structure_layers,
+                    desc: 'Three-layer framework'
+                },
+                {
+                    name: 'Cryptobible Insights',
+                    test: () => marketData && marketData.enhanced_metrics && marketData.enhanced_metrics.cryptobible_insights,
+                    desc: 'Chapter references, principles'
+                },
+                {
+                    name: 'News Intelligence',
+                    test: () => newsData && newsData.summary,
+                    desc: 'Sentiment analysis, breaking news'
+                },
+                {
+                    name: 'Risk Management',
+                    test: () => marketData && marketData.enhanced_metrics && marketData.enhanced_metrics.risk_management,
+                    desc: 'Risk assessment, position sizing'
+                },
+                {
+                    name: 'Dark Theme CSS',
+                    test: () => {
+                        const styles = getComputedStyle(document.documentElement);
+                        return styles.getPropertyValue('--bg') === '#050816';
+                    },
+                    desc: 'Professional dark theme'
+                },
+                {
+                    name: 'Tab Navigation',
+                    test: () => typeof switchTab === 'function',
+                    desc: '5-tab interface'
+                }
+            ];
+            
+            tests.forEach(test => {
+                total++;
+                try {
+                    const passedTest = test.test();
+                    if (passedTest) {
+                        passed++;
+                        featuresHtml += `<div style="color: #22c55e; margin: 5px 0;">✅ ${test.name}: ${test.desc}</div>`;
+                        console.log(`✅ ${test.name}`);
+                    } else {
+                        featuresHtml += `<div style="color: #f59e0b; margin: 5px 0;">⚠️ ${test.name}: ${test.desc} (data missing)</div>`;
+                        console.log(`⚠️ ${test.name}: data missing`);
+                    }
+                } catch (error) {
+                    featuresHtml += `<div style="color: #ef4444; margin: 5px 0;">❌ ${test.name}: ${test.desc} (error: ${error.message})</div>`;
+                    console.error(`❌ ${test.name}:`, error);
+                }
+            });
+            
+            updateTest('test2', `${passed}/${total} features passed`, passed === total ? 'success' : 'warning');
+            document.getElementById('test2').innerHTML += featuresHtml;
+            
+            // Test 3: Data verification
+            let dataHtml = '';
+            if (marketData && marketData.summary) {
+                dataHtml += `<div style="margin: 10px 0;">
+                    <div style="font-weight: bold; color: #3b82f6;">Market Data:</div>
+                    <div>• Version: ${marketData.summary.version}</div>
+                    <div>• Assets: ${marketData.summary.tracked_assets}</div>
+                    <div>• Bias: ${marketData.summary.market_bias}</div>
+                    <div>• Top Gainer: ${marketData.summary.top_gainer}</div>
+                    <div>• Top Loser: ${marketData.summary.top_loser}</div>
+                </div>`;
+            }
+            
+            if (newsData && newsData.summary) {
+                dataHtml += `<div style="margin: 10px 0;">
+                    <div style="font-weight: bold; color: #3b82f6;">News Data:</div>
+                    <div>• Articles: ${newsData.summary.total_articles}</div>
+                    <div>• Sentiment: ${newsData.summary.overall_sentiment}</div>
+                </div>`;
+            }
+            
+            updateTest('test3', 'Data verified successfully', 'success');
+            document.getElementById('test3').innerHTML += dataHtml;
+            
+            console.log(`=== TEST COMPLETE: ${passed}/${total} features passed ===`);
+        }
+        
+        function openDashboard() {
+            window.location.href = 'index.html';
+        }
+        
+        // Auto-run tests
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('Full features test ready');
+            updateTest('test1', 'Ready to test complete dashboard', 'loading');
+            updateTest('test2', 'Click "Test All Features" button above', 'loading');
+            updateTest('test3', 'Waiting for data verification...', 'loading');
+        });
+    </script>
+</body>
+</html>

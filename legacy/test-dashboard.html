@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .success { color: green; }
+        .error { color: red; }
+        .loading { color: blue; }
+    </style>
+</head>
+<body>`r`n<div style="background:#7f1d1d;color:#fee2e2;padding:12px 16px;font-family:Segoe UI,Arial,sans-serif;font-size:14px;font-weight:700;text-align:center;border-bottom:3px solid #ef4444;">Legacy dashboard view: this page is archived and unsupported. Use ../index.html for the primary dashboard or ../dashboard-enhanced.html for the slim enhanced view.</div>
+    <h1>Dashboard Data Test</h1>
+    
+    <div id="marketStatus" class="loading">Checking market data...</div>
+    <div id="newsStatus" class="loading">Checking news data...</div>
+    <div id="dashboardStatus" class="loading">Checking dashboard...</div>
+    
+    <div id="results" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+    
+    <script>
+        async function testMarketData() {
+            try {
+                const response = await fetch('dashboard-enhanced.json');
+                const data = await response.json();
+                
+                document.getElementById('marketStatus').innerHTML = 
+                    `<span class="success">✅ Market data loaded:</span> ${data.summary.tracked_assets} assets, ${data.summary.market_bias} bias`;
+                
+                return data;
+            } catch (error) {
+                document.getElementById('marketStatus').innerHTML = 
+                    `<span class="error">❌ Market data error:</span> ${error.message}`;
+                return null;
+            }
+        }
+        
+        async function testNewsData() {
+            try {
+                const response = await fetch('news-data.json');
+                const data = await response.json();
+                
+                document.getElementById('newsStatus').innerHTML = 
+                    `<span class="success">✅ News data loaded:</span> ${data.summary.total_articles} articles, ${data.summary.overall_sentiment} sentiment`;
+                
+                return data;
+            } catch (error) {
+                document.getElementById('newsStatus').innerHTML = 
+                    `<span class="error">❌ News data error:</span> ${error.message}`;
+                return null;
+            }
+        }
+        
+        function testDashboard() {
+            // Check if dashboard loads
+            const hasCompleteDashboard = document.body.innerHTML.includes('Complete Market Terminal');
+            
+            if (hasCompleteDashboard) {
+                document.getElementById('dashboardStatus').innerHTML = 
+                    `<span class="success">✅ Complete dashboard detected</span>`;
+            } else {
+                document.getElementById('dashboardStatus').innerHTML = 
+                    `<span class="error">❌ Complete dashboard not detected</span>`;
+            }
+            
+            return hasCompleteDashboard;
+        }
+        
+        async function runTests() {
+            const marketData = await testMarketData();
+            const newsData = await testNewsData();
+            const dashboardOk = testDashboard();
+            
+            // Show results
+            const results = document.getElementById('results');
+            
+            if (marketData && newsData && dashboardOk) {
+                results.innerHTML = `
+                    <h2 class="success">✅ All Tests Passed!</h2>
+                    <p>Market data: ${marketData.summary.tracked_assets} assets, version: ${marketData.summary.version}</p>
+                    <p>News data: ${newsData.summary.total_articles} articles, sentiment: ${newsData.summary.overall_sentiment}</p>
+                    <p><strong>Dashboard is ready to use!</strong></p>
+                    <p><a href="index.html">Open Complete Dashboard</a></p>
+                `;
+            } else {
+                results.innerHTML = `
+                    <h2 class="error">❌ Some Tests Failed</h2>
+                    <p>Check the console for errors and verify data files exist.</p>
+                `;
+            }
+        }
+        
+        // Run tests when page loads
+        document.addEventListener('DOMContentLoaded', runTests);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complete Market Terminal v2.01 - ALL DETAILS</title>
+  <!-- Include Plotly for charts -->
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  <style>
+    /* COMPLETE DARK THEME */
+    :root {
+      --bg: #050816;
+      --bg2: #0b1220;
+      --bg3: #1a2236;
+      --text: #e5e7eb;
+      --text-muted: #94a3b8;
+      --border: #2d3748;
+      --primary: #3b82f6;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --info: #06b6d4;
+      --purple: #8b5cf6;
+      --cyan: #22d3ee;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg); 
+      color: var(--text); 
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    
+    .container { max-width: 2000px; margin: 0 auto; padding: 24px; }
+    
+    /* HEADER */
+    .header { 
+      background: var(--bg2); 
+      border-radius: 20px; 
+      padding: 32px 40px; 
+      margin-bottom: 32px; 
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-left: 6px solid var(--primary);
+    }
+    
+    .header h1 { 
+      font-size: 36px; 
+      font-weight: 800; 
+      margin-bottom: 12px; 
+      color: var(--text);
+    }
+    
+    .header .subtitle { 
+      color: var(--text-muted); 
+      font-size: 18px; 
+      margin-bottom: 24px;
+    }
+    
+    .header .meta { 
+      display: flex; 
+      gap: 32px; 
+      margin-top: 20px; 
+      font-size: 15px; 
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+    
+    .header .meta span { 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+    }
+    
+    /* TABS */
+    .tab-container { 
+      display: flex; 
+      gap: 12px; 
+      margin-bottom: 32px; 
+      flex-wrap: wrap;
+    }
+    
+    .tab { 
+      background: var(--bg2); 
+      border: 1px solid var(--border); 
+      color: var(--text-muted); 
+      padding: 16px 28px; 
+      border-radius: 14px; 
+      font-weight: 600; 
+      cursor: pointer; 
+      font-size: 16px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .tab:hover { 
+      background: var(--bg3); 
+      border-color: var(--primary); 
+      color: var(--text); 
+    }
+    
+    .tab.active { 
+      background: var(--primary); 
+      color: white; 
+      border-color: transparent; 
+    }
+    
+    /* TAB CONTENT */
+    .tab-content { 
+      display: none; 
+    }
+    
+    /* GRID LAYOUTS */
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+      gap: 24px; 
+      margin-bottom: 32px; 
+    }
+    
+    /* CARDS */
+    .card { 
+      background: var(--bg2); 
+      border-radius: 20px; 
+      padding: 24px; 
+      border: 1px solid var(--border);
+    }
+    
+    .card-header { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      margin-bottom: 20px; 
+      padding-bottom: 16px; 
+      border-bottom: 2px solid var(--border); 
+    }
+    
+    .card-header h2 { 
+      font-size: 20px; 
+      font-weight: 700; 
+      color: var(--text); 
+    }
+    
+    /* BADGES */
+    .badge { 
+      padding: 6px 12px; 
+      border-radius: 20px; 
+      font-size: 12px; 
+      font-weight: 700; 
+    }
+    
+    .badge.primary { background: rgba(59, 130, 246, 0.15); color: var(--primary); }
+    .badge.success { background: rgba(34, 197, 94, 0.15); color: var(--success); }
+    .badge.warning { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+    .badge.danger { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+    .badge.info { background: rgba(6, 182, 212, 0.15); color: var(--info); }
+    
+    /* METRICS */
+    .metric { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 12px 0; 
+      border-bottom: 1px solid var(--border); 
+    }
+    
+    .metric:last-child { border-bottom: none; }
+    
+    .metric .label { 
+      color: var(--text-muted); 
+      font-size: 14px; 
+    }
+    
+    .metric .value { 
+      font-weight: 700; 
+      font-size: 16px; 
+    }
+    
+    .metric .value.positive { color: var(--success); }
+    .metric .value.negative { color: var(--danger); }
+    
+    /* CHARTS */
+    .chart-container { 
+      background: var(--bg3); 
+      border-radius: 12px; 
+      padding: 16px; 
+      margin: 16px 0; 
+      border: 1px solid var(--border);
+      min-height: 300px;
+    }
+    
+    /* LOADING STATES */
+    .loading { 
+      text-align: center; 
+      padding: 40px 20px; 
+      color: var(--text-muted); 
+      font-style: italic;
+    }
+    
+    /* INSIGHTS */
+    .insight { 
+      background: var(--bg3); 
+      padding: 12px; 
+      border-radius: 8px; 
+      margin: 8px 0; 
+      border-left: 4px solid var(--info);
+      font-size: 14px;
+    }
+    
+    .insight.success { border-left-color: var(--success); }
+    .insight.warning { border-left-color: var(--warning); }
+    .insight.danger { border-left-color: var(--danger); }
+    .insight.info { border-left-color: var(--info); }
+    
+    /* DETAIL BOXES */
+    .detail-box {
+      background: var(--bg3);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 12px 0;
+      border: 1px solid var(--border);
+    }
+    
+    .detail-box h4 {
+      color: var(--text);
+      margin-bottom: 12px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    .detail-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .detail-item:last-child {
+      border-bottom: none;
+    }
+    
+    .detail-label {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    
+    .detail-value {
+      color: var(--text);
+      font-weight: 600;
+      font-size: 13px;
+    }
+    
+    /* BUTTONS */
+    .refresh-btn {
+      background: var(--primary); 
+      color: white; 
+      border: none; 
+      padding: 12px 24px; 
+      border-radius: 10px; 
+      font-weight: 600; 
+      cursor: pointer; 
+      font-size: 14px;
+    }
+    
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+      .header .meta { flex-direction: column; gap: 12px; }
+      .container { padding: 16px; }
+      .header { padding: 24px; }
+      .header h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>`r`n<div style="background:#7f1d1d;color:#fee2e2;padding:12px 16px;font-family:Segoe UI,Arial,sans-serif;font-size:14px;font-weight:700;text-align:center;border-bottom:3px solid #ef4444;">Legacy dashboard view: this page is archived and unsupported. Use ../index.html for the primary dashboard or ../dashboard-enhanced.html for the slim enhanced view.</div>
+  <div class="container">
+    <!-- HEADER -->
+    <div class="header">
+      <h1>📊 Complete Market Terminal v2.01</h1>
+      <div class="subtitle">Showing ALL enhanced details from your data • Cryptobible Enhanced</div>
+      <div class="meta">
+        <span>🕒 Updated: <span id="updatedLocal">Loading...</span></span>
+        <span>📊 Assets: <span id="trackedAssets">7</span></span>
+        <span>📈 Market Bias: <span id="marketBias">-</span></span>
+        <span>📋 Version: <span id="version">v2.01</span></span>
+      </div>
+    </div>
+    
+    <!-- TABS -->
+    <div class="tab-container">
+      <button class="tab active" onclick="switchTab('liquidity')">
+        🗺️ Liquidity Heatmap
+      </button>
+      <button class="tab" onclick="switchTab('orderFlow')">
+        📈 Order Flow Analysis
+      </button>
+      <button class="tab" onclick="switchTab('marketStructure')">
+        🏗️ Market Structure
+      </button>
+      <button class="tab" onclick="switchTab('tradingSignals')">
+        🚦 Trading Signals
+      </button>
+      <button class="tab" onclick="switchTab('riskManagement')">
+        🛡️ Risk Management
+      </button>
+      <button class="tab" onclick="switchTab('cryptobible')">
+        📖 Cryptobible Insights
+      </button>
+    </div>
+    
+    <!-- LIQUIDITY HEATMAP TAB -->
+    <div id="liquidityTab" class="tab-content" style="display: block;">
+      <div class="grid">
+        <!-- SUPPORT ZONES -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Support Zones</h2>
+            <span class="badge success">Real Data</span>
+          </div>
+          <div id="supportZones">
+            <div class="loading">Loading support zones...</div>
+          </div>
+        </div>
+        
+        <!-- RESISTANCE ZONES -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Resistance Zones</h2>
+            <span class="badge danger">Real Data</span>
+          </div>
+          <div id="resistanceZones">
+            <div class="loading">Loading resistance zones...</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid">
+        <!-- LIQUIDITY DETAILS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Liquidity Details</h2>
+            <span class="badge info">Complete Analysis</span>
+          </div>
+          <div id="liquidityDetails">
+            <div class="loading">Loading liquidity details...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ORDER FLOW ANALYSIS TAB -->
+    <div id="orderFlowTab" class="tab-content">
+      <div class="grid">
+        <!-- ORDER FLOW METRICS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Order Flow Metrics</h2>
+            <span class="badge primary">Real Data</span>
+          </div>
+          <div id="orderFlowMetrics">
+            <div class="loading">Loading order flow metrics...</div>
+          </div>
+        </div>
+        
+        <!-- FLOW IMBALANCE -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Flow Imbalance</h2>
+            <span class="badge warning">Real Analysis</span>
+          </div>
+          <div id="flowImbalance">
+            <div class="loading">Loading flow imbalance...</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid">
+        <!-- ORDER FLOW DETAILS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Order Flow Details</h2>
+            <span class="badge info">Complete Data</span>
+          </div>
+          <div id="orderFlowDetails">
+            <div class="loading">Loading order flow details...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- MARKET STRUCTURE TAB -->
+    <div id="marketStructureTab" class="tab-content">
+      <div class="grid">
+        <!-- STRUCTURAL LAYER -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Structural Layer</h2>
+            <span class="badge primary">Real Data</span>
+          </div>
+          <div id="structuralLayer">
+            <div class="loading">Loading structural layer...</div>
+          </div>
+        </div>
+        
+        <!-- PARTICIPANT LAYER -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Participant Layer</h2>
+            <span class="badge info">Real Data</span>
+          </div>
+          <div id="participantLayer">
+            <div class="loading">Loading participant layer...</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid">
+        <!-- PSYCHOLOGICAL LAYER -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Psychological Layer</h2>
+            <span class="badge purple">Real Data</span>
+          </div>
+          <div id="psychologicalLayer">
+            <div class="loading">Loading psychological layer...</div>
+          </div>
+        </div>
+        
+        <!-- MARKET STRUCTURE DETAILS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Market Structure Details</h2>
+            <span class="badge warning">Complete Analysis</span>
+          </div>
+          <div id="marketStructureDetails">
+            <div class="loading">Loading market structure details...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- TRADING SIGNALS TAB -->
+    <div id="tradingSignalsTab" class="tab-content">
+      <div class="grid">
+        <!-- ACTIVE SIGNALS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Active Trading Signals</h2>
+            <span class="badge primary">7 Signals</span>
+          </div>
+          <div id="activeSignals">
+            <div class="loading">Loading active signals...</div>
+          </div>
+        </div>
+        
+        <!-- SIGNAL ANALYSIS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Signal Analysis</h2>
+            <span class="badge info">Complete Analysis</span>
+          </div>
+          <div id="signalAnalysis">
+            <div class="loading">Loading signal analysis...</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid">
+        <!-- SIGNAL DETAILS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Signal Details</h2>
+            <span class="badge warning">All Data</span>
+          </div>
+          <div id="signalDetails">
+            <div class="loading">Loading signal details...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- RISK MANAGEMENT TAB -->
+    <div id="riskManagementTab" class="tab-content">
+      <div class="grid">
+        <!-- RISK ASSESSMENT -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Risk Assessment</h2>
+            <span class="badge danger">Real Data</span>
+          </div>
+          <div id="riskAssessment">
+            <div class="loading">Loading risk assessment...</div>
+          </div>
+        </div>
+        
+        <!-- POSITION SIZING -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Position Sizing</h2>
+            <span class="badge warning">Real Data</span>
+          </div>
+          <div id="positionSizing">
+            <div class="loading">Loading position sizing...</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid">
+        <!-- STOP LOSS LEVELS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Stop Loss Levels</h2>
+            <span class="badge info">Real Data</span>
+          </div>
+          <div id="stopLossLevels">
+            <div class="loading">Loading stop loss levels...</div>
+          </div>
+        </div>
+        
+        <!-- RISK DETAILS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Risk Details</h2>
+            <span class="badge primary">Complete Analysis</span>
+          </div>
+          <div id="riskDetails">
+            <div class="loading">Loading risk details...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CRYPTOBIBLE INSIGHTS TAB -->
+    <div id="cryptobibleTab" class="tab-content">
+      <div class="grid">
+        <!-- CHAPTER REFERENCES -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Chapter References</h2>
+            <span class="badge success">Real Insights</span>
+          </div>
+          <div id="chapterReferences">
+            <div class="loading">Loading chapter references...</div>
+          </div>
+        </div>
+        
+        <!-- TRADING PRINCIPLES -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Trading Principles</h2>
+            <span class="badge warning">Applied Knowledge</span>
+          </div>
+          <div id="tradingPrinciples">
+            <div class="loading">Loading trading principles...</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid">
+        <!-- CRYPTOBIBLE DETAILS -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Cryptobible Details</h2>
+            <span class="badge info">Complete Framework</span>
+          </div>
+          <div id="cryptobibleDetails">
+            <div class="loading">Loading cryptobible details...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- REFRESH BUTTON -->
+    <div style="text-align: center; margin-top: 40px;">
+      <button class="refresh-btn" onclick="loadCompleteData()">
+        🔄 Load Complete Data
+      </button>
+      <div style="margin-top: 12px; font-size: 14px; color: var(--text-muted);">
+        Shows ALL enhanced details from your JSON files
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPLETE JAVASCRIPT -->
+  <script>
+    console.log('🚀 Complete Market Terminal - Loading ALL details');
+    
+    let marketData = null;
+    
+    async function loadCompleteData() {
+        console.log('Loading COMPLETE data from JSON files...');
+        
+        try {
+            // Show loading state
+            document.getElementById('updatedLocal').textContent = 'Loading...';
+            
+            // Load market data
+            const marketResponse = await fetch('dashboard-enhanced.json');
+            marketData = await marketResponse.json();
+            console.log('✅ COMPLETE data loaded:', marketData.summary.version);
+            
+            // Update header
+            updateHeader();
+            
+            // Render ALL details
+            renderAllDetails();
+            
+            console.log('🎉 Complete dashboard loaded with ALL details!');
+            
+        } catch (error) {
+            console.error('❌ Error loading data:', error);
+            showError('Failed to load data. Check console.');
+        }
+    }
+    
+    function updateHeader() {
+        if (!marketData || !marketData.summary) return;
+        
+        const now = new Date();
+        document.getElementById('updatedLocal').textContent = now.toLocaleString();
+        
+        const summary = marketData.summary;
+        document.getElementById('trackedAssets').textContent = summary.tracked_assets;
+        document.getElementById('marketBias').textContent = summary.market_bias;
+        document.getElementById('version').textContent = summary.version;
+    }
+    
+    function renderAllDetails() {
+        // LIQUIDITY HEATMAP TAB
+        renderLiquidityHeatmap();
+        
+        // ORDER FLOW ANALYSIS TAB
+        renderOrderFlowAnalysis();
+        
+        // MARKET STRUCTURE TAB
+        renderMarketStructure();
+        
+        // TRADING SIGNALS TAB
+        renderTradingSignals();
+        
+        // RISK MANAGEMENT TAB
+        renderRiskManagement();
+        
+        // CRYPTOBIBLE INSIGHTS TAB
+        renderCryptobibleInsights();
+    }
+    
+    // ==================== LIQUIDITY HEATMAP TAB ====================
+    
+    function renderLiquidityHeatmap() {
+        const supportEl = document.getElementById('supportZones');
+        const resistanceEl = document.getElementById('resistanceZones');
+        const detailsEl = document.getElementById('liquidityDetails');
+        
+        if (!marketData || !marketData.enhanced_metrics?.liquidity_heatmap) {
+            supportEl.innerHTML = '<div class="insight">No support zones data</div>';
+            resistanceEl.innerHTML = '<div class="insight">No resistance zones data</div>';
+            detailsEl.innerHTML = '<div class="insight">No liquidity details</div>';
+            return;
+        }
+        
+        const heatmap = marketData.enhanced_metrics.liquidity_heatmap;
+        
+        // Support Zones
+        if (heatmap.support_zones?.length) {
+            let html = '';
+            heatmap.support_zones.forEach(zone => {
+                html += `<div class="detail-box">
+                    <div class="detail-item">
+                        <span class="detail-label">Symbol</span>
+                        <span class="detail-value">${zone.symbol}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Price</span>
+                        <span class="detail-value">${formatPrice(zone.price)}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Strength</span>
+                        <span class="detail-value">${zone.strength}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Volume</span>
+                        <span class="detail-value">${zone.volume ? formatNumber(zone.volume) : 'N/A'}</span>
+                    </div>
+                </div>`;
+            });
+            supportEl.innerHTML = html;
+        } else {
+            supportEl.innerHTML = '<div class="insight">No support zones found</div>';
+        }
+        
+        // Resistance Zones
+        if (heatmap.resistance_zones?.length) {
+            let html = '';
+            heatmap.resistance_zones.forEach(zone => {
+                html += `<div class="detail-box">
+                    <div class="detail-item">
+                        <span class="detail-label">Symbol</span>
+                        <span class="detail-value">${zone.symbol}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Price</span>
+                        <span class="detail-value">${formatPrice(zone.price)}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Strength</span>
+                        <span class="detail-value">${zone.strength}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Volume</span>
+                        <span class="detail-value">${zone.volume ? formatNumber(zone.volume) : 'N/A'}</span>
+                    </div>
+                </div>`;
+            });
+            resistanceEl.innerHTML = html;
+        } else {
+            resistanceEl.innerHTML = '<div class="insight">No resistance zones found</div>';
+        }
+        
+        // Liquidity Details
+        let detailsHtml = '';
+        detailsHtml += `<div class="detail-box">
+            <h4>Liquidity Analysis</h4>
+            <div class="detail-item">
+                <span class="detail-label">Total Support Zones</span>
+                <span class="detail-value">${heatmap.support_zones?.length || 0}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Total Resistance Zones</span>
+                <span class="detail-value">${heatmap.resistance_zones?.length || 0}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Strongest Support</span>
+                <span class="detail-value">${heatmap.support_zones?.[0]?.symbol || 'N/A'}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Strongest Resistance</span>
+                <span class="detail-value">${heatmap.resistance_zones?.[0]?.symbol || 'N/A'}</span>
+            </div>
+        </div>`;
+        
+        detailsEl.innerHTML = detailsHtml;
+    }
+    
+    // ==================== ORDER FLOW ANALYSIS TAB ====================
+    
+    function renderOrderFlowAnalysis() {
+        const metricsEl = document.getElementById('orderFlowMetrics');
+        const imbalanceEl = document.getElementById('flowImbalance');
+        const detailsEl = document.getElementById('orderFlowDetails');
+        
+        if (!marketData || !marketData.enhanced_metrics?.order_flow) {
+            metricsEl.innerHTML = '<div class="insight">No order flow data</div>';
+            imbalanceEl.innerHTML = '<div class="insight">No flow imbalance data</div>';
+            detailsEl.innerHTML = '<div class="insight">No order flow details</div>';
+            return;
+        }
+        
+        const flow = marketData.enhanced_metrics.order_flow;
+        
+        // Order Flow Metrics
+        let metricsHtml = '';
+        metricsHtml += `<div class="metric">
+            <div class="label">Market Makers</div>
+            <div class="value">${(flow.maker_ratio * 100).toFixed(1)}%</div>
+        </div>`;
+        
+        metricsHtml += `<div class="metric">
+            <div class="label">Takers</div>
+            <div class="value">${(flow.taker_ratio * 100).toFixed(1)}%</div>
+        </div>`;
+        
+        metricsHtml += `<div class="metric">
+            <div class="label">Buy Volume</div>
+            <div class="value">${flow.buy_volume ? formatNumber(flow.buy_volume) : 'N/A'}</div>
+        </div>`;
+        
+        metricsHtml += `<div class="metric">
+            <div class="label">Sell Volume</div>
+            <div class="value">${flow.sell_volume ? formatNumber(flow.sell_volume) : 'N/A'}</div>
+        </div>`;
+        
+        metricsEl.innerHTML = metricsHtml;
+        
+        // Flow Imbalance
+        let imbalanceHtml = '';
+        imbalanceHtml += `<div class="detail-box">
+            <h4>Flow Imbalance Analysis</h4>
+            <div class="detail-item">
+                <span class="detail-label">Imbalance</span>
+                <span class="detail-value ${flow.imbalance > 0 ? 'positive' : 'negative'}">${formatPercent(flow.imbalance * 100)}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Direction</span>
+                <span class="detail-value">${flow.imbalance > 0 ? 'BUYING PRESSURE' : 'SELLING PRESSURE'}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Strength</span>
+                <span class="detail-value">${Math.abs(flow.imbalance) > 0.2 ? 'STRONG' : Math.abs(flow.imbalance) > 0.1 ? 'MODERATE' : 'WEAK'}</span>
+            </div>
+        </div>`;
+        
+        imbalanceEl.innerHTML = imbalanceHtml;
+        
+        // Order Flow Details
+        let detailsHtml = '';
+        detailsHtml += `<div class="detail-box">
+            <h4>Order Flow Details</h4>
+            <div class="detail-item">
+                <span class="detail-label">Total Volume</span>
+                <span class="detail-value">${flow.total_volume ? formatNumber(flow.total_volume) : 'N/A'}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Avg Trade Size</span>
+                <span class="detail-value">${flow.avg_trade_size ? formatNumber(flow.avg_trade_size) : 'N/A'}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Large Trades</span>
+                <span class="detail-value">${flow.large_trades || 'N/A'}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Small Trades</span>
+                <span class="detail-value">${flow.small_trades || 'N/A'}</span>
+            </div>
+        </div>`;
+        
+        detailsEl.innerHTML = detailsHtml;
+    }
+    
+    // ==================== MARKET STRUCTURE TAB ====================
+    
+    function renderMarketStructure() {
+        const structuralEl = document.getElementById('structuralLayer');
+        const participantEl = document.getElementById('participantLayer');
+        const psychologicalEl = document.getElementById('psychologicalLayer');
+        const detailsEl = document.getElementById('marketStructureDetails');
+        
+        if (!marketData || !marketData.enhanced_metrics?.market_structure_layers) {
+            structuralEl.innerHTML = '<div class="insight">No structural layer data</div>';
+            participantEl.innerHTML = '<div class="insight">No participant layer data</div>';
+            psychologicalEl.innerHTML = '<div class="insight">No psychological layer data</div>';
+            detailsEl.innerHTML = '<div class="insight">No market structure details</div>';
+            return;
+        }
+        
+        const structure = marketData.enhanced_metrics.market_structure_layers;
+        
+        // Structural Layer
+        if (structure.structural?.length) {
+            let html = '';
+            structure.structural.forEach(item => {
+                html += `<div class="insight info">🏗️ ${item}</div>`;
+            });
+            structuralEl.innerHTML = html;
+        } else {
+            structuralEl.innerHTML = '<div class="insight">No structural analysis</div>';
+        }
+        
+        // Participant Layer
+        if (structure.participant?.length) {
+            let html = '';
+            structure.participant.forEach(item => {
+                html += `<div class="insight">👥 ${item}</div>`;
+            });
+            participantEl.innerHTML = html;
+        } else {
+            participantEl.innerHTML = '<div class="insight">No participant analysis</div>';
+        }
+        
+        // Psychological Layer
+        if (structure.psychological?.length) {
+            let html = '';
+            structure.psychological.forEach(item => {
+                html += `<div class="insight warning">🧠 ${item}</div>`;
+            });
+            psychologicalEl.innerHTML = html;
+        } else {
+            psychologicalEl.innerHTML = '<div class="insight">No psychological analysis</div>';
+        }
+        
+        // Market Structure Details
+        let detailsHtml = '';
+        detailsHtml += `<div class="detail-box">
+            <h4>Market Structure Analysis</h4>
+            <div class="detail-item">
+                <span class="detail-label">Structural Items</span>
+                <span class="detail-value">${structure.structural?.length || 0}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Participant Items</span>
+                <span class="detail-value">${structure.participant?.length || 0}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Psychological Items</span>
+                <span class="detail-value">${structure.psychological?.length || 0}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Total Analysis Points</span>
+                <span class="detail-value">${(structure.structural?.length || 0) + (structure.participant?.length || 0) + (structure.psychological?.length || 0)}</span>
+            </div>
+        </div>`;
+        
+        detailsEl.innerHTML = detailsHtml;
+    }
+    
+    // ==================== TRADING SIGNALS TAB ====================
+    
+    function renderTradingSignals() {
+        const activeEl = document.getElementById('activeSignals');
+        const analysisEl = document.getElementById('signalAnalysis');
+        const detailsEl = document.getElementById('signalDetails');
+        
+        if (!marketData || !marketData.signals || marketData.signals.length === 0) {
+            activeEl.innerHTML = '<div class="insight">No trading signals</div>';
+            analysisEl.innerHTML = '<div class="insight">No signal analysis</div>';
+            detailsEl.innerHTML = '<div class="insight">No signal details</div>';
+            return;
+        }
+        
+        const signals = marketData.signals;
+        
+        // Active Signals
+        let activeHtml = '';
+        signals.forEach(signal => {
+            const typeClass = signal.type === 'BUY' ? 'success' : signal.type === 'SELL' ? 'danger' : 'warning';
+            activeHtml += `<div class="detail-box">
+                <div class="detail-item">
+                    <span class="detail-label">Type</span>
+                    <span class="detail-value ${typeClass}">${signal.type}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Symbol</span>
+                    <span class="detail-value">${signal.symbol}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Price</span>
+                    <span class="detail-value">${formatPrice(signal.price)}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Confidence</span>
+                    <span class="detail-value">${signal.confidence}%</span>
+                </div>
+            </div>`;
+        });
+        
+        activeEl.innerHTML = activeHtml;
+        
+        // Signal Analysis
+        let analysisHtml = '';
+        
+        const buySignals = signals.filter(s => s.type === 'BUY').length;
+        const sellSignals = signals.filter(s => s.type === 'SELL').length;
+        const holdSignals = signals.filter(s => s.type === 'HOLD').length;
+        
+        analysisHtml += `<div class="metric">
+            <div class="label">Buy Signals</div>
+            <div class="value positive">${buySignals}</div>
+        </div>`;
+        
+        analysisHtml += `<div class="metric">
+            <div class="label">Sell Signals</div>
+            <div class="value negative">${sellSignals}</div>
+        </div>`;
+        
+        analysisHtml += `<div class="metric">
+            <div class="label">Hold Signals</div>
+            <div class="value warning">${holdSignals}</div>
+        </div>`;
+        
+        analysisHtml += `<div class="metric">
+            <div class="label">Total Signals</div>
+            <div class="value">${signals.length}</div>
+        </div>`;
+        
+        analysisEl.innerHTML = analysisHtml;
+        
+        // Signal Details
+        let detailsHtml = '';
+        detailsHtml += `<div class="detail-box">
+            <h4>Signal Details</h4>
+            <div class="detail-item">
+                <span class="detail-label">Avg Confidence</span>
+                <span class="detail-value">${(signals.reduce((sum, s) => sum + (s.confidence || 0), 0) / signals.length).toFixed(1)}%</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Strongest Signal</span>
+                <span class="detail-value">${signals.reduce((max, s) => (s.confidence > max.confidence ? s : max), signals[0])?.symbol || 'N/A'}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Most Common Type</span>
+                <span class="detail-value">${buySignals > sellSignals && buySignals > holdSignals ? 'BUY' : sellSignals > holdSignals ? 'SELL' : 'HOLD'}</span>
+            </div>
+        </div>`;
+        
+        detailsEl.innerHTML = detailsHtml;
+    }
+    
+    // ==================== RISK MANAGEMENT TAB ====================
+    
+    function renderRiskManagement() {
+        const assessmentEl = document.getElementById('riskAssessment');
+        const sizingEl = document.getElementById('positionSizing');
+        const stopLossEl = document.getElementById('stopLossLevels');
+        const detailsEl = document.getElementById('riskDetails');
+        
+        if (!marketData || !marketData.enhanced_metrics?.risk_management) {
+            assessmentEl.innerHTML = '<div class="insight">No risk assessment data</div>';
+            sizingEl.innerHTML = '<div class="insight">No position sizing data</div>';
+            stopLossEl.innerHTML = '<div class="insight">No stop loss levels</div>';
+            detailsEl.innerHTML = '<div class="insight">No risk details</div>';
+            return;
+        }
+        
+        const risk = marketData.enhanced_metrics.risk_management;
+        
+        // Risk Assessment
+        let assessmentHtml = '';
+        assessmentHtml += `<div class="metric">
+            <div class="label">Overall Risk</div>
+            <div class="value ${risk.overall_risk === 'HIGH' ? 'danger' : risk.overall_risk === 'MEDIUM' ? 'warning' : 'success'}">
+              ${risk.overall_risk}
+            </div>
+        </div>`;
+        
+        assessmentHtml += `<div class="metric">
+            <div class="label">Risk Score</div>
+            <div class="value">${risk.risk_score || 'N/A'}/100</div>
+        </div>`;
+        
+        assessmentHtml += `<div class="metric">
+            <div class="label">Volatility</div>
+            <div class="value">${risk.volatility || 'N/A'}</div>
+        </div>`;
+        
+        assessmentEl.innerHTML = assessmentHtml;
+        
+        // Position Sizing
+        let sizingHtml = '';
+        sizingHtml += `<div class="metric">
+            <div class="label">Position Size</div>
+            <div class="value">${risk.position_size_recommendation || 'N/A'}</div>
+        </div>`;
+        
+        sizingHtml += `<div class="metric">
+            <div class="label">Risk/Reward</div>
+            <div class="value ${risk.risk_reward_ratio >= 1 ? 'success' : 'warning'}">
+              ${risk.risk_reward_ratio?.toFixed(2) || 'N/A'}
+            </div>
+        </div>`;
+        
+        sizingHtml += `<div class="metric">
+            <div class="label">Max Drawdown</div>
+            <div class="value">${risk.max_drawdown || 'N/A'}</div>
+        </div>`;
+        
+        sizingEl.innerHTML = sizingHtml;
+        
+        // Stop Loss Levels
+        let stopLossHtml = '';
+        stopLossHtml += `<div class="metric">
+            <div class="label">Stop Loss</div>
+            <div class="value">${risk.stop_loss_recommendation || 'N/A'}</div>
+        </div>`;
+        
+        stopLossHtml += `<div class="metric">
+            <div class="label">Take Profit</div>
+            <div class="value">${risk.take_profit_recommendation || 'N/A'}</div>
+        </div>`;
+        
+        stopLossHtml += `<div class="metric">
+            <div class="label">Trailing Stop</div>
+            <div class="value">${risk.trailing_stop || 'N/A'}</div>
+        </div>`;
+        
+        stopLossEl.innerHTML = stopLossHtml;
+        
+        // Risk Details
+        let detailsHtml = '';
+        detailsHtml += `<div class="detail-box">
+            <h4>Risk Management Details</h4>
+            <div class="detail-item">
+                <span class="detail-label">Market Conditions</span>
+                <span class="detail-value">${risk.market_conditions || 'N/A'}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Leverage Recommendation</span>
+                <span class="detail-value">${risk.leverage_recommendation || 'N/A'}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Portfolio Allocation</span>
+                <span class="detail-value">${risk.portfolio_allocation || 'N/A'}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Risk Per Trade</span>
+                <span class="detail-value">${risk.risk_per_trade || 'N/A'}</span>
+            </div>
+        </div>`;
+        
+        detailsEl.innerHTML = detailsHtml;
+    }
+    
+    // ==================== CRYPTOBIBLE INSIGHTS TAB ====================
+    
+    function renderCryptobibleInsights() {
+        const chaptersEl = document.getElementById('chapterReferences');
+        const principlesEl = document.getElementById('tradingPrinciples');
+        const detailsEl = document.getElementById('cryptobibleDetails');
+        
+        if (!marketData || !marketData.enhanced_metrics?.cryptobible_insights) {
+            chaptersEl.innerHTML = '<div class="insight">No cryptobible insights</div>';
+            principlesEl.innerHTML = '<div class="insight">No trading principles</div>';
+            detailsEl.innerHTML = '<div class="insight">No cryptobible details</div>';
+            return;
+        }
+        
+        const insights = marketData.enhanced_metrics.cryptobible_insights;
+        
+        // Chapter References
+        if (insights.chapter_references?.length) {
+            let html = '';
+            insights.chapter_references.forEach(ref => {
+                html += `<div class="detail-box">
+                    <div class="detail-item">
+                        <span class="detail-label">Chapter</span>
+                        <span class="detail-value">${ref.chapter}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Description</span>
+                        <span class="detail-value">${ref.description}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Application</span>
+                        <span class="detail-value">${ref.application || 'General'}</span>
+                    </div>
+                </div>`;
+            });
+            chaptersEl.innerHTML = html;
+        } else {
+            chaptersEl.innerHTML = '<div class="insight">No chapter references</div>';
+        }
+        
+        // Trading Principles
+        if (insights.trading_principles?.length) {
+            let html = '';
+            insights.trading_principles.forEach(principle => {
+                html += `<div class="insight success">✅ ${principle}</div>`;
+            });
+            principlesEl.innerHTML = html;
+        } else {
+            principlesEl.innerHTML = '<div class="insight">No trading principles</div>';
+        }
+        
+        // Cryptobible Details
+        let detailsHtml = '';
+        detailsHtml += `<div class="detail-box">
+            <h4>Cryptobible Framework</h4>
+            <div class="detail-item">
+                <span class="detail-label">Total Chapters</span>
+                <span class="detail-value">${insights.chapter_references?.length || 0}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Total Principles</span>
+                <span class="detail-value">${insights.trading_principles?.length || 0}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Framework Version</span>
+                <span class="detail-value">${insights.framework_version || 'N/A'}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Last Updated</span>
+                <span class="detail-value">${insights.last_updated || 'N/A'}</span>
+            </div>
+        </div>`;
+        
+        detailsEl.innerHTML = detailsHtml;
+    }
+    
+    // ==================== UTILITY FUNCTIONS ====================
+    
+    function formatPrice(price) {
+        if (!price) return '-';
+        return '$' + price.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    }
+    
+    function formatPercent(value) {
+        if (value === undefined || value === null) return '-';
+        const sign = value >= 0 ? '+' : '';
+        return sign + value.toFixed(2) + '%';
+    }
+    
+    function formatNumber(num) {
+        if (!num) return '-';
+        if (num >= 1000000000) return (num / 1000000000).toFixed(2) + 'B';
+        if (num >= 1000000) return (num / 1000000).toFixed(2) + 'M';
+        if (num >= 1000) return (num / 1000).toFixed(2) + 'K';
+        return num.toFixed(2);
+    }
+    
+    function showError(message) {
+        console.error('Dashboard error:', message);
+        const subtitle = document.querySelector('.header .subtitle');
+        if (subtitle) {
+            subtitle.innerHTML = `<span style="color: var(--danger);">❌ ${message}</span>`;
+        }
+    }
+    
+    // Tab switching function
+    function switchTab(tabName) {
+        // Hide all tabs
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.style.display = 'none';
+        });
+        
+        // Remove active class from all tabs
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        // Show selected tab
+        document.getElementById(tabName + 'Tab').style.display = 'block';
+        
+        // Add active class to clicked tab
+        event.target.classList.add('active');
+    }
+    
+    // Make functions available globally
+    window.loadCompleteData = loadCompleteData;
+    window.switchTab = switchTab;
+    
+    // Auto-load data when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('🚀 Complete Market Terminal - Auto-loading ALL details...');
+        
+        // Load data after a short delay
+        setTimeout(() => {
+            loadCompleteData();
+        }, 1000);
+    });
+    
+    console.log('✅ Complete dashboard ready with ALL details');
+  </script>
+</body>
+</html>

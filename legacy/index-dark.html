@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complete Market Terminal v2.01</title>
+  <style>
+    /* DARK THEME */
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #1a1a1a;
+      --bg3: #2a2a2a;
+      --text: #ffffff;
+      --text-muted: #a0a0a0;
+      --border: #333333;
+      --primary: #3b82f6;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --info: #06b6d4;
+      --purple: #8b5cf6;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+      background: var(--bg); 
+      color: var(--text); 
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    
+    .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+    
+    .header { 
+      background: var(--bg2); 
+      border-radius: 12px; 
+      padding: 24px; 
+      margin-bottom: 24px; 
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--purple), var(--info));
+    }
+    
+    .header h1 { 
+      font-size: 28px; 
+      font-weight: 700; 
+      margin-bottom: 8px; 
+      background: linear-gradient(90deg, var(--primary), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .header .subtitle { 
+      color: var(--text-muted); 
+      font-size: 16px; 
+      margin-bottom: 16px;
+    }
+    
+    .header .meta { 
+      display: flex; 
+      gap: 24px; 
+      margin-top: 16px; 
+      font-size: 14px; 
+      color: var(--text-muted);
+    }
+    
+    .header .meta span { 
+      display: flex; 
+      align-items: center; 
+      gap: 6px; 
+    }
+    
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+      gap: 20px; 
+      margin-bottom: 24px; 
+    }
+    
+    .card { 
+      background: var(--bg2); 
+      border-radius: 12px; 
+      padding: 20px; 
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s;
+    }
+    
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+    
+    .card-header { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      margin-bottom: 20px; 
+      padding-bottom: 12px; 
+      border-bottom: 1px solid var(--border); 
+    }
+    
+    .card-header h2 { 
+      font-size: 18px; 
+      font-weight: 600; 
+      color: var(--text); 
+    }
+    
+    .badge { 
+      display: inline-block;
+      padding: 4px 12px; 
+      border-radius: 20px; 
+      font-size: 12px; 
+      font-weight: 600; 
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    
+    .badge.primary { background: rgba(59, 130, 246, 0.2); color: var(--primary); border-color: rgba(59, 130, 246, 0.4); }
+    .badge.success { background: rgba(16, 185, 129, 0.2); color: var(--success); border-color: rgba(16, 185, 129, 0.4); }
+    .badge.warning { background: rgba(245, 158, 11, 0.2); color: var(--warning); border-color: rgba(245, 158, 11, 0.4); }
+    .badge.danger { background: rgba(239, 68, 68, 0.2); color: var(--danger); border-color: rgba(239, 68, 68, 0.4); }
+    .badge.info { background: rgba(6, 182, 212, 0.2); color: var(--info); border-color: rgba(6, 182, 212, 0.4); }
+    .badge.purple { background: rgba(139, 92, 246, 0.2); color: var(--purple); border-color: rgba(139, 92, 246, 0.4); }
+    
+    .metric { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 12px 0; 
+      border-bottom: 1px solid var(--border); 
+    }
+    
+    .metric:last-child { border-bottom: none; }
+    
+    .metric .label { 
+      color: var(--text-muted); 
+      font-size: 14px; 
+    }
+    
+    .metric .value { 
+      font-weight: 600; 
+      font-size: 16px; 
+    }
+    
+    .metric .value.positive { color: var(--success); }
+    .metric .value.negative { color: var(--danger); }
+    .metric .value.neutral { color: var(--warning); }
+    
+    .insight { 
+      background: rgba(59, 130, 246, 0.1); 
+      border-left: 4px solid var(--primary); 
+      padding: 12px; 
+      margin: 8px 0; 
+      border-radius: 4px; 
+      font-size: 14px;
+    }
+    
+    .insight.warning { 
+      background: rgba(245, 158, 11, 0.1); 
+      border-left-color: var(--warning); 
+    }
+    
+    .insight.danger { 
+      background: rgba(239, 68, 68, 0.1); 
+      border-left-color: var(--danger); 
+    }
+    
+    .insight.success { 
+      background: rgba(16, 185, 129, 0.1); 
+      border-left-color: var(--success); 
+    }
+    
+    .liquidity-zone { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 10px 12px; 
+      margin: 6px 0; 
+      background: var(--bg3); 
+      border-radius: 6px; 
+      border: 1px solid var(--border); 
+    }
+    
+    .liquidity-zone.support { border-left: 4px solid var(--success); }
+    .liquidity-zone.resistance { border-left: 4px solid var(--danger); }
+    
+    .chapter-ref { 
+      background: rgba(139, 92, 246, 0.1); 
+      border-radius: 6px; 
+      padding: 12px; 
+      margin: 8px 0; 
+      border-left: 4px solid var(--purple);
+    }
+    
+    .chapter-ref .chapter { 
+      font-weight: 600; 
+      color: var(--purple); 
+      font-size: 14px; 
+    }
+    
+    .chapter-ref .description { 
+      color: var(--text-muted); 
+      font-size: 13px; 
+      margin-top: 4px; 
+    }
+    
+    .three-layer { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr 1fr; 
+      gap: 12px; 
+    }
+    
+    .layer { 
+      background: var(--bg3); 
+      padding: 16px; 
+      border-radius: 8px; 
+      border-top: 4px solid var(--border);
+    }
+    
+    .layer h3 { 
+      font-size: 14px; 
+      font-weight: 600; 
+      margin-bottom: 8px; 
+      color: var(--text); 
+    }
+    
+    .layer.structure { border-top-color: var(--primary); }
+    .layer.participant { border-top-color: var(--success); }
+    .layer.psychological { border-top-color: var(--warning); }
+    
+    .refresh-btn { 
+      background: linear-gradient(90deg, var(--primary), var(--purple)); 
+      color: white; 
+      border: none; 
+      padding: 12px 24px; 
+      border-radius: 8px; 
+      font-weight: 600; 
+      cursor: pointer; 
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    
+    .refresh-btn:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+    }
+    
+    .loading { 
+      text-align: center; 
+      padding: 40px; 
+      color: var(--text-muted); 
+      font-style: italic;
+    }
+    
+    .news-section {
+      background: var(--bg2);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    
+    .news-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .news-header h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+      .three-layer { grid-template-columns: 1fr; }
+      .header .meta { flex-direction: column; gap: 8px; }
+      .container { padding: 12px; }
+    }
+  </style>
+</head>
+<body>`r`n<div style="background:#7f1d1d;color:#fee2e2;padding:12px 16px;font-family:Segoe UI,Arial,sans-serif;font-size:14px;font-weight:700;text-align:center;border-bottom:3px solid #ef4444;">Legacy dashboard view: this page is archived and unsupported. Use ../index.html for the primary dashboard or ../dashboard-enhanced.html for the slim enhanced view.</div>
+  <div class="container">
+    <!-- HEADER -->
+    <div class="header">
+      <h1 id="headline">Complete Market Terminal v2.01</h1>
+      <div class="subtitle" id="subheadline">Advanced analytics with liquidity heatmaps, order flow, cryptobible insights, and news intelligence</div>
+      <div class="meta">
+        <span>🕒 Updated: <span id="updatedLocal">Just now</span></span>
+        <span>📊 Assets: <span id="trackedAssets">7</span></span>
+        <span>📈 Market Bias: <span id="marketBias">BEARISH</span></span>
+        <span>📋 Version: <span id="version">v2.01</span></span>
+      </div>
+    </div>
+    
+    <!-- MARKET DATA GRID -->
+    <div class="grid">
+      <!-- Liquidity Heatmap -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Liquidity Heatmap</h2>
+          <span class="badge purple">Cryptobible Ch. 9</span>
+        </div>
+        <div id="liquidityHeatmap">
+          <div class="loading">Loading liquidity data...</div>
+        </div>
+      </div>
+      
+      <!-- Order Flow Analysis -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Order Flow Analysis</h2>
+          <span class="badge info">Market Makers vs Takers</span>
+        </div>
+        <div id="orderFlowAnalysis">
+          <div class="loading">Loading order flow data...</div>
+        </div>
+      </div>
+      
+      <!-- Market Structure -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Market Structure</h2>
+          <span class="badge primary">Three-Layer Framework</span>
+        </div>
+        <div id="marketStructure">
+          <div class="loading">Loading market structure...</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="grid">
+      <!-- Risk Assessment -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Risk Assessment</h2>
+          <span class="badge danger">Cryptobible Ch. 62</span>
+        </div>
+        <div id="riskAssessment">
+          <div class="loading">Loading risk assessment...</div>
+        </div>
+      </div>
+      
+      <!-- Cryptobible Insights -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Cryptobible Insights</h2>
+          <span class="badge purple">Educational Framework</span>
+        </div>
+        <div id="cryptobibleInsights">
+          <div class="loading">Loading cryptobible insights...</div>
+        </div>
+      </div>
+      
+      <!-- Technical Analysis -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Technical Analysis</h2>
+          <span class="badge warning">Advanced Indicators</span>
+        </div>
+        <div id="technicalAnalysis">
+          <div class="loading">Loading technical analysis...</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ASSET PERFORMANCE -->
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="card-header">
+        <h2>Asset Performance</h2>
+        <span class="badge success">7 Assets Tracked</span>
+      </div>
+      <div id="assetPerformance">
+        <div class="loading">Loading asset data...</div>
+      </div>
+    </div>
+    
+    <!-- TRADING SIGNALS -->
+    <div class="card" style="margin-bottom: 32px;">
+      <div class="card-header">
+        <h2>Trading Signals</h2>
+        <span class="badge primary">Active Setups</span>
+      </div>
+      <div id="tradingSignals">
+        <div class="loading">Loading trading signals...</div>
+      </div>
+    </div>
+    
+    <!-- NEWS INTELLIGENCE -->
+    <div class="news-section">
+      <div class="news-header">
+        <h2>📰 News Intelligence</h2>
+        <span class="badge info">Real-time Analysis</span>
+      </div>
+      
+      <div class="grid">
+        <!-- News Sentiment -->
+        <div class="card">
+          <div class="card-header">
+            <h2>News Sentiment</h2>
+            <span class="badge info">Semantic Analysis</span>
+          </div>
+          <div id="newsSentimentPanel">
+            <div class="loading">Loading sentiment analysis...</div>
+          </div>
+        </div>
+        
+        <!-- Breaking News -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Breaking News</h2>
+            <span class="badge warning">High Impact</span>
+          </div>
+          <div id="breakingNewsPanel">
+            <div class="loading">Loading breaking news...</div>
+          </div>
+        </div>
+        
+        <!-- News Categories -->
+        <div class="card">
+          <div class="card-header">
+            <h2>News Categories</h2>
+            <span class="badge purple">Distribution</span>
+          </div>
+          <div id="newsCategories">
+            <div class="loading">Loading category data...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- REFRESH BUTTON -->
+    <div style="text-align: center; margin-top: 32px;">
+      <button class="refresh-btn" onclick="loadDashboard()">🔄 Refresh Dashboard</button>
+      <div style="margin-top: 12px; font-size: 12px; color: var(--text-muted);">
+        Auto-refresh every 5 minutes • Data sources: yfinance, ccxt, CoinGecko, RSS feeds
+      </div>
+    </div>
+  </div>
+
+  <!-- SIMPLIFIED JAVASCRIPT THAT WORKS -->
+  <script>
+    console.log('Dashboard initializing...');
+    
+    // Simple data loader
+    async function loadDashboard() {
+      console.log('Loading dashboard data...');
+      
+      try {
+        // Load market data
+        const marketResponse = await fetch('dashboard-enhanced.json');
+        const marketData = await marketResponse.json();
+        
+        // Load news data
+        const newsResponse = await fetch('news-data.json');
+        const newsData = await newsResponse.json();
+        
+        console.log('Data loaded successfully');
+        
+        // Update header
+        updateHeader(marketData, newsData);
+        
+        // Render all sections
+        renderAllSections(marketData, newsData);
+        
+      } catch (error) {
+        console.error('Error loading dashboard:', error);
+        showError('Failed to load data. Please check console.');
+      }
+    }
+    
+    function updateHeader(marketData, newsData) {
+      // Update headline with current time
+      const now = new Date();
+      document.getElementById('updatedLocal').textContent = now.toLocaleString();
+      
+      if (marketData.summary) {
+        document.getElementById('trackedAssets').textContent = marketData.summary.tracked_assets;
+        document.getElementById('marketBias').textContent = marketData.summary.market_bias;
+        document.getElementById('version').textContent = marketData.summary.version;
+      }
+      
+      if (newsData.summary) {
+        // Add news count to header if needed
+        const newsSpan = document.createElement('span');
+        newsSpan.innerHTML = `📰 News: <span id="newsCount">${newsData.summary.total_articles}</span>`;
+        document.querySelector('.header .meta').appendChild(newsSpan);
+      }
+    }
+    
+    function renderAllSections(marketData, newsData) {
+      // 1. Liquidity Heatmap
+      renderLiquidityHeatmap(marketData);
+      
+      // 2. Order Flow Analysis
+      renderOrderFlowAnalysis(marketData);
+      
+      // 3. Market Structure
+      renderMarketStructure(marketData);
+      
+      // 4. Risk Assessment
+      renderRiskAssessment(marketData);
+      
+      // 5. Cryptobible Insights
+      renderCryptobibleInsights(marketData);
+      
+      // 6. Technical Analysis
+      renderTechnicalAnalysis(marketData);
+      
+      // 7. Asset Performance
+      renderAssetPerformance(marketData);
+      
+      // 8. Trading Signals
+      renderTradingSignals(marketData);
+      
+      // 9. News Sections
+      renderNewsSections(newsData);
+    }
+    
+    function renderLiquidityHeatmap(marketData) {
+      const el = document.getElementById('liquidityHeatmap');
+      if (!marketData.enhanced_metrics?.liquidity_heatmap) {
+        el.innerHTML = '<div class="insight">No liquidity data available</div>';
+        return;
+      }
+      
+      const heatmap = marketData.enhanced_metrics.liquidity_heatmap;
+      let html = '';
+      
+      // Support zones
+      if (heatmap.support_zones?.length) {
+        html += '<div style="margin-bottom: 16px;"><div style="font-weight: 600; color: var(--success); margin-bottom: 8px;">Support Zones</div>';
+        heatmap.support_zones.slice(0, 3).forEach(zone => {
+          html += `<div class="liquidity-zone support">
+            <div>${zone.symbol} @ ${formatPrice(zone.price)}</div>
+            <div style="font-size: 12px; color: var(--success);">${zone.strength}</div>
+          </div>`;
+        });
+        html += '</div>';
+      }
+      
+      // Resistance zones
+      if (heatmap.resistance_zones?.length) {
+        html += '<div><div style="font-weight: 600; color: var(--danger); margin-bottom: 8px;">Resistance Zones</div>';
+        heatmap.resistance_zones.slice(0, 3).forEach(zone => {
+          html += `<div class="liquidity-zone resistance">
+            <div>${zone.symbol} @ ${formatPrice(zone.price)}</div>
+            <div style="font-size: 12px; color: var(--danger);">${zone.strength}</div>
+          </div>`;
+        });
+        html += '</div>';
+      }
+      
+      el.innerHTML = html || '<div class="insight">No liquidity zones detected</div>';
+    }
+    
+    function renderOrderFlowAnalysis(marketData) {
+      const el = document.getElementById('orderFlowAnalysis');
+      if (!marketData.enhanced_metrics?.order_flow) {
+        el.innerHTML = '<div class="insight">No order flow data</div>';
+        return;
+      }
+      
+      const flow = marketData.enhanced_metrics.order_flow;
+      let html = '';
+      
+      html += `<div class="metric">
+        <div class="label">Market Makers</div>
+        <div class="value ${flow.maker_ratio > 0.5 ? 'positive' : 'neutral'}">${(flow.maker_ratio * 100).toFixed(1)}%</div>
+      </div>`;
+      
+      html += `<div class="metric">
+        <div class="label">Takers</div>
+        <div class="value ${flow.taker_ratio > 0.5 ? 'negative' : 'neutral'}">${(flow.taker_ratio * 100).toFixed(1)}%</div>
+      </div>`;
+      
+      html += `<div class="metric">
+        <div class="label">Flow Imbalance</div>
+        <div class="value ${flow.imbalance > 0 ? 'positive' : flow.imbalance < 0 ? 'negative' : 'neutral'}">
+          ${flow.imbalance > 0 ? '+' : ''}${(flow.imbalance * 100).toFixed(1)}%
+        </div>
+      </div>`;
+      
+      el.innerHTML = html;
+    }
+    
+    function renderMarketStructure(marketData) {
+      const el = document.getElementById('marketStructure');
+      if (!marketData.enhanced_metrics?.market_structure) {
+        el.innerHTML = '<div class="insight">No market structure data</div>';
+        return;
+      }
+      
+      const structure = marketData.enhanced_metrics.market_structure;
+      let html = '<div class="three-layer">';
+      
+      // Structural Layer
+      html += `<div class="layer structure">
+        <h3>Structural Layer</h3>
+        <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">Price levels & trends</div>`;
+      
+      if (structure.structural?.length) {
+        structure.structural.slice(0, 2).forEach(item => {
+          html += `<div style="margin: 4px 0; padding: 6px; background: rgba(59, 130, 246, 0.1); border-radius: 4px; font-size: 12px;">
+            ${item}
+          </div>`;
+        });
+      }
+      html += '</div>';
+      
+      // Participant Layer
+      html += `<div class="layer participant">
+        <h3>Participant Layer</h3>
+        <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">Who\'s trading</div>`;
+      
+      if (structure.participant?.length) {
+        structure.participant.slice(0, 2).forEach(item => {
+          html += `<div style="margin: 4px 0; padding: 6px; background: rgba(16, 185, 129, 0.1); border-radius: 4px; font-size: 12px;">
+            ${item}
+          </div>`;
+        });
+      }
+      html += '</div>';
+      
+      // Psychological Layer
+      html += `<div class="layer psychological">
+        <h3>Psychological Layer</h3>
+        <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">Market sentiment</div>`;
+      
+      if (structure.psychological?.length) {
+        structure.psychological.slice(0, 2).forEach(item => {
+          html += `<div style="margin: 4px 0; padding: 6px; background: rgba(245, 158, 11, 0.1); border-radius: 4px; font-size: 12px;">
+            ${item}
+          </div>`;
+        });
+      }
+      html += '</div>';
+      
+      html += '</div>';
+      el.innerHTML = html;
+    }
+    
+    function renderRiskAssessment(marketData) {
+      const el = document.getElementById('riskAssessment');
+      if (!marketData.enhanced_metrics?.risk_management) {
+        el.innerHTML = '<div class="insight">No risk data available</div>';
+        return;
+      }
+      
+      const risk = marketData.enhanced_metrics.risk_management;
+      let html = '';
+      
+      html += `<div class="metric">
+        <div class="label">Overall Risk</div>
+        <div class="value ${risk.overall_risk === 'HIGH' ? 'danger' : risk.overall_risk === 'MEDIUM' ? 'warning' : 'success'}">
+          ${risk.overall_risk}
+        </div>
+      </div>`;
+      
+      html += `<div class="metric">
+        <div class="label">Position Size</div>
+        <div class="value">${risk.position_size_recommendation}</div>
+      </div>`;
+      
+      html += `<div class="metric">
+        <div class="label">Stop Loss</div>
+        <div class="value">${risk.stop_loss_recommendation}</div>
+      </div>`;
+      
+      html += `<div class="metric">
+        <div class="label">Risk/Reward</div>
+        <div class="value ${risk.risk_reward_ratio >= 1 ? 'success' : 'warning'}">${risk.risk_reward_ratio?.toFixed(2) || 'N/A'}</div>
+      </div>`;
+      
+      el.innerHTML = html;
+    }
+    
+    function renderCryptobibleInsights(marketData) {
+      const el = document.getElementById('cryptobibleInsights');
+      if (!marketData.enhanced_metrics?.cryptobible_insights) {
+        el.innerHTML = '<div class="insight">No cryptobible insights</div>';
+        return;
+      }
+      
+      const insights = marketData.enhanced_metrics.cryptobible_insights;
+      let html = '';
+      
+      // Chapter References
+      if (insights.chapter_references?.length) {
+        html += '<div style="margin-bottom: 16px;"><div style="font-weight: 600; color: var(--purple); margin-bottom: 8px;">Chapter References</div>';
+        insights.chapter_references.slice(0, 2).forEach(ref => {
+          html += `<div class="chapter-ref">
+            <div class="chapter">${ref.chapter}</div>
+            <div class="description">${ref.description}</div>
+          </div>`;
+        });
+        html += '</div>';
+      }
+      
+      // Trading Principles
+      if (insights.trading_principles?.length) {
+        html += '<div style="margin-bottom: 16px;"><div style="font-weight: 600; color: var(--success); margin-bottom: 8px;">Trading Principles</div>';
+        insights.trading_principles.slice(0, 2).forEach(principle => {
+          html += `<div class="insight">${principle}</div>`;
+        });
+        html += '</div>';
+      }
+      
+      el.innerHTML = html || '<div class="insight">Applying cryptobible framework...</div>';
+    }
+    
+    function renderTechnicalAnalysis(marketData) {
+      const el = document.getElementById('technicalAnalysis');
+      if (!marketData.technical_analysis) {
+        el.innerHTML = '<div class="insight">No technical analysis</div>';
+        return;
+      }
+      
+      const ta = marketData.technical_analysis;
+      let html = '';
+      
+      // BTC analysis
+      if (ta.BTC) {
+        const btc = ta.BTC;
+        
+        html += `<div class="metric">
+          <div class="label">BTC RSI</div>
+          <div class="value ${btc.rsi > 70 ? 'danger' : btc.rsi < 30 ? 'success' : 'neutral'}">
+            ${btc.rsi?.toFixed(1) || '-'}
+          </div>
+        </div>`;
+        
+        html += `<div class="metric">
+          <div class="label">BTC MACD</div>
+          <div class="value ${btc.macd > 0 ? 'success' : 'danger'}">
+            ${btc.macd?.toFixed(2) || '-'}
+          </div>
+        </div>`;
+      }
+      
+      // Market bias
+      if (marketData.summary?.market_bias) {
+        const bias = marketData.summary.market_bias;
+        html += `<div class="metric">
+          <div class="label">Market Bias</div>
+          <div class="value ${bias === 'BULLISH' ? 'success' : bias === 'BEARISH' ? 'danger' : 'warning'}">
+            ${bias}
+          </div>
+        </div>`;
+      }
+      
+      el.innerHTML = html;
+    }
+    
+    function renderAssetPerformance(marketData) {
+      const el = document.getElementById('assetPerformance');
+      if (!marketData.market_data) {
+        el.innerHTML = '<div class="insight">No asset data</div>';
+        return;
+      }
+      
+      const assets = marketData.market_data;
+      let html = '';
+      
+      // Show all 7 assets
+      Object.entries(assets).forEach(([symbol, data]) => {
+        const change = data.change_pct || 0;
+        const price = data.price || 0;
+        
+        html += `<div class="metric">
+          <div class="label">${symbol}</div>
+          <div class="value ${change >= 0 ? 'positive' : 'negative'}">
+            ${formatPrice(price)} (${formatPercent(change)})
+          </div>
+        </div>`;
+      });
+      
+      el.innerHTML = html;
+    }
+    
+    function renderTradingSignals(marketData) {
+      const el = document.getElementById('tradingSignals');
+      if (!marketData.signals || marketData.signals.length === 0) {
+        el.innerHTML = '<div class="insight">No active trading signals</div>';
+        return;
+      }
+      
+      const signals = marketData.signals;
+      let html = '';
+      
+      signals.slice(0, 3).forEach(signal => {
+        const typeClass = signal.type === 'BUY' ? 'success' : signal.type === 'SELL' ? 'danger' : 'warning';
+        html += `<div class="insight ${typeClass}">
+          <strong>${signal.symbol} ${signal.type}</strong> @ ${formatPrice(signal.price)}<br>
+          <small style="color: var(--text-muted);">${signal.timeframe || ''} • ${signal.confidence || ''}</small>
+        </div>`;
+      });
+      
+      el.innerHTML = html;
+    }
+    
+    function renderNewsSections(newsData) {
+      if (!newsData) return;
+      
+      // News Sentiment
+      renderNewsSentiment(newsData);
+      
+      // Breaking News
+      renderBreakingNews(newsData);
+      
+      // News Categories
+      renderNewsCategories(newsData);
+    }
+    
+    function renderNewsSentiment(newsData) {
+      const el = document.getElementById('newsSentimentPanel');
+      if (!newsData.summary) {
+        el.innerHTML = '<div class="insight">No sentiment data</div>';
+        return;
+      }
+      
+      const summary = newsData.summary;
+      const sentiment = summary.overall_sentiment;
+      const breakdown = summary.sentiment_breakdown;
+      
+      let
+

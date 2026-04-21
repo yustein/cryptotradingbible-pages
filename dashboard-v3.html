@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Market Terminal V3 Preview</title>
+  <style>
+    :root {
+      --bg: #060d18;
+      --bg2: #0b1830;
+      --text: #e6eef9;
+      --muted: #9db0cb;
+      --blue: #4ea1ff;
+      --green: #38d39f;
+      --amber: #ffb84d;
+      --red: #ff6b6b;
+      --border: rgba(148, 163, 184, 0.22);
+      --shadow: 0 24px 60px rgba(0,0,0,0.30);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, Segoe UI, Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top right, rgba(78,161,255,0.10), transparent 18%), linear-gradient(180deg, var(--bg), #0b1830);
+      min-height: 100vh;
+    }
+    .wrap { max-width: 1550px; margin: 0 auto; padding: 24px 18px; }
+    .panel {
+      background: linear-gradient(180deg, rgba(19,41,68,0.96), rgba(15,33,56,0.96));
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    h1, h2, h3 { margin-top: 0; }
+    p, li { color: var(--muted); line-height: 1.6; }
+    a {
+      color: white;
+      text-decoration: none;
+      background: var(--blue);
+      padding: 10px 14px;
+      border-radius: 10px;
+      display: inline-block;
+      font-weight: 700;
+      margin-right: 10px;
+    }
+    .ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .hero, .grid, .lanes, .cards, .top-strip { display: grid; gap: 16px; margin-top: 18px; }
+    .hero { grid-template-columns: 1.4fr 0.8fr; }
+    .top-strip { grid-template-columns: 1.5fr repeat(5, minmax(140px, 1fr)); align-items: stretch; }
+    .grid, .lanes { grid-template-columns: 1fr 1fr; }
+    .cards { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .card, .metric { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 14px; padding: 16px; }
+    .metric .label { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .metric .value { margin-top: 8px; font-size: 1.05rem; font-weight: 800; }
+    .action-metric { background: linear-gradient(180deg, rgba(255,184,77,0.12), rgba(255,255,255,0.04)); border: 1px solid rgba(255,184,77,0.25); }
+    .action-metric .label { color: #ffd18b; }
+    .action-metric .value { font-size: 1.35rem; }
+    .action-support { margin-top: 10px; font-size: 0.92rem; color: var(--muted); line-height: 1.5; }
+    .pill { display: inline-block; padding: 6px 10px; border-radius: 999px; font-weight: 700; font-size: 0.8rem; }
+    .stand-aside { background: rgba(255,184,77,0.16); color: #ffd18b; }
+    .reduced { background: rgba(255,107,107,0.16); color: #ffc0c0; }
+    .watch { background: rgba(78,161,255,0.16); color: #b8d9ff; }
+    .armed { background: rgba(56,211,159,0.16); color: #b8ffe6; }
+    .off { background: rgba(255,107,107,0.22); color: #ffd4d4; }
+    .low { background: rgba(56,211,159,0.16); color: #b8ffe6; }
+    .medium { background: rgba(255,184,77,0.16); color: #ffd18b; }
+    .high { background: rgba(255,107,107,0.16); color: #ffc0c0; }
+    .lane-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .small { font-size: 0.9rem; color: var(--muted); }
+    .asset-card { background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); border: 1px solid var(--border); border-radius: 14px; padding: 16px; }
+    .asset-card h3 { margin-bottom: 10px; }
+    .list { display: grid; gap: 10px; }
+    .list-item { border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 12px; background: rgba(255,255,255,0.02); }
+    .muted-box { background: rgba(255,255,255,0.03); border: 1px dashed var(--border); border-radius: 12px; padding: 14px; color: var(--muted); }
+    .row { display: flex; justify-content: space-between; gap: 12px; margin: 6px 0; }
+    .row .label { color: var(--muted); }
+    .row .value { font-weight: 700; text-align: right; }
+    .score-grid { display: grid; gap: 6px; margin-top: 12px; }
+    .score-row { display: flex; justify-content: space-between; gap: 10px; font-size: 0.88rem; }
+    .score-emphasis { margin-top: 12px; padding: 10px 12px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(148,163,184,0.18); }
+    .score-emphasis .main { font-size: 1rem; font-weight: 800; }
+    .score-emphasis .sub { margin-top: 4px; font-size: 0.86rem; color: var(--muted); }
+    .gate-list { margin-top: 12px; display: grid; gap: 6px; }
+    .gate { font-size: 0.85rem; color: var(--muted); }
+    .ok { color: #9ff1cc; }
+    .bad { color: #ffb4b4; }
+    .empty { color: var(--muted); font-style: italic; }
+    .confidence-inferred { opacity: 0.72; }
+    .crowding-long { border-color: rgba(56,211,159,0.35); }
+    .crowding-short { border-color: rgba(255,107,107,0.35); }
+    .crowding-balanced { border-color: rgba(78,161,255,0.28); }
+    @media (max-width: 1100px) {
+      .hero, .grid, .lanes { grid-template-columns: 1fr; }
+      .top-strip { grid-template-columns: repeat(2, minmax(140px, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      .top-strip { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="panel">
+      <h1>Dashboard V3 Preview</h1>
+      <p><strong>V3.3</strong> • git <strong id="v3GitHeader">loading</strong></p>
+      <p>This is the separate build track for the next-generation execution-focused dashboard. Version 2 remains the main production dashboard while V3 is built in parallel.</p>
+      <div style="margin-top: 18px;">
+        <a href="./index.html">Open Main Dashboard (V2)</a>
+        <a class="ghost" href="./dashboard-enhanced.html">Open Slim Enhanced View</a>
+      </div>
+
+      <div class="hero">
+        <div class="card">
+          <h2>V3 objective</h2>
+          <p><strong>Make the dashboard choose one canonical action state and force everything else to support it.</strong></p>
+          <p>V3 is trying to become a cleaner operator console with hard execution gates, explicit contradiction handling, clearer regime/thesis separation, and more explainable scoring.</p>
+        </div>
+        <div class="card">
+          <h2>Status</h2>
+          <p><span class="pill watch">Build track active</span></p>
+          <p class="small">Version: <span id="v3SubVersion">V3.3</span> • git <span id="v3GitVersion">loading</span></p>
+          <p class="small" id="v3Status">Loading live dashboard state...</p>
+          <p class="small" id="v3SchemaBadge">Schema: detecting…</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>V3 changelog</h2>
+        <div class="list">
+          <div class="list-item"><strong>V3.3</strong> — derivatives-aware refinement pass: dashboard subversion bump, live git/version header wiring, and reader-facing update log at the bottom of the page.</div>
+          <div class="list-item"><strong>V3.2</strong> — added auto-refresh polling, schema/source detection badge, and explicit live-data provenance in the header; subversion now advances on each update.</div>
+          <div class="list-item"><strong>V3.1</strong> — current iterative pass on the operator-console track: execution readiness emphasis, stricter watch/package logic, visible versioning, and watch-card refinement.</div>
+          <div class="list-item"><strong>V3.0</strong> — initial live V3 scaffold: data wiring, canonical action engine, execution/context lanes, hard gates, contradiction levels, watch card, and action-first top strip.</div>
+        </div>
+      </div>
+
+      <div class="top-strip">
+        <div class="metric action-metric">
+          <div class="label">Primary action</div>
+          <div class="value" id="actionValue">Loading...</div>
+          <div class="action-support">
+            <div><strong>Directional lean:</strong> <span id="thesisValue">Loading...</span></div>
+            <div><strong>Why this outranks lean:</strong> execution gates and contradiction caps determine whether directional analysis is actionable.</div>
+          </div>
+        </div>
+        <div class="metric"><div class="label">Risk mode</div><div class="value" id="riskModeValue">Loading...</div></div>
+        <div class="metric"><div class="label">Regime</div><div class="value" id="regimeValue">Loading...</div></div>
+        <div class="metric"><div class="label">Next valid window</div><div class="value" id="nextWindowValue">Loading...</div></div>
+        <div class="metric"><div class="label">Ready setups</div><div class="value" id="readySetupsValue">Loading...</div></div>
+        <div class="metric"><div class="label">Directional conflict</div><div class="value" id="conflictValue">Loading...</div></div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h2>Canonical state summary</h2>
+          <div id="v3Summary" class="muted-box">Loading...</div>
+        </div>
+        <div class="card">
+          <h2>Action-engine rules</h2>
+          <div class="list">
+            <div class="list-item">Missing HTF/LTF alignment or kill zone caps action below execute.</div>
+            <div class="list-item">No entry / invalidation / target blocks armed status.</div>
+            <div class="list-item">Contradiction between direction and structure downgrades confidence.</div>
+            <div class="list-item">Context assets never present execution action states.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lanes">
+        <div class="card">
+          <div class="lane-title"><h2>Execution lane</h2><span class="small">tradable assets</span></div>
+          <div id="executionLane" class="cards"></div>
+        </div>
+        <div class="card">
+          <div class="lane-title"><h2>Context lane</h2><span class="small">macro / confirmation assets</span></div>
+          <div id="contextLane" class="cards"></div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h2>Derivatives regime</h2>
+          <div id="v3DerivativesRegime" class="list"></div>
+        </div>
+        <div class="card">
+          <h2>Derivatives trend view</h2>
+          <div id="v3DerivativesTrend" class="list"></div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h2>Hard execution gates</h2>
+          <div class="list">
+            <div class="list-item">HTF/LTF alignment</div>
+            <div class="list-item">Valid session / kill zone</div>
+            <div class="list-item">Structural trigger (BOS or equivalent)</div>
+            <div class="list-item">Defined entry</div>
+            <div class="list-item">Defined invalidation</div>
+            <div class="list-item">Defined target</div>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Action card</h2>
+          <div id="armedSetupCard" class="muted-box">No armed setup yet. Assets must pass hard execution gates before an execution card appears.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Update log</h2>
+        <div id="v3UpdateLog" class="list"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const EXECUTION_ASSETS = new Set(['BTC', 'ETH', 'SOL', 'ZEC', 'HYPE', 'SENT', 'ASTER']);
+    const AUTO_REFRESH_MS = 30000;
+    let dashboardData = null;
+    let enhancedData = null;
+    let refreshTimer = null;
+    let lastLoadedAt = null;
+
+    function fmtPrice(v) {
+      if (v === null || v === undefined || v === '') return '-';
+      if (v >= 1000) return '$' + Number(v).toLocaleString(undefined, { maximumFractionDigits: 2 });
+      if (v >= 1) return '$' + Number(v).toLocaleString(undefined, { maximumFractionDigits: 4 });
+      return '$' + Number(v).toLocaleString(undefined, { maximumFractionDigits: 6 });
+    }
+
+    function formatTrtTimestamp(utcValue) {
+      const utcDate = utcValue ? new Date(utcValue) : null;
+      if (!utcDate || Number.isNaN(utcDate.getTime())) return '-';
+      return utcDate.toLocaleString('en-GB', {
+        timeZone: 'Europe/Istanbul',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      }).replace(',', '') + ' TRT';
+    }
+
+    function detectSchemaLabel() {
+      if (Array.isArray(dashboardData?.assets) && dashboardData.assets.length) return 'assets[]';
+      if (dashboardData?.market_data && typeof dashboardData.market_data === 'object') return 'market_data';
+      if (enhancedData?.market_data && typeof enhancedData.market_data === 'object') return 'enhanced.market_data';
+      return 'unknown';
+    }
+
+    function detectSourceLabel() {
+      const canonicalSource = dashboardData?.source || {};
+      const enhancedSource = enhancedData?.source || {};
+      const parts = [
+        canonicalSource.generator || enhancedSource.generator,
+        canonicalSource.mode || enhancedSource.mode,
+        canonicalSource.input_file || enhancedSource.input_file
+      ].filter(Boolean);
+      return parts.length ? parts.join(' • ') : 'source unknown';
+    }
+
+    function updateHeaderMetadata() {
+      const loaded = lastLoadedAt ? ` • refreshed ${formatTrtTimestamp(lastLoadedAt)}` : '';
+      document.getElementById('v3SchemaBadge').textContent = `Schema: ${detectSchemaLabel()} • ${detectSourceLabel()}${loaded}`;
+      const gitRevision = dashboardData?.source?.git_revision || enhancedData?.source?.git_revision || 'unknown';
+      document.getElementById('v3GitVersion').textContent = gitRevision;
+      document.getElementById('v3GitHeader').textContent = gitRevision;
+      document.getElementById('v3SubVersion').textContent = 'V3.3';
+    }
+
+    function inferRegime() {
+      const trendState = enhancedData?.enhanced_metrics?.market_structure_layers?.structure_layer?.trend_state || '';
+      if (trendState.includes('transition')) return 'Range / Transition';
+      if (trendState.includes('range')) return 'Range';
+      if (trendState.includes('bullish') || trendState.includes('bearish')) return 'Trend';
+      return 'Undetermined';
+    }
+
+    function inferGlobalThesis() {
+      const bias = String(dashboardData?.summary?.market_bias || '').toUpperCase();
+      const psych = String(enhancedData?.enhanced_metrics?.market_structure_layers?.psychological_layer?.sentiment_bias || '').toLowerCase();
+      if (bias === 'BULLISH' && psych === 'bullish') return 'Bullish';
+      if (bias === 'BEARISH' && psych === 'bearish') return 'Bearish';
+      if (bias === 'BULLISH') return 'Cautious bullish';
+      if (bias === 'BEARISH') return 'Cautious bearish';
+      return 'Neutral';
+    }
+
+    function inferRiskMode() {
+      const level = String(dashboardData?.risk?.level || '').toUpperCase();
+      if (level === 'HIGH') return { text: 'OFF', css: 'off' };
+      if (level === 'MEDIUM') return { text: 'REDUCED', css: 'reduced' };
+      return { text: 'NORMAL', css: 'armed' };
+    }
+
+    function getExecutionGates(asset) {
+      const setup = asset?.trading_bible?.setup || {};
+      const checklist = Array.isArray(setup.checklist) ? setup.checklist : [];
+      const hasChecklist = name => checklist.some(item => item.name === name && item.ok);
+      return {
+        htfLtfAlignment: hasChecklist('HTF/LTF aligned'),
+        validSession: hasChecklist('In kill zone'),
+        structuralTrigger: hasChecklist('BOS present'),
+        entryDefined: setup.entry_zone_low !== null || setup.entry_zone_high !== null,
+        invalidationDefined: !!setup.invalidation_level,
+        targetDefined: !!(setup.target_1 || setup.target_2)
+      };
+    }
+
+    function getScoreBreakdown(asset, gates) {
+      const advisory = asset?.advisory || {};
+      const tb = asset?.trading_bible || {};
+      const setup = tb.setup || {};
+      const reasons = advisory.reasons || [];
+      const trendState = String(tb.trend_state || '').toLowerCase();
+      const symbol = asset?.display_symbol || asset?.symbol || '';
+      const hasLiquidity = (tb.liquidity_pools || []).length > 0;
+      const fvgCount = (tb.fvgs || []).length;
+      const sweepCount = (tb.sweeps || []).length;
+      const trapCount = (tb.traps || []).length;
+      const orderBlockCount = (tb.order_blocks || []).length;
+      const bosCount = (tb.bos_events || []).length;
+      const chochCount = (tb.choch_events || []).length;
+      const volatility = Number((tb.risk_metrics || {}).volatility_score || 0);
+      const alignmentState = String(tb.alignment_state || '').toLowerCase();
+      const direction = String(advisory.direction || 'NEUTRAL').toUpperCase();
+
+      let structure = 4;
+      if (trendState.includes('bullish') || trendState.includes('bearish')) structure += 6;
+      if (alignmentState === 'aligned') structure += 7;
+      else if (alignmentState === 'mixed') structure += 3;
+      structure += Math.min(6, bosCount * 3 + chochCount * 2);
+      structure += Math.min(2, orderBlockCount > 0 ? 2 : 0);
+      if (symbol == 'BTC') structure += bosCount > 0 ? 2 : 0;
+      if (symbol == 'ETH') structure += chochCount > 0 ? 2 : 0;
+      if (symbol == 'SOL') structure += sweepCount >= 4 ? 2 : 0;
+      if (symbol == 'ZEC') structure += volatility > 10 ? -2 : 1;
+      if (['HYPE', 'SENT', 'ASTER'].includes(symbol)) structure += bosCount === 0 ? -1 : 1;
+      structure = Math.max(0, Math.min(25, structure));
+
+      let liquidity = 3;
+      if (hasLiquidity) liquidity += 6;
+      liquidity += Math.min(5, fvgCount >= 3 ? 5 : fvgCount);
+      liquidity += Math.min(4, sweepCount >= 2 ? 4 : sweepCount * 2);
+      liquidity += Math.min(2, reasons.some(r => /liquidity/i.test(r)) ? 2 : 0);
+      if (symbol == 'BTC') liquidity += 2;
+      if (symbol == 'SOL') liquidity += sweepCount >= 5 ? 2 : 0;
+      if (symbol == 'ETH') liquidity += orderBlockCount >= 2 ? 1 : 0;
+      if (symbol == 'ZEC') liquidity += hasLiquidity && sweepCount > 0 ? 1 : 0;
+      if (['HYPE', 'ASTER', 'SENT'].includes(symbol)) liquidity += hasLiquidity ? 0 : -1;
+      liquidity = Math.max(0, Math.min(20, liquidity));
+
+      let participant = 2;
+      participant += Math.min(4, sweepCount);
+      participant += Math.min(3, orderBlockCount > 0 ? 3 : 0);
+      participant += Math.min(1, bosCount > 0 ? 1 : 0);
+      if (symbol == 'BTC') participant += 1;
+      if (symbol == 'ETH') participant += orderBlockCount > 0 ? 1 : 0;
+      if (symbol == 'ZEC') participant += sweepCount > 0 ? 1 : 0;
+      participant = Math.min(10, participant);
+
+      let psychology = 4;
+      if (trapCount > 0) psychology -= Math.min(3, trapCount);
+      if (reasons.some(r => /trap/i.test(r))) psychology -= 1;
+      if (direction === 'NEUTRAL') psychology += 1;
+      if (symbol == 'ZEC' && volatility > 10) psychology -= 1;
+      if (symbol == 'BTC') psychology += 1;
+      psychology = Math.max(0, Math.min(10, psychology));
+
+      const thesisQuality = structure + liquidity + participant + psychology;
+
+      let timing = 0;
+      if (gates.htfLtfAlignment) timing += 8;
+      if (gates.validSession) timing += 8;
+      if (gates.structuralTrigger) timing += 4;
+      timing = Math.min(20, timing);
+
+      let riskFit = 0;
+      const fullPackage = gates.entryDefined && gates.invalidationDefined && gates.targetDefined;
+      if (fullPackage) riskFit += 8;
+      if (volatility > 0 && volatility < 3) riskFit += 3;
+      if (setup.rr_estimate) riskFit += 2;
+      if (fullPackage && gates.validSession) riskFit += 2;
+      riskFit = Math.min(15, riskFit);
+
+      const executionReadiness = timing + riskFit;
+      const operatorScore = thesisQuality + executionReadiness;
+      return { structure, liquidity, timing, participant, psychology, riskFit, thesisQuality, executionReadiness, total: operatorScore, fullPackage };
+    }
+
+    function deriveAssetThesis(asset) {
+      const direction = String(asset?.advisory?.direction || 'NEUTRAL').toUpperCase();
+      const trendState = String(asset?.trading_bible?.trend_state || '').toLowerCase();
+      if (direction === 'LONG' && trendState.includes('bearish')) return 'Bullish but structurally conflicted';
+      if (direction === 'SHORT' && trendState.includes('bullish')) return 'Bearish but structurally conflicted';
+      if (direction === 'LONG') return 'Bullish';
+      if (direction === 'SHORT') return 'Bearish';
+      return 'Neutral';
+    }
+
+    function getContradictionLevel(asset, gates) {
+      const advisory = asset?.advisory || {};
+      const tb = asset?.trading_bible || {};
+      const direction = String(advisory.direction || 'NEUTRAL').toUpperCase();
+      const trendState = String(tb.trend_state || '').toLowerCase();
+      let contradictions = 0;
+      if (direction === 'LONG' && trendState.includes('bearish')) contradictions += 1;
+      if (direction === 'SHORT' && trendState.includes('bullish')) contradictions += 1;
+      if ((direction === 'LONG' || direction === 'SHORT') && !gates.structuralTrigger) contradictions += 1;
+      if ((direction === 'LONG' || direction === 'SHORT') && !gates.validSession) contradictions += 1;
+      if ((direction === 'LONG' || direction === 'SHORT') && (!gates.entryDefined || !gates.invalidationDefined || !gates.targetDefined)) contradictions += 1;
+      if (contradictions >= 3) return 'High';
+      if (contradictions >= 1) return 'Medium';
+      return 'Low';
+    }
+
+    function getUnlockConditions(asset, gates) {
+      const tb = asset?.trading_bible || {};
+      const setup = tb.setup || {};
+      const unlocks = [];
+      if (!gates.htfLtfAlignment) unlocks.push('Require HTF/LTF alignment');
+      if (!gates.validSession) {
+        const mins = tb.session?.time_to_next_kill_zone_minutes;
+        unlocks.push(mins ? `Wait for valid kill zone window (~${mins}m)` : 'Wait for London or New York kill zone');
+      }
+      if (!gates.structuralTrigger) {
+        const nextLiquidity = (tb.liquidity_pools || [])[0]?.level;
+        unlocks.push(nextLiquidity ? `Need structural trigger around ${fmtPrice(nextLiquidity)}` : 'Need BOS or equivalent trigger');
+      }
+      if (!(gates.entryDefined && gates.invalidationDefined && gates.targetDefined)) {
+        unlocks.push('Need full execution package: entry + invalidation + target');
+      }
+      if (setup.next_trigger_conditions?.length) unlocks.push(...setup.next_trigger_conditions.slice(0, 2));
+      return [...new Set(unlocks)].slice(0, 4);
+    }
+
+    function classifyExecutionAsset(asset) {
+      const gates = getExecutionGates(asset);
+      const breakdown = getScoreBreakdown(asset, gates);
+      const thesis = deriveAssetThesis(asset);
+      const contradiction = getContradictionLevel(asset, gates);
+      const fullPackage = breakdown.fullPackage;
+      const hasCoreGates = gates.htfLtfAlignment && gates.validSession && gates.structuralTrigger;
+
+      let action = 'WATCH';
+      if (!gates.htfLtfAlignment || !gates.validSession) action = 'STAND ASIDE';
+      else if (!gates.structuralTrigger) action = 'WATCH';
+      else if (hasCoreGates && fullPackage && breakdown.total >= 58 && contradiction === 'Low') action = 'ARMED';
+      else action = 'WATCH';
+
+      const missingPackage = [];
+      if (!gates.entryDefined) missingPackage.push('entry');
+      if (!gates.invalidationDefined) missingPackage.push('invalidation');
+      if (!gates.targetDefined) missingPackage.push('target');
+
+      return {
+        gates,
+        breakdown,
+        thesis,
+        contradiction,
+        action,
+        readiness: breakdown.executionReadiness,
+        blockers: asset?.advisory?.blockers || [],
+        triggers: asset?.advisory?.triggers || [],
+        unlocks: getUnlockConditions(asset, gates),
+        fullPackage,
+        missingPackage
+      };
+    }
+
+    function classifyContextAsset(asset) {
+      const symbol = asset.display_symbol || asset.symbol;
+      let effect = asset.change_pct > 0 ? 'Risk-on support' : asset.change_pct < 0 ? 'Macro pressure' : 'Neutral context';
+      let because = 'Context effect inferred from current move and macro role.';
+      if (symbol === 'DXY' || symbol === 'USD') {
+        effect = asset.change_pct > 0 ? 'USD pressure' : asset.change_pct < 0 ? 'Risk-on support' : 'Neutral context';
+        because = asset.change_pct > 0 ? 'Stronger dollar usually pressures crypto risk appetite.' : asset.change_pct < 0 ? 'Softer dollar can ease pressure on crypto risk assets.' : 'Dollar signal is neutral.';
+      } else if (symbol === 'VIX') {
+        effect = asset.change_pct > 0 ? 'USD pressure' : asset.change_pct < 0 ? 'Risk-on support' : 'Neutral context';
+        because = asset.change_pct > 0 ? 'Rising volatility usually signals weaker risk appetite.' : asset.change_pct < 0 ? 'Falling volatility usually supports risk-taking.' : 'Volatility signal is neutral.';
+      } else if (['SPX','NDX','DJI'].includes(symbol)) {
+        effect = asset.change_pct > 0 ? 'Risk-on support' : asset.change_pct < 0 ? 'Macro pressure' : 'Neutral context';
+        because = asset.change_pct > 0 ? 'Equity strength tends to support broader risk sentiment.' : asset.change_pct < 0 ? 'Equity weakness can pressure crypto sentiment.' : 'Equity context is neutral.';
+      } else if (['GOLD','SILVER'].includes(symbol)) {
+        effect = asset.change_pct > 0 ? 'Defensive flow' : 'Reduced defensive flow'; because = asset.change_pct > 0 ? 'Metals strength can signal defensive positioning or inflation concern.' : 'Metals weakness can reduce defensive pressure.';
+      } else if (symbol === 'CRUDE') {
+        effect = asset.change_pct > 0 ? 'Inflation pressure' : 'Growth concern / softer inflation'; because = asset.change_pct > 0 ? 'Crude strength can reflect global demand/risk-on, but also inflation pressure.' : 'Crude weakness can soften inflation pressure but may reflect growth concern.';
+      } else if (['EUR','TRY'].includes(symbol)) {
+        effect = 'Macro pressure'; because = 'FX context should be read as macro backdrop, not direct crypto execution guidance.';
+      }
+      return {
+        action: 'CONTEXT',
+        thesis: effect,
+        because,
+        contradiction: 'Low',
+        gates: null,
+        breakdown: null,
+        blockers: asset?.advisory?.blockers || [],
+        triggers: asset?.advisory?.triggers || []
+      };
+    }
+
+    function renderUpdateLog() {
+      const el = document.getElementById('v3UpdateLog');
+      const updates = enhancedData?.update_log || dashboardData?.update_log || [];
+      if (!el) return;
+      if (!updates.length) {
+        el.innerHTML = '<div class="list-item">No update log entries available.</div>';
+        return;
+      }
+      el.innerHTML = updates.map((entry, index) => `<div class="list-item"><strong>${index + 1}.</strong> ${entry}</div>`).join('');
+    }
+
+    function renderTopStrip(executionStates) {
+      const regime = inferRegime();
+      const readySetups = executionStates.filter(x => x.state.action === 'ARMED').length;
+      const watchAssets = executionStates.filter(x => x.state.action === 'WATCH');
+      const action = readySetups > 0 ? 'ARMED' : watchAssets.some(x => x.state.readiness >= 12) ? 'WATCH' : 'STAND ASIDE';
+      const leadAsset = executionStates[0];
+      const thesis = leadAsset ? leadAsset.state.thesis : inferGlobalThesis();
+      const contradictionLevels = executionStates.map(x => x.state.contradiction);
+      const highestContradiction = contradictionLevels.includes('High') ? 'High' : contradictionLevels.includes('Medium') ? 'Medium' : 'Low';
+      const riskMode = highestContradiction === 'High' ? { text: 'OFF', css: 'off' } : readySetups > 0 ? { text: 'NORMAL', css: 'armed' } : inferRiskMode();
+      const nextWindow = leadAsset?.asset?.trading_bible?.session?.time_to_next_kill_zone_minutes ? `Kill zone in ~${leadAsset.asset.trading_bible.session.time_to_next_kill_zone_minutes}m` : 'London KZ / NY KZ';
+
+      document.getElementById('regimeValue').textContent = regime;
+      document.getElementById('thesisValue').textContent = thesis;
+      document.getElementById('actionValue').innerHTML = `<span class="pill ${action === 'ARMED' ? 'armed' : action === 'WATCH' ? 'watch' : 'stand-aside'}">${action}</span>`;
+      document.getElementById('riskModeValue').innerHTML = `<span class="pill ${riskMode.css}">${riskMode.text}</span>`;
+      document.getElementById('nextWindowValue').textContent = nextWindow;
+      document.getElementById('readySetupsValue').textContent = String(readySetups);
+      document.getElementById('conflictValue').innerHTML = `<span class="pill ${highestContradiction.toLowerCase()}">${highestContradiction}</span>`;
+      document.getElementById('v3Status').textContent = `Live data loaded • ${formatTrtTimestamp(dashboardData?.generated_at_utc)}`;
+      updateHeaderMetadata();
+      const leadLabel = readySetups > 0 ? 'Lead execution asset' : 'Lead watch asset';
+      const regimeSummary = dashboardData?.derivatives_summary?.regime?.summary || 'No derivatives regime summary.';
+      document.getElementById('v3Summary').innerHTML = `Action is derived from execution-lane reality first, not inherited bias labels.<br/>${leadLabel}: <strong>${leadAsset?.asset?.display_symbol || '-'}</strong><br/>Directional lean: <strong>${thesis}</strong><br/>Psychology layer: <strong>${enhancedData?.enhanced_metrics?.market_structure_layers?.psychological_layer?.sentiment_bias || '-'}</strong><br/>Derivatives regime: <strong>${regimeSummary}</strong><br/>Execution assets are capped by gates and contradiction level before they can become actionable.`;
+    }
+
+    function renderScoreBreakdown(breakdown) {
+      if (!breakdown) return '';
+      return `
+        <div class="score-emphasis">
+          <div class="main">Execution readiness: ${breakdown.executionReadiness}/35</div>
+          <div class="sub">Thesis quality: ${breakdown.thesisQuality}/65 • combined operator score: ${breakdown.total}/100</div>
+        </div>
+        <div class="score-grid">
+          <div class="score-row"><span>Structure</span><span>${breakdown.structure}/25</span></div>
+          <div class="score-row"><span>Liquidity</span><span>${breakdown.liquidity}/20</span></div>
+          <div class="score-row"><span>Timing</span><span>${breakdown.timing}/20</span></div>
+          <div class="score-row"><span>Participant</span><span>${breakdown.participant}/10</span></div>
+          <div class="score-row"><span>Psychology</span><span>${breakdown.psychology}/10</span></div>
+          <div class="score-row"><span>Risk fit</span><span>${breakdown.riskFit}/15</span></div>
+        </div>`;
+    }
+
+    function renderGates(gates) {
+      if (!gates) return '<div class="small">Context assets do not use execution gates.</div>';
+      const gateRow = (label, ok) => `<div class="gate ${ok ? 'ok' : 'bad'}">${ok ? '✓' : '✗'} ${label}</div>`;
+      return `<div class="gate-list">${gateRow('HTF/LTF alignment', gates.htfLtfAlignment)}${gateRow('Valid session / kill zone', gates.validSession)}${gateRow('Structural trigger', gates.structuralTrigger)}${gateRow('Defined entry', gates.entryDefined)}${gateRow('Defined invalidation', gates.invalidationDefined)}${gateRow('Defined target', gates.targetDefined)}</div>`;
+    }
+
+    function renderExecutionLane(executionStates) {
+      const el = document.getElementById('executionLane');
+      if (!executionStates.length) {
+        el.innerHTML = '<div class="empty">No execution assets available.</div>';
+        return;
+      }
+      el.innerHTML = executionStates.map(({ asset, state }) => `
+        <div class="asset-card">
+          <h3>${asset.display_symbol}</h3>
+          <div class="row"><span class="label">Price</span><span class="value">${fmtPrice(asset.price)}</span></div>
+          <div class="row"><span class="label">24h</span><span class="value">${asset.change_pct >= 0 ? '+' : ''}${asset.change_pct.toFixed(2)}%</span></div>
+          <div class="row"><span class="label">Thesis</span><span class="value">${state.thesis}</span></div>
+          <div class="row"><span class="label">Action</span><span class="value"><span class="pill ${state.action === 'ARMED' ? 'armed' : state.action === 'WATCH' ? 'watch' : 'stand-aside'}">${state.action}</span></span></div>
+          <div class="row"><span class="label">Contradiction</span><span class="value"><span class="pill ${state.contradiction.toLowerCase()}">${state.contradiction}</span></span></div>
+          <div class="row"><span class="label">Execution readiness</span><span class="value">${state.readiness}/35</span></div><div class="row"><span class="label">Thesis quality</span><span class="value">${state.breakdown.thesisQuality}/65</span></div><div class="row"><span class="label">Package state</span><span class="value">${state.fullPackage ? 'Complete' : 'Missing ' + state.missingPackage.join(', ')}</span></div>
+          ${renderScoreBreakdown(state.breakdown)}
+          ${renderGates(state.gates)}
+          <div class="small" style="margin-top:10px;">Primary blockers: ${(state.blockers || []).slice(0, 2).join('; ') || 'None'}</div>
+          <div class="small" style="margin-top:6px;">Unlock conditions: ${(state.unlocks || []).join('; ') || 'Await stronger confluence'}</div>
+          <div class="small" style="margin-top:6px;">Missing package elements: ${state.missingPackage.length ? state.missingPackage.join(', ') : 'none'}</div>
+        </div>`).join('');
+    }
+
+    function renderDerivativesRegime() {
+      const el = document.getElementById('v3DerivativesRegime');
+      const regime = dashboardData?.derivatives_summary?.regime;
+      if (!el) return;
+      if (!regime) {
+        el.innerHTML = '<div class="list-item">No derivatives regime data available.</div>';
+        return;
+      }
+      const board = regime.pressure_board || [];
+      let html = `<div class="list-item"><strong>${regime.summary}</strong><br/>Long crowding: ${regime.crowding?.longs ?? 0} • Short crowding: ${regime.crowding?.shorts ?? 0} • Balanced: ${regime.crowding?.balanced ?? 0}</div>`;
+      html += board.slice(0, 4).map(item => {
+        const crowdClass = item.crowding_state === 'crowded_longs' ? 'crowding-long' : item.crowding_state === 'crowded_shorts' ? 'crowding-short' : 'crowding-balanced';
+        return `<div class="list-item ${item.confidence_label === 'inferred' ? 'confidence-inferred' : ''} ${crowdClass}"><strong>${item.symbol}</strong><br/>Pressure: ${item.pressure_score}<br/>Funding ${item.funding == null ? '-' : Number(item.funding).toFixed(4) + '%'} • L/S ${item.long_short == null ? '-' : Number(item.long_short).toFixed(2)}<br/>1h Δ F ${item.funding_delta_1h_pct == null ? '-' : Number(item.funding_delta_1h_pct).toFixed(2) + '%'} • OI ${item.oi_delta_1h_pct == null ? '-' : Number(item.oi_delta_1h_pct).toFixed(2) + '%'}<br/>Bias ${item.liq_bias || '-'} • ${item.confidence_label || '-'} • ${item.sparkline || '-'}</div>`;
+      }).join('');
+      el.innerHTML = html;
+    }
+
+    function renderDerivativesTrend() {
+      const el = document.getElementById('v3DerivativesTrend');
+      const history = dashboardData?.derivatives_history || {};
+      if (!el) return;
+      const symbols = Object.entries(history).filter(([symbol]) => EXECUTION_ASSETS.has(symbol)).slice(0, 6);
+      if (!symbols.length) {
+        el.innerHTML = '<div class="list-item">No derivatives history available yet.</div>';
+        return;
+      }
+      el.innerHTML = symbols.map(([symbol, rows]) => {
+        const recent = rows.slice(-4);
+        const latest = recent[recent.length - 1] || {};
+        const prior = recent.length > 1 ? recent[recent.length - 2] : null;
+        const fundingTrail = recent.map(r => r.funding_current == null ? '-' : `${Number(r.funding_current).toFixed(4)}%`).join(' → ');
+        const ratioTrail = recent.map(r => r.long_short_value == null ? '-' : Number(r.long_short_value).toFixed(2)).join(' → ');
+        const fundingDelta = (prior && prior.funding_current !== null && prior.funding_current !== undefined && latest.funding_current !== null && latest.funding_current !== undefined)
+          ? (((latest.funding_current - prior.funding_current) / (prior.funding_current || 1)) * 100).toFixed(2) + '%'
+          : '-';
+        const spark = recent.map(r => r.long_short_value == null ? '·' : (r.long_short_value >= 1.1 ? '▆' : r.long_short_value <= 0.9 ? '▂' : '▄')).join('');
+        return `<div class="list-item ${latest.confidence_label === 'inferred' ? 'confidence-inferred' : ''}"><strong>${symbol}</strong><br/>Funding: ${fundingTrail}<br/>L/S proxy: ${ratioTrail}<br/>Confidence: ${latest.confidence_label || '-'}<br/>Funding Δ latest: ${fundingDelta}<br/>Trail: ${spark}<br/>Latest liq bias: ${latest.liq_bias || '-'} ${latest.liq_level ? '@ ' + fmtPrice(latest.liq_level) : ''}</div>`;
+      }).join('');
+    }
+
+    function renderContextLane(contextStates) {
+      const el = document.getElementById('contextLane');
+      if (!contextStates.length) {
+        el.innerHTML = '<div class="empty">No context assets available.</div>';
+        return;
+      }
+      el.innerHTML = contextStates.map(({ asset, state }) => `
+        <div class="asset-card">
+          <h3>${asset.display_symbol}</h3>
+          <div class="row"><span class="label">Role</span><span class="value">Context</span></div>
+          <div class="row"><span class="label">Price</span><span class="value">${fmtPrice(asset.price)}</span></div>
+          <div class="row"><span class="label">24h</span><span class="value">${asset.change_pct >= 0 ? '+' : ''}${asset.change_pct.toFixed(2)}%</span></div>
+          <div class="row"><span class="label">Context read</span><span class="value">${state.thesis}</span></div>
+          <div class="small" style="margin-top:10px;">Because: ${state.because}</div>
+          <div class="small" style="margin-top:6px;">These assets inform crypto risk tone; they do not produce execution states.</div>
+        </div>`).join('');
+    }
+
+    function renderArmedSetupCard(executionStates) {
+      const armed = executionStates.find(x => x.state.action === 'ARMED' && x.state.fullPackage);
+      const el = document.getElementById('armedSetupCard');
+      if (!armed) {
+        const bestWatch = executionStates.find(x => x.state.action === 'WATCH') || executionStates[0];
+        if (!bestWatch) {
+          el.textContent = 'No execution assets available.';
+          return;
+        }
+        const tb = bestWatch.asset?.trading_bible || {};
+        const nextWindow = tb.session?.time_to_next_kill_zone_minutes ? `Kill zone in ~${tb.session.time_to_next_kill_zone_minutes}m` : 'London KZ / NY KZ';
+        el.innerHTML = `
+          <strong>Best watch candidate: ${bestWatch.asset.display_symbol}</strong><br/>
+          Thesis: ${bestWatch.state.thesis}<br/>
+          Action now: WATCH / ${bestWatch.state.contradiction.toUpperCase()} contradiction ${bestWatch.state.contradiction === 'Low' ? 'low' : 'present'}<br/>
+          Next valid window: ${nextWindow}<br/>
+          Unlock conditions: ${(bestWatch.state.unlocks || []).join('; ') || 'Await stronger confluence'}<br/>
+          Why not armed: ${(bestWatch.state.blockers || []).slice(0, 2).join('; ') || 'Hard execution package still incomplete'}
+        `;
+        return;
+      }
+      const setup = armed.asset?.trading_bible?.setup || {};
+      const rangeText = (setup.entry_zone_low || setup.entry_zone_high)
+        ? `${setup.entry_zone_low ? fmtPrice(setup.entry_zone_low) : 'n/a'} → ${setup.entry_zone_high ? fmtPrice(setup.entry_zone_high) : 'n/a'}`
+        : 'Pending';
+      el.innerHTML = `
+        <strong>Armed setup: ${armed.asset.display_symbol}</strong><br/>
+        Thesis: ${armed.state.thesis}<br/>
+        Entry zone: ${rangeText}<br/>
+        Trigger: ${(armed.state.triggers || [])[0] || 'Awaiting confirmation'}<br/>
+        Invalidation: ${setup.invalidation_level ? fmtPrice(setup.invalidation_level) : 'Pending'}<br/>
+        T1 / T2: ${setup.target_1 ? fmtPrice(setup.target_1) : 'Pending'} / ${setup.target_2 ? fmtPrice(setup.target_2) : 'Pending'}<br/>
+        R multiple: ${setup.rr_estimate || 'Pending'}<br/>
+        Session validity: ${getExecutionGates(armed.asset).validSession ? 'Valid now' : 'Not in valid session'}
+      `;
+    }
+
+    function describeDataShape() {
+      const canonicalKeys = dashboardData && typeof dashboardData === 'object' ? Object.keys(dashboardData).slice(0, 12) : [];
+      const enhancedKeys = enhancedData && typeof enhancedData === 'object' ? Object.keys(enhancedData).slice(0, 12) : [];
+      return `canonical keys: [${canonicalKeys.join(', ')}] • enhanced keys: [${enhancedKeys.join(', ')}]`;
+    }
+
+    function normalizeAssets() {
+      if (Array.isArray(dashboardData?.assets) && dashboardData.assets.length) {
+        return dashboardData.assets;
+      }
+
+      const marketData = dashboardData?.market_data || enhancedData?.market_data || {};
+      const normalized = Object.entries(marketData).map(([symbol, asset]) => ({
+        symbol,
+        display_symbol: asset.display_symbol || asset.symbol || symbol,
+        price: Number(asset.price || 0),
+        change_pct: Number(asset.change_pct || 0),
+        advisory: asset.advisory || {},
+        trading_bible: asset.trading_bible || {},
+        source: asset.source || 'unknown'
+      }));
+
+      if (!normalized.length) {
+        throw new Error(`V3 data shape mismatch: expected dashboardData.assets[] or market_data object, but found no usable assets (${describeDataShape()})`);
+      }
+
+      return normalized;
+    }
+
+    async function loadV3() {
+      const [canonicalRes, enhancedRes] = await Promise.all([
+        fetch('./dashboard-data.json?_=' + Date.now()),
+        fetch('./dashboard-enhanced.json?_=' + Date.now())
+      ]);
+      dashboardData = await canonicalRes.json();
+      enhancedData = await enhancedRes.json();
+      lastLoadedAt = new Date().toISOString();
+
+      const allAssets = normalizeAssets();
+      const executionAssets = allAssets.filter(a => EXECUTION_ASSETS.has(a.display_symbol || a.symbol));
+      const contextAssets = allAssets.filter(a => !EXECUTION_ASSETS.has(a.display_symbol || a.symbol));
+      const executionStates = executionAssets.map(asset => ({ asset, state: classifyExecutionAsset(asset) })).sort((a, b) => {
+        const rank = { ARMED: 0, WATCH: 1, 'STAND ASIDE': 2 };
+        return (rank[a.state.action] - rank[b.state.action]) || (b.state.breakdown.total - a.state.breakdown.total);
+      });
+      const contextStates = contextAssets.map(asset => ({ asset, state: classifyContextAsset(asset) }));
+
+      renderTopStrip(executionStates);
+      renderExecutionLane(executionStates);
+      renderContextLane(contextStates);
+      renderDerivativesRegime();
+      renderDerivativesTrend();
+      renderArmedSetupCard(executionStates);
+      renderUpdateLog();
+    }
+
+    async function refreshV3() {
+      try {
+        await loadV3();
+      } catch (err) {
+        const message = String(err?.message || err);
+        document.getElementById('v3Status').textContent = 'Failed to load live data';
+        document.getElementById('v3Summary').innerHTML = `<strong>Live data error</strong><br/>${message}<br/><br/>Expected either <code>dashboardData.assets[]</code> or <code>dashboardData.market_data</code>.`;
+        document.getElementById('executionLane').innerHTML = `<div class="empty">${message}</div>`;
+        document.getElementById('contextLane').innerHTML = '<div class="empty">Context lane unavailable until live data loads.</div>';
+        document.getElementById('armedSetupCard').innerHTML = '<strong>No action card</strong><br/>Live data must load successfully before execution state can be derived.';
+        document.getElementById('v3SchemaBadge').textContent = `Schema: ${detectSchemaLabel()} • load failed`;
+      }
+    }
+
+    refreshV3();
+    refreshTimer = setInterval(refreshV3, AUTO_REFRESH_MS);
+  </script>
+</body>
+</html>

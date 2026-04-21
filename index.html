@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Market Terminal</title>
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  <style>
+    :root {
+      --bg: #050816;
+      --bg2: #0b1220;
+      --line: #1f2937;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --green: #22c55e;
+      --red: #ef4444;
+      --blue: #38bdf8;
+      --amber: #f59e0b;
+      --purple: #8b5cf6;
+      --cyan: #22d3ee;
+      --shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, Segoe UI, Arial, sans-serif;
+      background: radial-gradient(circle at top right, rgba(56,189,248,0.08), transparent 18%), linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .wrap { max-width: 1700px; margin: 0 auto; padding: 18px; }
+    .terminal { background: rgba(3,7,18,0.9); border: 1px solid #172033; border-radius: 22px; box-shadow: var(--shadow); overflow: hidden; }
+    .topbar { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:16px 18px; background:linear-gradient(180deg, rgba(17,24,39,0.95), rgba(10,14,25,0.95)); border-bottom:1px solid #182235; flex-wrap:wrap; }
+    .brand h1 { margin:0; font-size:1.6rem; }
+    .muted { color: var(--muted); }
+    .actions { display:flex; gap:10px; flex-wrap:wrap; }
+    .view-link { display:inline-flex; align-items:center; padding:10px 12px; border-radius:10px; border:1px solid #263145; background:#111827; color:var(--text); text-decoration:none; font-weight:700; }
+    .view-link:hover { border-color:var(--blue); color:white; }
+    button, select { background:#111827; color:var(--text); border:1px solid #263145; padding:10px 12px; border-radius:10px; font-weight:700; }
+    button { cursor:pointer; }
+    .content { padding:18px; }
+    .summary-grid, .watch-grid, .bottom-grid, .main-grid, .charts, .enhanced-grid { display:grid; gap:18px; margin-bottom:18px; }
+    .summary-grid, .watch-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    .main-grid { grid-template-columns: 1.2fr 0.8fr; }
+    .charts, .bottom-grid, .enhanced-grid { grid-template-columns: 1fr 1fr; }
+    .metric, .watch-panel, .panel { background:linear-gradient(180deg, rgba(15,23,42,0.98), rgba(17,24,39,0.95)); border:1px solid #1e293b; border-radius:16px; padding:16px; }
+    .metric .label { color:var(--muted); font-size:0.82rem; text-transform:uppercase; }
+    .metric .value { margin-top:8px; font-size:1.05rem; font-weight:800; }
+    .asset-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:12px; }
+    .asset-card { border:1px solid #1f2937; background:linear-gradient(180deg, #0b1220, #111827); border-radius:14px; padding:14px; cursor:pointer; }
+    .asset-card.active { outline:2px solid var(--blue); }
+    .asset-head { display:flex; justify-content:space-between; margin-bottom:8px; gap:8px; }
+    .asset-symbol { font-weight:800; font-size:1.05rem; }
+    .price { font-weight:800; font-size:1.2rem; margin-bottom:8px; }
+    .up { color:var(--green); }
+    .down { color:var(--red); }
+    .tech-row { display:flex; justify-content:space-between; font-size:0.9rem; color:var(--muted); margin-top:6px; }
+    .sparkline { height:48px; margin-top:10px; }
+    .badge-row { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+    .badge { font-size:0.75rem; padding:4px 8px; border-radius:999px; border:1px solid #263145; background:#0a1020; color:var(--muted); }
+    .badge-na { opacity:0.55; }
+    .signal-badge-buy { color:#86efac; border-color:rgba(34,197,94,0.35); }
+    .signal-badge-sell { color:#fca5a5; border-color:rgba(239,68,68,0.35); }
+    .signal-badge-hold { color:#7dd3fc; border-color:rgba(56,189,248,0.35); }
+    .signal-change { margin-top:8px; font-size:0.78rem; color:#fcd34d; font-weight:700; }
+    .signal { border-left:4px solid #334155; background:#0b1220; border-radius:12px; padding:12px; margin-bottom:10px; }
+    .signal.buy { border-left-color:var(--green); }
+    .signal.sell { border-left-color:var(--red); }
+    .signal.hold { border-left-color:var(--blue); }
+    .signal-head { display:flex; justify-content:space-between; gap:10px; }
+    .chart { height:420px; }
+    table { width:100%; border-collapse:collapse; }
+    th, td { padding:10px 8px; text-align:left; border-bottom:1px solid #1f2937; font-size:0.92rem; }
+    th { color:var(--muted); text-transform:uppercase; font-size:0.8rem; }
+    .pill { display:inline-block; padding:6px 10px; border-radius:999px; font-size:0.82rem; font-weight:800; }
+    .status-ready { background: rgba(34,197,94,0.18); color:#86efac; }
+    .status-watchlist { background: rgba(245,158,11,0.18); color:#fcd34d; }
+    .status-pass { background: rgba(148,163,184,0.18); color:#cbd5e1; }
+    .risk-low { background: rgba(34,197,94,0.16); color:#86efac; }
+    .risk-medium { background: rgba(245,158,11,0.16); color:#fcd34d; }
+    .risk-high { background: rgba(239,68,68,0.16); color:#fca5a5; }
+    .timeframes { display:flex; gap:8px; flex-wrap:wrap; margin:10px 0 14px; }
+    .tf-btn.active { border-color:var(--blue); color:white; }
+    .watch-item { display:flex; justify-content:space-between; gap:10px; padding:8px 0; border-bottom:1px solid #1f2937; }
+    .watch-item:last-child { border-bottom:none; }
+    .detail-box { border:1px solid #1f2937; background:#0b1220; border-radius:12px; padding:12px; margin-bottom:10px; }
+    .detail-item { display:flex; justify-content:space-between; gap:12px; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+    .detail-item:last-child { border-bottom:none; }
+    .detail-label { color:var(--muted); font-size:0.85rem; }
+    .detail-value { font-weight:700; }
+    .update-log-item { border:1px solid #1f2937; background:#0b1220; border-radius:12px; padding:12px; margin-bottom:10px; color:var(--muted); }
+    .update-log-item strong { color:var(--text); }
+    .confidence-inferred { opacity: 0.72; }
+    .mini-trail { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.8rem; color: var(--muted); }
+    .crowding-long { border-color: rgba(34,197,94,0.35); }
+    .crowding-short { border-color: rgba(239,68,68,0.35); }
+    .crowding-balanced { border-color: rgba(56,189,248,0.28); }
+    @media (max-width: 1100px) { .main-grid, .charts, .bottom-grid, .enhanced-grid { grid-template-columns:1fr; } }
+    @media (max-width: 700px) { .summary-grid { grid-template-columns:1fr 1fr; } .asset-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="terminal">
+      <div class="topbar">
+        <div class="brand">
+          <h1 id="headline">Market Terminal</h1>
+          <div id="subheadline" class="muted">Loading terminal...</div>
+        </div>
+        <div class="actions">
+          <select id="assetSelector"></select>
+          <button onclick="loadDashboard()">Refresh Data</button>
+          <button onclick="location.reload()">Reload UI</button>
+          <a class="view-link" href="./dashboard-enhanced.html">Open Slim Enhanced View</a>
+          <a class="view-link" href="./dashboard-v3.html">Open V3 Preview</a>
+        </div>
+      </div>
+      <div class="content">
+        <div class="summary-grid">
+          <div class="metric"><div class="label">Updated</div><div id="updatedLocal" class="value">-</div></div>
+          <div class="metric"><div class="label">Tracked Assets</div><div id="trackedAssets" class="value">-</div></div>
+          <div class="metric"><div class="label">Market Bias</div><div id="marketBias" class="value">-</div></div>
+          <div class="metric"><div class="label">Average Change</div><div id="avgChange" class="value">-</div></div>
+          <div class="metric"><div class="label">Top Gainer</div><div id="topGainer" class="value">-</div></div>
+          <div class="metric"><div class="label">Top Loser</div><div id="topLoser" class="value">-</div></div>
+        </div>
+
+        <div class="watch-grid">
+          <div class="watch-panel"><h4>Top Gainers</h4><div id="topGainers"></div></div>
+          <div class="watch-panel"><h4>Top Losers</h4><div id="topLosers"></div></div>
+          <div class="watch-panel"><h4>Strongest RSI</h4><div id="strongestRsi"></div></div>
+        </div>
+
+        <div class="main-grid">
+          <div class="panel"><h3>Assets</h3><div id="assets" class="asset-grid"></div></div>
+          <div class="panel"><h3>Signals & Risk</h3><div style="margin-bottom:12px;"><span id="riskLevel" class="pill risk-medium">-</span></div><div id="signals" style="display:grid;gap:10px;"></div><h4 style="margin:16px 0 10px;">Risk Factors</h4><ul id="riskFactors"></ul></div>
+        </div>
+
+        <div class="panel" style="margin-bottom:18px;">
+          <h3>Timeframe & Filters</h3>
+          <div class="timeframes">
+            <button class="tf-btn active" onclick="setTimeframe('1D', this)">1D</button>
+            <button class="tf-btn" onclick="setTimeframe('7D', this)">7D</button>
+            <button class="tf-btn" onclick="setTimeframe('30D', this)">30D</button>
+            <button class="tf-btn" onclick="setTimeframe('ALL', this)">ALL</button>
+          </div>
+          <div class="actions" style="margin-top:10px;">
+            <select id="sourceFilter" onchange="setFilter('source', this.value)"><option value="ALL">All Sources</option><option value="yfinance">yfinance</option><option value="coingecko">coingecko</option></select>
+            <select id="signalFilter" onchange="setFilter('signal', this.value)"><option value="ALL">All Signals</option><option value="BUY">BUY</option><option value="SELL">SELL</option><option value="HOLD">HOLD</option></select>
+            <button onclick="toggleFilter('majorsOnly')">Only Majors</button>
+            <button onclick="toggleFilter('moversOnly')">Only Movers</button>
+          </div>
+        </div>
+
+        <div class="charts">
+          <div class="panel"><h3 id="selectedAssetTitle">Selected Asset</h3><div id="selectedPriceChart" class="chart"></div></div>
+          <div class="panel"><h3>Market Comparison</h3><div id="comparisonChart" class="chart"></div></div>
+        </div>
+
+        <div class="bottom-grid">
+          <div class="panel"><h3>Indicators</h3><div id="indicatorChart" class="chart"></div></div>
+          <div class="panel"><h3>Alerts Feed</h3><div id="alertsFeed" style="display:grid;gap:10px;max-height:420px;overflow:auto;"></div></div>
+        </div>
+
+        <div class="bottom-grid">
+          <div class="panel">
+            <h3>Derivatives Regime</h3>
+            <div id="derivativesRegimePanel" style="display:grid;gap:10px;"></div>
+          </div>
+          <div class="panel">
+            <h3>Derivatives Pressure Board</h3>
+            <div id="derivativesPressurePanel" style="display:grid;gap:10px;"></div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom:18px;">
+          <h3>Derivatives Detail</h3>
+          <div id="derivativesDetailPanel" style="display:grid;gap:10px;"></div>
+        </div>
+
+        <div class="panel" style="margin-bottom:18px;"><h3>Analyst Narrative</h3><div id="analystNarrativePanel" style="display:grid;gap:10px;"></div></div>
+
+        <div class="enhanced-grid">
+          <div class="panel"><h3>Liquidity Heatmap</h3><div id="liquidityPanel"></div></div>
+          <div class="panel"><h3>Order Flow Analysis</h3><div id="orderFlowPanel"></div></div>
+        </div>
+
+        <div class="enhanced-grid">
+          <div class="panel"><h3>Market Structure</h3><div id="marketStructurePanel"></div></div>
+          <div class="panel"><h3>Risk Management</h3><div id="riskManagementPanel"></div></div>
+        </div>
+
+        <div class="bottom-grid">
+          <div class="panel"><h3>Semantic News Analysis</h3><div id="newsAnalysisPanel" style="display:grid;gap:10px;"></div></div>
+          <div class="panel"><h3>Top News Feed</h3><div id="newsFeedPanel" style="display:grid;gap:10px;max-height:420px;overflow:auto;"></div></div>
+        </div>
+
+        <div class="bottom-grid">
+          <div class="panel"><h3>Price Sculpting</h3><div id="priceSculptingPanel" style="display:grid;gap:10px;"></div></div>
+          <div class="panel"><h3>Trade Sculpting</h3><div id="tradeSculptingPanel" style="display:grid;gap:10px;"></div></div>
+        </div>
+
+        <div class="bottom-grid">
+          <div class="panel"><h3>Cryptobible Insights</h3><div id="cryptobiblePanel" style="display:grid;gap:10px;"></div></div>
+          <div class="panel"><h3>Trading Bible Layer</h3><div id="tradingBiblePanel" style="display:grid;gap:10px;"></div></div>
+        </div>
+
+        <div class="bottom-grid">
+          <div class="panel"><h3>Trading Bible Events</h3><div id="tradingBibleEventsPanel" style="display:grid;gap:10px;max-height:420px;overflow:auto;"></div></div>
+          <div class="panel"><h3>PASS Diagnostics</h3><div id="passDiagnosticsPanel" style="display:grid;gap:10px;"></div></div>
+        </div>
+
+        <div class="panel" style="margin-bottom:18px;">
+          <h3>Update Log</h3>
+          <div id="updateLogPanel" style="display:grid;gap:10px;"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Asset Table</h3>
+          <table>
+            <thead><tr><th>Asset</th><th>Price</th><th onclick="setSort('change_pct')" style="cursor:pointer;">24h ↕</th><th onclick="setSort('rsi')" style="cursor:pointer;">RSI ↕</th><th onclick="setSort('signal')" style="cursor:pointer;">Signal ↕</th><th>Funding</th><th>L/S</th><th>Liq</th><th>Src</th></tr></thead>
+            <tbody id="assetTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let dashboardData = null;
+    let enhancedData = null;
+    let newsData = null;
+    let selectedAsset = null;
+    let currentTimeframe = '1D';
+    let currentSort = { key: 'change_pct', dir: 'desc' };
+    let filters = { source: 'ALL', signal: 'ALL', majorsOnly: false, moversOnly: false };
+
+    function fmtPrice(v) {
+      if (v === null || v === undefined || v === '') return '-';
+      if (v >= 1000) return '$' + Number(v).toLocaleString(undefined, {maximumFractionDigits: 2});
+      if (v >= 1) return '$' + Number(v).toLocaleString(undefined, {maximumFractionDigits: 4});
+      return '$' + Number(v).toLocaleString(undefined, {maximumFractionDigits: 6});
+    }
+    function fmtCompact(v) {
+      if (v === null || v === undefined || Number.isNaN(v)) return null;
+      return new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 2 }).format(v);
+    }
+    function badge(label, value, extra='') {
+      if (value === null || value === undefined || value === '' || value === 0) return `<span class="badge badge-na">${label} n/a</span>`;
+      return `<span class="badge ${extra}">${label} ${value}</span>`;
+    }
+    function fmtFunding(v) { return (v === null || v === undefined || Number.isNaN(Number(v))) ? null : Number(v).toFixed(4) + '%'; }
+    function fmtRatio(v) { return (v === null || v === undefined || Number.isNaN(Number(v))) ? null : Number(v).toFixed(2); }
+    function timeframeCount() { if (currentTimeframe === '1D') return 24; if (currentTimeframe === '7D') return 7*24; if (currentTimeframe === '30D') return 30*24; return null; }
+    function slicedHistory(hist) {
+      const count = timeframeCount(); if (!count || !hist) return hist;
+      const start = Math.max(0, hist.dates.length - count);
+      return { dates: hist.dates.slice(start), prices: hist.prices.slice(start), change_pct: hist.change_pct.slice(start), rsi: hist.rsi.slice(start), macd: hist.macd.slice(start), signal_type: hist.signal_type ? hist.signal_type.slice(start) : [] };
+    }
+    function updateSelector() {
+      const sel = document.getElementById('assetSelector'); sel.innerHTML='';
+      dashboardData.assets.forEach(a => { const opt=document.createElement('option'); opt.value=a.display_symbol; opt.textContent=a.display_symbol; sel.appendChild(opt); });
+      if (!selectedAsset && dashboardData.assets.length) selectedAsset = dashboardData.assets[0].display_symbol;
+      sel.value = selectedAsset; sel.onchange = () => { selectedAsset = sel.value; renderAll(); };
+    }
+    function renderSparkline(containerId, hist, color) {
+      const el = document.getElementById(containerId); if (!el || !hist) return;
+      Plotly.newPlot(containerId, [{x: hist.dates, y: hist.prices, mode:'lines', line:{color, width:2}}], {margin:{t:2,r:2,b:2,l:2}, paper_bgcolor:'#0b1220', plot_bgcolor:'#0b1220', xaxis:{visible:false}, yaxis:{visible:false}}, {displayModeBar:false, responsive:true});
+    }
+    function filteredAssets() {
+      return dashboardData.assets.filter(a => {
+        if (filters.source !== 'ALL' && a.source !== filters.source) return false;
+        if (filters.signal !== 'ALL' && (a.last_signal?.type || 'HOLD') !== filters.signal) return false;
+        if (filters.majorsOnly && !a.is_major) return false;
+        if (filters.moversOnly && Math.abs(a.change_pct || 0) < 1) return false;
+        return true;
+      });
+    }
+    function sortedAssets() {
+      const arr = [...filteredAssets()];
+      arr.sort((a,b) => {
+        let av,bv;
+        if (currentSort.key === 'rsi') { av = a.technical.rsi ?? -9999; bv = b.technical.rsi ?? -9999; }
+        else if (currentSort.key === 'signal') { av = a.last_signal?.type || ''; bv = b.last_signal?.type || ''; }
+        else { av = a[currentSort.key] ?? -9999; bv = b[currentSort.key] ?? -9999; }
+        if (av < bv) return currentSort.dir === 'asc' ? -1 : 1;
+        if (av > bv) return currentSort.dir === 'asc' ? 1 : -1;
+        return 0;
+      });
+      return arr;
+    }
+    function renderAssetCards() {
+      const el = document.getElementById('assets'); const table = document.getElementById('assetTable'); el.innerHTML=''; table.innerHTML='';
+      sortedAssets().forEach((a, idx) => {
+        const cls = a.change_pct >= 0 ? 'up' : 'down'; const active = a.display_symbol === selectedAsset ? 'active' : ''; const sparkId = `spark-${idx}`;
+        const sig = a.last_signal || { type:'HOLD', confidence:0 }; const sigClass = sig.type === 'BUY' ? 'signal-badge-buy' : sig.type === 'SELL' ? 'signal-badge-sell' : 'signal-badge-hold';
+        const adv = a.advisory || {};
+        const d = a.derivatives || {};
+        const confidenceClass = d.confidence_label === 'inferred' ? 'confidence-inferred' : '';
+        el.innerHTML += `<div class="asset-card ${active} ${confidenceClass}" onclick="selectAsset('${a.display_symbol}')"><div class="asset-head"><div><div class="asset-symbol">${a.display_symbol}</div><div class="muted">${a.source}</div></div><div class="${cls}">${a.change_pct >= 0 ? '+' : ''}${a.change_pct.toFixed(2)}%</div></div><div class="price">${fmtPrice(a.price)}</div><div class="tech-row"><span>RSI</span><span>${a.technical.rsi !== null ? a.technical.rsi.toFixed(2) : '-'}</span></div><div class="tech-row"><span>MACD</span><span>${a.technical.macd !== null ? a.technical.macd.toFixed(2) : '-'}</span></div><div class="tech-row"><span>Advisory</span><span>${adv.state || '-'} ${adv.direction || ''}</span></div><div class="tech-row"><span>Score</span><span>${adv.score ?? '-'}</span></div><div class="tech-row"><span>Funding</span><span>${fmtFunding(d.funding_current) || '-'}</span></div><div class="tech-row"><span>L/S</span><span>${fmtRatio(d.long_short_value) || '-'}</span></div><div class="tech-row"><span>Liq Bias</span><span>${d.liq_bias || '-'}</span></div><div class="badge-row">${badge('SRC', a.source)}${badge('VOL', fmtCompact(a.volume))}${badge('MCAP', fmtCompact(a.market_cap))}${badge(sig.type, sig.confidence + '%', sigClass)}${badge('ADV', adv.confidence || '-', '')}${badge('FUND', fmtFunding(d.funding_current))}${badge('L/S', fmtRatio(d.long_short_value))}${badge('CONF', d.confidence_label || '-')}</div>${a.signal_change ? `<div class="signal-change">Signal changed: ${a.signal_change}</div>` : ''}<div id="${sparkId}" class="sparkline"></div></div>`;
+        table.innerHTML += `<tr><td>${a.display_symbol}</td><td>${fmtPrice(a.price)}</td><td class="${cls}">${a.change_pct >= 0 ? '+' : ''}${a.change_pct.toFixed(2)}%</td><td>${a.technical.rsi !== null ? a.technical.rsi.toFixed(2) : '-'}</td><td>${a.last_signal?.type || '-'}</td><td>${fmtFunding(d.funding_current) || '-'}</td><td>${fmtRatio(d.long_short_value) || '-'}</td><td>${d.liq_bias || '-'}</td><td>${a.source}</td></tr>`;
+      });
+      dashboardData.assets.forEach((a, idx) => { const hist = slicedHistory(dashboardData.history[a.display_symbol]); renderSparkline(`spark-${idx}`, hist, a.change_pct >= 0 ? '#22c55e' : '#ef4444'); });
+    }
+    function renderWatchlist(containerId, items, formatter) { const el=document.getElementById(containerId); el.innerHTML=''; items.forEach(item => { const div=document.createElement('div'); div.className='watch-item'; div.innerHTML=formatter(item); el.appendChild(div); }); }
+    function renderWatchlists() {
+      renderWatchlist('topGainers', dashboardData.watchlists.top_gainers, item => `<span>${item.symbol}</span><span class="up">${item.change_pct >= 0 ? '+' : ''}${item.change_pct.toFixed(2)}%</span>`);
+      renderWatchlist('topLosers', dashboardData.watchlists.top_losers, item => `<span>${item.symbol}</span><span class="down">${item.change_pct >= 0 ? '+' : ''}${item.change_pct.toFixed(2)}%</span>`);
+      renderWatchlist('strongestRsi', dashboardData.watchlists.strongest_rsi, item => `<span>${item.symbol}</span><span>${item.rsi !== null ? item.rsi.toFixed(2) : '-'}</span>`);
+    }
+    function selectAsset(symbol) { selectedAsset = symbol; document.getElementById('assetSelector').value = symbol; renderAll(); }
+    function setTimeframe(tf, btn) { currentTimeframe = tf; document.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderAll(); }
+    function setFilter(key, value) { filters[key] = value; renderAll(); }
+    function toggleFilter(key) { filters[key] = !filters[key]; renderAll(); }
+    function renderSignalsAndRisk() {
+      const signalsEl=document.getElementById('signals'); signalsEl.innerHTML='';
+      const canonicalSignals = (dashboardData.assets || []).map(asset => ({
+        symbol: asset.display_symbol || asset.symbol,
+        type: asset.last_signal?.type || asset.advisory?.display_signal || 'HOLD',
+        confidence: Number(asset.last_signal?.confidence ?? asset.advisory?.display_confidence ?? 0),
+        reason: asset.last_signal?.reason || asset.advisory?.display_reason || '',
+        advisory_state: asset.advisory?.state || 'STATE?',
+        advisory_direction: asset.advisory?.direction || '',
+        advisory_score: asset.advisory?.score ?? '-',
+        advisory_confidence: asset.advisory?.confidence || '-',
+        blockers: asset.advisory?.blockers || [],
+        triggers: asset.advisory?.triggers || [],
+        is_context_only: !!asset.is_context_only,
+        sortScore: asset.advisory?.score ?? -1
+      })).sort((a, b) => {
+        if (a.is_context_only !== b.is_context_only) return a.is_context_only ? 1 : -1;
+        if (b.sortScore !== a.sortScore) return b.sortScore - a.sortScore;
+        return b.confidence - a.confidence;
+      });
+
+      canonicalSignals.forEach(s => {
+        const blockers = (s.blockers || []).slice(0,2).join('; ');
+        const triggers = (s.triggers || []).slice(0,2).join('; ');
+        const contextBadge = s.is_context_only ? ' <span class="pill status-pass" style="margin-left:8px; font-size:0.72rem; vertical-align:middle;">CONTEXT ONLY</span>' : '';
+        signalsEl.innerHTML += `<div class="signal ${String(s.type || 'HOLD').toLowerCase()}"><div class="signal-head"><strong>${s.type} • ${s.symbol}${contextBadge}</strong><span>${s.confidence}%</span></div><div class="muted">${s.reason || ''}</div><div class="muted">${s.advisory_state || 'STATE?'} ${s.advisory_direction || ''} • score ${s.advisory_score ?? '-'} • confidence ${s.advisory_confidence}</div>${blockers ? `<div class="muted">Blockers: ${blockers}</div>` : ''}${triggers ? `<div class="muted">Triggers: ${triggers}</div>` : ''}</div>`;
+      });
+      const riskLevel=document.getElementById('riskLevel'); riskLevel.textContent=dashboardData.risk.level; riskLevel.className='pill risk-' + dashboardData.risk.level.toLowerCase();
+      const rf=document.getElementById('riskFactors'); rf.innerHTML=''; dashboardData.risk.factors.forEach(f => { const li=document.createElement('li'); li.textContent=f; rf.appendChild(li); });
+    }
+    function renderSelectedAsset() {
+      const hist=slicedHistory(dashboardData.history[selectedAsset]); const asset=dashboardData.assets.find(a => a.display_symbol === selectedAsset); document.getElementById('selectedAssetTitle').textContent=selectedAsset + ' History (' + currentTimeframe + ')'; if (!hist) return;
+      const tbSetup = asset?.trading_bible?.setup || {};
+      const deriv = asset?.derivatives || {};
+      let priceTraces; let layout = { margin:{t:10,r:10,b:40,l:60}, paper_bgcolor:'#0f172a', plot_bgcolor:'#0f172a', font:{color:'#e5e7eb'}, xaxis:{title:'Timestamp',gridcolor:'#1f2937'}, yaxis:{title:'Price',gridcolor:'#1f2937'} };
+      if (asset && asset.ohlc && asset.ohlc.length) {
+        const slicedOhlc = timeframeCount() ? asset.ohlc.slice(Math.max(0, asset.ohlc.length - timeframeCount())) : asset.ohlc;
+        const signalMarkers = [];
+        if (hist.signal_type && hist.signal_type.length) {
+          for (let i=1; i<hist.signal_type.length; i++) {
+            if (hist.signal_type[i] && hist.signal_type[i-1] && hist.signal_type[i] !== hist.signal_type[i-1]) signalMarkers.push({x:hist.dates[i], y:hist.prices[i], text:hist.signal_type[i-1] + ' → ' + hist.signal_type[i]});
+          }
+        }
+        priceTraces = [
+          { x:slicedOhlc.map(r => r.timestamp), open:slicedOhlc.map(r => r.open), high:slicedOhlc.map(r => r.high), low:slicedOhlc.map(r => r.low), close:slicedOhlc.map(r => r.close), type:'candlestick', name:selectedAsset, increasing:{line:{color:'#22c55e'}}, decreasing:{line:{color:'#ef4444'}}, xaxis:'x', yaxis:'y' },
+          { x:slicedOhlc.map(r => r.timestamp), y:slicedOhlc.map(r => r.volume), type:'bar', name:'Volume', marker:{color:'#334155'}, xaxis:'x2', yaxis:'y2' }
+        ];
+        if (signalMarkers.length) priceTraces.push({ x:signalMarkers.map(m => m.x), y:signalMarkers.map(m => m.y), text:signalMarkers.map(m => m.text), mode:'markers+text', textposition:'top center', marker:{color:'#f59e0b', size:10, symbol:'diamond'}, name:'Signal Change', xaxis:'x', yaxis:'y' });
+        if (tbSetup.target_1) priceTraces.push({ x:[slicedOhlc[0].timestamp, slicedOhlc[slicedOhlc.length-1].timestamp], y:[tbSetup.target_1, tbSetup.target_1], mode:'lines', name:'T1', line:{color:'#22c55e', dash:'dot'} });
+        if (tbSetup.target_2) priceTraces.push({ x:[slicedOhlc[0].timestamp, slicedOhlc[slicedOhlc.length-1].timestamp], y:[tbSetup.target_2, tbSetup.target_2], mode:'lines', name:'T2', line:{color:'#38bdf8', dash:'dot'} });
+        if (tbSetup.invalidation_level) priceTraces.push({ x:[slicedOhlc[0].timestamp, slicedOhlc[slicedOhlc.length-1].timestamp], y:[tbSetup.invalidation_level, tbSetup.invalidation_level], mode:'lines', name:'Invalidation', line:{color:'#ef4444', dash:'dash'} });
+        layout = { margin:{t:10,r:10,b:40,l:60}, paper_bgcolor:'#0f172a', plot_bgcolor:'#0f172a', font:{color:'#e5e7eb'}, grid:{rows:2, columns:1, pattern:'independent', roworder:'top to bottom'}, xaxis:{title:'Timestamp',gridcolor:'#1f2937',anchor:'y'}, yaxis:{title:'Price',gridcolor:'#1f2937',domain:[0.32,1]}, xaxis2:{title:'Timestamp',gridcolor:'#1f2937',anchor:'y2'}, yaxis2:{title:'Volume',gridcolor:'#1f2937',domain:[0,0.22]}, showlegend:true, legend:{orientation:'h'} };
+      } else {
+        priceTraces = [{ x:hist.dates, y:hist.prices, mode:'lines+markers', name:selectedAsset, line:{color:'#38bdf8', width:3}, marker:{size:5} }];
+      }
+      Plotly.newPlot('selectedPriceChart', priceTraces, layout, {responsive:true});
+      Plotly.newPlot('indicatorChart', [{ x:hist.dates, y:hist.rsi, mode:'lines', name:selectedAsset + ' RSI', line:{color:'#f59e0b', width:3} }, { x:hist.dates, y:hist.macd, mode:'lines', name:selectedAsset + ' MACD', yaxis:'y2', line:{color:'#8b5cf6', width:3, dash:'dot'} }], { margin:{t:10,r:60,b:40,l:50}, paper_bgcolor:'#0f172a', plot_bgcolor:'#0f172a', font:{color:'#e5e7eb'}, xaxis:{title:'Timestamp',gridcolor:'#1f2937'}, yaxis:{title:'RSI', range:[0,100], gridcolor:'#1f2937'}, yaxis2:{title:'MACD', overlaying:'y', side:'right'}, shapes:hist.dates.length ? [{ type:'line', x0:hist.dates[0], x1:hist.dates[hist.dates.length-1], y0:70, y1:70, line:{dash:'dot', color:'#ef4444'} }, { type:'line', x0:hist.dates[0], x1:hist.dates[hist.dates.length-1], y0:30, y1:30, line:{dash:'dot', color:'#22c55e'} }] : [] }, {responsive:true});
+      document.getElementById('selectedAssetTitle').textContent = `${selectedAsset} History (${currentTimeframe}) • Funding ${fmtFunding(deriv.funding_current) || '-'} • L/S ${fmtRatio(deriv.long_short_value) || '-'} • Liq ${deriv.liq_bias || '-'}`;
+    }
+    function renderComparisonChart() {
+      const colors=['#38bdf8','#22c55e','#f59e0b','#ef4444','#8b5cf6','#14b8a6','#ec4899'];
+      const traces = Object.entries(dashboardData.history).map(([symbol, rawHist], i) => { const hist=slicedHistory(rawHist); const first=hist.prices.find(v => v !== null && v !== undefined); const normalized=hist.prices.map(v => (first === null || first === undefined || first === 0 || v === null || v === undefined) ? null : ((v / first) - 1) * 100); return { x:hist.dates, y:normalized, mode:'lines', name:symbol, line:{color:colors[i % colors.length], width:symbol === selectedAsset ? 4 : 2} }; });
+      Plotly.newPlot('comparisonChart', traces, { margin:{t:10,r:10,b:40,l:60}, paper_bgcolor:'#0f172a', plot_bgcolor:'#0f172a', font:{color:'#e5e7eb'}, xaxis:{title:'Timestamp',gridcolor:'#1f2937'}, yaxis:{title:'Performance %', gridcolor:'#1f2937', ticksuffix:'%'}, legend:{orientation:'h'} }, {responsive:true});
+    }
+    function renderAlerts() {
+      const el=document.getElementById('alertsFeed');
+      el.innerHTML='';
+      const alerts = dashboardData.alerts || [];
+      alerts.forEach(alert => {
+        const div=document.createElement('div');
+        div.className='signal';
+        div.innerHTML=`<div class="signal-head"><strong>${alert.symbol}</strong><span>${alert.timestamp}</span></div><div class="muted">${alert.message}</div>`;
+        el.appendChild(div);
+      });
+      const health = dashboardData.generator_health || {};
+      if (health.summary) {
+        const div=document.createElement('div');
+        div.className='signal hold';
+        div.innerHTML=`<div class="signal-head"><strong>Generator Health</strong><span>${health.status || 'ok'}</span></div><div class="muted">${health.summary}</div>`;
+        el.appendChild(div);
+      }
+      const derivativesRegime = dashboardData.derivatives_summary?.regime;
+      if (derivativesRegime?.summary) {
+        const div=document.createElement('div');
+        div.className='signal hold';
+        div.innerHTML=`<div class="signal-head"><strong>Derivatives Regime</strong><span>${dashboardData.derivatives_summary?.liquidation_risk || 'mixed'}</span></div><div class="muted">${derivativesRegime.summary}</div>`;
+        el.appendChild(div);
+      }
+      if (!alerts.length && health.quiet_mode) {
+        const div=document.createElement('div');
+        div.className='signal hold';
+        div.innerHTML=`<div class="signal-head"><strong>Quiet Market State</strong><span>normal</span></div><div class="muted">No recent signal-change alerts were generated. Current inactivity looks like quiet flow rather than a broken pipeline.</div>`;
+        el.appendChild(div);
+      }
+      if (!el.innerHTML) el.innerHTML='<div class="muted">No recent signal-change alerts yet.</div>';
+    }
+    function renderTradingBiblePanel() {
+      const el=document.getElementById('tradingBiblePanel'); const asset=dashboardData.assets.find(a => a.display_symbol === selectedAsset); const tb=asset?.trading_bible;
+      if (!tb) { el.innerHTML='<div class="muted">Trading Bible analysis is currently available for majors with OHLC data.</div>'; return; }
+      const setup=tb.setup || {}; const session=tb.session || {}; const pd=tb.premium_discount || {};
+      const statusClass = (setup.execution_status || 'PASS').toLowerCase() === 'ready' ? 'status-ready' : (setup.execution_status || 'PASS').toLowerCase() === 'watchlist' ? 'status-watchlist' : 'status-pass';
+      const emphasis = setup.grade && setup.grade !== 'PASS' ? `<div class="metric"><div class="label">Actionability</div><div class="value"><span class="pill ${statusClass}">${setup.execution_status || 'WATCHLIST'}</span> ${setup.grade} setup • ${setup.bias || '-'}</div></div>` : `<div class="metric"><div class="label">Actionability</div><div class="value"><span class="pill ${statusClass}">PASS</span> STAND ASIDE</div></div>`;
+      const advisory = asset?.advisory || {};
+      el.innerHTML = `${emphasis}<div class="metric"><div class="label">Advisory State</div><div class="value">${advisory.state || '-'}</div><div class="muted">${advisory.direction || '-'} • score ${advisory.score ?? '-'}</div></div><div class="metric"><div class="label">Execution Status</div><div class="value">${setup.execution_status || 'PASS'}</div></div><div class="metric"><div class="label">Trend State</div><div class="value">${tb.trend_state || '-'}</div></div><div class="metric"><div class="label">Structure</div><div class="value">${tb.internal_structure || '-'} / ${tb.external_structure || '-'}</div></div><div class="metric"><div class="label">HTF / LTF Alignment</div><div class="value">${tb.htf_bias || '-'} / ${tb.ltf_bias || '-'}</div><div class="muted">State: ${tb.alignment_state || '-'}</div></div><div class="metric"><div class="label">Session</div><div class="value">${session.active_session || '-'}</div><div class="muted">London KZ: ${session.london_kill_zone ? 'YES' : 'NO'} • NY KZ: ${session.new_york_kill_zone ? 'YES' : 'NO'}</div></div><div class="metric"><div class="label">Session Ranges</div><div class="value">Asia: ${session.asia_low ? fmtPrice(session.asia_low) : 'n/a'} → ${session.asia_high ? fmtPrice(session.asia_high) : 'n/a'}</div><div class="muted">London: ${session.london_low ? fmtPrice(session.london_low) : 'n/a'} → ${session.london_high ? fmtPrice(session.london_high) : 'n/a'} • NY: ${session.new_york_low ? fmtPrice(session.new_york_low) : 'n/a'} → ${session.new_york_high ? fmtPrice(session.new_york_high) : 'n/a'}</div></div><div class="metric"><div class="label">Session Narrative</div><div class="value">${tb.session_narrative || 'n/a'}</div></div><div class="metric"><div class="label">Setup Grade</div><div class="value">${setup.grade || '-'}</div><div class="muted">Bias: ${setup.bias || '-'} • Type: ${setup.setup_type || 'n/a'} • Reasons: ${(setup.reasons || []).join('; ') || 'n/a'}</div></div><div class="metric"><div class="label">Premium / Discount</div><div class="value">${pd.state || '-'}</div><div class="muted">EQ: ${pd.equilibrium ? fmtPrice(pd.equilibrium) : 'n/a'}</div></div><div class="metric"><div class="label">Execution</div><div class="value">Entry: ${setup.entry_zone_low ? fmtPrice(setup.entry_zone_low) : 'n/a'} → ${setup.entry_zone_high ? fmtPrice(setup.entry_zone_high) : 'n/a'}</div><div class="muted">T1: ${setup.target_1 ? fmtPrice(setup.target_1) : 'n/a'} • T2: ${setup.target_2 ? fmtPrice(setup.target_2) : 'n/a'} • RR: ${setup.rr_estimate || 'n/a'}</div></div><div class="metric"><div class="label">Invalidation</div><div class="value">${setup.invalidation_level ? fmtPrice(setup.invalidation_level) : 'n/a'}</div><div class="muted">${setup.invalidation_reason || 'No invalidation reason available'}</div></div><div class="metric"><div class="label">Execution Checklist</div><div class="value">${(setup.checklist || []).filter(x => x.ok).length}/${(setup.checklist || []).length} checks passed</div><div class="muted">${(setup.checklist || []).map(x => `${x.ok ? '✓' : '✗'} ${x.name}`).join(' • ') || 'n/a'}</div></div><div class="metric"><div class="label">No-Trade Reason</div><div class="value">${setup.no_trade_reason || 'n/a'}</div></div><div class="metric"><div class="label">Blocked Conditions</div><div class="value">${(advisory.blockers || setup.blocked_conditions || []).length ? (advisory.blockers || setup.blocked_conditions || []).join('; ') : 'n/a'}</div></div><div class="metric"><div class="label">Next Triggers</div><div class="value">${(advisory.triggers || setup.next_trigger_conditions || []).length ? (advisory.triggers || setup.next_trigger_conditions || []).join('; ') : 'n/a'}</div><div class="muted">${setup.watchlist_reason || ''}</div></div>`;
+    }
+    function renderTradingBibleEventsPanel() {
+      const el=document.getElementById('tradingBibleEventsPanel'); const asset=dashboardData.assets.find(a => a.display_symbol === selectedAsset); const tb=asset?.trading_bible;
+      if (!tb) { el.innerHTML='<div class="muted">No Trading Bible events available.</div>'; return; }
+      const items=[]; (tb.bos_events || []).forEach(ev => items.push({title:'BOS', text:`${ev.direction} @ ${fmtPrice(ev.level)} — ${ev.context}`})); (tb.choch_events || []).forEach(ev => items.push({title:'CHoCH', text:`${ev.direction} @ ${fmtPrice(ev.level)} — ${ev.context}`})); (tb.liquidity_pools || []).forEach(ev => items.push({title:'Liquidity', text:`${ev.pool_type} @ ${fmtPrice(ev.level)} — ${(ev.notes || []).join(', ')}`})); (tb.fvgs || []).forEach(ev => items.push({title:'FVG', text:`${ev.direction} ${fmtPrice(ev.lower)} -> ${fmtPrice(ev.upper)} (${ev.status})`})); (tb.order_blocks || []).forEach(ev => items.push({title:'Order Block', text:`${ev.direction} ${fmtPrice(ev.lower)} -> ${fmtPrice(ev.upper)} — ${ev.reason}`})); (tb.sweeps || []).forEach(ev => items.push({title:'Sweep/Run', text:`${ev.classification} ${ev.direction} @ ${fmtPrice(ev.level)} — ${(ev.notes || []).join(', ')}` })); (tb.traps || []).forEach(ev => items.push({title:'Trap', text:`${ev.trap_type} ${ev.direction} — ${(ev.notes || []).join(', ')}` }));
+      el.innerHTML=''; if (!items.length) { el.innerHTML='<div class="muted">No recent BOS / CHoCH / liquidity / FVG / OB events.</div>'; return; } items.forEach(item => { const div=document.createElement('div'); div.className='signal'; div.innerHTML=`<div class="signal-head"><strong>${item.title}</strong></div><div class="muted">${item.text}</div>`; el.appendChild(div); });
+    }
+    function renderPassDiagnosticsPanel() {
+      const el=document.getElementById('passDiagnosticsPanel'); const asset=dashboardData.assets.find(a => a.display_symbol === selectedAsset); const setup=asset?.trading_bible?.setup || {};
+      if ((setup.execution_status || 'PASS') !== 'PASS') { el.innerHTML='<div class="muted">No PASS diagnostics: setup is actionable or on watchlist.</div>'; return; }
+      const blocked=setup.blocked_conditions || [];
+      el.innerHTML = `<div class="metric"><div class="label">Status</div><div class="value">PASS</div></div><div class="metric"><div class="label">Why No Setup</div><div class="value">${setup.no_trade_reason || 'n/a'}</div></div><div class="metric"><div class="label">Blocked Conditions</div><div class="value">${blocked.length ? blocked.join('; ') : 'No blocked conditions recorded'}</div></div><div class="metric"><div class="label">Next Triggers</div><div class="value">${(setup.next_trigger_conditions || []).length ? (setup.next_trigger_conditions || []).join('; ') : 'No next triggers recorded'}</div></div><div class="metric"><div class="label">Checklist Snapshot</div><div class="value">${(setup.checklist || []).map(x => `${x.ok ? '✓' : '✗'} ${x.name}`).join(' • ') || 'n/a'}</div></div>`;
+    }
+
+    function renderLiquidityPanel() {
+      const el = document.getElementById('liquidityPanel');
+      const liq = enhancedData?.enhanced_metrics?.liquidity_heatmap;
+      if (!liq) { el.innerHTML = '<div class="muted">No liquidity heatmap data.</div>'; return; }
+      const pools = liq.liquidity_pools || [];
+      const support = liq.support_clusters || [];
+      const resistance = liq.resistance_clusters || [];
+      const interest = liq.high_interest_zones || [];
+      let html = '';
+      html += `<div class="detail-box"><div class="detail-item"><span class="detail-label">Liquidity Pools</span><span class="detail-value">${pools.length}</span></div><div class="detail-item"><span class="detail-label">Support Clusters</span><span class="detail-value">${support.length}</span></div><div class="detail-item"><span class="detail-label">Resistance Clusters</span><span class="detail-value">${resistance.length}</span></div><div class="detail-item"><span class="detail-label">High Interest Zones</span><span class="detail-value">${interest.length}</span></div></div>`;
+
+      if (support.length) {
+        html += `<div class="detail-box"><strong>Support Clusters</strong>`;
+        support.slice(0, 6).forEach((item, idx) => { html += renderNestedBlock(`Support ${idx + 1}`, item); });
+        html += `</div>`;
+      }
+      if (resistance.length) {
+        html += `<div class="detail-box"><strong>Resistance Clusters</strong>`;
+        resistance.slice(0, 6).forEach((item, idx) => { html += renderNestedBlock(`Resistance ${idx + 1}`, item); });
+        html += `</div>`;
+      }
+      if (interest.length) {
+        html += `<div class="detail-box"><strong>High Interest Zones</strong>`;
+        interest.slice(0, 6).forEach((item, idx) => { html += renderNestedBlock(`Zone ${idx + 1}`, item); });
+        html += `</div>`;
+      }
+      if (pools.length) {
+        html += `<div class="detail-box"><strong>Liquidity Pools</strong>`;
+        pools.slice(0, 10).forEach((pool, idx) => {
+          const level = pool.level ?? pool.price ?? pool.zone_low ?? pool.zone_high ?? null;
+          const type = pool.pool_type || pool.type || pool.classification || 'liquidity pool';
+          const strength = pool.strength || pool.layer || pool.structure_type || '-';
+          const note = pool.note || pool.notes || pool.context || pool.description || '';
+          html += `<div class="detail-box"><div class="detail-item"><span class="detail-label">Pool</span><span class="detail-value">${idx + 1}</span></div><div class="detail-item"><span class="detail-label">Symbol</span><span class="detail-value">${pool.symbol || '-'}</span></div><div class="detail-item"><span class="detail-label">Type</span><span class="detail-value">${formatAny(type)}</span></div><div class="detail-item"><span class="detail-label">Level / Zone</span><span class="detail-value">${formatMaybePrice(level)}</span></div><div class="detail-item"><span class="detail-label">Strength / Layer</span><span class="detail-value">${formatAny(strength)}</span></div>${note ? `<div class="detail-item"><span class="detail-label">Context</span><span class="detail-value">${formatAny(note)}</span></div>` : ''}</div>`;
+        });
+        html += `</div>`;
+      }
+
+      if (!pools.length && !support.length && !resistance.length && !interest.length) html += '<div class="muted">Liquidity structures exist but are currently sparse in this snapshot.</div>';
+      el.innerHTML = html;
+    }
+
+    function renderOrderFlowPanel() {
+      const el = document.getElementById('orderFlowPanel');
+      const flow = enhancedData?.enhanced_metrics?.order_flow;
+      if (!flow) { el.innerHTML = '<div class="muted">No order flow data.</div>'; return; }
+      const whales = flow.whale_activity || [];
+      let html = `<div class="detail-box"><div class="detail-item"><span class="detail-label">Bid/Ask Imbalance</span><span class="detail-value">${formatAny(flow.bid_ask_imbalance ?? 0)}</span></div><div class="detail-item"><span class="detail-label">Market Maker Pressure</span><span class="detail-value">${formatAny(flow.market_maker_pressure ?? 0)}</span></div><div class="detail-item"><span class="detail-label">Market Taker Activity</span><span class="detail-value">${formatAny(flow.market_taker_activity ?? 0)}</span></div><div class="detail-item"><span class="detail-label">Whale Events</span><span class="detail-value">${whales.length}</span></div></div>`;
+      if (flow.volume_profile && Object.keys(flow.volume_profile).length) {
+        html += `<div class="detail-box"><strong>Volume Profile</strong>${renderObjectRows(flow.volume_profile)}</div>`;
+      }
+      whales.slice(0, 6).forEach((item, idx) => {
+        html += `<div class="detail-box"><div class="detail-item"><span class="detail-label">Event</span><span class="detail-value">${idx + 1}</span></div>${renderObjectRows(item)}</div>`;
+      });
+      el.innerHTML = html;
+    }
+
+    function renderMarketStructurePanel() {
+      const el = document.getElementById('marketStructurePanel');
+      const ms = enhancedData?.enhanced_metrics?.market_structure_layers;
+      if (!ms) { el.innerHTML = '<div class="muted">No market structure data.</div>'; return; }
+      function renderLayer(title, layer) {
+        if (!layer) return `<div class="detail-box"><strong>${title}</strong><div class="muted">No data</div></div>`;
+        let inner = `<div class="detail-box"><strong>${title}</strong>`;
+        Object.entries(layer).forEach(([k,v]) => {
+          if (Array.isArray(v)) {
+            if (!v.length) {
+              inner += `<div class="detail-item"><span class="detail-label">${k}</span><span class="detail-value">none</span></div>`;
+            } else if (typeof v[0] === 'object' && v[0] !== null) {
+              inner += `<div class="detail-box"><strong>${k}</strong>`;
+              v.slice(0, 8).forEach((item, idx) => { inner += renderNestedBlock(`${k} ${idx + 1}`, item); });
+              inner += `</div>`;
+            } else {
+              inner += `<div class="detail-item"><span class="detail-label">${k}</span><span class="detail-value">${v.map(formatAny).join(', ')}</span></div>`;
+            }
+          } else if (typeof v === 'object' && v !== null) {
+            inner += `<div class="detail-box"><strong>${k}</strong>${renderObjectRows(v)}</div>`;
+          } else {
+            inner += `<div class="detail-item"><span class="detail-label">${k}</span><span class="detail-value">${formatAny(v)}</span></div>`;
+          }
+        });
+        inner += `</div>`;
+        return inner;
+      }
+      el.innerHTML = renderLayer('Structure Layer', ms.structure_layer) + renderLayer('Participant Layer', ms.participant_layer) + renderLayer('Psychological Layer', ms.psychological_layer);
+    }
+
+    function renderRiskManagementPanel() {
+      const el = document.getElementById('riskManagementPanel');
+      const rm = enhancedData?.enhanced_metrics?.risk_management;
+      if (!rm) { el.innerHTML = '<div class="muted">No risk management data.</div>'; return; }
+      let html = `<div class="detail-box"><div class="detail-item"><span class="detail-label">VaR 95</span><span class="detail-value">${rm.var_95?.toFixed ? rm.var_95.toFixed(2) : formatAny(rm.var_95)}</span></div><div class="detail-item"><span class="detail-label">Max Drawdown</span><span class="detail-value">${rm.max_drawdown?.toFixed ? rm.max_drawdown.toFixed(2) + '%' : formatAny(rm.max_drawdown)}</span></div></div>`;
+      const ps = rm.position_sizing || {};
+      html += `<div class="detail-box"><strong>Position Sizing</strong>`;
+      Object.entries(ps).forEach(([k,v]) => {
+        if (typeof v === 'object' && v !== null) html += `<div class="detail-box"><strong>${k}</strong>${renderObjectRows(v)}</div>`;
+        else html += `<div class="detail-item"><span class="detail-label">${k}</span><span class="detail-value">${formatAny(v)}</span></div>`;
+      });
+      html += `</div>`;
+      if (rm.risk_adjusted_returns && Object.keys(rm.risk_adjusted_returns).length) html += `<div class="detail-box"><strong>Risk Adjusted Returns</strong>${renderObjectRows(rm.risk_adjusted_returns)}</div>`;
+      el.innerHTML = html;
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function normalizeWarningEntry(entry) {
+      if (!entry) return null;
+      if (typeof entry === 'string') {
+        try {
+          return normalizeWarningEntry(JSON.parse(entry));
+        } catch {
+          return { symbol: 'Warning', warning: 'Market warning', description: entry, severity: 'medium' };
+        }
+      }
+      if (typeof entry === 'object') {
+        return {
+          symbol: entry.symbol || entry.asset || 'Market',
+          warning: entry.warning || entry.title || 'Warning',
+          description: entry.description || entry.message || entry.details || entry.warning || 'Warning',
+          severity: String(entry.severity || 'medium').toLowerCase()
+        };
+      }
+      return { symbol: 'Warning', warning: 'Market warning', description: String(entry), severity: 'medium' };
+    }
+
+    function formatWarningEntry(entry) {
+      const warning = normalizeWarningEntry(entry);
+      if (!warning) return 'Warning';
+      const severity = warning.severity === 'high' ? 'High' : warning.severity === 'low' ? 'Low' : 'Medium';
+      return `<div><strong>${escapeHtml(warning.symbol)} — ${escapeHtml(warning.warning)}</strong></div><div>${escapeHtml(warning.description)}</div><div style="font-size:12px;color:var(--muted);">Severity: ${escapeHtml(severity)}</div>`;
+    }
+
+    function formatAny(value) {
+      if (value === null || value === undefined || value === '') return '-';
+      if (typeof value === 'number') return Number.isInteger(value) ? String(value) : value.toFixed(2);
+      if (Array.isArray(value)) {
+        if (!value.length) return 'none';
+        if (typeof value[0] === 'object' && value[0] !== null) return `${value.length} structured items`;
+        return value.map(formatAny).join(', ');
+      }
+      if (typeof value === 'object') return JSON.stringify(value);
+      return String(value);
+    }
+
+    function formatMaybePrice(value) {
+      if (value === null || value === undefined || value === '') return '-';
+      if (typeof value === 'number') return fmtPrice(value);
+      return formatAny(value);
+    }
+
+    function renderObjectRows(obj) {
+      let html = '';
+      Object.entries(obj || {}).forEach(([k,v]) => {
+        if (Array.isArray(v)) {
+          if (!v.length) html += `<div class="detail-item"><span class="detail-label">${k}</span><span class="detail-value">none</span></div>`;
+          else if (typeof v[0] === 'object' && v[0] !== null) {
+            html += `<div class="detail-box"><strong>${k}</strong>`;
+            v.slice(0, 6).forEach((item, idx) => { html += renderNestedBlock(`${k} ${idx + 1}`, item); });
+            html += `</div>`;
+          } else html += `<div class="detail-item"><span class="detail-label">${k}</span><span class="detail-value">${v.map(formatAny).join(', ')}</span></div>`;
+        } else if (typeof v === 'object' && v !== null) html += `<div class="detail-box"><strong>${k}</strong>${renderObjectRows(v)}</div>`;
+        else html += `<div class="detail-item"><span class="detail-label">${k}</span><span class="detail-value">${formatAny(v)}</span></div>`;
+      });
+      return html;
+    }
+
+    function renderNestedBlock(title, obj) {
+      return `<div class="detail-box"><strong>${title}</strong>${renderObjectRows(obj)}</div>`;
+    }
+
+    function renderSculptingPanels() {
+      const sculpt = enhancedData?.enhanced_metrics?.sculpting_insights;
+      const priceEl = document.getElementById('priceSculptingPanel');
+      const tradeEl = document.getElementById('tradeSculptingPanel');
+      if (!sculpt) {
+        priceEl.innerHTML = '<div class="muted">No price sculpting insights available.</div>';
+        tradeEl.innerHTML = '<div class="muted">No trade sculpting insights available.</div>';
+        return;
+      }
+      let priceHtml = '';
+      (sculpt.price_sculpting || []).slice(0, 6).forEach(item => {
+        priceHtml += `<div class="detail-box"><div class="detail-item"><span class="detail-label">${item.symbol}</span><span class="detail-value">${item.headline}</span></div><div class="detail-item"><span class="detail-label">Reading</span><span class="detail-value">${item.summary}</span></div><div class="detail-item"><span class="detail-label">What to watch</span><span class="detail-value">${item.focus}</span></div></div>`;
+      });
+      let tradeHtml = '';
+      (sculpt.trade_sculpting || []).slice(0, 6).forEach(item => {
+        tradeHtml += `<div class="detail-box"><div class="detail-item"><span class="detail-label">${item.symbol}</span><span class="detail-value">${item.headline}</span></div><div class="detail-item"><span class="detail-label">Execution idea</span><span class="detail-value">${item.summary}</span></div><div class="detail-item"><span class="detail-label">How to shape it</span><span class="detail-value">${item.focus}</span></div></div>`;
+      });
+      priceEl.innerHTML = priceHtml || '<div class="muted">No price sculpting insights available.</div>';
+      tradeEl.innerHTML = tradeHtml || '<div class="muted">No trade sculpting insights available.</div>';
+    }
+
+    function renderCryptobiblePanel() {
+      const el = document.getElementById('cryptobiblePanel');
+      const cb = enhancedData?.enhanced_metrics?.cryptobible_insights;
+      if (!cb) { el.innerHTML = '<div class="muted">No cryptobible insights data.</div>'; return; }
+      let html = `<div class="detail-box"><div class="detail-item"><span class="detail-label">Chapter References</span><span class="detail-value">${(cb.chapter_references || []).length}</span></div><div class="detail-item"><span class="detail-label">Trading Principles</span><span class="detail-value">${(cb.trading_principles || []).length}</span></div><div class="detail-item"><span class="detail-label">Risk Warnings</span><span class="detail-value">${(cb.risk_warnings || []).length}</span></div></div>`;
+      (cb.chapter_references || []).slice(0, 6).forEach(ref => {
+        html += `<div class="detail-box"><div class="detail-item"><span class="detail-label">Reference</span><span class="detail-value">${ref.chapter || '-'}</span></div><div class="detail-item"><span class="detail-label">Meaning</span><span class="detail-value">${ref.description || '-'}</span></div>${ref.application ? `<div class="detail-item"><span class="detail-label">Application</span><span class="detail-value">${ref.application}</span></div>` : ''}</div>`;
+      });
+      if ((cb.trading_principles || []).length) {
+        html += `<div class="detail-box"><strong>Key Principles</strong>`;
+        (cb.trading_principles || []).slice(0, 5).forEach(p => {
+          html += `<div class="detail-item"><span class="detail-label">Principle</span><span class="detail-value">${p}</span></div>`;
+        });
+        html += `</div>`;
+      }
+      if ((cb.risk_warnings || []).length) {
+        html += `<div class="detail-box"><strong>Warnings</strong>`;
+        (cb.risk_warnings || []).slice(0, 5).forEach(w => {
+          html += `<div class="detail-item"><span class="detail-label">Warning</span><span class="detail-value">${formatWarningEntry(w)}</span></div>`;
+        });
+        html += `</div>`;
+      }
+      el.innerHTML = html;
+    }
+
+    function renderAnalystNarrativePanel() {
+      const el = document.getElementById('analystNarrativePanel');
+      const narrative = enhancedData?.enhanced_metrics?.analyst_narrative;
+      if (!narrative) {
+        el.innerHTML = '<div class="muted">No analyst narrative available yet.</div>';
+        return;
+      }
+      const assetMap = new Map((dashboardData?.assets || []).map(asset => [asset.display_symbol || asset.symbol, asset]));
+      let html = '';
+      const proximityNote = '<div class="detail-box"><div class="muted">Narrative text may summarize a nearby snapshot; canonical numbers are shown in asset cards and synced asset briefs.</div></div>';
+      const section = (title, items) => {
+        if (!items || !items.length) return '';
+        let out = `<div class="detail-box"><strong>${title}</strong>`;
+        items.forEach(item => {
+          if (typeof item === 'string') {
+            out += `<div class="signal hold"><div class="muted">${item}</div></div>`;
+            return;
+          }
+
+          const symbol = item.symbol || item.asset || item.headline || title;
+          const canonical = assetMap.get(symbol);
+
+          if (canonical && title.includes('Asset Briefs')) {
+            const roundedRsi = canonical.technical?.rsi !== null && canonical.technical?.rsi !== undefined ? canonical.technical.rsi.toFixed(2) : '-';
+            const canonicalSummaryText = `${fmtPrice(canonical.price)} • ${canonical.change_pct >= 0 ? '+' : ''}${canonical.change_pct.toFixed(2)}% • RSI ${roundedRsi}`;
+            const cleanedSummary = String(item.summary || item.focus || JSON.stringify(item))
+              .replace(/([+-]?\d+\.\d{2})\d+(?=% on the day)/g, '$1')
+              .replace(/(RSI\s)(\d+\.\d{2})\d+/g, '$1$2');
+            out += `<div class="detail-box"><div class="detail-item"><span class="detail-label">${symbol}</span><span class="detail-value">${canonical.last_signal?.type || '-'} • ${canonical.advisory?.state || '-'} ${canonical.advisory?.direction || ''}${canonical.is_context_only ? ' • CONTEXT ONLY' : ''}</span></div><div class="detail-item"><span class="detail-label">Canonical Snapshot</span><span class="detail-value">${canonicalSummaryText}</span></div><div class="detail-item"><span class="detail-label">Summary</span><span class="detail-value">${cleanedSummary}</span></div>${item.focus ? `<div class="detail-item"><span class="detail-label">Focus</span><span class="detail-value">${item.focus}</span></div>` : ''}<div class="detail-item"><span class="detail-label">Advisory Score</span><span class="detail-value">${canonical.advisory?.score ?? '-'} • confidence ${canonical.advisory?.confidence || '-'}</span></div></div>`;
+            return;
+          }
+
+          out += `<div class="detail-box"><div class="detail-item"><span class="detail-label">${symbol}</span><span class="detail-value">${item.headline || ''}</span></div><div class="detail-item"><span class="detail-label">Summary</span><span class="detail-value">${item.summary || item.focus || JSON.stringify(item)}</span></div>${item.focus ? `<div class="detail-item"><span class="detail-label">Focus</span><span class="detail-value">${item.focus}</span></div>` : ''}</div>`;
+        });
+        out += `</div>`;
+        return out;
+      };
+      html += proximityNote;
+      html += section('Executive Summary', narrative.executive_summary);
+      html += section('Liquidity Story', narrative.liquidity_story);
+      html += section('Order Flow Story', narrative.order_flow_story);
+      html += section('Structure Story', narrative.structure_story);
+      html += section('Risk Story', narrative.risk_story);
+      html += section('Asset Briefs (canonical synced)', narrative.asset_briefs);
+      el.innerHTML = html || '<div class="muted">Narrative engine returned no content.</div>';
+    }
+
+    function renderNewsPanels() {
+      const analysisEl = document.getElementById('newsAnalysisPanel');
+      const feedEl = document.getElementById('newsFeedPanel');
+      if (!newsData) {
+        analysisEl.innerHTML = '<div class="muted">No news analysis data.</div>';
+        feedEl.innerHTML = '<div class="muted">No news feed data.</div>';
+        return;
+      }
+      const summary = newsData.summary || {};
+      const trends = newsData.trends || {};
+      const analysis = newsData.analysis || {};
+      let analysisHtml = '';
+      analysisHtml += `<div class="detail-box"><div class="detail-item"><span class="detail-label">Total Articles</span><span class="detail-value">${summary.total_articles ?? '-'}</span></div><div class="detail-item"><span class="detail-label">Overall Sentiment</span><span class="detail-value">${summary.overall_sentiment || trends.overall_sentiment || '-'}</span></div><div class="detail-item"><span class="detail-label">Positive</span><span class="detail-value">${summary.sentiment_breakdown?.positive ?? trends.sentiment_percentages?.positive ?? '-'}%</span></div><div class="detail-item"><span class="detail-label">Neutral</span><span class="detail-value">${summary.sentiment_breakdown?.neutral ?? trends.sentiment_percentages?.neutral ?? '-'}%</span></div><div class="detail-item"><span class="detail-label">Negative</span><span class="detail-value">${summary.sentiment_breakdown?.negative ?? trends.sentiment_percentages?.negative ?? '-'}%</span></div><div class="detail-item"><span class="detail-label">Breaking News Count</span><span class="detail-value">${summary.breaking_news_count ?? '-'}</span></div></div>`;
+      if (analysis.market_context) {
+        analysisHtml += `<div class="detail-box"><div class="detail-item"><span class="detail-label">Market Context</span><span class="detail-value">${analysis.market_context}</span></div></div>`;
+      }
+      if ((analysis.watch_items || []).length) {
+        analysisHtml += `<div class="detail-box"><strong>Watch Items</strong>`;
+        analysis.watch_items.forEach(item => {
+          analysisHtml += `<div class="detail-item"><span class="detail-label">Watch</span><span class="detail-value">${item}</span></div>`;
+        });
+        analysisHtml += `</div>`;
+      }
+      const categories = trends.category_counts || {};
+      if (Object.keys(categories).length) {
+        analysisHtml += `<div class="detail-box"><strong>Category Distribution</strong>`;
+        Object.entries(categories).forEach(([k,v]) => {
+          analysisHtml += `<div class="detail-item"><span class="detail-label">${k}</span><span class="detail-value">${v}</span></div>`;
+        });
+        analysisHtml += `</div>`;
+      }
+      if (analysis.source_diversity || (analysis.source_summary || []).length) {
+        analysisHtml += `<div class="detail-box"><strong>Source Health</strong>`;
+        if (analysis.source_diversity) {
+          analysisHtml += `<div class="detail-item"><span class="detail-label">Source Diversity</span><span class="detail-value">${analysis.source_diversity}</span></div>`;
+        }
+        (analysis.source_summary || []).forEach(item => {
+          analysisHtml += `<div class="detail-item"><span class="detail-label">Feed</span><span class="detail-value">${item}</span></div>`;
+        });
+        analysisHtml += `</div>`;
+      }
+      analysisEl.innerHTML = analysisHtml;
+
+      let feedHtml = '';
+      (newsData.top_articles || []).slice(0, 10).forEach(article => {
+        const summaryText = (article.summary || '').replace(/<[^>]*>/g, '').trim();
+        feedHtml += `<div class="detail-box"><div class="detail-item"><span class="detail-label">Title</span><span class="detail-value">${article.title}</span></div><div class="detail-item"><span class="detail-label">Source</span><span class="detail-value">${article.source || '-'}</span></div><div class="detail-item"><span class="detail-label">Sentiment</span><span class="detail-value">${article.sentiment || '-'}</span></div><div class="detail-item"><span class="detail-label">Impact</span><span class="detail-value">${article.impact_score ?? '-'}</span></div><div class="detail-item"><span class="detail-label">Published</span><span class="detail-value">${article.published || article.timestamp || '-'}</span></div><div class="detail-item"><span class="detail-label">Summary</span><span class="detail-value">${summaryText || 'No summary available'}</span></div><div class="detail-item"><span class="detail-label">Link</span><span class="detail-value"><a href="${article.link}" target="_blank" style="color:#38bdf8;">Open article</a></span></div></div>`;
+      });
+      if (!feedHtml) feedHtml = '<div class="muted">No top articles available.</div>';
+      feedEl.innerHTML = feedHtml;
+    }
+
+    function renderDerivativesRegimePanel() {
+      const el = document.getElementById('derivativesRegimePanel');
+      const regime = dashboardData.derivatives_summary?.regime;
+      if (!el) return;
+      if (!regime) { el.innerHTML = '<div class="detail-box">No derivatives regime summary available.</div>'; return; }
+      el.innerHTML = `<div class="detail-box"><div class="detail-item"><span class="detail-label">Summary</span><span class="detail-value">${regime.summary}</span></div><div class="detail-item"><span class="detail-label">Crowding</span><span class="detail-value">Longs ${regime.crowding?.longs ?? 0} • Shorts ${regime.crowding?.shorts ?? 0} • Balanced ${regime.crowding?.balanced ?? 0}</span></div></div>`;
+    }
+
+    function renderDerivativesPressurePanel() {
+      const el = document.getElementById('derivativesPressurePanel');
+      const board = dashboardData.derivatives_summary?.regime?.pressure_board || [];
+      if (!el) return;
+      if (!board.length) { el.innerHTML = '<div class="detail-box">No derivatives pressure board available.</div>'; return; }
+      el.innerHTML = board.map((item, index) => {
+        const crowdClass = item.crowding_state === 'crowded_longs' ? 'crowding-long' : item.crowding_state === 'crowded_shorts' ? 'crowding-short' : 'crowding-balanced';
+        return `<div class="detail-box ${item.confidence_label === 'inferred' ? 'confidence-inferred' : ''} ${crowdClass}" onclick="selectAsset('${item.symbol}')" style="cursor:pointer;"><div class="detail-item"><span class="detail-label">#${index + 1} ${item.symbol}</span><span class="detail-value">Score ${item.pressure_score}</span></div><div class="detail-item"><span class="detail-label">Funding / L-S</span><span class="detail-value">${fmtFunding(item.funding) || '-'} / ${fmtRatio(item.long_short) || '-'}</span></div><div class="detail-item"><span class="detail-label">1h Δ</span><span class="detail-value">F ${item.funding_delta_1h_pct !== null && item.funding_delta_1h_pct !== undefined ? item.funding_delta_1h_pct.toFixed(2) + '%' : '-'} • OI ${item.oi_delta_1h_pct !== null && item.oi_delta_1h_pct !== undefined ? item.oi_delta_1h_pct.toFixed(2) + '%' : '-'} • L/S ${item.long_short_delta_1h_pct !== null && item.long_short_delta_1h_pct !== undefined ? item.long_short_delta_1h_pct.toFixed(2) + '%' : '-'}</span></div><div class="detail-item"><span class="detail-label">Bias / Confidence</span><span class="detail-value">${item.liq_bias || '-'} / ${item.confidence_label || '-'}</span></div><div class="detail-item"><span class="detail-label">Trail</span><span class="detail-value mini-trail">${item.sparkline || '-'}</span></div></div>`;
+      }).join('');
+    }
+
+    function renderDerivativesDetailPanel() {
+      const el = document.getElementById('derivativesDetailPanel');
+      const asset = dashboardData.assets.find(a => a.display_symbol === selectedAsset);
+      const deriv = asset?.derivatives || {};
+      const history = dashboardData.derivatives_history?.[selectedAsset] || [];
+      if (!el) return;
+      if (!asset || !Object.keys(deriv).length) {
+        el.innerHTML = '<div class="detail-box">No derivatives detail available for this asset.</div>';
+        return;
+      }
+      const latestHistory = history.slice(-6).reverse();
+      const fundingTrail = history.slice(-8).map(item => item.funding_current == null ? '-' : Number(item.funding_current).toFixed(4)).join(' → ');
+      const ratioTrail = history.slice(-8).map(item => item.long_short_value == null ? '-' : Number(item.long_short_value).toFixed(2)).join(' → ');
+      let html = `<div class="detail-box">
+        <div class="detail-item"><span class="detail-label">Funding</span><span class="detail-value">${fmtFunding(deriv.funding_current) || '-'}</span></div>
+        <div class="detail-item"><span class="detail-label">Funding State</span><span class="detail-value">${deriv.funding_state || '-'}</span></div>
+        <div class="detail-item"><span class="detail-label">Funding Δ 1h / 4h</span><span class="detail-value">${deriv.funding_change_1h_pct !== undefined && deriv.funding_change_1h_pct !== null ? deriv.funding_change_1h_pct.toFixed(2) + '%' : '-'} / ${deriv.funding_change_4h_pct !== undefined && deriv.funding_change_4h_pct !== null ? deriv.funding_change_4h_pct.toFixed(2) + '%' : '-'}</span></div>
+        <div class="detail-item"><span class="detail-label">Long/Short</span><span class="detail-value">${fmtRatio(deriv.long_short_value) || '-'} (${deriv.long_short_type || '-'})</span></div>
+        <div class="detail-item"><span class="detail-label">L/S Δ 1h</span><span class="detail-value">${deriv.long_short_change_1h_pct !== undefined && deriv.long_short_change_1h_pct !== null ? deriv.long_short_change_1h_pct.toFixed(2) + '%' : '-'}</span></div>
+        <div class="detail-item"><span class="detail-label">Confidence Label</span><span class="detail-value">${deriv.confidence_label || '-'}</span></div>
+        <div class="detail-item"><span class="detail-label">OI Δ hist 1h / 4h</span><span class="detail-value">${deriv.oi_change_hist_1h_pct !== undefined && deriv.oi_change_hist_1h_pct !== null ? deriv.oi_change_hist_1h_pct.toFixed(2) + '%' : '-'} / ${deriv.oi_change_hist_4h_pct !== undefined && deriv.oi_change_hist_4h_pct !== null ? deriv.oi_change_hist_4h_pct.toFixed(2) + '%' : '-'}</span></div>
+        <div class="detail-item"><span class="detail-label">Liquidation Bias</span><span class="detail-value">${deriv.liq_bias || '-'} @ ${deriv.liq_level ? fmtPrice(deriv.liq_level) : '-'}</span></div>
+        <div class="detail-item"><span class="detail-label">Confidence</span><span class="detail-value">${deriv.liq_confidence || '-'}</span></div>
+        <div class="detail-item"><span class="detail-label">Recent Range</span><span class="detail-value">${deriv.recent_range_pct !== null && deriv.recent_range_pct !== undefined ? deriv.recent_range_pct.toFixed(2) + '%' : '-'}</span></div>
+      </div>`;
+      html += `<div class="detail-box"><strong>Trend Trails</strong><div class="mini-trail">Funding: ${fundingTrail || '-'}</div><div class="mini-trail">L/S: ${ratioTrail || '-'} ${deriv.sparkline ? '• ' + deriv.sparkline : ''}</div></div>`;
+      if (latestHistory.length) {
+        html += `<div class="detail-box"><strong>Recent Derivatives Snapshots</strong>`;
+        latestHistory.forEach(item => {
+          html += `<div class="detail-item"><span class="detail-label">${item.timestamp}</span><span class="detail-value">Funding ${fmtFunding(item.funding_current) || '-'} • L/S ${fmtRatio(item.long_short_value) || '-'} • OI ${fmtCompact(item.oi_current) || '-'} • Liq ${item.liq_bias || '-'}</span></div>`;
+        });
+        html += `</div>`;
+      }
+      el.innerHTML = html;
+    }
+
+    function renderEnhancedPanels() {
+      renderAnalystNarrativePanel();
+      renderLiquidityPanel();
+      renderOrderFlowPanel();
+      renderMarketStructurePanel();
+      renderRiskManagementPanel();
+      renderSculptingPanels();
+      renderCryptobiblePanel();
+      renderNewsPanels();
+    }
+
+    function renderUpdateLogPanel() {
+      const updates = enhancedData?.update_log || dashboardData?.update_log || [];
+      const el = document.getElementById('updateLogPanel');
+      if (!el) return;
+      if (!updates.length) { el.innerHTML = '<div class="detail-box">No update log entries available.</div>'; return; }
+      el.innerHTML = updates.map((entry, index) => `<div class="update-log-item"><strong>${index + 1}.</strong> ${entry}</div>`).join('');
+    }
+
+    function renderAll() { renderAssetCards(); renderWatchlists(); renderSignalsAndRisk(); renderSelectedAsset(); renderComparisonChart(); renderAlerts(); renderDerivativesRegimePanel(); renderDerivativesPressurePanel(); renderDerivativesDetailPanel(); renderCryptobiblePanel(); renderTradingBiblePanel(); renderTradingBibleEventsPanel(); renderPassDiagnosticsPanel(); renderEnhancedPanels(); renderUpdateLogPanel(); }
+    function setSort(key) { if (currentSort.key === key) currentSort.dir = currentSort.dir === 'asc' ? 'desc' : 'asc'; else { currentSort.key = key; currentSort.dir = 'desc'; } renderAssetCards(); }
+    async function loadDashboard() {
+      const [res1, res2, res3] = await Promise.all([
+        fetch('./dashboard-data.json?_=' + Date.now()),
+        fetch('./dashboard-enhanced.json?_=' + Date.now()),
+        fetch('./news-data.json?_=' + Date.now())
+      ]);
+      dashboardData = await res1.json();
+      enhancedData = await res2.json();
+      newsData = await res3.json();
+      document.getElementById('headline').textContent = dashboardData.summary.headline;
+      const visibleVersion = enhancedData?.summary?.version || dashboardData.summary.version || '';
+      const gitRevision = dashboardData?.summary?.git_revision || dashboardData?.source?.git_revision || '';
+      const revisionText = gitRevision ? ` • git ${gitRevision}` : '';
+      document.getElementById('subheadline').textContent = `${dashboardData.summary.subheadline} • ${visibleVersion}${revisionText}`;
+      document.getElementById('updatedLocal').textContent = dashboardData.generated_at_local;
+      document.getElementById('trackedAssets').textContent = dashboardData.summary.tracked_assets;
+      document.getElementById('marketBias').textContent = dashboardData.summary.market_bias;
+      document.getElementById('avgChange').textContent = (dashboardData.summary.avg_change_pct >= 0 ? '+' : '') + dashboardData.summary.avg_change_pct.toFixed(2) + '%';
+      document.getElementById('topGainer').textContent = dashboardData.summary.top_gainer || '-';
+      document.getElementById('topLoser').textContent = dashboardData.summary.top_loser || '-';
+      updateSelector(); renderAll();
+    }
+    loadDashboard(); setInterval(loadDashboard, 300000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Loading Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #0a0a0a; color: white; }
+        .test { margin: 10px 0; padding: 15px; border: 1px solid #333; border-radius: 8px; }
+        .success { color: #22c55e; }
+        .error { color: #ef4444; }
+        .loading { color: #f59e0b; }
+        button { background: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; }
+    </style>
+</head>
+<body>`r`n<div style="background:#7f1d1d;color:#fee2e2;padding:12px 16px;font-family:Segoe UI,Arial,sans-serif;font-size:14px;font-weight:700;text-align:center;border-bottom:3px solid #ef4444;">Legacy dashboard view: this page is archived and unsupported. Use ../index.html for the primary dashboard or ../dashboard-enhanced.html for the slim enhanced view.</div>
+    <h1>Data Loading Test</h1>
+    
+    <div class="test">
+        <h3>Test 1: Check if JavaScript is running</h3>
+        <div id="test1" class="loading">Testing...</div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 2: Try to load market data</h3>
+        <div id="test2" class="loading">Testing...</div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 3: Try to load news data</h3>
+        <div id="test3" class="loading">Testing...</div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 4: Check browser console</h3>
+        <div id="test4" class="loading">Press F12 and check Console tab</div>
+    </div>
+    
+    <div style="margin-top: 20px;">
+        <button onclick="runTests()">Run All Tests</button>
+        <button onclick="window.location.href='index.html'">Back to Dashboard</button>
+    </div>
+    
+    <script>
+        console.log('=== DATA LOADING TEST START ===');
+        
+        function updateTest(id, message, isSuccess) {
+            const el = document.getElementById(id);
+            el.innerHTML = `<span class="${isSuccess ? 'success' : 'error'}">${isSuccess ? '✅' : '❌'} ${message}</span>`;
+            el.className = '';
+        }
+        
+        async function runTests() {
+            console.log('Running data loading tests...');
+            
+            // Test 1: JavaScript is running
+            updateTest('test1', 'JavaScript is executing!', true);
+            
+            // Test 2: Load market data
+            try {
+                const response = await fetch('dashboard-enhanced.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                const data = await response.json();
+                updateTest('test2', `Market data loaded: ${data.summary.version}`, true);
+                console.log('Market data:', data.summary);
+            } catch (error) {
+                updateTest('test2', `Failed to load market data: ${error.message}`, false);
+                console.error('Market data error:', error);
+            }
+            
+            // Test 3: Load news data
+            try {
+                const response = await fetch('news-data.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                const data = await response.json();
+                updateTest('test3', `News data loaded: ${data.summary.total_articles} articles`, true);
+                console.log('News data:', data.summary);
+            } catch (error) {
+                updateTest('test3', `Failed to load news data: ${error.message}`, false);
+                console.error('News data error:', error);
+            }
+            
+            // Test 4: Check for common issues
+            const issues = [];
+            
+            // Check if we're using file:// protocol
+            if (window.location.protocol === 'file:') {
+                issues.push('Using file:// protocol (some browsers restrict file access)');
+            }
+            
+            // Check if files exist
+            if (!issues.length) {
+                updateTest('test4', 'No major issues detected. Check console for details.', true);
+            } else {
+                updateTest('test4', `Issues: ${issues.join(', ')}`, false);
+            }
+            
+            console.log('=== DATA LOADING TEST COMPLETE ===');
+        }
+        
+        // Auto-run tests when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('Page loaded, running tests in 1 second...');
+            setTimeout(runTests, 1000);
+        });
+    </script>
+</body>
+</html>
