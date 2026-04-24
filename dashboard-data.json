@@ -1,9 +1,9 @@
 {
   "schema_version": "1.4.0",
-  "generated_at_utc": "2026-04-24T22:02:21Z",
-  "generated_at_local": "2026-04-25 01:02:21 TRT",
+  "generated_at_utc": "2026-04-24T23:02:24Z",
+  "generated_at_local": "2026-04-25 02:02:24 TRT",
   "source": {
-    "upstream_report_time": "2026-04-25 01:01:42 TRT",
+    "upstream_report_time": "2026-04-25 02:01:46 TRT",
     "generator": "generate_dashboard_data.py",
     "input_file": "professional_briefing_test.json",
     "mode": "derived",
@@ -23,7 +23,7 @@
     ],
     "tracked_assets": 18,
     "market_bias": "BULLISH",
-    "avg_change_pct": 0.8983,
+    "avg_change_pct": 0.9364,
     "top_gainer": "CRUDE",
     "top_loser": "SILVER",
     "git_revision": "6064c2b"
@@ -32,10 +32,10 @@
     {
       "symbol": "BTC",
       "display_symbol": "BTC",
-      "price": 77598.2421875,
-      "change_pct": 0.04227276600467871,
+      "price": 77403.0234375,
+      "change_pct": 0.05561457794725957,
       "source": "yfinance",
-      "volume": 0.0,
+      "volume": 22687744.0,
       "market_cap": null,
       "ohlc": [
         {
@@ -5017,10 +5017,18 @@
         {
           "timestamp": "2026-04-24T22:00:00+00:00",
           "open": 77572.0390625,
-          "high": 77598.2421875,
-          "low": 77545.2109375,
-          "close": 77598.2421875,
-          "volume": 0.0
+          "high": 77650.71875,
+          "low": 77306.0625,
+          "close": 77360.0,
+          "volume": 883185664.0
+        },
+        {
+          "timestamp": "2026-04-24T23:00:00+00:00",
+          "open": 77368.640625,
+          "high": 77403.0234375,
+          "low": 77368.640625,
+          "close": 77403.0234375,
+          "volume": 22687744.0
         }
       ],
       "is_major": true,
@@ -5028,17 +5036,18 @@
       "last_signal": {
         "symbol": "BTC",
         "type": "HOLD",
-        "reason": "Liquidity reference identified",
-        "confidence": 40
+        "reason": "Trend state leans bearish",
+        "confidence": 52
       },
       "advisory": {
         "symbol": "BTC",
-        "state": "PASS",
+        "state": "WAIT",
         "direction": "SHORT",
-        "score": 36,
+        "score": 52,
         "confidence": "LOW",
-        "priority": 4,
+        "priority": 3,
         "reasons": [
+          "Trend state leans bearish",
           "Liquidity reference identified",
           "Fair value gap present",
           "Sweep/run context supports setup",
@@ -5059,24 +5068,18 @@
         "invalidators": [],
         "time_horizon": "CONTEXT",
         "display_signal": "HOLD",
-        "display_reason": "Liquidity reference identified",
-        "display_confidence": 40
+        "display_reason": "Trend state leans bearish",
+        "display_confidence": 52
       },
       "trading_bible": {
         "symbol": "BTC",
-        "trend_state": "internal_range_or_transition|external_range_or_transition",
-        "internal_structure": "range_or_transition",
+        "trend_state": "internal_bearish|external_range_or_transition",
+        "internal_structure": "bearish",
         "external_structure": "range_or_transition",
         "htf_bias": "bearish",
         "ltf_bias": "bearish",
         "alignment_state": "mixed",
         "pivots": [
-          {
-            "timestamp": "2026-04-24T02:00:00+00:00",
-            "price": 78570.0234375,
-            "kind": "high",
-            "strength": "internal"
-          },
           {
             "timestamp": "2026-04-24T05:00:00+00:00",
             "price": 77465.8984375,
@@ -5105,6 +5108,12 @@
             "timestamp": "2026-04-24T18:00:00+00:00",
             "price": 77385.90625,
             "kind": "low",
+            "strength": "internal"
+          },
+          {
+            "timestamp": "2026-04-24T21:00:00+00:00",
+            "price": 77785.0,
+            "kind": "high",
             "strength": "internal"
           },
           {
@@ -5144,7 +5153,15 @@
             "strength": "external"
           }
         ],
-        "bos_events": [],
+        "bos_events": [
+          {
+            "timestamp": "2026-04-24T22:00:00+00:00",
+            "event_type": "BOS",
+            "direction": "bearish",
+            "level": 77436.0,
+            "context": "Close broke below prior swing low with continuation"
+          }
+        ],
         "choch_events": [],
         "liquidity_pools": [
           {
@@ -5230,13 +5247,6 @@
         ],
         "fvgs": [
           {
-            "timestamp": "2026-04-22T03:00:00+00:00",
-            "direction": "bullish",
-            "upper": 77430.0,
-            "lower": 76432.9375,
-            "status": "open"
-          },
-          {
             "timestamp": "2026-04-22T06:00:00+00:00",
             "direction": "bullish",
             "upper": 77914.9765625,
@@ -5298,9 +5308,73 @@
             "upper": 78056.8828125,
             "lower": 77798.3125,
             "status": "open"
+          },
+          {
+            "timestamp": "2026-04-24T23:00:00+00:00",
+            "direction": "bearish",
+            "upper": 77565.453125,
+            "lower": 77403.0234375,
+            "status": "open"
           }
         ],
-        "order_blocks": [],
+        "order_blocks": [
+          {
+            "timestamp": "2026-04-24T05:00:00+00:00",
+            "direction": "bearish",
+            "upper": 78039.390625,
+            "lower": 77465.8984375,
+            "reason": "Last bullish candle before bearish structural impulse"
+          },
+          {
+            "timestamp": "2026-04-24T08:00:00+00:00",
+            "direction": "bearish",
+            "upper": 78029.9765625,
+            "lower": 77593.203125,
+            "reason": "Last bullish candle before bearish structural impulse"
+          },
+          {
+            "timestamp": "2026-04-24T10:00:00+00:00",
+            "direction": "bearish",
+            "upper": 77798.3125,
+            "lower": 77457.2109375,
+            "reason": "Last bullish candle before bearish structural impulse"
+          },
+          {
+            "timestamp": "2026-04-24T11:00:00+00:00",
+            "direction": "bearish",
+            "upper": 78395.2734375,
+            "lower": 77762.4375,
+            "reason": "Last bullish candle before bearish structural impulse"
+          },
+          {
+            "timestamp": "2026-04-24T12:00:00+00:00",
+            "direction": "bearish",
+            "upper": 78377.046875,
+            "lower": 78056.8828125,
+            "reason": "Last bullish candle before bearish structural impulse"
+          },
+          {
+            "timestamp": "2026-04-24T14:00:00+00:00",
+            "direction": "bearish",
+            "upper": 78096.0078125,
+            "lower": 77704.1875,
+            "reason": "Last bullish candle before bearish structural impulse"
+          },
+          {
+            "timestamp": "2026-04-24T15:00:00+00:00",
+            "direction": "bearish",
+            "upper": 78237.5625,
+            "lower": 77619.9921875,
+            "reason": "Last bullish candle before bearish structural impulse"
+          },
+          {
+            "timestamp": "2026-04-24T20:00:00+00:00",
+            "direction": "bearish",
+            "upper": 77781.921875,
+            "lower": 77480.0,
+            "reason": "Last bullish candle before bearish structural impulse"
+          }
+        ],
         "sweeps": [
           {
             "timestamp": "2026-04-24T18:00:00+00:00",
@@ -5309,6 +5383,15 @@
             "level": 77436.0,
             "notes": [
               "swing_low taken and rejected"
+            ]
+          },
+          {
+            "timestamp": "2026-04-24T22:00:00+00:00",
+            "classification": "run",
+            "direction": "bearish",
+            "level": 77436.0,
+            "notes": [
+              "swing_low taken with continuation"
             ]
           },
           {
@@ -5330,12 +5413,30 @@
             ]
           },
           {
+            "timestamp": "2026-04-24T22:00:00+00:00",
+            "classification": "run",
+            "direction": "bearish",
+            "level": 77410.953125,
+            "notes": [
+              "equal_lows taken with continuation"
+            ]
+          },
+          {
             "timestamp": "2026-04-24T18:00:00+00:00",
             "classification": "sweep",
             "direction": "bullish",
             "level": 77425.902344,
             "notes": [
               "equal_lows taken and rejected"
+            ]
+          },
+          {
+            "timestamp": "2026-04-24T22:00:00+00:00",
+            "classification": "run",
+            "direction": "bearish",
+            "level": 77425.902344,
+            "notes": [
+              "equal_lows taken with continuation"
             ]
           },
           {
@@ -5355,33 +5456,18 @@
             "notes": [
               "equal_lows taken and rejected"
             ]
+          },
+          {
+            "timestamp": "2026-04-24T22:00:00+00:00",
+            "classification": "run",
+            "direction": "bearish",
+            "level": 77450.949219,
+            "notes": [
+              "equal_lows taken with continuation"
+            ]
           }
         ],
         "traps": [
-          {
-            "timestamp": "2026-04-24T18:00:00+00:00",
-            "trap_type": "inducement",
-            "direction": "bullish",
-            "notes": [
-              "swing_low taken and rejected"
-            ]
-          },
-          {
-            "timestamp": "2026-04-24T13:00:00+00:00",
-            "trap_type": "inducement",
-            "direction": "bearish",
-            "notes": [
-              "equal_highs taken and rejected"
-            ]
-          },
-          {
-            "timestamp": "2026-04-24T18:00:00+00:00",
-            "trap_type": "inducement",
-            "direction": "bullish",
-            "notes": [
-              "equal_lows taken and rejected"
-            ]
-          },
           {
             "timestamp": "2026-04-24T18:00:00+00:00",
             "trap_type": "inducement",
@@ -5419,7 +5505,7 @@
           "new_york_high": 79500.0078125,
           "new_york_low": 74735.7421875
         },
-        "session_narrative": "Active session: After Hours. Asia range: 73772.96 to 78605.00. London range: 74650.28 to 78514.79. NY range: 74735.74 to 79500.01. Recent sweep detected near liquidity.",
+        "session_narrative": "Active session: After Hours. Asia range: 73772.96 to 78605.00. London range: 74650.28 to 78514.79. NY range: 74735.74 to 79500.01. Recent run detected near liquidity. Latest BOS: bearish.",
         "premium_discount": {
           "range_high": 78716.328125,
           "range_low": 76986.296875,
@@ -5431,8 +5517,10 @@
           "grade": "PASS",
           "execution_status": "PASS",
           "reasons": [
+            "Recent BOS present",
             "Nearby liquidity pools identified",
             "Fair value gap present",
+            "Order block candidate present",
             "Sweep/run behavior detected",
             "Trap/inducement behavior detected"
           ],
@@ -5464,7 +5552,7 @@
             },
             {
               "name": "BOS present",
-              "ok": false
+              "ok": true
             },
             {
               "name": "Liquidity identified",
@@ -5476,7 +5564,7 @@
             },
             {
               "name": "Order block candidate",
-              "ok": false
+              "ok": true
             },
             {
               "name": "Sweep/run context",
@@ -5491,57 +5579,37 @@
         }
       },
       "technical": {
-        "rsi": 43.32599506466979,
+        "rsi": 39.820144445523155,
         "rsi_status": "NEUTRAL",
-        "macd": -89.1293555097509,
+        "macd": -126.22166873430251,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
       "derivatives": {
         "oi_change_1h_pct": null,
-        "funding_current": 0.00297403719739,
+        "funding_current": 0.00034112747889,
         "funding_state": "balanced",
-        "long_short_value": 1.153,
+        "long_short_value": 1.023,
         "long_short_type": "funding_oi_price_proxy",
         "liq_bias": "above",
-        "liq_level": 78604.74,
+        "liq_level": 78477.39,
         "liq_confidence": "low",
-        "daily_change_pct": 0.04227276600467871,
-        "recent_range_pct": 1.5259587770542886,
+        "daily_change_pct": 0.05561457794725957,
+        "recent_range_pct": 1.6329606795277194,
         "source": {
           "oi": "okx",
           "funding": "okx",
           "long_short": "internal_proxy"
         },
         "confidence_label": "inferred",
-        "funding_change_1h_pct": -0.20442188617011361,
-        "funding_change_4h_pct": 28.849031947662272,
-        "oi_change_hist_1h_pct": 0.013507605371629552,
-        "oi_change_hist_4h_pct": -0.5151953923398384,
+        "funding_change_1h_pct": 0.0,
+        "funding_change_4h_pct": -91.51396069838191,
+        "oi_change_hist_1h_pct": -0.00953672775439598,
+        "oi_change_hist_4h_pct": -2.8804440189004232,
         "long_short_change_1h_pct": 0.0,
-        "sparkline": "\u2581\u2581\u2583\u2583\u2588\u2587\u2585\u2585"
+        "sparkline": "\u2584\u2584\u2588\u2587\u2586\u2586\u2581\u2581"
       },
       "derivatives_history_rows": [
-        {
-          "timestamp": "2026-04-18T16:10:45Z",
-          "funding_current": -0.0014796902276100002,
-          "long_short_value": 0.922,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 2652423880.4184194,
-          "liq_bias": "below",
-          "liq_level": 74792.43
-        },
-        {
-          "timestamp": "2026-04-18T17:03:17Z",
-          "funding_current": -0.00168130630112,
-          "long_short_value": 0.796,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 2631693737.3340306,
-          "liq_bias": "below",
-          "liq_level": 74868.75
-        },
         {
           "timestamp": "2026-04-18T17:03:54Z",
           "funding_current": -0.0016829423241900001,
@@ -7921,6 +7989,26 @@
           "oi_current": 2701324633.8743296,
           "liq_bias": "above",
           "liq_level": 78604.74
+        },
+        {
+          "timestamp": "2026-04-24T23:02:02Z",
+          "funding_current": 0.00034112747889,
+          "long_short_value": 1.023,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 2640170085.6313386,
+          "liq_bias": "above",
+          "liq_level": 78477.39
+        },
+        {
+          "timestamp": "2026-04-24T23:02:24Z",
+          "funding_current": 0.00034112747889,
+          "long_short_value": 1.023,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 2639918299.798019,
+          "liq_bias": "above",
+          "liq_level": 78477.39
         }
       ],
       "signal_change": null
@@ -7928,10 +8016,10 @@
     {
       "symbol": "ETH",
       "display_symbol": "ETH",
-      "price": 2316.14990234375,
-      "change_pct": 0.013810349117191882,
+      "price": 2314.449951171875,
+      "change_pct": 0.07436971534292092,
       "source": "yfinance",
-      "volume": 0.0,
+      "volume": 9714688.0,
       "market_cap": null,
       "ohlc": [
         {
@@ -12913,10 +13001,18 @@
         {
           "timestamp": "2026-04-24T22:00:00+00:00",
           "open": 2316.110107421875,
-          "high": 2316.39990234375,
-          "low": 2314.800048828125,
-          "close": 2316.14990234375,
-          "volume": 0.0
+          "high": 2316.860107421875,
+          "low": 2308.219970703125,
+          "close": 2312.72998046875,
+          "volume": 340389888.0
+        },
+        {
+          "timestamp": "2026-04-24T23:00:00+00:00",
+          "open": 2313.260009765625,
+          "high": 2314.449951171875,
+          "low": 2313.260009765625,
+          "close": 2314.449951171875,
+          "volume": 9714688.0
         }
       ],
       "is_major": true,
@@ -13295,57 +13391,37 @@
         }
       },
       "technical": {
-        "rsi": 45.65275632290653,
+        "rsi": 44.96811111750179,
         "rsi_status": "NEUTRAL",
-        "macd": -2.6012899408410703,
+        "macd": -3.0421988550651804,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
       "derivatives": {
         "oi_change_1h_pct": null,
-        "funding_current": 0.00814677499869,
+        "funding_current": 0.0070155886359199995,
         "funding_state": "balanced",
-        "long_short_value": 1.221,
+        "long_short_value": 1.227,
         "long_short_type": "funding_oi_price_proxy",
         "liq_bias": "above",
-        "liq_level": 2348.08,
+        "liq_level": 2346.38,
         "liq_confidence": "low",
-        "daily_change_pct": 0.013810349117191882,
-        "recent_range_pct": 1.621659226621833,
+        "daily_change_pct": 0.07436971534292092,
+        "recent_range_pct": 1.6228503266934862,
         "source": {
           "oi": "okx",
           "funding": "okx",
           "long_short": "internal_proxy"
         },
         "confidence_label": "inferred",
-        "funding_change_1h_pct": 0.3019456708231242,
-        "funding_change_4h_pct": 71.17348915641037,
-        "oi_change_hist_1h_pct": 0.0058165712415045555,
-        "oi_change_hist_4h_pct": -1.7499531382888331,
+        "funding_change_1h_pct": 0.0,
+        "funding_change_4h_pct": 0.49291336804003405,
+        "oi_change_hist_1h_pct": -0.021412387689324762,
+        "oi_change_hist_4h_pct": -0.804751286041476,
         "long_short_change_1h_pct": 0.0,
-        "sparkline": "\u2582\u2583\u2586\u2586\u2581\u2581\u2588\u2588"
+        "sparkline": "\u2584\u2584\u2581\u2581\u2585\u2585\u2588\u2588"
       },
       "derivatives_history_rows": [
-        {
-          "timestamp": "2026-04-18T16:10:45Z",
-          "funding_current": 0.01,
-          "long_short_value": 1.222,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1653922990.5028732,
-          "liq_bias": "above",
-          "liq_level": 2407.42
-        },
-        {
-          "timestamp": "2026-04-18T17:03:17Z",
-          "funding_current": 0.00613924773247,
-          "long_short_value": 1.219,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1647681320.361804,
-          "liq_bias": "above",
-          "liq_level": 2403.77
-        },
         {
           "timestamp": "2026-04-18T17:03:54Z",
           "funding_current": 0.00608586706466,
@@ -15725,6 +15801,26 @@
           "oi_current": 1508896073.5068245,
           "liq_bias": "above",
           "liq_level": 2348.08
+        },
+        {
+          "timestamp": "2026-04-24T23:02:02Z",
+          "funding_current": 0.0070155886359199995,
+          "long_short_value": 1.227,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1509857100.2480044,
+          "liq_bias": "above",
+          "liq_level": 2346.38
+        },
+        {
+          "timestamp": "2026-04-24T23:02:24Z",
+          "funding_current": 0.0070155886359199995,
+          "long_short_value": 1.227,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1509533803.7921445,
+          "liq_bias": "above",
+          "liq_level": 2346.38
         }
       ],
       "signal_change": null
@@ -15732,10 +15828,10 @@
     {
       "symbol": "SOL",
       "display_symbol": "SOL",
-      "price": 86.44999694824219,
-      "change_pct": -0.05780699625180636,
+      "price": 86.27999877929688,
+      "change_pct": 0.08119672377635653,
       "source": "yfinance",
-      "volume": 0.0,
+      "volume": 3695104.0,
       "market_cap": null,
       "ohlc": [
         {
@@ -19773,24 +19869,24 @@
         {
           "timestamp": "2026-04-20T00:00:00+00:00",
           "open": 83.51000213623047,
-          "high": 84.16000366210938,
-          "low": 83.38999938964844,
+          "high": 84.19999694824219,
+          "low": 83.4000015258789,
           "close": 84.04000091552734,
-          "volume": 0.0
+          "volume": 16209920.0
         },
         {
           "timestamp": "2026-04-20T01:00:00+00:00",
           "open": 84.06999969482422,
-          "high": 84.58000183105469,
+          "high": 84.56999969482422,
           "low": 83.98999786376953,
           "close": 84.38999938964844,
           "volume": 54937600.0
         },
         {
           "timestamp": "2026-04-20T02:00:00+00:00",
-          "open": 84.41999816894531,
-          "high": 84.43000030517578,
-          "low": 83.79000091552734,
+          "open": 84.44000244140625,
+          "high": 84.44000244140625,
+          "low": 83.77999877929688,
           "close": 84.23999786376953,
           "volume": 0.0
         },
@@ -19804,31 +19900,31 @@
         },
         {
           "timestamp": "2026-04-20T04:00:00+00:00",
-          "open": 84.61000061035156,
-          "high": 84.6500015258789,
-          "low": 84.30000305175781,
+          "open": 84.62000274658203,
+          "high": 84.63999938964844,
+          "low": 84.29000091552734,
           "close": 84.5999984741211,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-20T05:00:00+00:00",
-          "open": 84.5999984741211,
-          "high": 84.61000061035156,
-          "low": 83.77999877929688,
+          "open": 84.61000061035156,
+          "high": 84.62000274658203,
+          "low": 83.80000305175781,
           "close": 83.88999938964844,
           "volume": 2386432.0
         },
         {
           "timestamp": "2026-04-20T06:00:00+00:00",
           "open": 83.93000030517578,
-          "high": 84.75,
+          "high": 84.77999877929688,
           "low": 83.83000183105469,
           "close": 84.48999786376953,
           "volume": 25362432.0
         },
         {
           "timestamp": "2026-04-20T07:00:00+00:00",
-          "open": 84.56999969482422,
+          "open": 84.54000091552734,
           "high": 85.7699966430664,
           "low": 84.4800033569336,
           "close": 84.76000213623047,
@@ -19837,7 +19933,7 @@
         {
           "timestamp": "2026-04-20T08:00:00+00:00",
           "open": 84.7699966430664,
-          "high": 85.11000061035156,
+          "high": 85.12000274658203,
           "low": 84.58999633789062,
           "close": 84.70999908447266,
           "volume": 0.0
@@ -19847,12 +19943,12 @@
           "open": 84.69999694824219,
           "high": 85.29000091552734,
           "low": 84.68000030517578,
-          "close": 85.11000061035156,
+          "close": 85.12000274658203,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-20T10:00:00+00:00",
-          "open": 85.16000366210938,
+          "open": 85.12999725341797,
           "high": 85.43000030517578,
           "low": 84.86000061035156,
           "close": 84.9000015258789,
@@ -19862,40 +19958,40 @@
           "timestamp": "2026-04-20T11:00:00+00:00",
           "open": 84.9000015258789,
           "high": 85.38999938964844,
-          "low": 84.80000305175781,
-          "close": 85.12000274658203,
+          "low": 84.81999969482422,
+          "close": 85.11000061035156,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-20T12:00:00+00:00",
           "open": 85.0999984741211,
-          "high": 85.58000183105469,
-          "low": 84.88999938964844,
+          "high": 85.55999755859375,
+          "low": 84.91999816894531,
           "close": 85.3499984741211,
           "volume": 16539648.0
         },
         {
           "timestamp": "2026-04-20T13:00:00+00:00",
-          "open": 85.36000061035156,
-          "high": 85.55999755859375,
-          "low": 84.91000366210938,
+          "open": 85.37999725341797,
+          "high": 85.56999969482422,
+          "low": 84.94999694824219,
           "close": 85.37000274658203,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-20T14:00:00+00:00",
-          "open": 85.33999633789062,
-          "high": 85.83000183105469,
-          "low": 84.5999984741211,
+          "open": 85.3499984741211,
+          "high": 85.86000061035156,
+          "low": 84.61000061035156,
           "close": 84.83000183105469,
           "volume": 53152256.0
         },
         {
           "timestamp": "2026-04-20T15:00:00+00:00",
           "open": 84.83999633789062,
-          "high": 85.9000015258789,
-          "low": 84.48999786376953,
-          "close": 85.88999938964844,
+          "high": 85.88999938964844,
+          "low": 84.47000122070312,
+          "close": 85.87999725341797,
           "volume": 89820672.0
         },
         {
@@ -19916,17 +20012,17 @@
         },
         {
           "timestamp": "2026-04-20T18:00:00+00:00",
-          "open": 85.76000213623047,
+          "open": 85.7300033569336,
           "high": 86.22000122070312,
-          "low": 85.75,
+          "low": 85.7300033569336,
           "close": 86.0999984741211,
           "volume": 80623616.0
         },
         {
           "timestamp": "2026-04-20T19:00:00+00:00",
-          "open": 86.12999725341797,
+          "open": 86.11000061035156,
           "high": 86.13999938964844,
-          "low": 85.80999755859375,
+          "low": 85.80000305175781,
           "close": 85.81999969482422,
           "volume": 3828736.0
         },
@@ -19940,24 +20036,24 @@
         },
         {
           "timestamp": "2026-04-20T21:00:00+00:00",
-          "open": 86.0,
+          "open": 85.98999786376953,
           "high": 86.2300033569336,
-          "low": 85.62999725341797,
+          "low": 85.61000061035156,
           "close": 85.8499984741211,
           "volume": 20541952.0
         },
         {
           "timestamp": "2026-04-20T22:00:00+00:00",
-          "open": 85.8499984741211,
-          "high": 86.08999633789062,
-          "low": 85.6500015258789,
+          "open": 85.83999633789062,
+          "high": 86.0999984741211,
+          "low": 85.63999938964844,
           "close": 85.7300033569336,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-20T23:00:00+00:00",
-          "open": 85.62999725341797,
-          "high": 85.62999725341797,
+          "open": 85.58999633789062,
+          "high": 85.5999984741211,
           "low": 85.23999786376953,
           "close": 85.30999755859375,
           "volume": 0.0
@@ -19972,8 +20068,8 @@
         },
         {
           "timestamp": "2026-04-21T01:00:00+00:00",
-          "open": 85.68000030517578,
-          "high": 85.8499984741211,
+          "open": 85.66000366210938,
+          "high": 85.86000061035156,
           "low": 85.38999938964844,
           "close": 85.47000122070312,
           "volume": 0.0
@@ -19992,11 +20088,11 @@
           "high": 85.55999755859375,
           "low": 85.04000091552734,
           "close": 85.19999694824219,
-          "volume": 59257088.0
+          "volume": 58941696.0
         },
         {
           "timestamp": "2026-04-21T04:00:00+00:00",
-          "open": 85.20999908447266,
+          "open": 85.22000122070312,
           "high": 85.48999786376953,
           "low": 85.05000305175781,
           "close": 85.47000122070312,
@@ -20005,7 +20101,7 @@
         {
           "timestamp": "2026-04-21T05:00:00+00:00",
           "open": 85.45999908447266,
-          "high": 85.86000061035156,
+          "high": 85.8499984741211,
           "low": 85.44999694824219,
           "close": 85.70999908447266,
           "volume": 9019136.0
@@ -20013,10 +20109,10 @@
         {
           "timestamp": "2026-04-21T06:00:00+00:00",
           "open": 85.73999786376953,
-          "high": 85.94999694824219,
+          "high": 85.93000030517578,
           "low": 85.19999694824219,
           "close": 85.70999908447266,
-          "volume": 1568512.0
+          "volume": 5087232.0
         },
         {
           "timestamp": "2026-04-21T07:00:00+00:00",
@@ -20028,17 +20124,17 @@
         },
         {
           "timestamp": "2026-04-21T08:00:00+00:00",
-          "open": 85.73999786376953,
-          "high": 86.41000366210938,
+          "open": 85.75,
+          "high": 86.33999633789062,
           "low": 85.66999816894531,
           "close": 85.83999633789062,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-21T09:00:00+00:00",
-          "open": 85.83000183105469,
+          "open": 85.83999633789062,
           "high": 85.93000030517578,
-          "low": 85.58000183105469,
+          "low": 85.56999969482422,
           "close": 85.91000366210938,
           "volume": 0.0
         },
@@ -20060,51 +20156,51 @@
         },
         {
           "timestamp": "2026-04-21T12:00:00+00:00",
-          "open": 85.9000015258789,
-          "high": 86.05000305175781,
-          "low": 85.20999908447266,
-          "close": 85.56999969482422,
+          "open": 85.87000274658203,
+          "high": 86.06999969482422,
+          "low": 85.22000122070312,
+          "close": 85.55999755859375,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-21T13:00:00+00:00",
-          "open": 85.58000183105469,
-          "high": 85.87000274658203,
+          "open": 85.58999633789062,
+          "high": 85.87999725341797,
           "low": 85.33999633789062,
-          "close": 85.86000061035156,
+          "close": 85.83000183105469,
           "volume": 68981760.0
         },
         {
           "timestamp": "2026-04-21T14:00:00+00:00",
-          "open": 85.83999633789062,
-          "high": 86.91999816894531,
+          "open": 85.87999725341797,
+          "high": 86.87999725341797,
           "low": 85.6500015258789,
           "close": 85.80999755859375,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-21T15:00:00+00:00",
-          "open": 85.83999633789062,
+          "open": 85.80000305175781,
           "high": 86.30999755859375,
-          "low": 85.43000030517578,
+          "low": 85.44000244140625,
           "close": 86.06999969482422,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-21T16:00:00+00:00",
           "open": 86.11000061035156,
-          "high": 86.30000305175781,
+          "high": 86.30999755859375,
           "low": 85.69000244140625,
-          "close": 85.72000122070312,
+          "close": 85.7300033569336,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-21T17:00:00+00:00",
-          "open": 85.69000244140625,
-          "high": 85.80000305175781,
-          "low": 84.79000091552734,
+          "open": 85.70999908447266,
+          "high": 85.79000091552734,
+          "low": 84.80000305175781,
           "close": 85.33000183105469,
-          "volume": 72394752.0
+          "volume": 72247040.0
         },
         {
           "timestamp": "2026-04-21T18:00:00+00:00",
@@ -20116,18 +20212,18 @@
         },
         {
           "timestamp": "2026-04-21T19:00:00+00:00",
-          "open": 85.26000213623047,
-          "high": 85.72000122070312,
+          "open": 85.2699966430664,
+          "high": 85.70999908447266,
           "low": 84.33999633789062,
           "close": 84.58000183105469,
-          "volume": 62802688.0
+          "volume": 61856512.0
         },
         {
           "timestamp": "2026-04-21T20:00:00+00:00",
           "open": 84.55999755859375,
           "high": 85.76000213623047,
           "low": 84.45999908447266,
-          "close": 85.41999816894531,
+          "close": 85.54000091552734,
           "volume": 103937536.0
         },
         {
@@ -20140,47 +20236,47 @@
         },
         {
           "timestamp": "2026-04-21T22:00:00+00:00",
-          "open": 85.13999938964844,
+          "open": 85.1500015258789,
           "high": 85.45999908447266,
-          "low": 85.04000091552734,
+          "low": 85.05000305175781,
           "close": 85.38999938964844,
-          "volume": 21367552.0
+          "volume": 21225216.0
         },
         {
           "timestamp": "2026-04-21T23:00:00+00:00",
           "open": 85.37999725341797,
-          "high": 86.12000274658203,
+          "high": 86.0999984741211,
           "low": 85.37999725341797,
-          "close": 86.06999969482422,
-          "volume": 17503488.0
+          "close": 86.05000305175781,
+          "volume": 17645824.0
         },
         {
           "timestamp": "2026-04-22T00:00:00+00:00",
-          "open": 86.11000061035156,
-          "high": 86.55000305175781,
-          "low": 86.02999877929688,
+          "open": 86.0999984741211,
+          "high": 86.56999969482422,
+          "low": 86.04000091552734,
           "close": 86.52999877929688,
           "volume": 54629888.0
         },
         {
           "timestamp": "2026-04-22T01:00:00+00:00",
           "open": 86.51000213623047,
-          "high": 86.55000305175781,
-          "low": 86.11000061035156,
+          "high": 86.54000091552734,
+          "low": 86.12000274658203,
           "close": 86.30000305175781,
           "volume": 45924096.0
         },
         {
           "timestamp": "2026-04-22T02:00:00+00:00",
-          "open": 86.31999969482422,
-          "high": 87.58999633789062,
+          "open": 86.30999755859375,
+          "high": 87.5999984741211,
           "low": 86.2300033569336,
           "close": 87.44999694824219,
           "volume": 212713216.0
         },
         {
           "timestamp": "2026-04-22T03:00:00+00:00",
-          "open": 87.45999908447266,
+          "open": 87.48999786376953,
           "high": 87.91000366210938,
           "low": 87.1500015258789,
           "close": 87.29000091552734,
@@ -20200,77 +20296,77 @@
           "high": 88.31999969482422,
           "low": 87.04000091552734,
           "close": 88.0199966430664,
-          "volume": 221291520.0
+          "volume": 221140480.0
         },
         {
           "timestamp": "2026-04-22T06:00:00+00:00",
-          "open": 87.97000122070312,
+          "open": 87.98999786376953,
           "high": 88.19000244140625,
-          "low": 87.81999969482422,
+          "low": 87.80999755859375,
           "close": 87.9800033569336,
-          "volume": 65189376.0
+          "volume": 65427968.0
         },
         {
           "timestamp": "2026-04-22T07:00:00+00:00",
           "open": 87.97000122070312,
-          "high": 88.2300033569336,
+          "high": 88.23999786376953,
           "low": 87.72000122070312,
-          "close": 88.08000183105469,
-          "volume": 73317376.0
+          "close": 88.06999969482422,
+          "volume": 70432768.0
         },
         {
           "timestamp": "2026-04-22T08:00:00+00:00",
-          "open": 88.11000061035156,
-          "high": 88.30000305175781,
+          "open": 88.0999984741211,
+          "high": 88.26000213623047,
           "low": 87.63999938964844,
           "close": 88.01000213623047,
-          "volume": 28022272.0
+          "volume": 30906880.0
         },
         {
           "timestamp": "2026-04-22T09:00:00+00:00",
-          "open": 87.98999786376953,
+          "open": 87.97000122070312,
           "high": 88.87000274658203,
           "low": 87.87000274658203,
-          "close": 88.30999755859375,
+          "close": 88.33000183105469,
           "volume": 136343552.0
         },
         {
           "timestamp": "2026-04-22T10:00:00+00:00",
           "open": 88.31999969482422,
-          "high": 88.4000015258789,
-          "low": 88.16000366210938,
+          "high": 88.41000366210938,
+          "low": 88.1500015258789,
           "close": 88.36000061035156,
           "volume": 2631168.0
         },
         {
           "timestamp": "2026-04-22T11:00:00+00:00",
           "open": 88.37000274658203,
-          "high": 88.47000122070312,
+          "high": 88.44999694824219,
           "low": 88.19999694824219,
-          "close": 88.3499984741211,
+          "close": 88.36000061035156,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-22T12:00:00+00:00",
-          "open": 88.3499984741211,
-          "high": 88.69000244140625,
-          "low": 88.23999786376953,
+          "open": 88.37000274658203,
+          "high": 88.69999694824219,
+          "low": 88.25,
           "close": 88.61000061035156,
-          "volume": 25630720.0
+          "volume": 25624576.0
         },
         {
           "timestamp": "2026-04-22T13:00:00+00:00",
           "open": 88.58999633789062,
-          "high": 89.16999816894531,
-          "low": 88.48999786376953,
+          "high": 89.20999908447266,
+          "low": 88.4800033569336,
           "close": 89.13999938964844,
-          "volume": 124130816.0
+          "volume": 124136960.0
         },
         {
           "timestamp": "2026-04-22T14:00:00+00:00",
-          "open": 89.19999694824219,
+          "open": 89.16999816894531,
           "high": 89.3499984741211,
-          "low": 88.55999755859375,
+          "low": 88.56999969482422,
           "close": 88.77999877929688,
           "volume": 85336576.0
         },
@@ -20278,7 +20374,7 @@
           "timestamp": "2026-04-22T15:00:00+00:00",
           "open": 88.79000091552734,
           "high": 88.83000183105469,
-          "low": 88.08999633789062,
+          "low": 88.12000274658203,
           "close": 88.19999694824219,
           "volume": 68183552.0
         },
@@ -20286,7 +20382,7 @@
           "timestamp": "2026-04-22T16:00:00+00:00",
           "open": 88.2699966430664,
           "high": 88.5,
-          "low": 87.58999633789062,
+          "low": 87.58000183105469,
           "close": 87.68000030517578,
           "volume": 65863168.0
         },
@@ -20294,13 +20390,13 @@
           "timestamp": "2026-04-22T17:00:00+00:00",
           "open": 87.69000244140625,
           "high": 88.05000305175781,
-          "low": 87.66999816894531,
-          "close": 87.87000274658203,
+          "low": 87.66000366210938,
+          "close": 87.86000061035156,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-22T18:00:00+00:00",
-          "open": 87.87000274658203,
+          "open": 87.87999725341797,
           "high": 88.41000366210938,
           "low": 87.83000183105469,
           "close": 87.83999633789062,
@@ -20310,23 +20406,23 @@
           "timestamp": "2026-04-22T19:00:00+00:00",
           "open": 87.77999877929688,
           "high": 87.87000274658203,
-          "low": 87.12000274658203,
+          "low": 87.12999725341797,
           "close": 87.4000015258789,
-          "volume": 11490816.0
+          "volume": 11763712.0
         },
         {
           "timestamp": "2026-04-22T20:00:00+00:00",
           "open": 87.41999816894531,
           "high": 87.52999877929688,
-          "low": 87.11000061035156,
-          "close": 87.13999938964844,
+          "low": 87.12000274658203,
+          "close": 87.16999816894531,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-22T21:00:00+00:00",
-          "open": 87.12999725341797,
+          "open": 87.13999938964844,
           "high": 87.68000030517578,
-          "low": 87.12999725341797,
+          "low": 87.13999938964844,
           "close": 87.62999725341797,
           "volume": 0.0
         },
@@ -20342,69 +20438,69 @@
           "timestamp": "2026-04-22T23:00:00+00:00",
           "open": 87.47000122070312,
           "high": 87.51000213623047,
-          "low": 86.86000061035156,
-          "close": 86.9000015258789,
+          "low": 86.8499984741211,
+          "close": 86.88999938964844,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-23T00:00:00+00:00",
           "open": 86.91000366210938,
-          "high": 87.1500015258789,
-          "low": 86.04000091552734,
+          "high": 87.13999938964844,
+          "low": 86.0199966430664,
           "close": 86.88999938964844,
-          "volume": 78766080.0
+          "volume": 61921792.0
         },
         {
           "timestamp": "2026-04-23T01:00:00+00:00",
-          "open": 86.87999725341797,
+          "open": 86.9000015258789,
           "high": 86.9000015258789,
-          "low": 86.13999938964844,
-          "close": 86.4800033569336,
+          "low": 86.1500015258789,
+          "close": 86.47000122070312,
           "volume": 14085120.0
         },
         {
           "timestamp": "2026-04-23T02:00:00+00:00",
-          "open": 86.47000122070312,
+          "open": 86.45999908447266,
           "high": 86.4800033569336,
-          "low": 85.75,
+          "low": 85.76000213623047,
           "close": 85.9800033569336,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-23T03:00:00+00:00",
           "open": 85.9800033569336,
-          "high": 86.0999984741211,
+          "high": 86.13999938964844,
           "low": 85.52999877929688,
-          "close": 85.81999969482422,
+          "close": 85.80999755859375,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-23T04:00:00+00:00",
-          "open": 85.7699966430664,
+          "open": 85.72000122070312,
           "high": 86.0199966430664,
-          "low": 85.68000030517578,
+          "low": 85.66999816894531,
           "close": 86.0,
-          "volume": 20492800.0
+          "volume": 20651008.0
         },
         {
           "timestamp": "2026-04-23T05:00:00+00:00",
           "open": 85.98999786376953,
           "high": 86.16000366210938,
           "low": 85.52999877929688,
-          "close": 85.86000061035156,
+          "close": 85.87000274658203,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-23T06:00:00+00:00",
-          "open": 85.88999938964844,
+          "open": 85.9000015258789,
           "high": 86.2300033569336,
-          "low": 85.86000061035156,
-          "close": 86.19999694824219,
+          "low": 85.87000274658203,
+          "close": 86.20999908447266,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-23T07:00:00+00:00",
-          "open": 86.20999908447266,
+          "open": 86.22000122070312,
           "high": 86.2300033569336,
           "low": 85.88999938964844,
           "close": 85.94000244140625,
@@ -20413,16 +20509,16 @@
         {
           "timestamp": "2026-04-23T08:00:00+00:00",
           "open": 85.94000244140625,
-          "high": 85.9800033569336,
-          "low": 85.56999969482422,
+          "high": 85.97000122070312,
+          "low": 85.58000183105469,
           "close": 85.70999908447266,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-23T09:00:00+00:00",
-          "open": 85.70999908447266,
+          "open": 85.72000122070312,
           "high": 85.72000122070312,
-          "low": 85.30000305175781,
+          "low": 85.31999969482422,
           "close": 85.55000305175781,
           "volume": 0.0
         },
@@ -20432,51 +20528,51 @@
           "high": 85.62999725341797,
           "low": 85.25,
           "close": 85.44999694824219,
-          "volume": 26385920.0
+          "volume": 26695680.0
         },
         {
           "timestamp": "2026-04-23T11:00:00+00:00",
-          "open": 85.5,
+          "open": 85.4800033569336,
           "high": 85.93000030517578,
-          "low": 85.43000030517578,
+          "low": 85.41999816894531,
           "close": 85.8499984741211,
-          "volume": 30321664.0
+          "volume": 29407744.0
         },
         {
           "timestamp": "2026-04-23T12:00:00+00:00",
-          "open": 85.86000061035156,
+          "open": 85.87000274658203,
           "high": 86.11000061035156,
           "low": 85.7699966430664,
-          "close": 85.98999786376953,
+          "close": 86.0,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-23T13:00:00+00:00",
           "open": 86.0,
           "high": 86.05999755859375,
-          "low": 85.5999984741211,
+          "low": 85.58999633789062,
           "close": 85.79000091552734,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-23T14:00:00+00:00",
-          "open": 85.7300033569336,
-          "high": 86.19999694824219,
-          "low": 85.58000183105469,
-          "close": 86.08000183105469,
+          "open": 85.7699966430664,
+          "high": 86.20999908447266,
+          "low": 85.56999969482422,
+          "close": 86.06999969482422,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-23T15:00:00+00:00",
-          "open": 86.05999755859375,
+          "open": 86.06999969482422,
           "high": 86.63999938964844,
           "low": 85.81999969482422,
-          "close": 86.37000274658203,
+          "close": 86.36000061035156,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-23T16:00:00+00:00",
-          "open": 86.36000061035156,
+          "open": 86.37000274658203,
           "high": 86.43000030517578,
           "low": 85.80999755859375,
           "close": 85.83999633789062,
@@ -20484,57 +20580,57 @@
         },
         {
           "timestamp": "2026-04-23T17:00:00+00:00",
-          "open": 85.83999633789062,
+          "open": 85.86000061035156,
           "high": 85.91000366210938,
           "low": 84.51000213623047,
           "close": 85.37999725341797,
-          "volume": 201695232.0
+          "volume": 199659520.0
         },
         {
           "timestamp": "2026-04-23T18:00:00+00:00",
-          "open": 85.37999725341797,
+          "open": 85.37000274658203,
           "high": 85.69000244140625,
-          "low": 85.29000091552734,
-          "close": 85.31999969482422,
-          "volume": 146510336.0
+          "low": 85.26000213623047,
+          "close": 85.29000091552734,
+          "volume": 148546048.0
         },
         {
           "timestamp": "2026-04-23T19:00:00+00:00",
-          "open": 85.29000091552734,
+          "open": 85.2699966430664,
           "high": 85.58000183105469,
           "low": 85.16999816894531,
-          "close": 85.3499984741211,
+          "close": 85.31999969482422,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-23T20:00:00+00:00",
-          "open": 85.3499984741211,
+          "open": 85.33000183105469,
           "high": 85.86000061035156,
-          "low": 85.30999755859375,
+          "low": 85.30000305175781,
           "close": 85.63999938964844,
-          "volume": 61140992.0
+          "volume": 60622848.0
         },
         {
           "timestamp": "2026-04-23T21:00:00+00:00",
-          "open": 85.62999725341797,
+          "open": 85.6500015258789,
           "high": 86.0199966430664,
           "low": 85.54000091552734,
-          "close": 85.81999969482422,
-          "volume": 27790336.0
+          "close": 85.83000183105469,
+          "volume": 28308480.0
         },
         {
           "timestamp": "2026-04-23T22:00:00+00:00",
-          "open": 85.83999633789062,
-          "high": 86.27999877929688,
-          "low": 85.83999633789062,
-          "close": 86.02999877929688,
+          "open": 85.8499984741211,
+          "high": 86.2699966430664,
+          "low": 85.8499984741211,
+          "close": 86.01000213623047,
           "volume": 37367808.0
         },
         {
           "timestamp": "2026-04-23T23:00:00+00:00",
-          "open": 86.0,
+          "open": 85.97000122070312,
           "high": 86.23999786376953,
-          "low": 85.62999725341797,
+          "low": 85.66000366210938,
           "close": 86.16000366210938,
           "volume": 0.0
         },
@@ -20548,18 +20644,18 @@
         },
         {
           "timestamp": "2026-04-24T01:00:00+00:00",
-          "open": 86.2300033569336,
-          "high": 86.36000061035156,
+          "open": 86.23999786376953,
+          "high": 86.3499984741211,
           "low": 85.86000061035156,
-          "close": 86.31999969482422,
+          "close": 86.30999755859375,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-24T02:00:00+00:00",
-          "open": 86.27999877929688,
+          "open": 86.30000305175781,
           "high": 86.4000015258789,
           "low": 85.81999969482422,
-          "close": 85.91999816894531,
+          "close": 85.94000244140625,
           "volume": 0.0
         },
         {
@@ -20581,14 +20677,14 @@
         {
           "timestamp": "2026-04-24T05:00:00+00:00",
           "open": 85.33000183105469,
-          "high": 85.83000183105469,
+          "high": 85.80000305175781,
           "low": 85.19000244140625,
           "close": 85.69999694824219,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-24T06:00:00+00:00",
-          "open": 85.7300033569336,
+          "open": 85.73999786376953,
           "high": 85.76000213623047,
           "low": 85.33999633789062,
           "close": 85.44999694824219,
@@ -20620,55 +20716,55 @@
         },
         {
           "timestamp": "2026-04-24T10:00:00+00:00",
-          "open": 85.36000061035156,
+          "open": 85.47000122070312,
           "high": 85.77999877929688,
-          "low": 85.22000122070312,
-          "close": 85.76000213623047,
+          "low": 85.20999908447266,
+          "close": 85.75,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-24T11:00:00+00:00",
           "open": 85.76000213623047,
-          "high": 86.30000305175781,
+          "high": 86.30999755859375,
           "low": 85.75,
           "close": 86.2300033569336,
-          "volume": 83508736.0
+          "volume": 83904000.0
         },
         {
           "timestamp": "2026-04-24T12:00:00+00:00",
-          "open": 86.2300033569336,
-          "high": 86.80999755859375,
+          "open": 86.22000122070312,
+          "high": 86.81999969482422,
           "low": 86.12000274658203,
           "close": 86.37999725341797,
-          "volume": 88130560.0
+          "volume": 87995392.0
         },
         {
           "timestamp": "2026-04-24T13:00:00+00:00",
           "open": 86.37000274658203,
-          "high": 86.5999984741211,
+          "high": 86.63999938964844,
           "low": 85.9000015258789,
-          "close": 86.12000274658203,
-          "volume": 483328.0
+          "close": 86.11000061035156,
+          "volume": 223232.0
         },
         {
           "timestamp": "2026-04-24T14:00:00+00:00",
-          "open": 86.08000183105469,
+          "open": 86.05999755859375,
           "high": 86.2699966430664,
-          "low": 85.70999908447266,
-          "close": 86.11000061035156,
+          "low": 85.7300033569336,
+          "close": 86.0999984741211,
           "volume": 26603008.0
         },
         {
           "timestamp": "2026-04-24T15:00:00+00:00",
           "open": 86.0999984741211,
-          "high": 86.5999984741211,
-          "low": 85.56999969482422,
-          "close": 86.55000305175781,
+          "high": 86.58000183105469,
+          "low": 85.58000183105469,
+          "close": 86.55999755859375,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-24T16:00:00+00:00",
-          "open": 86.55999755859375,
+          "open": 86.55000305175781,
           "high": 86.62000274658203,
           "low": 86.12999725341797,
           "close": 86.37999725341797,
@@ -20684,25 +20780,25 @@
         },
         {
           "timestamp": "2026-04-24T18:00:00+00:00",
-          "open": 86.5199966430664,
+          "open": 86.5,
           "high": 86.56999969482422,
           "low": 85.9800033569336,
-          "close": 86.38999938964844,
+          "close": 86.4000015258789,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-24T19:00:00+00:00",
           "open": 86.44000244140625,
           "high": 86.55999755859375,
-          "low": 86.2699966430664,
-          "close": 86.38999938964844,
+          "low": 86.25,
+          "close": 86.36000061035156,
           "volume": 0.0
         },
         {
           "timestamp": "2026-04-24T20:00:00+00:00",
-          "open": 86.33000183105469,
+          "open": 86.31999969482422,
           "high": 86.95999908447266,
-          "low": 86.26000213623047,
+          "low": 86.25,
           "close": 86.91000366210938,
           "volume": 0.0
         },
@@ -20711,16 +20807,24 @@
           "open": 86.88999938964844,
           "high": 86.9800033569336,
           "low": 86.43000030517578,
-          "close": 86.5,
-          "volume": 5124096.0
+          "close": 86.48999786376953,
+          "volume": 5475584.0
         },
         {
           "timestamp": "2026-04-24T22:00:00+00:00",
           "open": 86.4800033569336,
           "high": 86.48999786376953,
-          "low": 86.43000030517578,
-          "close": 86.44999694824219,
-          "volume": 0.0
+          "low": 86.1500015258789,
+          "close": 86.20999908447266,
+          "volume": 6075392.0
+        },
+        {
+          "timestamp": "2026-04-24T23:00:00+00:00",
+          "open": 86.22000122070312,
+          "high": 86.27999877929688,
+          "low": 86.20999908447266,
+          "close": 86.27999877929688,
+          "volume": 3695104.0
         }
       ],
       "is_major": true,
@@ -20765,19 +20869,13 @@
       },
       "trading_bible": {
         "symbol": "SOL",
-        "trend_state": "internal_range_or_transition|external_bullish",
-        "internal_structure": "range_or_transition",
+        "trend_state": "internal_bullish|external_bullish",
+        "internal_structure": "bullish",
         "external_structure": "bullish",
         "htf_bias": "bearish",
         "ltf_bias": "bearish",
         "alignment_state": "mixed",
         "pivots": [
-          {
-            "timestamp": "2026-04-24T05:00:00+00:00",
-            "price": 85.19000244140625,
-            "kind": "low",
-            "strength": "internal"
-          },
           {
             "timestamp": "2026-04-24T09:00:00+00:00",
             "price": 85.0,
@@ -20786,13 +20884,13 @@
           },
           {
             "timestamp": "2026-04-24T12:00:00+00:00",
-            "price": 86.80999755859375,
+            "price": 86.81999969482422,
             "kind": "high",
             "strength": "internal"
           },
           {
             "timestamp": "2026-04-24T15:00:00+00:00",
-            "price": 85.56999969482422,
+            "price": 85.58000183105469,
             "kind": "low",
             "strength": "internal"
           },
@@ -20806,6 +20904,12 @@
             "timestamp": "2026-04-24T18:00:00+00:00",
             "price": 85.9800033569336,
             "kind": "low",
+            "strength": "internal"
+          },
+          {
+            "timestamp": "2026-04-24T21:00:00+00:00",
+            "price": 86.9800033569336,
+            "kind": "high",
             "strength": "internal"
           },
           {
@@ -20840,7 +20944,7 @@
           },
           {
             "timestamp": "2026-04-24T12:00:00+00:00",
-            "price": 86.80999755859375,
+            "price": 86.81999969482422,
             "kind": "high",
             "strength": "external"
           }
@@ -20850,7 +20954,7 @@
             "timestamp": "2026-04-24T20:00:00+00:00",
             "event_type": "BOS",
             "direction": "bullish",
-            "level": 86.80999755859375,
+            "level": 86.81999969482422,
             "context": "Close broke above prior swing high with continuation"
           }
         ],
@@ -20882,7 +20986,7 @@
           },
           {
             "pool_type": "swing_high",
-            "level": 86.80999755859375,
+            "level": 86.81999969482422,
             "strength": "external",
             "notes": [
               "Major swing liquidity"
@@ -20915,13 +21019,6 @@
         ],
         "fvgs": [
           {
-            "timestamp": "2026-04-22T17:00:00+00:00",
-            "direction": "bearish",
-            "upper": 88.08999633789062,
-            "lower": 88.05000305175781,
-            "status": "open"
-          },
-          {
             "timestamp": "2026-04-22T20:00:00+00:00",
             "direction": "bearish",
             "upper": 87.83000183105469,
@@ -20932,14 +21029,14 @@
             "timestamp": "2026-04-23T00:00:00+00:00",
             "direction": "bearish",
             "upper": 87.33000183105469,
-            "lower": 87.1500015258789,
+            "lower": 87.13999938964844,
             "status": "open"
           },
           {
             "timestamp": "2026-04-23T03:00:00+00:00",
             "direction": "bearish",
-            "upper": 86.13999938964844,
-            "lower": 86.0999984741211,
+            "upper": 86.1500015258789,
+            "lower": 86.13999938964844,
             "status": "open"
           },
           {
@@ -20983,16 +21080,16 @@
             "upper": 86.12000274658203,
             "lower": 85.77999877929688,
             "status": "open"
+          },
+          {
+            "timestamp": "2026-04-24T23:00:00+00:00",
+            "direction": "bearish",
+            "upper": 86.43000030517578,
+            "lower": 86.27999877929688,
+            "status": "open"
           }
         ],
         "order_blocks": [
-          {
-            "timestamp": "2026-04-24T03:00:00+00:00",
-            "direction": "bullish",
-            "upper": 85.97000122070312,
-            "lower": 85.44999694824219,
-            "reason": "Last bearish candle before bullish structural impulse"
-          },
           {
             "timestamp": "2026-04-24T04:00:00+00:00",
             "direction": "bullish",
@@ -21017,7 +21114,7 @@
           {
             "timestamp": "2026-04-24T13:00:00+00:00",
             "direction": "bullish",
-            "upper": 86.5999984741211,
+            "upper": 86.63999938964844,
             "lower": 85.9000015258789,
             "reason": "Last bearish candle before bullish structural impulse"
           },
@@ -21039,7 +21136,7 @@
             "timestamp": "2026-04-24T19:00:00+00:00",
             "direction": "bullish",
             "upper": 86.55999755859375,
-            "lower": 86.2699966430664,
+            "lower": 86.25,
             "reason": "Last bearish candle before bullish structural impulse"
           },
           {
@@ -21048,9 +21145,25 @@
             "upper": 86.9800033569336,
             "lower": 86.43000030517578,
             "reason": "Last bearish candle before bullish structural impulse"
+          },
+          {
+            "timestamp": "2026-04-24T22:00:00+00:00",
+            "direction": "bullish",
+            "upper": 86.48999786376953,
+            "lower": 86.1500015258789,
+            "reason": "Last bearish candle before bullish structural impulse"
           }
         ],
         "sweeps": [
+          {
+            "timestamp": "2026-04-24T15:00:00+00:00",
+            "classification": "run",
+            "direction": "bullish",
+            "level": 86.4000015258789,
+            "notes": [
+              "swing_high taken with continuation"
+            ]
+          },
           {
             "timestamp": "2026-04-24T17:00:00+00:00",
             "classification": "run",
@@ -21073,7 +21186,7 @@
             "timestamp": "2026-04-24T20:00:00+00:00",
             "classification": "run",
             "direction": "bullish",
-            "level": 86.80999755859375,
+            "level": 86.81999969482422,
             "notes": [
               "swing_high taken with continuation"
             ]
@@ -21131,15 +21244,6 @@
             "notes": [
               "equal_highs taken and rejected"
             ]
-          },
-          {
-            "timestamp": "2026-04-24T20:00:00+00:00",
-            "classification": "run",
-            "direction": "bullish",
-            "level": 86.630001,
-            "notes": [
-              "equal_highs taken with continuation"
-            ]
           }
         ],
         "traps": [
@@ -21152,11 +21256,11 @@
             ]
           },
           {
-            "timestamp": "2026-04-24T15:00:00+00:00",
+            "timestamp": "2026-04-24T13:00:00+00:00",
             "trap_type": "inducement",
-            "direction": "bullish",
+            "direction": "bearish",
             "notes": [
-              "equal_lows taken and rejected"
+              "equal_highs taken and rejected"
             ]
           }
         ],
@@ -21166,17 +21270,17 @@
           "new_york_kill_zone": false,
           "time_to_next_kill_zone_minutes": null,
           "asia_high": 88.31999969482422,
-          "asia_low": 83.38999938964844,
+          "asia_low": 83.4000015258789,
           "london_high": 88.87000274658203,
           "london_low": 84.4800033569336,
           "new_york_high": 89.3499984741211,
           "new_york_low": 84.33999633789062
         },
-        "session_narrative": "Active session: After Hours. Asia range: 83.39 to 88.32. London range: 84.48 to 88.87. NY range: 84.34 to 89.35. Recent sweep detected near liquidity. Latest BOS: bullish.",
+        "session_narrative": "Active session: After Hours. Asia range: 83.40 to 88.32. London range: 84.48 to 88.87. NY range: 84.34 to 89.35. Recent run detected near liquidity. Latest BOS: bullish.",
         "premium_discount": {
-          "range_high": 86.80999755859375,
+          "range_high": 86.81999969482422,
           "range_low": 84.51000213623047,
-          "equilibrium": 85.65999984741211,
+          "equilibrium": 85.66500091552734,
           "state": "premium"
         },
         "setup": {
@@ -21246,23 +21350,23 @@
         }
       },
       "technical": {
-        "rsi": 54.26141801935544,
+        "rsi": 51.509700805861705,
         "rsi_status": "NEUTRAL",
-        "macd": 0.15856482530365668,
+        "macd": 0.12496769991261658,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
       "derivatives": {
         "oi_change_1h_pct": null,
-        "funding_current": 0.00021533971506,
+        "funding_current": 0.0012001420386599999,
         "funding_state": "balanced",
-        "long_short_value": 1.005,
+        "long_short_value": 1.068,
         "long_short_type": "funding_oi_price_proxy",
         "liq_bias": "above",
-        "liq_level": 88.01,
+        "liq_level": 87.83,
         "liq_confidence": "low",
-        "daily_change_pct": -0.05780699625180636,
-        "recent_range_pct": 2.290345201653421,
+        "daily_change_pct": 0.08119672377635653,
+        "recent_range_pct": 2.2948578870502963,
         "source": {
           "oi": "okx",
           "funding": "okx",
@@ -21270,33 +21374,13 @@
         },
         "confidence_label": "inferred",
         "funding_change_1h_pct": 0.0,
-        "funding_change_4h_pct": -105.33875409333365,
-        "oi_change_hist_1h_pct": 0.05391863976023183,
-        "oi_change_hist_4h_pct": 0.49059381155535603,
+        "funding_change_4h_pct": -200.2249880153648,
+        "oi_change_hist_1h_pct": -0.01885212913332927,
+        "oi_change_hist_4h_pct": -0.9177064247876555,
         "long_short_change_1h_pct": 0.0,
-        "sparkline": "\u2581\u2581\u2581\u2581\u2585\u2585\u2588\u2588"
+        "sparkline": "\u2581\u2581\u2584\u2584\u2586\u2586\u2588\u2588"
       },
       "derivatives_history_rows": [
-        {
-          "timestamp": "2026-04-18T16:10:45Z",
-          "funding_current": -0.00364916073708,
-          "long_short_value": 0.826,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 219890244.04360035,
-          "liq_bias": "below",
-          "liq_level": 85.3
-        },
-        {
-          "timestamp": "2026-04-18T17:03:17Z",
-          "funding_current": -0.0016830190184900001,
-          "long_short_value": 0.912,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 218774339.1000003,
-          "liq_bias": "below",
-          "liq_level": 85.13
-        },
         {
           "timestamp": "2026-04-18T17:03:54Z",
           "funding_current": -0.00160601056915,
@@ -23676,6 +23760,26 @@
           "oi_current": 220097503.61920017,
           "liq_bias": "above",
           "liq_level": 88.01
+        },
+        {
+          "timestamp": "2026-04-24T23:02:02Z",
+          "funding_current": 0.0012001420386599999,
+          "long_short_value": 1.068,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 219041940.07990012,
+          "liq_bias": "above",
+          "liq_level": 87.83
+        },
+        {
+          "timestamp": "2026-04-24T23:02:24Z",
+          "funding_current": 0.0012001420386599999,
+          "long_short_value": 1.068,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 219000646.0105001,
+          "liq_bias": "above",
+          "liq_level": 87.83
         }
       ],
       "signal_change": null
@@ -23683,10 +23787,10 @@
     {
       "symbol": "ZEC",
       "display_symbol": "ZEC",
-      "price": 363.3800048828125,
-      "change_pct": -0.1072062409317438,
+      "price": 360.29998779296875,
+      "change_pct": -0.08873809787356911,
       "source": "yfinance",
-      "volume": 1063680.0,
+      "volume": 329536.0,
       "market_cap": null,
       "ohlc": [
         {
@@ -28668,49 +28772,59 @@
         {
           "timestamp": "2026-04-24T22:00:00+00:00",
           "open": 363.94000244140625,
-          "high": 364.29998779296875,
-          "low": 363.3800048828125,
-          "close": 363.3800048828125,
-          "volume": 1063680.0
+          "high": 364.9800109863281,
+          "low": 359.54998779296875,
+          "close": 360.6199951171875,
+          "volume": 13341184.0
+        },
+        {
+          "timestamp": "2026-04-24T23:00:00+00:00",
+          "open": 360.6700134277344,
+          "high": 360.70001220703125,
+          "low": 360.2900085449219,
+          "close": 360.29998779296875,
+          "volume": 329536.0
         }
       ],
       "is_major": true,
       "is_context_only": false,
       "last_signal": {
         "symbol": "ZEC",
-        "type": "BUY",
+        "type": "HOLD",
         "reason": "Trend state leans bullish",
-        "confidence": 95
+        "confidence": 48
       },
       "advisory": {
         "symbol": "ZEC",
-        "state": "READY",
+        "state": "PASS",
         "direction": "LONG",
-        "score": 100,
-        "confidence": "VERY_HIGH",
-        "priority": 1,
+        "score": 48,
+        "confidence": "LOW",
+        "priority": 4,
         "reasons": [
           "Trend state leans bullish",
-          "HTF/LTF alignment present",
           "Liquidity reference identified",
           "Fair value gap present",
           "Sweep/run context supports setup",
-          "Execution status marked READY"
+          "MACD bullish",
+          "Macro backdrop supports risk-taking"
         ],
         "blockers": [
+          "HTF/LTF alignment missing",
           "Not in a major kill zone",
+          "Entry zone undefined",
+          "Invalidation undefined",
           "Target not defined"
         ],
         "triggers": [
+          "Needs HTF/LTF alignment",
           "Needs London or New York kill zone timing"
         ],
-        "invalidators": [
-          "Lose invalidation level 349.3999938964844"
-        ],
-        "time_horizon": "INTRADAY",
-        "display_signal": "BUY",
+        "invalidators": [],
+        "time_horizon": "CONTEXT",
+        "display_signal": "HOLD",
         "display_reason": "Trend state leans bullish",
-        "display_confidence": 95
+        "display_confidence": 48
       },
       "trading_bible": {
         "symbol": "ZEC",
@@ -28718,8 +28832,8 @@
         "internal_structure": "bullish",
         "external_structure": "bullish",
         "htf_bias": "bullish",
-        "ltf_bias": "bullish",
-        "alignment_state": "aligned",
+        "ltf_bias": "bearish",
+        "alignment_state": "mixed",
         "pivots": [
           {
             "timestamp": "2026-04-24T06:00:00+00:00",
@@ -28758,12 +28872,6 @@
             "strength": "internal"
           },
           {
-            "timestamp": "2026-04-22T09:00:00+00:00",
-            "price": 316.239990234375,
-            "kind": "low",
-            "strength": "external"
-          },
-          {
             "timestamp": "2026-04-22T16:00:00+00:00",
             "price": 331.5899963378906,
             "kind": "high",
@@ -28792,27 +28900,17 @@
             "price": 335.8399963378906,
             "kind": "low",
             "strength": "external"
-          }
-        ],
-        "bos_events": [
+          },
           {
-            "timestamp": "2026-04-24T15:00:00+00:00",
-            "event_type": "BOS",
-            "direction": "bullish",
-            "level": 349.3999938964844,
-            "context": "Close broke above prior swing high with continuation"
+            "timestamp": "2026-04-24T18:00:00+00:00",
+            "price": 367.20001220703125,
+            "kind": "high",
+            "strength": "external"
           }
         ],
+        "bos_events": [],
         "choch_events": [],
         "liquidity_pools": [
-          {
-            "pool_type": "swing_low",
-            "level": 311.6400146484375,
-            "strength": "external",
-            "notes": [
-              "Major swing liquidity"
-            ]
-          },
           {
             "pool_type": "swing_low",
             "level": 320.3599853515625,
@@ -28836,9 +28934,24 @@
             "notes": [
               "Major swing liquidity"
             ]
+          },
+          {
+            "pool_type": "swing_high",
+            "level": 367.20001220703125,
+            "strength": "external",
+            "notes": [
+              "Major swing liquidity"
+            ]
           }
         ],
         "fvgs": [
+          {
+            "timestamp": "2026-04-22T00:00:00+00:00",
+            "direction": "bullish",
+            "upper": 316.67999267578125,
+            "lower": 311.1600036621094,
+            "status": "open"
+          },
           {
             "timestamp": "2026-04-22T16:00:00+00:00",
             "direction": "bullish",
@@ -28901,97 +29014,10 @@
             "upper": 361.7300109863281,
             "lower": 359.6000061035156,
             "status": "open"
-          },
-          {
-            "timestamp": "2026-04-24T22:00:00+00:00",
-            "direction": "bullish",
-            "upper": 363.3800048828125,
-            "lower": 363.1300048828125,
-            "status": "open"
           }
         ],
-        "order_blocks": [
-          {
-            "timestamp": "2026-04-24T04:00:00+00:00",
-            "direction": "bullish",
-            "upper": 345.5299987792969,
-            "lower": 340.8500061035156,
-            "reason": "Last bearish candle before bullish structural impulse"
-          },
-          {
-            "timestamp": "2026-04-24T06:00:00+00:00",
-            "direction": "bullish",
-            "upper": 350.7799987792969,
-            "lower": 342.239990234375,
-            "reason": "Last bearish candle before bullish structural impulse"
-          },
-          {
-            "timestamp": "2026-04-24T08:00:00+00:00",
-            "direction": "bullish",
-            "upper": 344.8299865722656,
-            "lower": 341.2300109863281,
-            "reason": "Last bearish candle before bullish structural impulse"
-          },
-          {
-            "timestamp": "2026-04-24T09:00:00+00:00",
-            "direction": "bullish",
-            "upper": 342.4800109863281,
-            "lower": 338.5400085449219,
-            "reason": "Last bearish candle before bullish structural impulse"
-          },
-          {
-            "timestamp": "2026-04-24T12:00:00+00:00",
-            "direction": "bullish",
-            "upper": 359.67999267578125,
-            "lower": 353.1600036621094,
-            "reason": "Last bearish candle before bullish structural impulse"
-          },
-          {
-            "timestamp": "2026-04-24T13:00:00+00:00",
-            "direction": "bullish",
-            "upper": 356.4800109863281,
-            "lower": 350.9800109863281,
-            "reason": "Last bearish candle before bullish structural impulse"
-          },
-          {
-            "timestamp": "2026-04-24T14:00:00+00:00",
-            "direction": "bullish",
-            "upper": 353.7300109863281,
-            "lower": 347.20001220703125,
-            "reason": "Last bearish candle before bullish structural impulse"
-          },
-          {
-            "timestamp": "2026-04-24T16:00:00+00:00",
-            "direction": "bullish",
-            "upper": 359.6000061035156,
-            "lower": 352.25,
-            "reason": "Last bearish candle before bullish structural impulse"
-          },
-          {
-            "timestamp": "2026-04-24T18:00:00+00:00",
-            "direction": "bullish",
-            "upper": 367.20001220703125,
-            "lower": 361.7300109863281,
-            "reason": "Last bearish candle before bullish structural impulse"
-          },
-          {
-            "timestamp": "2026-04-24T19:00:00+00:00",
-            "direction": "bullish",
-            "upper": 363.1000061035156,
-            "lower": 357.6300048828125,
-            "reason": "Last bearish candle before bullish structural impulse"
-          }
-        ],
+        "order_blocks": [],
         "sweeps": [
-          {
-            "timestamp": "2026-04-24T06:00:00+00:00",
-            "classification": "sweep",
-            "direction": "bearish",
-            "level": 349.3999938964844,
-            "notes": [
-              "swing_high taken and rejected"
-            ]
-          },
           {
             "timestamp": "2026-04-24T10:00:00+00:00",
             "classification": "run",
@@ -29078,46 +29104,44 @@
           "new_york_high": 367.20001220703125,
           "new_york_low": 306.2900085449219
         },
-        "session_narrative": "Active session: After Hours. Asia range: 301.40 to 350.78. London range: 306.65 to 359.68. NY range: 306.29 to 367.20. Recent run detected near liquidity. Latest BOS: bullish.",
+        "session_narrative": "Active session: After Hours. Asia range: 301.40 to 350.78. London range: 306.65 to 359.68. NY range: 306.29 to 367.20. Recent run detected near liquidity.",
         "premium_discount": {
-          "range_high": 349.3999938964844,
+          "range_high": 367.20001220703125,
           "range_low": 311.6400146484375,
-          "equilibrium": 330.52000427246094,
+          "equilibrium": 339.4200134277344,
           "state": "premium"
         },
         "setup": {
-          "bias": "long",
-          "grade": "A+",
-          "execution_status": "READY",
+          "bias": "pass",
+          "grade": "PASS",
+          "execution_status": "PASS",
           "reasons": [
-            "HTF/LTF alignment present",
-            "Recent BOS present",
             "Nearby liquidity pools identified",
             "Fair value gap present",
-            "Order block candidate present",
             "Sweep/run behavior detected",
-            "Trap/inducement behavior detected",
-            "Continuation after BOS + FVG retest candidate"
+            "Trap/inducement behavior detected"
           ],
           "blocked_conditions": [
+            "HTF/LTF alignment missing",
             "Not in a major kill zone"
           ],
           "next_trigger_conditions": [
+            "Needs HTF/LTF alignment",
             "Needs London or New York kill zone timing"
           ],
-          "watchlist_reason": null,
-          "setup_type": "bos-fvg-continuation",
-          "entry_zone_low": 349.3999938964844,
-          "entry_zone_high": 363.3800048828125,
+          "watchlist_reason": "Waiting for confluence to improve",
+          "setup_type": null,
+          "entry_zone_low": null,
+          "entry_zone_high": null,
           "target_1": null,
           "target_2": null,
           "rr_estimate": null,
-          "invalidation_level": 349.3999938964844,
-          "invalidation_reason": "Template invalidation for bos-fvg-continuation",
+          "invalidation_level": null,
+          "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing; Not in a major kill zone",
           "checklist": [
             {
               "name": "HTF/LTF aligned",
-              "ok": true
+              "ok": false
             },
             {
               "name": "In kill zone",
@@ -29125,7 +29149,7 @@
             },
             {
               "name": "BOS present",
-              "ok": true
+              "ok": false
             },
             {
               "name": "Liquidity identified",
@@ -29137,7 +29161,7 @@
             },
             {
               "name": "Order block candidate",
-              "ok": true
+              "ok": false
             },
             {
               "name": "Sweep/run context",
@@ -29148,13 +29172,13 @@
               "ok": false
             }
           ],
-          "no_trade_reason": null
+          "no_trade_reason": "Insufficient weighted confluence across structure, liquidity, session, and range position"
         }
       },
       "technical": {
-        "rsi": 65.4695082978354,
+        "rsi": 61.374829655076674,
         "rsi_status": "NEUTRAL",
-        "macd": 7.328982040374569,
+        "macd": 6.815252910573804,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
@@ -29162,13 +29186,13 @@
         "oi_change_1h_pct": null,
         "funding_current": 0.01,
         "funding_state": "crowded_longs",
-        "long_short_value": 1.209,
+        "long_short_value": 1.211,
         "long_short_type": "funding_oi_price_proxy",
         "liq_bias": "above",
-        "liq_level": 369.92,
+        "liq_level": 366.79,
         "liq_confidence": "low",
-        "daily_change_pct": -0.1072062409317438,
-        "recent_range_pct": 8.630088460495786,
+        "daily_change_pct": -0.08873809787356911,
+        "recent_range_pct": 8.703862595510367,
         "source": {
           "oi": "okx",
           "funding": "okx",
@@ -29177,32 +29201,12 @@
         "confidence_label": "inferred",
         "funding_change_1h_pct": 0.0,
         "funding_change_4h_pct": 0.0,
-        "oi_change_hist_1h_pct": 0.02317464734573797,
-        "oi_change_hist_4h_pct": 1.1592507075806824,
+        "oi_change_hist_1h_pct": -0.06924329862411652,
+        "oi_change_hist_4h_pct": 0.36721698992339585,
         "long_short_change_1h_pct": 0.0,
-        "sparkline": "\u2588\u2588\u2582\u2582\u2581\u2581\u2582\u2582"
+        "sparkline": "\u2585\u2585\u2581\u2581\u2585\u2585\u2588\u2588"
       },
       "derivatives_history_rows": [
-        {
-          "timestamp": "2026-04-18T16:10:45Z",
-          "funding_current": 0.01,
-          "long_short_value": 1.267,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 33920357.7888,
-          "liq_bias": "above",
-          "liq_level": 333.35
-        },
-        {
-          "timestamp": "2026-04-18T17:03:17Z",
-          "funding_current": 0.01,
-          "long_short_value": 1.197,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 33794721.1965,
-          "liq_bias": "above",
-          "liq_level": 329.27
-        },
         {
           "timestamp": "2026-04-18T17:03:54Z",
           "funding_current": 0.01,
@@ -31582,6 +31586,26 @@
           "oi_current": 40597975.135,
           "liq_bias": "above",
           "liq_level": 369.92
+        },
+        {
+          "timestamp": "2026-04-24T23:02:02Z",
+          "funding_current": 0.01,
+          "long_short_value": 1.211,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 40237572.8101,
+          "liq_bias": "above",
+          "liq_level": 366.79
+        },
+        {
+          "timestamp": "2026-04-24T23:02:24Z",
+          "funding_current": 0.01,
+          "long_short_value": 1.211,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 40209710.9874,
+          "liq_bias": "above",
+          "liq_level": 366.79
         }
       ],
       "signal_change": null
@@ -31589,75 +31613,22 @@
     {
       "symbol": "HYPE",
       "display_symbol": "HYPE",
-      "price": 41.27,
-      "change_pct": 0.1238763790327467,
+      "price": 41.22,
+      "change_pct": -0.08364590206909478,
       "source": "coingecko",
-      "volume": 186804019.473064,
-      "market_cap": 9838677930.55552,
+      "volume": 187643346.5810548,
+      "market_cap": 9826968816.46204,
       "ohlc": null,
       "is_major": false,
       "is_context_only": false,
       "last_signal": {
         "symbol": "HYPE",
-        "type": "HOLD",
-        "reason": "MACD bearish",
-        "confidence": 40
-      },
-      "advisory": {
-        "symbol": "HYPE",
-        "state": "PASS",
-        "direction": "NEUTRAL",
-        "score": 0,
-        "confidence": "LOW",
-        "priority": 4,
-        "reasons": [
-          "MACD bearish",
-          "Macro backdrop supports risk-taking"
-        ],
-        "blockers": [
-          "HTF/LTF alignment missing",
-          "Not in a major kill zone",
-          "Entry zone undefined",
-          "Invalidation undefined",
-          "Target not defined",
-          "Technicals are using fallback/sample data"
-        ],
-        "triggers": [],
-        "invalidators": [],
-        "time_horizon": "CONTEXT",
-        "display_signal": "HOLD",
-        "display_reason": "MACD bearish",
-        "display_confidence": 40
-      },
-      "trading_bible": null,
-      "technical": {
-        "rsi": 58.76829718691823,
-        "rsi_status": "NEUTRAL",
-        "macd": -0.5765886923662293,
-        "macd_status": "BEARISH",
-        "sample_data_used": true
-      },
-      "signal_change": null
-    },
-    {
-      "symbol": "ASTER",
-      "display_symbol": "ASTER",
-      "price": 4.114e-05,
-      "change_pct": 0.0,
-      "source": "coingecko",
-      "volume": 1066.8190847010303,
-      "market_cap": 0.0,
-      "ohlc": null,
-      "is_major": false,
-      "is_context_only": false,
-      "last_signal": {
-        "symbol": "ASTER",
         "type": "HOLD",
         "reason": "RSI soft / oversold",
         "confidence": 40
       },
       "advisory": {
-        "symbol": "ASTER",
+        "symbol": "HYPE",
         "state": "PASS",
         "direction": "NEUTRAL",
         "score": 3,
@@ -31685,10 +31656,63 @@
       },
       "trading_bible": null,
       "technical": {
-        "rsi": 30.08977304596816,
+        "rsi": 31.806141898924054,
         "rsi_status": "NEUTRAL",
-        "macd": -1.251255580148825,
+        "macd": -1.2873766393405148,
         "macd_status": "BEARISH",
+        "sample_data_used": true
+      },
+      "signal_change": null
+    },
+    {
+      "symbol": "ASTER",
+      "display_symbol": "ASTER",
+      "price": 4.114e-05,
+      "change_pct": 0.0,
+      "source": "coingecko",
+      "volume": 1066.8190847010303,
+      "market_cap": 0.0,
+      "ohlc": null,
+      "is_major": false,
+      "is_context_only": false,
+      "last_signal": {
+        "symbol": "ASTER",
+        "type": "HOLD",
+        "reason": "MACD bullish",
+        "confidence": 40
+      },
+      "advisory": {
+        "symbol": "ASTER",
+        "state": "PASS",
+        "direction": "NEUTRAL",
+        "score": 1,
+        "confidence": "LOW",
+        "priority": 4,
+        "reasons": [
+          "MACD bullish",
+          "Macro backdrop supports risk-taking"
+        ],
+        "blockers": [
+          "HTF/LTF alignment missing",
+          "Not in a major kill zone",
+          "Entry zone undefined",
+          "Invalidation undefined",
+          "Target not defined",
+          "Technicals are using fallback/sample data"
+        ],
+        "triggers": [],
+        "invalidators": [],
+        "time_horizon": "CONTEXT",
+        "display_signal": "HOLD",
+        "display_reason": "MACD bullish",
+        "display_confidence": 40
+      },
+      "trading_bible": null,
+      "technical": {
+        "rsi": 57.95628875933384,
+        "rsi_status": "NEUTRAL",
+        "macd": 0.8960911803136202,
+        "macd_status": "BULLISH",
         "sample_data_used": true
       },
       "signal_change": null
@@ -31696,11 +31720,11 @@
     {
       "symbol": "SENT",
       "display_symbol": "SENT",
-      "price": 0.00013748,
-      "change_pct": 4.703481853971151,
+      "price": 0.00013785,
+      "change_pct": 5.3663803220167665,
       "source": "coingecko",
-      "volume": 35318.444233641065,
-      "market_cap": 4707755.893485203,
+      "volume": 35568.44635791078,
+      "market_cap": 4720596.052335075,
       "ohlc": null,
       "is_major": false,
       "is_context_only": false,
@@ -31738,9 +31762,9 @@
       },
       "trading_bible": null,
       "technical": {
-        "rsi": 57.47930868446391,
+        "rsi": 56.84631555522103,
         "rsi_status": "NEUTRAL",
-        "macd": 0.961759408732803,
+        "macd": 0.555838565584637,
         "macd_status": "BULLISH",
         "sample_data_used": true
       },
@@ -35222,9 +35246,9 @@
         {
           "timestamp": "2026-04-17T16:00:00-04:00",
           "open": 4875.60009765625,
-          "high": 4879.60009765625,
+          "high": 4876.2998046875,
           "low": 4848.0,
-          "close": 4879.60009765625,
+          "close": 4849.39990234375,
           "volume": 5343.0
         },
         {
@@ -39660,9 +39684,9 @@
         {
           "timestamp": "2026-04-17T16:00:00-04:00",
           "open": 81.48500061035156,
-          "high": 81.84200286865234,
+          "high": 81.5250015258789,
           "low": 80.86000061035156,
-          "close": 81.84200286865234,
+          "close": 80.93000030517578,
           "volume": 912.0
         },
         {
@@ -69823,8 +69847,8 @@
     {
       "symbol": "ASTER",
       "type": "HOLD",
-      "reason": "Mixed or neutral momentum",
-      "confidence": 63
+      "reason": "MACD bullish, waiting for stronger entry",
+      "confidence": 67
     },
     {
       "symbol": "SENT",
@@ -69838,9 +69862,9 @@
     "score": 55,
     "factors": [
       "Tracked assets: 18",
-      "Average change: +0.90%",
+      "Average change: +0.94%",
       "Snapshots stored: 4320",
-      "OHLC rows stored: 7118"
+      "OHLC rows stored: 7122"
     ]
   },
   "regime": {
@@ -69859,10 +69883,10 @@
       },
       {
         "symbol": "SENT",
-        "price": 0.00013748,
-        "change_pct": 4.703481853971151,
-        "rsi": 57.47930868446391,
-        "macd": 0.961759408732803
+        "price": 0.00013785,
+        "change_pct": 5.3663803220167665,
+        "rsi": 56.84631555522103,
+        "macd": 0.555838565584637
       },
       {
         "symbol": "NDX",
@@ -69920,6 +69944,14 @@
     ]
   },
   "alerts": [
+    {
+      "timestamp": "2026-04-24T23:02:02Z",
+      "symbol": "ZEC",
+      "type": "signal_change",
+      "message": "ZEC: BUY -> HOLD",
+      "from": "BUY",
+      "to": "HOLD"
+    },
     {
       "timestamp": "2026-04-24T22:01:58Z",
       "symbol": "ZEC",
@@ -70052,8 +70084,6 @@
   "history": {
     "BTC": {
       "dates": [
-        "2026-04-18T16:10:45Z",
-        "2026-04-18T17:03:17Z",
         "2026-04-18T17:03:54Z",
         "2026-04-18T18:03:16Z",
         "2026-04-18T18:04:21Z",
@@ -70291,11 +70321,11 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
-        76163.3671875,
-        75901.0,
         75901.0,
         75758.8515625,
         75758.8515625,
@@ -70533,11 +70563,11 @@
         77717.8828125,
         77717.8828125,
         77598.2421875,
-        77598.2421875
+        77598.2421875,
+        77403.0234375,
+        77403.0234375
       ],
       "change_pct": [
-        -0.03721081892512105,
-        -2.5719966261318454,
         -2.5719966261318454,
         -0.12297775493087754,
         -0.12297775493087754,
@@ -70775,11 +70805,11 @@
         -0.03961080126863087,
         -0.03961080126863087,
         0.04227276600467871,
-        0.04227276600467871
+        0.04227276600467871,
+        0.05561457794725957,
+        0.05561457794725957
       ],
       "rsi": [
-        42.21307239136774,
-        60.99152074505405,
         60.99152074505405,
         35.912975434816786,
         35.912975434816786,
@@ -71017,11 +71047,11 @@
         45.54430864220653,
         45.54430864220653,
         43.32599506466979,
-        43.32599506466979
+        43.32599506466979,
+        39.820144445523155,
+        39.820144445523155
       ],
       "macd": [
-        -81.03788581502158,
-        662.734724947979,
         662.734724947979,
         -169.62639040708018,
         -169.62639040708018,
@@ -71259,7 +71289,9 @@
         -66.9354710579064,
         -66.9354710579064,
         -89.1293555097509,
-        -89.1293555097509
+        -89.1293555097509,
+        -126.22166873430251,
+        -126.22166873430251
       ],
       "signal_type": [
         "HOLD",
@@ -71352,8 +71384,6 @@
         "HOLD",
         "HOLD",
         "HOLD",
-        "HOLD",
-        "HOLD",
         "SELL",
         "SELL",
         "SELL",
@@ -71440,6 +71470,8 @@
         "HOLD",
         "SELL",
         "SELL",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -71506,8 +71538,6 @@
     },
     "ETH": {
       "dates": [
-        "2026-04-18T16:10:45Z",
-        "2026-04-18T17:03:17Z",
         "2026-04-18T17:03:54Z",
         "2026-04-18T18:03:16Z",
         "2026-04-18T18:04:21Z",
@@ -71745,11 +71775,11 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
-        2364.85009765625,
-        2361.27001953125,
         2361.27001953125,
         2358.39990234375,
         2358.39990234375,
@@ -71987,11 +72017,11 @@
         2325.239990234375,
         2325.239990234375,
         2316.14990234375,
-        2316.14990234375
+        2316.14990234375,
+        2314.449951171875,
+        2314.449951171875
       ],
       "change_pct": [
-        0.01946400970371234,
-        -0.014400678992531392,
         -0.014400678992531392,
         -0.17354910714285715,
         -0.17354910714285715,
@@ -72229,11 +72259,11 @@
         -0.08937653884737624,
         -0.08937653884737624,
         0.013810349117191882,
-        0.013810349117191882
+        0.013810349117191882,
+        0.07436971534292092,
+        0.07436971534292092
       ],
       "rsi": [
-        40.30800149132123,
-        38.85757811995106,
         38.85757811995106,
         37.85552451439201,
         37.85552451439201,
@@ -72471,11 +72501,11 @@
         50.997633429064976,
         50.997633429064976,
         45.65275632290653,
-        45.65275632290653
+        45.65275632290653,
+        44.96811111750179,
+        44.96811111750179
       ],
       "macd": [
-        -8.903404447265075,
-        -9.502513069860015,
         -9.502513069860015,
         -9.814311890998852,
         -9.814311890998852,
@@ -72713,7 +72743,9 @@
         -1.6919766421538043,
         -1.6919766421538043,
         -2.6012899408410703,
-        -2.6012899408410703
+        -2.6012899408410703,
+        -3.0421988550651804,
+        -3.0421988550651804
       ],
       "signal_type": [
         "HOLD",
@@ -72749,8 +72781,6 @@
         "HOLD",
         "HOLD",
         "HOLD",
-        "HOLD",
-        "HOLD",
         "SELL",
         "SELL",
         "HOLD",
@@ -72908,6 +72938,8 @@
         "HOLD",
         "SELL",
         "SELL",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -72960,8 +72992,6 @@
     },
     "SOL": {
       "dates": [
-        "2026-04-18T16:10:45Z",
-        "2026-04-18T17:03:17Z",
         "2026-04-18T17:03:54Z",
         "2026-04-18T18:03:16Z",
         "2026-04-18T18:04:21Z",
@@ -73199,11 +73229,11 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
-        86.86000061035156,
-        86.69000244140625,
         86.69000244140625,
         86.66000366210938,
         86.66000366210938,
@@ -73441,11 +73471,11 @@
         86.87000274658203,
         86.87000274658203,
         86.44999694824219,
-        86.44999694824219
+        86.44999694824219,
+        86.27999877929688,
+        86.27999877929688
       ],
       "change_pct": [
-        0.08065410080171495,
-        -0.034592687816652416,
         -0.034592687816652416,
         -0.13827508512955552,
         -0.13827508512955552,
@@ -73683,11 +73713,11 @@
         -0.0460256746540481,
         -0.0460256746540481,
         -0.05780699625180636,
-        -0.05780699625180636
+        -0.05780699625180636,
+        0.08119672377635653,
+        0.08119672377635653
       ],
       "rsi": [
-        37.14784318601074,
-        35.12575429575385,
         35.12575429575385,
         35.22942349804545,
         35.22942349804545,
@@ -73925,11 +73955,11 @@
         62.01596010810226,
         62.01596010810226,
         54.26141801935544,
-        54.26141801935544
+        54.26141801935544,
+        51.509700805861705,
+        51.509700805861705
       ],
       "macd": [
-        -0.48894584008736786,
-        -0.5115319818699504,
         -0.5115319818699504,
         -0.5114985156135106,
         -0.5114985156135106,
@@ -74167,7 +74197,9 @@
         0.19190870894969692,
         0.19190870894969692,
         0.15856482530365668,
-        0.15856482530365668
+        0.15856482530365668,
+        0.12496769991261658,
+        0.12496769991261658
       ],
       "signal_type": [
         "HOLD",
@@ -74264,12 +74296,12 @@
         "HOLD",
         "HOLD",
         "HOLD",
+        "SELL",
+        "SELL",
+        "SELL",
+        "SELL",
         "HOLD",
         "HOLD",
-        "SELL",
-        "SELL",
-        "SELL",
-        "SELL",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -74414,8 +74446,6 @@
     },
     "ZEC": {
       "dates": [
-        "2026-04-18T16:10:45Z",
-        "2026-04-18T17:03:17Z",
         "2026-04-18T17:03:54Z",
         "2026-04-18T18:03:16Z",
         "2026-04-18T18:04:21Z",
@@ -74653,11 +74683,11 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
-        327.4599914550781,
-        323.45001220703125,
         323.45001220703125,
         324.4100036621094,
         324.4100036621094,
@@ -74895,11 +74925,11 @@
         359.07000732421875,
         359.07000732421875,
         363.3800048828125,
-        363.3800048828125
+        363.3800048828125,
+        360.29998779296875,
+        360.29998779296875
       ],
       "change_pct": [
-        0.4725018298654453,
-        -0.23440957036395846,
         -0.23440957036395846,
         -0.021575234790564567,
         -0.021575234790564567,
@@ -75137,11 +75167,11 @@
         -0.13627495764323766,
         -0.13627495764323766,
         -0.1072062409317438,
-        -0.1072062409317438
+        -0.1072062409317438,
+        -0.08873809787356911,
+        -0.08873809787356911
       ],
       "rsi": [
-        42.94957785928171,
-        36.99140303864429,
         36.99140303864429,
         38.39319809116933,
         38.39319809116933,
@@ -75379,11 +75409,11 @@
         62.20779575694481,
         62.20779575694481,
         65.4695082978354,
-        65.4695082978354
+        65.4695082978354,
+        61.374829655076674,
+        61.374829655076674
       ],
       "macd": [
-        -3.0522769311891125,
-        -3.4228812420827808,
         -3.4228812420827808,
         -3.331091638811074,
         -3.331091638811074,
@@ -75621,14 +75651,14 @@
         6.972585569683702,
         6.972585569683702,
         7.328982040374569,
-        7.328982040374569
+        7.328982040374569,
+        6.815252910573804,
+        6.815252910573804
       ],
       "signal_type": [
         "HOLD",
         "HOLD",
         "HOLD",
-        "HOLD",
-        "HOLD",
         "SELL",
         "SELL",
         "HOLD",
@@ -75863,13 +75893,13 @@
         "HOLD",
         "HOLD",
         "BUY",
-        "BUY"
+        "BUY",
+        "HOLD",
+        "HOLD"
       ]
     },
     "HYPE": {
       "dates": [
-        "2026-04-17T08:03:16Z",
-        "2026-04-17T09:05:39Z",
         "2026-04-17T09:06:22Z",
         "2026-04-17T10:02:35Z",
         "2026-04-17T10:03:20Z",
@@ -76107,11 +76137,11 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
-        43.9,
-        44.15,
         44.15,
         44.2,
         44.2,
@@ -76349,11 +76379,11 @@
         41.44,
         41.44,
         41.27,
-        41.27
+        41.27,
+        41.22,
+        41.22
       ],
       "change_pct": [
-        -2.998975555744269,
-        -2.5924119760466104,
         -2.5924119760466104,
         -2.491886280805441,
         -2.491886280805441,
@@ -76591,11 +76621,11 @@
         0.8683108550754652,
         0.8683108550754652,
         0.1238763790327467,
-        0.1238763790327467
+        0.1238763790327467,
+        -0.08364590206909478,
+        -0.08364590206909478
       ],
       "rsi": [
-        38.24438718616763,
-        43.82777249621673,
         43.82777249621673,
         47.60526446532499,
         47.60526446532499,
@@ -76833,11 +76863,11 @@
         48.14286424123003,
         48.14286424123003,
         58.76829718691823,
-        58.76829718691823
+        58.76829718691823,
+        31.806141898924054,
+        31.806141898924054
       ],
       "macd": [
-        -0.7177266195881487,
-        -0.3349409799624823,
         -0.3349409799624823,
         0.22152744096767663,
         0.22152744096767663,
@@ -77075,7 +77105,9 @@
         0.037481033155508214,
         0.037481033155508214,
         -0.5765886923662293,
-        -0.5765886923662293
+        -0.5765886923662293,
+        -1.2873766393405148,
+        -1.2873766393405148
       ],
       "signal_type": [
         "HOLD",
@@ -77322,8 +77354,6 @@
     },
     "ASTER": {
       "dates": [
-        "2026-04-17T08:03:16Z",
-        "2026-04-17T09:05:39Z",
         "2026-04-17T09:06:22Z",
         "2026-04-17T10:02:35Z",
         "2026-04-17T10:03:20Z",
@@ -77561,7 +77591,9 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
         4.114e-05,
@@ -78048,8 +78080,6 @@
         0.0
       ],
       "rsi": [
-        37.36414742564615,
-        63.68204790287914,
         63.68204790287914,
         48.189115767378766,
         48.189115767378766,
@@ -78287,11 +78317,11 @@
         53.68000706474411,
         53.68000706474411,
         30.08977304596816,
-        30.08977304596816
+        30.08977304596816,
+        57.95628875933384,
+        57.95628875933384
       ],
       "macd": [
-        -0.840773883607944,
-        1.3738915071051476,
         1.3738915071051476,
         1.022797388512931,
         1.022797388512931,
@@ -78529,7 +78559,9 @@
         -1.09650532379945,
         -1.09650532379945,
         -1.251255580148825,
-        -1.251255580148825
+        -1.251255580148825,
+        0.8960911803136202,
+        0.8960911803136202
       ],
       "signal_type": [
         "HOLD",
@@ -78776,8 +78808,6 @@
     },
     "SENT": {
       "dates": [
-        "2026-04-17T08:03:16Z",
-        "2026-04-17T09:05:39Z",
         "2026-04-17T09:06:22Z",
         "2026-04-17T10:02:35Z",
         "2026-04-17T10:03:20Z",
@@ -79015,11 +79045,11 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
-        0.00014903,
-        0.00014937,
         0.00014937,
         0.00014875,
         0.00014875,
@@ -79257,11 +79287,11 @@
         0.00013761,
         0.00013761,
         0.00013748,
-        0.00013748
+        0.00013748,
+        0.00013785,
+        0.00013785
       ],
       "change_pct": [
-        -0.8599133596531034,
-        0.18925385944420667,
         0.18925385944420667,
         -0.6635671187881786,
         -0.6635671187881786,
@@ -79499,11 +79529,11 @@
         4.853899945108967,
         4.853899945108967,
         4.703481853971151,
-        4.703481853971151
+        4.703481853971151,
+        5.3663803220167665,
+        5.3663803220167665
       ],
       "rsi": [
-        61.28056053111851,
-        58.25489025925061,
         58.25489025925061,
         72.33576205941436,
         72.33576205941436,
@@ -79741,11 +79771,11 @@
         47.70677400594785,
         47.70677400594785,
         57.47930868446391,
-        57.47930868446391
+        57.47930868446391,
+        56.84631555522103,
+        56.84631555522103
       ],
       "macd": [
-        0.5249521790283609,
-        0.4618423887287406,
         0.4618423887287406,
         0.7186767630463404,
         0.7186767630463404,
@@ -79983,7 +80013,9 @@
         -0.381801478188315,
         -0.381801478188315,
         0.961759408732803,
-        0.961759408732803
+        0.961759408732803,
+        0.555838565584637,
+        0.555838565584637
       ],
       "signal_type": [
         "HOLD",
@@ -80230,8 +80262,6 @@
     },
     "GOLD": {
       "dates": [
-        "2026-04-18T14:03:35Z",
-        "2026-04-18T15:03:00Z",
         "2026-04-18T15:03:15Z",
         "2026-04-18T16:06:25Z",
         "2026-04-18T16:07:05Z",
@@ -80469,11 +80499,11 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
-        4879.60009765625,
-        4849.39990234375,
         4849.39990234375,
         4879.60009765625,
         4879.60009765625,
@@ -80711,11 +80741,11 @@
         4723.7001953125,
         4723.7001953125,
         4725.39990234375,
+        4725.39990234375,
+        4725.39990234375,
         4725.39990234375
       ],
       "change_pct": [
-        2.045261135208513,
-        1.4136956881796476,
         1.4136956881796476,
         2.045261135208513,
         2.045261135208513,
@@ -80953,11 +80983,11 @@
         -2.083246878884757,
         -2.083246878884757,
         -2.048013949851224,
+        -2.048013949851224,
+        -2.048013949851224,
         -2.048013949851224
       ],
       "rsi": [
-        75.22128894369638,
-        62.995834140390336,
         62.995834140390336,
         75.22128894369638,
         75.22128894369638,
@@ -81195,11 +81225,11 @@
         64.95103221302483,
         64.95103221302483,
         65.86567635136775,
+        65.86567635136775,
+        65.86567635136775,
         65.86567635136775
       ],
       "macd": [
-        19.504862695720476,
-        17.09573030611955,
         17.09573030611955,
         19.504862695720476,
         19.504862695720476,
@@ -81436,6 +81466,8 @@
         6.794671304792246,
         5.947827052819775,
         5.947827052819775,
+        6.083416217706144,
+        6.083416217706144,
         6.083416217706144,
         6.083416217706144
       ],
@@ -81684,8 +81716,6 @@
     },
     "SILVER": {
       "dates": [
-        "2026-04-18T16:10:45Z",
-        "2026-04-18T17:03:17Z",
         "2026-04-18T17:03:54Z",
         "2026-04-18T18:03:16Z",
         "2026-04-18T18:04:21Z",
@@ -81923,11 +81953,11 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
-        81.84200286865234,
-        81.84200286865234,
         81.84200286865234,
         81.84200286865234,
         81.84200286865234,
@@ -82165,11 +82195,11 @@
         75.66000366210938,
         75.63500213623047,
         75.68499755859375,
+        75.68499755859375,
+        75.68499755859375,
         75.68499755859375
       ],
       "change_pct": [
-        7.84293520473499,
-        7.84293520473499,
         7.84293520473499,
         7.84293520473499,
         7.84293520473499,
@@ -82407,11 +82437,11 @@
         -4.439531738761833,
         -4.47110928838638,
         -4.407963825252519,
+        -4.407963825252519,
+        -4.407963825252519,
         -4.407963825252519
       ],
       "rsi": [
-        74.75228750012002,
-        74.75228750012002,
         74.75228750012002,
         74.75228750012002,
         74.75228750012002,
@@ -82649,11 +82679,11 @@
         66.43438809779093,
         66.05079447864651,
         66.82234411013407,
+        66.82234411013407,
+        66.82234411013407,
         66.82234411013407
       ],
       "macd": [
-        0.9704781894487553,
-        0.9704781894487553,
         0.9704781894487553,
         0.9704781894487553,
         0.9704781894487553,
@@ -82890,6 +82920,8 @@
         0.1936700734728447,
         0.1514170859086903,
         0.14942266219185285,
+        0.1534109010128617,
+        0.1534109010128617,
         0.1534109010128617,
         0.1534109010128617
       ],
@@ -83138,8 +83170,6 @@
     },
     "CRUDE": {
       "dates": [
-        "2026-04-18T16:10:45Z",
-        "2026-04-18T17:03:17Z",
         "2026-04-18T17:03:54Z",
         "2026-04-18T18:03:16Z",
         "2026-04-18T18:04:21Z",
@@ -83377,11 +83407,11 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
-        82.58999633789062,
-        82.58999633789062,
         82.58999633789062,
         82.58999633789062,
         82.58999633789062,
@@ -83619,11 +83649,11 @@
         94.95999908447266,
         94.91000366210938,
         94.87999725341797,
+        94.87999725341797,
+        94.87999725341797,
         94.87999725341797
       ],
       "change_pct": [
-        -16.075608917297398,
-        -16.075608917297398,
         -16.075608917297398,
         -16.075608917297398,
         -16.075608917297398,
@@ -83861,11 +83891,11 @@
         6.041313063482525,
         5.9854834480056995,
         5.95197545507569,
+        5.95197545507569,
+        5.95197545507569,
         5.95197545507569
       ],
       "rsi": [
-        23.983466676762063,
-        23.983466676762063,
         23.983466676762063,
         23.983466676762063,
         23.983466676762063,
@@ -84103,11 +84133,11 @@
         42.361090612116385,
         42.07378389685468,
         41.89996772758727,
+        41.89996772758727,
+        41.89996772758727,
         41.89996772758727
       ],
       "macd": [
-        -2.394937349970661,
-        -2.394937349970661,
         -2.394937349970661,
         -2.394937349970661,
         -2.394937349970661,
@@ -84344,6 +84374,8 @@
         -0.5289546404035974,
         -0.47358027226685806,
         -0.4775685110878527,
+        -0.4799621847156601,
+        -0.4799621847156601,
         -0.4799621847156601,
         -0.4799621847156601
       ],
@@ -84592,8 +84624,6 @@
     },
     "SPX": {
       "dates": [
-        "2026-04-18T16:10:45Z",
-        "2026-04-18T17:03:17Z",
         "2026-04-18T17:03:54Z",
         "2026-04-18T18:03:16Z",
         "2026-04-18T18:04:21Z",
@@ -84831,11 +84861,11 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
-        7125.1201171875,
-        7125.1201171875,
         7125.1201171875,
         7125.1201171875,
         7125.1201171875,
@@ -85073,11 +85103,11 @@
         7164.2900390625,
         7164.2900390625,
         7164.2900390625,
+        7164.2900390625,
+        7164.2900390625,
         7164.2900390625
       ],
       "change_pct": [
-        5.320637906649033,
-        5.320637906649033,
         5.320637906649033,
         5.320637906649033,
         5.320637906649033,
@@ -85315,11 +85345,11 @@
         2.1201507866941225,
         2.1201507866941225,
         2.1201507866941225,
+        2.1201507866941225,
+        2.1201507866941225,
         2.1201507866941225
       ],
       "rsi": [
-        74.99022824451893,
-        74.99022824451893,
         74.99022824451893,
         74.99022824451893,
         74.99022824451893,
@@ -85557,11 +85587,11 @@
         57.97475320744333,
         57.97475320744333,
         57.97475320744333,
+        57.97475320744333,
+        57.97475320744333,
         57.97475320744333
       ],
       "macd": [
-        44.60930999646553,
-        44.60930999646553,
         44.60930999646553,
         44.60930999646553,
         44.60930999646553,
@@ -85794,6 +85824,8 @@
         9.361814407436214,
         17.590023485961865,
         17.570898441446843,
+        16.915516445094,
+        16.915516445094,
         16.915516445094,
         16.915516445094,
         16.915516445094,
@@ -86046,8 +86078,6 @@
     },
     "NDX": {
       "dates": [
-        "2026-04-18T16:10:45Z",
-        "2026-04-18T17:03:17Z",
         "2026-04-18T17:03:54Z",
         "2026-04-18T18:03:16Z",
         "2026-04-18T18:04:21Z",
@@ -86285,11 +86315,11 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
-        24466.5546875,
-        24466.5546875,
         24466.5546875,
         24466.5546875,
         24466.5546875,
@@ -86527,11 +86557,11 @@
         24832.533203125,
         24832.533203125,
         24832.533203125,
+        24832.533203125,
+        24832.533203125,
         24832.533203125
       ],
       "change_pct": [
-        8.565238153428025,
-        8.565238153428025,
         8.565238153428025,
         8.565238153428025,
         8.565238153428025,
@@ -86769,11 +86799,11 @@
         3.6327204775387916,
         3.6327204775387916,
         3.6327204775387916,
+        3.6327204775387916,
+        3.6327204775387916,
         3.6327204775387916
       ],
       "rsi": [
-        73.8908227200131,
-        73.8908227200131,
         73.8908227200131,
         73.8908227200131,
         73.8908227200131,
@@ -87011,11 +87041,11 @@
         58.827149158621445,
         58.827149158621445,
         58.827149158621445,
+        58.827149158621445,
+        58.827149158621445,
         58.827149158621445
       ],
       "macd": [
-        226.54477086414045,
-        226.54477086414045,
         226.54477086414045,
         226.54477086414045,
         226.54477086414045,
@@ -87248,6 +87278,8 @@
         67.89582896353386,
         105.43694500441052,
         105.8280151611034,
+        107.8832546298363,
+        107.8832546298363,
         107.8832546298363,
         107.8832546298363,
         107.8832546298363,
@@ -87500,8 +87532,6 @@
     },
     "DJI": {
       "dates": [
-        "2026-04-18T16:10:45Z",
-        "2026-04-18T17:03:17Z",
         "2026-04-18T17:03:54Z",
         "2026-04-18T18:03:16Z",
         "2026-04-18T18:04:21Z",
@@ -87739,11 +87769,11 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
-        49442.55859375,
-        49442.55859375,
         49442.55859375,
         49442.55859375,
         49442.55859375,
@@ -87981,11 +88011,11 @@
         49226.3984375,
         49226.3984375,
         49226.3984375,
+        49226.3984375,
+        49226.3984375,
         49226.3984375
       ],
       "change_pct": [
-        3.4786559909900374,
-        3.4786559909900374,
         3.4786559909900374,
         3.4786559909900374,
         3.4786559909900374,
@@ -88223,11 +88253,11 @@
         1.767967936765073,
         1.767967936765073,
         1.767967936765073,
+        1.767967936765073,
+        1.767967936765073,
         1.767967936765073
       ],
       "rsi": [
-        76.62643303196943,
-        76.62643303196943,
         76.62643303196943,
         76.62643303196943,
         76.62643303196943,
@@ -88465,11 +88495,11 @@
         36.00138788443772,
         36.00138788443772,
         36.00138788443772,
+        36.00138788443772,
+        36.00138788443772,
         36.00138788443772
       ],
       "macd": [
-        290.2592112481507,
-        290.2592112481507,
         290.2592112481507,
         290.2592112481507,
         290.2592112481507,
@@ -88702,6 +88732,8 @@
         -100.80582557183516,
         -47.23470349716081,
         -47.12314722935116,
+        -58.543070945786894,
+        -58.543070945786894,
         -58.543070945786894,
         -58.543070945786894,
         -58.543070945786894,
@@ -88954,8 +88986,6 @@
     },
     "DXY": {
       "dates": [
-        "2026-04-18T16:10:45Z",
-        "2026-04-18T17:03:17Z",
         "2026-04-18T17:03:54Z",
         "2026-04-18T18:03:16Z",
         "2026-04-18T18:04:21Z",
@@ -89193,11 +89223,11 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
-        98.22200012207031,
-        98.22200012207031,
         98.22200012207031,
         98.22200012207031,
         98.22200012207031,
@@ -89435,11 +89465,11 @@
         98.49500274658203,
         98.49500274658203,
         98.51000213623047,
+        98.51000213623047,
+        98.51000213623047,
         98.51000213623047
       ],
       "change_pct": [
-        -0.674493439418145,
-        -0.674493439418145,
         -0.674493439418145,
         -0.674493439418145,
         -0.674493439418145,
@@ -89677,11 +89707,11 @@
         0.283046590519019,
         0.283046590519019,
         0.2983182738430321,
+        0.2983182738430321,
+        0.2983182738430321,
         0.2983182738430321
       ],
       "rsi": [
-        47.51207675531638,
-        47.51207675531638,
         47.51207675531638,
         47.51207675531638,
         47.51207675531638,
@@ -89919,11 +89949,11 @@
         21.11076125656986,
         21.11076125656986,
         21.625645097260815,
+        21.625645097260815,
+        21.625645097260815,
         21.625645097260815
       ],
       "macd": [
-        -0.04288999250044867,
-        -0.04288999250044867,
         -0.04288999250044867,
         -0.04288999250044867,
         -0.04288999250044867,
@@ -90160,6 +90190,8 @@
         -0.07420167267943611,
         -0.07913305739427301,
         -0.07913305739427301,
+        -0.07793652488670944,
+        -0.07793652488670944,
         -0.07793652488670944,
         -0.07793652488670944
       ],
@@ -90408,8 +90440,6 @@
     },
     "VIX": {
       "dates": [
-        "2026-04-18T16:10:45Z",
-        "2026-04-18T17:03:17Z",
         "2026-04-18T17:03:54Z",
         "2026-04-18T18:03:16Z",
         "2026-04-18T18:04:21Z",
@@ -90647,11 +90677,11 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
-        17.469999313354492,
-        17.469999313354492,
         17.469999313354492,
         17.469999313354492,
         17.469999313354492,
@@ -90889,11 +90919,11 @@
         18.690000534057617,
         18.690000534057617,
         18.690000534057617,
+        18.690000534057617,
+        18.690000534057617,
         18.690000534057617
       ],
       "change_pct": [
-        -18.668530327465483,
-        -18.668530327465483,
         -18.668530327465483,
         -18.668530327465483,
         -18.668530327465483,
@@ -91131,11 +91161,11 @@
         3.6031019154262203,
         3.6031019154262203,
         3.6031019154262203,
+        3.6031019154262203,
+        3.6031019154262203,
         3.6031019154262203
       ],
       "rsi": [
-        37.15844944176234,
-        37.15844944176234,
         37.15844944176234,
         37.15844944176234,
         37.15844944176234,
@@ -91373,11 +91403,11 @@
         38.07693662023493,
         38.07693662023493,
         38.07693662023493,
+        38.07693662023493,
+        38.07693662023493,
         38.07693662023493
       ],
       "macd": [
-        -0.2305480085227387,
-        -0.2305480085227387,
         -0.2305480085227387,
         -0.2305480085227387,
         -0.2305480085227387,
@@ -91612,6 +91642,8 @@
         -0.25462341283009593,
         -0.24825772822639536,
         -0.24905546728249917,
+        -0.22864648105143104,
+        -0.22864648105143104,
         -0.22864648105143104,
         -0.22864648105143104,
         -0.22864648105143104,
@@ -91862,8 +91894,6 @@
     },
     "USD": {
       "dates": [
-        "2026-04-18T16:10:45Z",
-        "2026-04-18T17:03:17Z",
         "2026-04-18T17:03:54Z",
         "2026-04-18T18:03:16Z",
         "2026-04-18T18:04:21Z",
@@ -92101,11 +92131,11 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
-        98.22200012207031,
-        98.22200012207031,
         98.22200012207031,
         98.22200012207031,
         98.22200012207031,
@@ -92343,11 +92373,11 @@
         98.49500274658203,
         98.49500274658203,
         98.51000213623047,
+        98.51000213623047,
+        98.51000213623047,
         98.51000213623047
       ],
       "change_pct": [
-        -0.674493439418145,
-        -0.674493439418145,
         -0.674493439418145,
         -0.674493439418145,
         -0.674493439418145,
@@ -92585,11 +92615,11 @@
         0.283046590519019,
         0.283046590519019,
         0.2983182738430321,
+        0.2983182738430321,
+        0.2983182738430321,
         0.2983182738430321
       ],
       "rsi": [
-        47.51207675531638,
-        47.51207675531638,
         47.51207675531638,
         47.51207675531638,
         47.51207675531638,
@@ -92827,11 +92857,11 @@
         21.11076125656986,
         21.11076125656986,
         21.625645097260815,
+        21.625645097260815,
+        21.625645097260815,
         21.625645097260815
       ],
       "macd": [
-        -0.04288999250044867,
-        -0.04288999250044867,
         -0.04288999250044867,
         -0.04288999250044867,
         -0.04288999250044867,
@@ -93068,6 +93098,8 @@
         -0.07420167267943611,
         -0.07913305739427301,
         -0.07913305739427301,
+        -0.07793652488670944,
+        -0.07793652488670944,
         -0.07793652488670944,
         -0.07793652488670944
       ],
@@ -93316,8 +93348,6 @@
     },
     "EUR": {
       "dates": [
-        "2026-04-18T16:10:45Z",
-        "2026-04-18T17:03:17Z",
         "2026-04-18T17:03:54Z",
         "2026-04-18T18:03:16Z",
         "2026-04-18T18:04:21Z",
@@ -93555,11 +93585,11 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
-        1.176747441291809,
-        1.176747441291809,
         1.176747441291809,
         1.176747441291809,
         1.176747441291809,
@@ -93797,11 +93827,11 @@
         1.1726078987121582,
         1.1726078987121582,
         1.1726078987121582,
+        1.1726078987121582,
+        1.1726078987121582,
         1.1726078987121582
       ],
       "change_pct": [
-        0.9060955266337805,
-        0.9060955266337805,
         0.9060955266337805,
         0.9060955266337805,
         0.9060955266337805,
@@ -94039,11 +94069,11 @@
         -0.7152925359440379,
         -0.7152925359440379,
         -0.7152925359440379,
+        -0.7152925359440379,
+        -0.7152925359440379,
         -0.7152925359440379
       ],
       "rsi": [
-        42.56615941174158,
-        42.56615941174158,
         42.56615941174158,
         42.56615941174158,
         42.56615941174158,
@@ -94281,11 +94311,11 @@
         72.00229489386116,
         72.00229489386116,
         72.00229489386116,
+        72.00229489386116,
+        72.00229489386116,
         72.00229489386116
       ],
       "macd": [
-        -0.00014145672333731873,
-        -0.00014145672333731873,
         -0.00014145672333731873,
         -0.00014145672333731873,
         -0.00014145672333731873,
@@ -94520,6 +94550,8 @@
         0.0009235610212066092,
         0.0009069688421268207,
         0.0009069688421268207,
+        0.001199255228577334,
+        0.001199255228577334,
         0.001199255228577334,
         0.001199255228577334,
         0.001199255228577334,
@@ -94770,8 +94802,6 @@
     },
     "TRY": {
       "dates": [
-        "2026-04-18T16:10:45Z",
-        "2026-04-18T17:03:17Z",
         "2026-04-18T17:03:54Z",
         "2026-04-18T18:03:16Z",
         "2026-04-18T18:04:21Z",
@@ -95009,11 +95039,11 @@
         "2026-04-24T21:02:14Z",
         "2026-04-24T21:02:28Z",
         "2026-04-24T22:01:58Z",
-        "2026-04-24T22:02:21Z"
+        "2026-04-24T22:02:21Z",
+        "2026-04-24T23:02:02Z",
+        "2026-04-24T23:02:24Z"
       ],
       "prices": [
-        44.8473014831543,
-        44.8473014831543,
         44.8473014831543,
         44.8473014831543,
         44.8473014831543,
@@ -95251,11 +95281,11 @@
         45.007999420166016,
         45.007999420166016,
         44.9900016784668,
+        44.9900016784668,
+        44.9900016784668,
         44.9900016784668
       ],
       "change_pct": [
-        0.8151167480191268,
-        0.8151167480191268,
         0.8151167480191268,
         0.8151167480191268,
         0.8151167480191268,
@@ -95493,11 +95523,11 @@
         0.9899751936994513,
         0.9899751936994513,
         0.9495914505612854,
+        0.9495914505612854,
+        0.9495914505612854,
         0.9495914505612854
       ],
       "rsi": [
-        46.12250472310109,
-        46.12250472310109,
         46.12250472310109,
         46.12250472310109,
         46.12250472310109,
@@ -95735,11 +95765,11 @@
         44.43055902690993,
         44.43055902690993,
         33.289628356994314,
+        33.289628356994314,
+        33.289628356994314,
         33.289628356994314
       ],
       "macd": [
-        0.0066576834438620835,
-        0.0066576834438620835,
         0.0066576834438620835,
         0.0066576834438620835,
         0.0066576834438620835,
@@ -95976,6 +96006,8 @@
         0.01924072385042308,
         0.006737078016811893,
         0.006737078016811893,
+        0.005301360730264548,
+        0.005301360730264548,
         0.005301360730264548,
         0.005301360730264548
       ],
@@ -96225,26 +96257,6 @@
   },
   "derivatives_history": {
     "BTC": [
-      {
-        "timestamp": "2026-04-18T16:10:45Z",
-        "funding_current": -0.0014796902276100002,
-        "long_short_value": 0.922,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 2652423880.4184194,
-        "liq_bias": "below",
-        "liq_level": 74792.43
-      },
-      {
-        "timestamp": "2026-04-18T17:03:17Z",
-        "funding_current": -0.00168130630112,
-        "long_short_value": 0.796,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 2631693737.3340306,
-        "liq_bias": "below",
-        "liq_level": 74868.75
-      },
       {
         "timestamp": "2026-04-18T17:03:54Z",
         "funding_current": -0.0016829423241900001,
@@ -98624,29 +98636,29 @@
         "oi_current": 2701324633.8743296,
         "liq_bias": "above",
         "liq_level": 78604.74
+      },
+      {
+        "timestamp": "2026-04-24T23:02:02Z",
+        "funding_current": 0.00034112747889,
+        "long_short_value": 1.023,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 2640170085.6313386,
+        "liq_bias": "above",
+        "liq_level": 78477.39
+      },
+      {
+        "timestamp": "2026-04-24T23:02:24Z",
+        "funding_current": 0.00034112747889,
+        "long_short_value": 1.023,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 2639918299.798019,
+        "liq_bias": "above",
+        "liq_level": 78477.39
       }
     ],
     "ETH": [
-      {
-        "timestamp": "2026-04-18T16:10:45Z",
-        "funding_current": 0.01,
-        "long_short_value": 1.222,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1653922990.5028732,
-        "liq_bias": "above",
-        "liq_level": 2407.42
-      },
-      {
-        "timestamp": "2026-04-18T17:03:17Z",
-        "funding_current": 0.00613924773247,
-        "long_short_value": 1.219,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1647681320.361804,
-        "liq_bias": "above",
-        "liq_level": 2403.77
-      },
       {
         "timestamp": "2026-04-18T17:03:54Z",
         "funding_current": 0.00608586706466,
@@ -101026,29 +101038,29 @@
         "oi_current": 1508896073.5068245,
         "liq_bias": "above",
         "liq_level": 2348.08
+      },
+      {
+        "timestamp": "2026-04-24T23:02:02Z",
+        "funding_current": 0.0070155886359199995,
+        "long_short_value": 1.227,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1509857100.2480044,
+        "liq_bias": "above",
+        "liq_level": 2346.38
+      },
+      {
+        "timestamp": "2026-04-24T23:02:24Z",
+        "funding_current": 0.0070155886359199995,
+        "long_short_value": 1.227,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1509533803.7921445,
+        "liq_bias": "above",
+        "liq_level": 2346.38
       }
     ],
     "SOL": [
-      {
-        "timestamp": "2026-04-18T16:10:45Z",
-        "funding_current": -0.00364916073708,
-        "long_short_value": 0.826,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 219890244.04360035,
-        "liq_bias": "below",
-        "liq_level": 85.3
-      },
-      {
-        "timestamp": "2026-04-18T17:03:17Z",
-        "funding_current": -0.0016830190184900001,
-        "long_short_value": 0.912,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 218774339.1000003,
-        "liq_bias": "below",
-        "liq_level": 85.13
-      },
       {
         "timestamp": "2026-04-18T17:03:54Z",
         "funding_current": -0.00160601056915,
@@ -103428,29 +103440,29 @@
         "oi_current": 220097503.61920017,
         "liq_bias": "above",
         "liq_level": 88.01
+      },
+      {
+        "timestamp": "2026-04-24T23:02:02Z",
+        "funding_current": 0.0012001420386599999,
+        "long_short_value": 1.068,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 219041940.07990012,
+        "liq_bias": "above",
+        "liq_level": 87.83
+      },
+      {
+        "timestamp": "2026-04-24T23:02:24Z",
+        "funding_current": 0.0012001420386599999,
+        "long_short_value": 1.068,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 219000646.0105001,
+        "liq_bias": "above",
+        "liq_level": 87.83
       }
     ],
     "ZEC": [
-      {
-        "timestamp": "2026-04-18T16:10:45Z",
-        "funding_current": 0.01,
-        "long_short_value": 1.267,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 33920357.7888,
-        "liq_bias": "above",
-        "liq_level": 333.35
-      },
-      {
-        "timestamp": "2026-04-18T17:03:17Z",
-        "funding_current": 0.01,
-        "long_short_value": 1.197,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 33794721.1965,
-        "liq_bias": "above",
-        "liq_level": 329.27
-      },
       {
         "timestamp": "2026-04-18T17:03:54Z",
         "funding_current": 0.01,
@@ -105830,25 +105842,39 @@
         "oi_current": 40597975.135,
         "liq_bias": "above",
         "liq_level": 369.92
+      },
+      {
+        "timestamp": "2026-04-24T23:02:02Z",
+        "funding_current": 0.01,
+        "long_short_value": 1.211,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 40237572.8101,
+        "liq_bias": "above",
+        "liq_level": 366.79
+      },
+      {
+        "timestamp": "2026-04-24T23:02:24Z",
+        "funding_current": 0.01,
+        "long_short_value": 1.211,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 40209710.9874,
+        "liq_bias": "above",
+        "liq_level": 366.79
       }
     ]
   },
   "trading_bible": {
     "BTC": {
       "symbol": "BTC",
-      "trend_state": "internal_range_or_transition|external_range_or_transition",
-      "internal_structure": "range_or_transition",
+      "trend_state": "internal_bearish|external_range_or_transition",
+      "internal_structure": "bearish",
       "external_structure": "range_or_transition",
       "htf_bias": "bearish",
       "ltf_bias": "bearish",
       "alignment_state": "mixed",
       "pivots": [
-        {
-          "timestamp": "2026-04-24T02:00:00+00:00",
-          "price": 78570.0234375,
-          "kind": "high",
-          "strength": "internal"
-        },
         {
           "timestamp": "2026-04-24T05:00:00+00:00",
           "price": 77465.8984375,
@@ -105877,6 +105903,12 @@
           "timestamp": "2026-04-24T18:00:00+00:00",
           "price": 77385.90625,
           "kind": "low",
+          "strength": "internal"
+        },
+        {
+          "timestamp": "2026-04-24T21:00:00+00:00",
+          "price": 77785.0,
+          "kind": "high",
           "strength": "internal"
         },
         {
@@ -105916,7 +105948,15 @@
           "strength": "external"
         }
       ],
-      "bos_events": [],
+      "bos_events": [
+        {
+          "timestamp": "2026-04-24T22:00:00+00:00",
+          "event_type": "BOS",
+          "direction": "bearish",
+          "level": 77436.0,
+          "context": "Close broke below prior swing low with continuation"
+        }
+      ],
       "choch_events": [],
       "liquidity_pools": [
         {
@@ -106002,13 +106042,6 @@
       ],
       "fvgs": [
         {
-          "timestamp": "2026-04-22T03:00:00+00:00",
-          "direction": "bullish",
-          "upper": 77430.0,
-          "lower": 76432.9375,
-          "status": "open"
-        },
-        {
           "timestamp": "2026-04-22T06:00:00+00:00",
           "direction": "bullish",
           "upper": 77914.9765625,
@@ -106070,9 +106103,73 @@
           "upper": 78056.8828125,
           "lower": 77798.3125,
           "status": "open"
+        },
+        {
+          "timestamp": "2026-04-24T23:00:00+00:00",
+          "direction": "bearish",
+          "upper": 77565.453125,
+          "lower": 77403.0234375,
+          "status": "open"
         }
       ],
-      "order_blocks": [],
+      "order_blocks": [
+        {
+          "timestamp": "2026-04-24T05:00:00+00:00",
+          "direction": "bearish",
+          "upper": 78039.390625,
+          "lower": 77465.8984375,
+          "reason": "Last bullish candle before bearish structural impulse"
+        },
+        {
+          "timestamp": "2026-04-24T08:00:00+00:00",
+          "direction": "bearish",
+          "upper": 78029.9765625,
+          "lower": 77593.203125,
+          "reason": "Last bullish candle before bearish structural impulse"
+        },
+        {
+          "timestamp": "2026-04-24T10:00:00+00:00",
+          "direction": "bearish",
+          "upper": 77798.3125,
+          "lower": 77457.2109375,
+          "reason": "Last bullish candle before bearish structural impulse"
+        },
+        {
+          "timestamp": "2026-04-24T11:00:00+00:00",
+          "direction": "bearish",
+          "upper": 78395.2734375,
+          "lower": 77762.4375,
+          "reason": "Last bullish candle before bearish structural impulse"
+        },
+        {
+          "timestamp": "2026-04-24T12:00:00+00:00",
+          "direction": "bearish",
+          "upper": 78377.046875,
+          "lower": 78056.8828125,
+          "reason": "Last bullish candle before bearish structural impulse"
+        },
+        {
+          "timestamp": "2026-04-24T14:00:00+00:00",
+          "direction": "bearish",
+          "upper": 78096.0078125,
+          "lower": 77704.1875,
+          "reason": "Last bullish candle before bearish structural impulse"
+        },
+        {
+          "timestamp": "2026-04-24T15:00:00+00:00",
+          "direction": "bearish",
+          "upper": 78237.5625,
+          "lower": 77619.9921875,
+          "reason": "Last bullish candle before bearish structural impulse"
+        },
+        {
+          "timestamp": "2026-04-24T20:00:00+00:00",
+          "direction": "bearish",
+          "upper": 77781.921875,
+          "lower": 77480.0,
+          "reason": "Last bullish candle before bearish structural impulse"
+        }
+      ],
       "sweeps": [
         {
           "timestamp": "2026-04-24T18:00:00+00:00",
@@ -106081,6 +106178,15 @@
           "level": 77436.0,
           "notes": [
             "swing_low taken and rejected"
+          ]
+        },
+        {
+          "timestamp": "2026-04-24T22:00:00+00:00",
+          "classification": "run",
+          "direction": "bearish",
+          "level": 77436.0,
+          "notes": [
+            "swing_low taken with continuation"
           ]
         },
         {
@@ -106102,12 +106208,30 @@
           ]
         },
         {
+          "timestamp": "2026-04-24T22:00:00+00:00",
+          "classification": "run",
+          "direction": "bearish",
+          "level": 77410.953125,
+          "notes": [
+            "equal_lows taken with continuation"
+          ]
+        },
+        {
           "timestamp": "2026-04-24T18:00:00+00:00",
           "classification": "sweep",
           "direction": "bullish",
           "level": 77425.902344,
           "notes": [
             "equal_lows taken and rejected"
+          ]
+        },
+        {
+          "timestamp": "2026-04-24T22:00:00+00:00",
+          "classification": "run",
+          "direction": "bearish",
+          "level": 77425.902344,
+          "notes": [
+            "equal_lows taken with continuation"
           ]
         },
         {
@@ -106127,33 +106251,18 @@
           "notes": [
             "equal_lows taken and rejected"
           ]
+        },
+        {
+          "timestamp": "2026-04-24T22:00:00+00:00",
+          "classification": "run",
+          "direction": "bearish",
+          "level": 77450.949219,
+          "notes": [
+            "equal_lows taken with continuation"
+          ]
         }
       ],
       "traps": [
-        {
-          "timestamp": "2026-04-24T18:00:00+00:00",
-          "trap_type": "inducement",
-          "direction": "bullish",
-          "notes": [
-            "swing_low taken and rejected"
-          ]
-        },
-        {
-          "timestamp": "2026-04-24T13:00:00+00:00",
-          "trap_type": "inducement",
-          "direction": "bearish",
-          "notes": [
-            "equal_highs taken and rejected"
-          ]
-        },
-        {
-          "timestamp": "2026-04-24T18:00:00+00:00",
-          "trap_type": "inducement",
-          "direction": "bullish",
-          "notes": [
-            "equal_lows taken and rejected"
-          ]
-        },
         {
           "timestamp": "2026-04-24T18:00:00+00:00",
           "trap_type": "inducement",
@@ -106191,7 +106300,7 @@
         "new_york_high": 79500.0078125,
         "new_york_low": 74735.7421875
       },
-      "session_narrative": "Active session: After Hours. Asia range: 73772.96 to 78605.00. London range: 74650.28 to 78514.79. NY range: 74735.74 to 79500.01. Recent sweep detected near liquidity.",
+      "session_narrative": "Active session: After Hours. Asia range: 73772.96 to 78605.00. London range: 74650.28 to 78514.79. NY range: 74735.74 to 79500.01. Recent run detected near liquidity. Latest BOS: bearish.",
       "premium_discount": {
         "range_high": 78716.328125,
         "range_low": 76986.296875,
@@ -106203,8 +106312,10 @@
         "grade": "PASS",
         "execution_status": "PASS",
         "reasons": [
+          "Recent BOS present",
           "Nearby liquidity pools identified",
           "Fair value gap present",
+          "Order block candidate present",
           "Sweep/run behavior detected",
           "Trap/inducement behavior detected"
         ],
@@ -106236,7 +106347,7 @@
           },
           {
             "name": "BOS present",
-            "ok": false
+            "ok": true
           },
           {
             "name": "Liquidity identified",
@@ -106248,7 +106359,7 @@
           },
           {
             "name": "Order block candidate",
-            "ok": false
+            "ok": true
           },
           {
             "name": "Sweep/run context",
@@ -106599,19 +106710,13 @@
     },
     "SOL": {
       "symbol": "SOL",
-      "trend_state": "internal_range_or_transition|external_bullish",
-      "internal_structure": "range_or_transition",
+      "trend_state": "internal_bullish|external_bullish",
+      "internal_structure": "bullish",
       "external_structure": "bullish",
       "htf_bias": "bearish",
       "ltf_bias": "bearish",
       "alignment_state": "mixed",
       "pivots": [
-        {
-          "timestamp": "2026-04-24T05:00:00+00:00",
-          "price": 85.19000244140625,
-          "kind": "low",
-          "strength": "internal"
-        },
         {
           "timestamp": "2026-04-24T09:00:00+00:00",
           "price": 85.0,
@@ -106620,13 +106725,13 @@
         },
         {
           "timestamp": "2026-04-24T12:00:00+00:00",
-          "price": 86.80999755859375,
+          "price": 86.81999969482422,
           "kind": "high",
           "strength": "internal"
         },
         {
           "timestamp": "2026-04-24T15:00:00+00:00",
-          "price": 85.56999969482422,
+          "price": 85.58000183105469,
           "kind": "low",
           "strength": "internal"
         },
@@ -106640,6 +106745,12 @@
           "timestamp": "2026-04-24T18:00:00+00:00",
           "price": 85.9800033569336,
           "kind": "low",
+          "strength": "internal"
+        },
+        {
+          "timestamp": "2026-04-24T21:00:00+00:00",
+          "price": 86.9800033569336,
+          "kind": "high",
           "strength": "internal"
         },
         {
@@ -106674,7 +106785,7 @@
         },
         {
           "timestamp": "2026-04-24T12:00:00+00:00",
-          "price": 86.80999755859375,
+          "price": 86.81999969482422,
           "kind": "high",
           "strength": "external"
         }
@@ -106684,7 +106795,7 @@
           "timestamp": "2026-04-24T20:00:00+00:00",
           "event_type": "BOS",
           "direction": "bullish",
-          "level": 86.80999755859375,
+          "level": 86.81999969482422,
           "context": "Close broke above prior swing high with continuation"
         }
       ],
@@ -106716,7 +106827,7 @@
         },
         {
           "pool_type": "swing_high",
-          "level": 86.80999755859375,
+          "level": 86.81999969482422,
           "strength": "external",
           "notes": [
             "Major swing liquidity"
@@ -106749,13 +106860,6 @@
       ],
       "fvgs": [
         {
-          "timestamp": "2026-04-22T17:00:00+00:00",
-          "direction": "bearish",
-          "upper": 88.08999633789062,
-          "lower": 88.05000305175781,
-          "status": "open"
-        },
-        {
           "timestamp": "2026-04-22T20:00:00+00:00",
           "direction": "bearish",
           "upper": 87.83000183105469,
@@ -106766,14 +106870,14 @@
           "timestamp": "2026-04-23T00:00:00+00:00",
           "direction": "bearish",
           "upper": 87.33000183105469,
-          "lower": 87.1500015258789,
+          "lower": 87.13999938964844,
           "status": "open"
         },
         {
           "timestamp": "2026-04-23T03:00:00+00:00",
           "direction": "bearish",
-          "upper": 86.13999938964844,
-          "lower": 86.0999984741211,
+          "upper": 86.1500015258789,
+          "lower": 86.13999938964844,
           "status": "open"
         },
         {
@@ -106817,16 +106921,16 @@
           "upper": 86.12000274658203,
           "lower": 85.77999877929688,
           "status": "open"
+        },
+        {
+          "timestamp": "2026-04-24T23:00:00+00:00",
+          "direction": "bearish",
+          "upper": 86.43000030517578,
+          "lower": 86.27999877929688,
+          "status": "open"
         }
       ],
       "order_blocks": [
-        {
-          "timestamp": "2026-04-24T03:00:00+00:00",
-          "direction": "bullish",
-          "upper": 85.97000122070312,
-          "lower": 85.44999694824219,
-          "reason": "Last bearish candle before bullish structural impulse"
-        },
         {
           "timestamp": "2026-04-24T04:00:00+00:00",
           "direction": "bullish",
@@ -106851,7 +106955,7 @@
         {
           "timestamp": "2026-04-24T13:00:00+00:00",
           "direction": "bullish",
-          "upper": 86.5999984741211,
+          "upper": 86.63999938964844,
           "lower": 85.9000015258789,
           "reason": "Last bearish candle before bullish structural impulse"
         },
@@ -106873,7 +106977,7 @@
           "timestamp": "2026-04-24T19:00:00+00:00",
           "direction": "bullish",
           "upper": 86.55999755859375,
-          "lower": 86.2699966430664,
+          "lower": 86.25,
           "reason": "Last bearish candle before bullish structural impulse"
         },
         {
@@ -106882,9 +106986,25 @@
           "upper": 86.9800033569336,
           "lower": 86.43000030517578,
           "reason": "Last bearish candle before bullish structural impulse"
+        },
+        {
+          "timestamp": "2026-04-24T22:00:00+00:00",
+          "direction": "bullish",
+          "upper": 86.48999786376953,
+          "lower": 86.1500015258789,
+          "reason": "Last bearish candle before bullish structural impulse"
         }
       ],
       "sweeps": [
+        {
+          "timestamp": "2026-04-24T15:00:00+00:00",
+          "classification": "run",
+          "direction": "bullish",
+          "level": 86.4000015258789,
+          "notes": [
+            "swing_high taken with continuation"
+          ]
+        },
         {
           "timestamp": "2026-04-24T17:00:00+00:00",
           "classification": "run",
@@ -106907,7 +107027,7 @@
           "timestamp": "2026-04-24T20:00:00+00:00",
           "classification": "run",
           "direction": "bullish",
-          "level": 86.80999755859375,
+          "level": 86.81999969482422,
           "notes": [
             "swing_high taken with continuation"
           ]
@@ -106965,15 +107085,6 @@
           "notes": [
             "equal_highs taken and rejected"
           ]
-        },
-        {
-          "timestamp": "2026-04-24T20:00:00+00:00",
-          "classification": "run",
-          "direction": "bullish",
-          "level": 86.630001,
-          "notes": [
-            "equal_highs taken with continuation"
-          ]
         }
       ],
       "traps": [
@@ -106986,11 +107097,11 @@
           ]
         },
         {
-          "timestamp": "2026-04-24T15:00:00+00:00",
+          "timestamp": "2026-04-24T13:00:00+00:00",
           "trap_type": "inducement",
-          "direction": "bullish",
+          "direction": "bearish",
           "notes": [
-            "equal_lows taken and rejected"
+            "equal_highs taken and rejected"
           ]
         }
       ],
@@ -107000,17 +107111,17 @@
         "new_york_kill_zone": false,
         "time_to_next_kill_zone_minutes": null,
         "asia_high": 88.31999969482422,
-        "asia_low": 83.38999938964844,
+        "asia_low": 83.4000015258789,
         "london_high": 88.87000274658203,
         "london_low": 84.4800033569336,
         "new_york_high": 89.3499984741211,
         "new_york_low": 84.33999633789062
       },
-      "session_narrative": "Active session: After Hours. Asia range: 83.39 to 88.32. London range: 84.48 to 88.87. NY range: 84.34 to 89.35. Recent sweep detected near liquidity. Latest BOS: bullish.",
+      "session_narrative": "Active session: After Hours. Asia range: 83.40 to 88.32. London range: 84.48 to 88.87. NY range: 84.34 to 89.35. Recent run detected near liquidity. Latest BOS: bullish.",
       "premium_discount": {
-        "range_high": 86.80999755859375,
+        "range_high": 86.81999969482422,
         "range_low": 84.51000213623047,
-        "equilibrium": 85.65999984741211,
+        "equilibrium": 85.66500091552734,
         "state": "premium"
       },
       "setup": {
@@ -107085,8 +107196,8 @@
       "internal_structure": "bullish",
       "external_structure": "bullish",
       "htf_bias": "bullish",
-      "ltf_bias": "bullish",
-      "alignment_state": "aligned",
+      "ltf_bias": "bearish",
+      "alignment_state": "mixed",
       "pivots": [
         {
           "timestamp": "2026-04-24T06:00:00+00:00",
@@ -107125,12 +107236,6 @@
           "strength": "internal"
         },
         {
-          "timestamp": "2026-04-22T09:00:00+00:00",
-          "price": 316.239990234375,
-          "kind": "low",
-          "strength": "external"
-        },
-        {
           "timestamp": "2026-04-22T16:00:00+00:00",
           "price": 331.5899963378906,
           "kind": "high",
@@ -107159,27 +107264,17 @@
           "price": 335.8399963378906,
           "kind": "low",
           "strength": "external"
-        }
-      ],
-      "bos_events": [
+        },
         {
-          "timestamp": "2026-04-24T15:00:00+00:00",
-          "event_type": "BOS",
-          "direction": "bullish",
-          "level": 349.3999938964844,
-          "context": "Close broke above prior swing high with continuation"
+          "timestamp": "2026-04-24T18:00:00+00:00",
+          "price": 367.20001220703125,
+          "kind": "high",
+          "strength": "external"
         }
       ],
+      "bos_events": [],
       "choch_events": [],
       "liquidity_pools": [
-        {
-          "pool_type": "swing_low",
-          "level": 311.6400146484375,
-          "strength": "external",
-          "notes": [
-            "Major swing liquidity"
-          ]
-        },
         {
           "pool_type": "swing_low",
           "level": 320.3599853515625,
@@ -107203,9 +107298,24 @@
           "notes": [
             "Major swing liquidity"
           ]
+        },
+        {
+          "pool_type": "swing_high",
+          "level": 367.20001220703125,
+          "strength": "external",
+          "notes": [
+            "Major swing liquidity"
+          ]
         }
       ],
       "fvgs": [
+        {
+          "timestamp": "2026-04-22T00:00:00+00:00",
+          "direction": "bullish",
+          "upper": 316.67999267578125,
+          "lower": 311.1600036621094,
+          "status": "open"
+        },
         {
           "timestamp": "2026-04-22T16:00:00+00:00",
           "direction": "bullish",
@@ -107268,97 +107378,10 @@
           "upper": 361.7300109863281,
           "lower": 359.6000061035156,
           "status": "open"
-        },
-        {
-          "timestamp": "2026-04-24T22:00:00+00:00",
-          "direction": "bullish",
-          "upper": 363.3800048828125,
-          "lower": 363.1300048828125,
-          "status": "open"
         }
       ],
-      "order_blocks": [
-        {
-          "timestamp": "2026-04-24T04:00:00+00:00",
-          "direction": "bullish",
-          "upper": 345.5299987792969,
-          "lower": 340.8500061035156,
-          "reason": "Last bearish candle before bullish structural impulse"
-        },
-        {
-          "timestamp": "2026-04-24T06:00:00+00:00",
-          "direction": "bullish",
-          "upper": 350.7799987792969,
-          "lower": 342.239990234375,
-          "reason": "Last bearish candle before bullish structural impulse"
-        },
-        {
-          "timestamp": "2026-04-24T08:00:00+00:00",
-          "direction": "bullish",
-          "upper": 344.8299865722656,
-          "lower": 341.2300109863281,
-          "reason": "Last bearish candle before bullish structural impulse"
-        },
-        {
-          "timestamp": "2026-04-24T09:00:00+00:00",
-          "direction": "bullish",
-          "upper": 342.4800109863281,
-          "lower": 338.5400085449219,
-          "reason": "Last bearish candle before bullish structural impulse"
-        },
-        {
-          "timestamp": "2026-04-24T12:00:00+00:00",
-          "direction": "bullish",
-          "upper": 359.67999267578125,
-          "lower": 353.1600036621094,
-          "reason": "Last bearish candle before bullish structural impulse"
-        },
-        {
-          "timestamp": "2026-04-24T13:00:00+00:00",
-          "direction": "bullish",
-          "upper": 356.4800109863281,
-          "lower": 350.9800109863281,
-          "reason": "Last bearish candle before bullish structural impulse"
-        },
-        {
-          "timestamp": "2026-04-24T14:00:00+00:00",
-          "direction": "bullish",
-          "upper": 353.7300109863281,
-          "lower": 347.20001220703125,
-          "reason": "Last bearish candle before bullish structural impulse"
-        },
-        {
-          "timestamp": "2026-04-24T16:00:00+00:00",
-          "direction": "bullish",
-          "upper": 359.6000061035156,
-          "lower": 352.25,
-          "reason": "Last bearish candle before bullish structural impulse"
-        },
-        {
-          "timestamp": "2026-04-24T18:00:00+00:00",
-          "direction": "bullish",
-          "upper": 367.20001220703125,
-          "lower": 361.7300109863281,
-          "reason": "Last bearish candle before bullish structural impulse"
-        },
-        {
-          "timestamp": "2026-04-24T19:00:00+00:00",
-          "direction": "bullish",
-          "upper": 363.1000061035156,
-          "lower": 357.6300048828125,
-          "reason": "Last bearish candle before bullish structural impulse"
-        }
-      ],
+      "order_blocks": [],
       "sweeps": [
-        {
-          "timestamp": "2026-04-24T06:00:00+00:00",
-          "classification": "sweep",
-          "direction": "bearish",
-          "level": 349.3999938964844,
-          "notes": [
-            "swing_high taken and rejected"
-          ]
-        },
         {
           "timestamp": "2026-04-24T10:00:00+00:00",
           "classification": "run",
@@ -107445,46 +107468,44 @@
         "new_york_high": 367.20001220703125,
         "new_york_low": 306.2900085449219
       },
-      "session_narrative": "Active session: After Hours. Asia range: 301.40 to 350.78. London range: 306.65 to 359.68. NY range: 306.29 to 367.20. Recent run detected near liquidity. Latest BOS: bullish.",
+      "session_narrative": "Active session: After Hours. Asia range: 301.40 to 350.78. London range: 306.65 to 359.68. NY range: 306.29 to 367.20. Recent run detected near liquidity.",
       "premium_discount": {
-        "range_high": 349.3999938964844,
+        "range_high": 367.20001220703125,
         "range_low": 311.6400146484375,
-        "equilibrium": 330.52000427246094,
+        "equilibrium": 339.4200134277344,
         "state": "premium"
       },
       "setup": {
-        "bias": "long",
-        "grade": "A+",
-        "execution_status": "READY",
+        "bias": "pass",
+        "grade": "PASS",
+        "execution_status": "PASS",
         "reasons": [
-          "HTF/LTF alignment present",
-          "Recent BOS present",
           "Nearby liquidity pools identified",
           "Fair value gap present",
-          "Order block candidate present",
           "Sweep/run behavior detected",
-          "Trap/inducement behavior detected",
-          "Continuation after BOS + FVG retest candidate"
+          "Trap/inducement behavior detected"
         ],
         "blocked_conditions": [
+          "HTF/LTF alignment missing",
           "Not in a major kill zone"
         ],
         "next_trigger_conditions": [
+          "Needs HTF/LTF alignment",
           "Needs London or New York kill zone timing"
         ],
-        "watchlist_reason": null,
-        "setup_type": "bos-fvg-continuation",
-        "entry_zone_low": 349.3999938964844,
-        "entry_zone_high": 363.3800048828125,
+        "watchlist_reason": "Waiting for confluence to improve",
+        "setup_type": null,
+        "entry_zone_low": null,
+        "entry_zone_high": null,
         "target_1": null,
         "target_2": null,
         "rr_estimate": null,
-        "invalidation_level": 349.3999938964844,
-        "invalidation_reason": "Template invalidation for bos-fvg-continuation",
+        "invalidation_level": null,
+        "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing; Not in a major kill zone",
         "checklist": [
           {
             "name": "HTF/LTF aligned",
-            "ok": true
+            "ok": false
           },
           {
             "name": "In kill zone",
@@ -107492,7 +107513,7 @@
           },
           {
             "name": "BOS present",
-            "ok": true
+            "ok": false
           },
           {
             "name": "Liquidity identified",
@@ -107504,7 +107525,7 @@
           },
           {
             "name": "Order block candidate",
-            "ok": true
+            "ok": false
           },
           {
             "name": "Sweep/run context",
@@ -107515,7 +107536,7 @@
             "ok": false
           }
         ],
-        "no_trade_reason": null
+        "no_trade_reason": "Insufficient weighted confluence across structure, liquidity, session, and range position"
       }
     },
     "GOLD": {
@@ -108016,7 +108037,7 @@
   },
   "generator_health": {
     "status": "ok",
-    "summary": "Generator sees 7 market assets, 15 trading-bible assets, 7 signals, 4320 snapshots, and 7118 OHLC rows.",
+    "summary": "Generator sees 7 market assets, 15 trading-bible assets, 7 signals, 4320 snapshots, and 7122 OHLC rows.",
     "quiet_mode": false,
     "issues": []
   },
@@ -108036,62 +108057,62 @@
     "regime": {
       "summary": "Derivatives regime leans crowded long / upside squeeze watch.",
       "crowding": {
-        "longs": 3,
+        "longs": 2,
         "shorts": 0,
-        "balanced": 1
+        "balanced": 2
       },
       "pressure_board": [
         {
           "symbol": "ETH",
-          "pressure_score": 31.94,
-          "funding": 0.00814677499869,
-          "long_short": 1.221,
-          "liq_bias": "above",
-          "confidence_label": "inferred",
-          "crowding_state": "crowded_longs",
-          "funding_delta_1h_pct": 0.3019456708231242,
-          "oi_delta_1h_pct": 0.0058165712415045555,
-          "long_short_delta_1h_pct": 0,
-          "sparkline": "\u2582\u2583\u2586\u2586\u2581\u2581\u2588\u2588"
-        },
-        {
-          "symbol": "ZEC",
-          "pressure_score": 30.91,
-          "funding": 0.01,
-          "long_short": 1.209,
+          "pressure_score": 32.11,
+          "funding": 0.0070155886359199995,
+          "long_short": 1.227,
           "liq_bias": "above",
           "confidence_label": "inferred",
           "crowding_state": "crowded_longs",
           "funding_delta_1h_pct": 0,
-          "oi_delta_1h_pct": 0.02317464734573797,
+          "oi_delta_1h_pct": -0.021412387689324762,
           "long_short_delta_1h_pct": 0,
-          "sparkline": "\u2588\u2588\u2582\u2582\u2581\u2581\u2582\u2582"
+          "sparkline": "\u2584\u2584\u2581\u2581\u2585\u2585\u2588\u2588"
         },
         {
-          "symbol": "BTC",
-          "pressure_score": 24.04,
-          "funding": 0.00297403719739,
-          "long_short": 1.153,
+          "symbol": "ZEC",
+          "pressure_score": 31.12,
+          "funding": 0.01,
+          "long_short": 1.211,
           "liq_bias": "above",
           "confidence_label": "inferred",
           "crowding_state": "crowded_longs",
-          "funding_delta_1h_pct": -0.20442188617011361,
-          "oi_delta_1h_pct": 0.013507605371629552,
+          "funding_delta_1h_pct": 0,
+          "oi_delta_1h_pct": -0.06924329862411652,
           "long_short_delta_1h_pct": 0,
-          "sparkline": "\u2581\u2581\u2583\u2583\u2588\u2587\u2585\u2585"
+          "sparkline": "\u2585\u2585\u2581\u2581\u2585\u2585\u2588\u2588"
         },
         {
           "symbol": "SOL",
-          "pressure_score": 8.56,
-          "funding": 0.00021533971506,
-          "long_short": 1.005,
+          "pressure_score": 15.05,
+          "funding": 0.0012001420386599999,
+          "long_short": 1.068,
           "liq_bias": "above",
           "confidence_label": "inferred",
           "crowding_state": "balanced",
           "funding_delta_1h_pct": 0,
-          "oi_delta_1h_pct": 0.05391863976023183,
+          "oi_delta_1h_pct": -0.01885212913332927,
           "long_short_delta_1h_pct": 0,
-          "sparkline": "\u2581\u2581\u2581\u2581\u2585\u2585\u2588\u2588"
+          "sparkline": "\u2581\u2581\u2584\u2584\u2586\u2586\u2588\u2588"
+        },
+        {
+          "symbol": "BTC",
+          "pressure_score": 10.37,
+          "funding": 0.00034112747889,
+          "long_short": 1.023,
+          "liq_bias": "above",
+          "confidence_label": "inferred",
+          "crowding_state": "balanced",
+          "funding_delta_1h_pct": 0,
+          "oi_delta_1h_pct": -0.00953672775439598,
+          "long_short_delta_1h_pct": 0,
+          "sparkline": "\u2584\u2584\u2588\u2587\u2586\u2586\u2581\u2581"
         }
       ]
     }
