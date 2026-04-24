@@ -1,9 +1,9 @@
 {
   "schema_version": "1.4.0",
-  "generated_at_utc": "2026-04-24T09:49:32Z",
-  "generated_at_local": "2026-04-24 12:49:32 TRT",
+  "generated_at_utc": "2026-04-24T10:04:27Z",
+  "generated_at_local": "2026-04-24 13:04:27 TRT",
   "source": {
-    "upstream_report_time": "2026-04-24 12:49:16 TRT",
+    "upstream_report_time": "2026-04-24 13:04:13 TRT",
     "generator": "generate_dashboard_data.py",
     "input_file": "professional_briefing_test.json",
     "mode": "derived",
@@ -22,8 +22,8 @@
       "v2.04: Derivatives summary, spot-price fallback, and reader-facing update log"
     ],
     "tracked_assets": 15,
-    "market_bias": "BEARISH",
-    "avg_change_pct": 0.9214,
+    "market_bias": "BULLISH",
+    "avg_change_pct": 0.9692,
     "top_gainer": "CRUDE",
     "top_loser": "SILVER",
     "git_revision": "6064c2b"
@@ -32,10 +32,10 @@
     {
       "symbol": "BTC",
       "display_symbol": "BTC",
-      "price": 77544.8828125,
-      "change_pct": -0.3390927491764912,
+      "price": 77542.4765625,
+      "change_pct": -0.01213904964035169,
       "source": "yfinance",
-      "volume": 427790336.0,
+      "volume": 116621312.0,
       "market_cap": null,
       "ohlc": [
         {
@@ -4915,8 +4915,16 @@
           "open": 77811.4296875,
           "high": 77826.078125,
           "low": 77436.0,
-          "close": 77544.8828125,
-          "volume": 427790336.0
+          "close": 77551.890625,
+          "volume": 440532992.0
+        },
+        {
+          "timestamp": "2026-04-24T10:00:00+00:00",
+          "open": 77528.6171875,
+          "high": 77546.3515625,
+          "low": 77473.6484375,
+          "close": 77542.4765625,
+          "volume": 116621312.0
         }
       ],
       "is_major": true,
@@ -4925,32 +4933,37 @@
         "symbol": "BTC",
         "type": "HOLD",
         "reason": "Trend state leans bearish",
-        "confidence": 95
+        "confidence": 74
       },
       "advisory": {
         "symbol": "BTC",
-        "state": "WATCHLIST",
+        "state": "WAIT",
         "direction": "SHORT",
-        "score": 100,
-        "confidence": "VERY_HIGH",
-        "priority": 2,
+        "score": 74,
+        "confidence": "HIGH",
+        "priority": 3,
         "reasons": [
           "Trend state leans bearish",
           "HTF/LTF alignment present",
-          "In major kill zone timing",
           "Liquidity reference identified",
           "Fair value gap present",
-          "Sweep/run context supports setup"
+          "Sweep/run context supports setup",
+          "MACD bearish"
         ],
-        "blockers": [],
-        "triggers": [],
-        "invalidators": [
-          "Lose invalidation level 78399.886719"
+        "blockers": [
+          "Not in a major kill zone",
+          "Entry zone undefined",
+          "Invalidation undefined",
+          "Target not defined"
         ],
-        "time_horizon": "INTRADAY",
+        "triggers": [
+          "Needs London or New York kill zone timing"
+        ],
+        "invalidators": [],
+        "time_horizon": "CONTEXT",
         "display_signal": "HOLD",
         "display_reason": "Trend state leans bearish",
-        "display_confidence": 95
+        "display_confidence": 74
       },
       "trading_bible": {
         "symbol": "BTC",
@@ -4961,12 +4974,6 @@
         "ltf_bias": "bearish",
         "alignment_state": "aligned",
         "pivots": [
-          {
-            "timestamp": "2026-04-23T06:00:00+00:00",
-            "price": 78370.4921875,
-            "kind": "high",
-            "strength": "internal"
-          },
           {
             "timestamp": "2026-04-23T10:00:00+00:00",
             "price": 77216.890625,
@@ -4995,6 +5002,12 @@
             "timestamp": "2026-04-24T05:00:00+00:00",
             "price": 77468.0,
             "kind": "low",
+            "strength": "internal"
+          },
+          {
+            "timestamp": "2026-04-24T08:00:00+00:00",
+            "price": 78029.9765625,
+            "kind": "high",
             "strength": "internal"
           },
           {
@@ -5071,14 +5084,6 @@
           },
           {
             "pool_type": "equal_highs",
-            "level": 78399.886719,
-            "strength": "internal",
-            "notes": [
-              "Potential buy-side liquidity pool"
-            ]
-          },
-          {
-            "pool_type": "equal_highs",
             "level": 78659.019531,
             "strength": "internal",
             "notes": [
@@ -5095,13 +5100,6 @@
           }
         ],
         "fvgs": [
-          {
-            "timestamp": "2026-04-22T00:00:00+00:00",
-            "direction": "bullish",
-            "upper": 76234.046875,
-            "lower": 75662.140625,
-            "status": "open"
-          },
           {
             "timestamp": "2026-04-22T03:00:00+00:00",
             "direction": "bullish",
@@ -5164,37 +5162,17 @@
             "upper": 78100.359375,
             "lower": 77871.9375,
             "status": "open"
+          },
+          {
+            "timestamp": "2026-04-24T10:00:00+00:00",
+            "direction": "bearish",
+            "upper": 77593.203125,
+            "lower": 77546.3515625,
+            "status": "open"
           }
         ],
         "order_blocks": [],
         "sweeps": [
-          {
-            "timestamp": "2026-04-23T17:00:00+00:00",
-            "classification": "sweep",
-            "direction": "bullish",
-            "level": 77216.890625,
-            "notes": [
-              "swing_low taken and rejected"
-            ]
-          },
-          {
-            "timestamp": "2026-04-24T00:00:00+00:00",
-            "classification": "run",
-            "direction": "bullish",
-            "level": 78399.886719,
-            "notes": [
-              "equal_highs taken with continuation"
-            ]
-          },
-          {
-            "timestamp": "2026-04-23T17:00:00+00:00",
-            "classification": "sweep",
-            "direction": "bullish",
-            "level": 77484.796875,
-            "notes": [
-              "equal_lows taken and rejected"
-            ]
-          },
           {
             "timestamp": "2026-04-24T05:00:00+00:00",
             "classification": "sweep",
@@ -5206,6 +5184,15 @@
           },
           {
             "timestamp": "2026-04-24T09:00:00+00:00",
+            "classification": "sweep",
+            "direction": "bullish",
+            "level": 77484.796875,
+            "notes": [
+              "equal_lows taken and rejected"
+            ]
+          },
+          {
+            "timestamp": "2026-04-24T10:00:00+00:00",
             "classification": "sweep",
             "direction": "bullish",
             "level": 77484.796875,
@@ -5234,14 +5221,6 @@
         ],
         "traps": [
           {
-            "timestamp": "2026-04-23T17:00:00+00:00",
-            "trap_type": "inducement",
-            "direction": "bullish",
-            "notes": [
-              "equal_lows taken and rejected"
-            ]
-          },
-          {
             "timestamp": "2026-04-24T05:00:00+00:00",
             "trap_type": "inducement",
             "direction": "bullish",
@@ -5251,6 +5230,14 @@
           },
           {
             "timestamp": "2026-04-24T09:00:00+00:00",
+            "trap_type": "inducement",
+            "direction": "bullish",
+            "notes": [
+              "equal_lows taken and rejected"
+            ]
+          },
+          {
+            "timestamp": "2026-04-24T10:00:00+00:00",
             "trap_type": "inducement",
             "direction": "bullish",
             "notes": [
@@ -5276,9 +5263,9 @@
         ],
         "session": {
           "active_session": "London",
-          "london_kill_zone": true,
+          "london_kill_zone": false,
           "new_york_kill_zone": false,
-          "time_to_next_kill_zone_minutes": 191,
+          "time_to_next_kill_zone_minutes": 176,
           "asia_high": 78608.9296875,
           "asia_low": 73768.0,
           "london_high": 78514.7890625,
@@ -5286,7 +5273,7 @@
           "new_york_high": 79502.78125,
           "new_york_low": 74733.75
         },
-        "session_narrative": "Active session: London. Asia range: 73768.00 to 78608.93. London range: 74649.68 to 78514.79. NY range: 74733.75 to 79502.78. London kill zone is active. Recent sweep detected near liquidity.",
+        "session_narrative": "Active session: London. Asia range: 73768.00 to 78608.93. London range: 74649.68 to 78514.79. NY range: 74733.75 to 79502.78. Recent sweep detected near liquidity.",
         "premium_discount": {
           "range_high": 79502.78125,
           "range_low": 76982.9765625,
@@ -5294,29 +5281,31 @@
           "state": "discount"
         },
         "setup": {
-          "bias": "short",
-          "grade": "B",
-          "execution_status": "WATCHLIST",
+          "bias": "pass",
+          "grade": "PASS",
+          "execution_status": "PASS",
           "reasons": [
-            "Within major kill zone",
             "HTF/LTF alignment present",
             "Nearby liquidity pools identified",
             "Fair value gap present",
             "Sweep/run behavior detected",
-            "Trap/inducement behavior detected",
-            "Session expansion setup candidate"
+            "Trap/inducement behavior detected"
           ],
-          "blocked_conditions": [],
-          "next_trigger_conditions": [],
-          "watchlist_reason": "Waiting for confirmation / confluence",
-          "setup_type": "session-expansion",
-          "entry_zone_low": 77544.8828125,
-          "entry_zone_high": 78399.886719,
-          "target_1": 77484.796875,
-          "target_2": 77216.890625,
-          "rr_estimate": 0.07,
-          "invalidation_level": 78399.886719,
-          "invalidation_reason": "Template invalidation for session-expansion",
+          "blocked_conditions": [
+            "Not in a major kill zone"
+          ],
+          "next_trigger_conditions": [
+            "Needs London or New York kill zone timing"
+          ],
+          "watchlist_reason": "Waiting for confluence to improve",
+          "setup_type": null,
+          "entry_zone_low": null,
+          "entry_zone_high": null,
+          "target_1": null,
+          "target_2": null,
+          "rr_estimate": null,
+          "invalidation_level": null,
+          "invalidation_reason": "PASS diagnostics: Not in a major kill zone",
           "checklist": [
             {
               "name": "HTF/LTF aligned",
@@ -5324,7 +5313,7 @@
             },
             {
               "name": "In kill zone",
-              "ok": true
+              "ok": false
             },
             {
               "name": "BOS present",
@@ -5351,61 +5340,41 @@
               "ok": false
             }
           ],
-          "no_trade_reason": null
+          "no_trade_reason": "Insufficient weighted confluence across structure, liquidity, session, and range position"
         }
       },
       "technical": {
-        "rsi": 42.69946254072213,
+        "rsi": 42.65231555530414,
         "rsi_status": "NEUTRAL",
-        "macd": -69.87793706939556,
+        "macd": -89.54411361858365,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
       "derivatives": {
         "oi_change_1h_pct": null,
-        "funding_current": 6.570360362999999e-05,
+        "funding_current": 0.00035062539585999997,
         "funding_state": "balanced",
-        "long_short_value": 0.969,
+        "long_short_value": 1.016,
         "long_short_type": "funding_oi_price_proxy",
-        "liq_bias": "below",
-        "liq_level": 76149.07,
+        "liq_bias": "above",
+        "liq_level": 78938.24,
         "liq_confidence": "low",
-        "daily_change_pct": -0.3390927491764912,
-        "recent_range_pct": 2.2352881320243467,
+        "daily_change_pct": -0.01213904964035169,
+        "recent_range_pct": 2.235357496098157,
         "source": {
           "oi": "okx",
           "funding": "okx",
           "long_short": "internal_proxy"
         },
         "confidence_label": "inferred",
-        "funding_change_1h_pct": 0.0,
-        "funding_change_4h_pct": -94.72010540905838,
-        "oi_change_hist_1h_pct": 3.4676684592281624e-05,
-        "oi_change_hist_4h_pct": -1.6319819655492638,
+        "funding_change_1h_pct": 2.428676883400802,
+        "funding_change_4h_pct": -61.684889609389785,
+        "oi_change_hist_1h_pct": -0.009786574708515263,
+        "oi_change_hist_4h_pct": -0.9934476698773229,
         "long_short_change_1h_pct": 0.0,
-        "sparkline": "\u2588\u2588\u2586\u2586\u2586\u2586\u2581\u2581"
+        "sparkline": "\u2588\u2588\u2587\u2587\u2581\u2581\u2584\u2584"
       },
       "derivatives_history_rows": [
-        {
-          "timestamp": "2026-04-18T06:03:28Z",
-          "funding_current": -0.0054975306764,
-          "long_short_value": 0.782,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 2761246289.11155,
-          "liq_bias": "below",
-          "liq_level": 75790.77
-        },
-        {
-          "timestamp": "2026-04-18T07:02:41Z",
-          "funding_current": -0.0035033961429900002,
-          "long_short_value": 0.822,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 2759713830.7403884,
-          "liq_bias": "below",
-          "liq_level": 75751.16
-        },
         {
           "timestamp": "2026-04-18T07:03:19Z",
           "funding_current": -0.0034666717306200004,
@@ -7785,6 +7754,26 @@
           "oi_current": 2681810944.2711806,
           "liq_bias": "below",
           "liq_level": 76149.07
+        },
+        {
+          "timestamp": "2026-04-24T10:04:19Z",
+          "funding_current": 0.00034231174953,
+          "long_short_value": 1.016,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 2684723996.5517,
+          "liq_bias": "above",
+          "liq_level": 78938.24
+        },
+        {
+          "timestamp": "2026-04-24T10:04:27Z",
+          "funding_current": 0.00035062539585999997,
+          "long_short_value": 1.016,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 2684461254.03206,
+          "liq_bias": "above",
+          "liq_level": 78938.24
         }
       ],
       "signal_change": null
@@ -7792,10 +7781,10 @@
     {
       "symbol": "ETH",
       "display_symbol": "ETH",
-      "price": 2309.72998046875,
-      "change_pct": -0.29870382520894195,
+      "price": 2310.840087890625,
+      "change_pct": 0.0,
       "source": "yfinance",
-      "volume": 156655616.0,
+      "volume": 84263936.0,
       "market_cap": null,
       "ohlc": [
         {
@@ -12675,8 +12664,16 @@
           "open": 2316.610107421875,
           "high": 2317.22998046875,
           "low": 2304.949951171875,
-          "close": 2309.72998046875,
+          "close": 2310.840087890625,
           "volume": 156655616.0
+        },
+        {
+          "timestamp": "2026-04-24T10:00:00+00:00",
+          "open": 2310.929931640625,
+          "high": 2311.14990234375,
+          "low": 2308.14990234375,
+          "close": 2310.840087890625,
+          "volume": 84263936.0
         }
       ],
       "is_major": true,
@@ -12684,49 +12681,49 @@
       "last_signal": {
         "symbol": "ETH",
         "type": "HOLD",
-        "reason": "Trend state leans bearish",
-        "confidence": 95
+        "reason": "Liquidity reference identified",
+        "confidence": 40
       },
       "advisory": {
         "symbol": "ETH",
-        "state": "WATCHLIST",
+        "state": "PASS",
         "direction": "SHORT",
-        "score": 100,
-        "confidence": "VERY_HIGH",
-        "priority": 2,
+        "score": 36,
+        "confidence": "LOW",
+        "priority": 4,
         "reasons": [
-          "Trend state leans bearish",
-          "HTF/LTF alignment present",
-          "In major kill zone timing",
           "Liquidity reference identified",
           "Fair value gap present",
-          "Sweep/run context supports setup"
+          "Sweep/run context supports setup",
+          "MACD bearish",
+          "Macro backdrop supports risk-taking"
         ],
-        "blockers": [],
-        "triggers": [],
-        "invalidators": [
-          "Lose invalidation level 2337.900024"
+        "blockers": [
+          "HTF/LTF alignment missing",
+          "Not in a major kill zone",
+          "Entry zone undefined",
+          "Invalidation undefined",
+          "Target not defined"
         ],
-        "time_horizon": "INTRADAY",
+        "triggers": [
+          "Needs HTF/LTF alignment",
+          "Needs London or New York kill zone timing"
+        ],
+        "invalidators": [],
+        "time_horizon": "CONTEXT",
         "display_signal": "HOLD",
-        "display_reason": "Trend state leans bearish",
-        "display_confidence": 95
+        "display_reason": "Liquidity reference identified",
+        "display_confidence": 40
       },
       "trading_bible": {
         "symbol": "ETH",
-        "trend_state": "internal_range_or_transition|external_bearish",
+        "trend_state": "internal_range_or_transition|external_range_or_transition",
         "internal_structure": "range_or_transition",
-        "external_structure": "bearish",
+        "external_structure": "range_or_transition",
         "htf_bias": "bearish",
         "ltf_bias": "bearish",
-        "alignment_state": "aligned",
+        "alignment_state": "mixed",
         "pivots": [
-          {
-            "timestamp": "2026-04-23T10:00:00+00:00",
-            "price": 2307.10009765625,
-            "kind": "low",
-            "strength": "internal"
-          },
           {
             "timestamp": "2026-04-23T12:00:00+00:00",
             "price": 2336.3701171875,
@@ -12758,10 +12755,10 @@
             "strength": "internal"
           },
           {
-            "timestamp": "2026-04-22T16:00:00+00:00",
-            "price": 2384.820068359375,
-            "kind": "low",
-            "strength": "external"
+            "timestamp": "2026-04-24T08:00:00+00:00",
+            "price": 2324.260009765625,
+            "kind": "high",
+            "strength": "internal"
           },
           {
             "timestamp": "2026-04-23T03:00:00+00:00",
@@ -12792,19 +12789,17 @@
             "price": 2339.429931640625,
             "kind": "high",
             "strength": "external"
+          },
+          {
+            "timestamp": "2026-04-24T05:00:00+00:00",
+            "price": 2300.860107421875,
+            "kind": "low",
+            "strength": "external"
           }
         ],
         "bos_events": [],
         "choch_events": [],
         "liquidity_pools": [
-          {
-            "pool_type": "swing_low",
-            "level": 2307.10009765625,
-            "strength": "external",
-            "notes": [
-              "Major swing liquidity"
-            ]
-          },
           {
             "pool_type": "swing_high",
             "level": 2344.18994140625,
@@ -12824,6 +12819,14 @@
           {
             "pool_type": "swing_high",
             "level": 2339.429931640625,
+            "strength": "external",
+            "notes": [
+              "Major swing liquidity"
+            ]
+          },
+          {
+            "pool_type": "swing_low",
+            "level": 2300.860107421875,
             "strength": "external",
             "notes": [
               "Major swing liquidity"
@@ -12921,51 +12924,6 @@
         "order_blocks": [],
         "sweeps": [
           {
-            "timestamp": "2026-04-23T17:00:00+00:00",
-            "classification": "sweep",
-            "direction": "bullish",
-            "level": 2307.10009765625,
-            "notes": [
-              "swing_low taken and rejected"
-            ]
-          },
-          {
-            "timestamp": "2026-04-23T18:00:00+00:00",
-            "classification": "run",
-            "direction": "bearish",
-            "level": 2307.10009765625,
-            "notes": [
-              "swing_low taken with continuation"
-            ]
-          },
-          {
-            "timestamp": "2026-04-24T03:00:00+00:00",
-            "classification": "sweep",
-            "direction": "bullish",
-            "level": 2307.10009765625,
-            "notes": [
-              "swing_low taken and rejected"
-            ]
-          },
-          {
-            "timestamp": "2026-04-24T04:00:00+00:00",
-            "classification": "run",
-            "direction": "bearish",
-            "level": 2307.10009765625,
-            "notes": [
-              "swing_low taken with continuation"
-            ]
-          },
-          {
-            "timestamp": "2026-04-24T09:00:00+00:00",
-            "classification": "sweep",
-            "direction": "bullish",
-            "level": 2307.10009765625,
-            "notes": [
-              "swing_low taken and rejected"
-            ]
-          },
-          {
             "timestamp": "2026-04-23T22:00:00+00:00",
             "classification": "sweep",
             "direction": "bearish",
@@ -12986,22 +12944,6 @@
         ],
         "traps": [
           {
-            "timestamp": "2026-04-24T03:00:00+00:00",
-            "trap_type": "inducement",
-            "direction": "bullish",
-            "notes": [
-              "swing_low taken and rejected"
-            ]
-          },
-          {
-            "timestamp": "2026-04-24T09:00:00+00:00",
-            "trap_type": "inducement",
-            "direction": "bullish",
-            "notes": [
-              "swing_low taken and rejected"
-            ]
-          },
-          {
             "timestamp": "2026-04-23T22:00:00+00:00",
             "trap_type": "inducement",
             "direction": "bearish",
@@ -13020,9 +12962,9 @@
         ],
         "session": {
           "active_session": "London",
-          "london_kill_zone": true,
+          "london_kill_zone": false,
           "new_york_kill_zone": false,
-          "time_to_next_kill_zone_minutes": 191,
+          "time_to_next_kill_zone_minutes": 176,
           "asia_high": 2412.56005859375,
           "asia_low": 2261.639892578125,
           "london_high": 2407.68994140625,
@@ -13030,7 +12972,7 @@
           "new_york_high": 2424.75,
           "new_york_low": 2280.0
         },
-        "session_narrative": "Active session: London. Asia range: 2261.64 to 2412.56. London range: 2284.00 to 2407.69. NY range: 2280.00 to 2424.75. London kill zone is active. Recent sweep detected near liquidity.",
+        "session_narrative": "Active session: London. Asia range: 2261.64 to 2412.56. London range: 2284.00 to 2407.69. NY range: 2280.00 to 2424.75. Recent sweep detected near liquidity.",
         "premium_discount": {
           "range_high": 2424.75,
           "range_low": 2285.860107421875,
@@ -13038,37 +12980,40 @@
           "state": "discount"
         },
         "setup": {
-          "bias": "short",
-          "grade": "B",
-          "execution_status": "WATCHLIST",
+          "bias": "pass",
+          "grade": "PASS",
+          "execution_status": "PASS",
           "reasons": [
-            "Within major kill zone",
-            "HTF/LTF alignment present",
             "Nearby liquidity pools identified",
             "Fair value gap present",
             "Sweep/run behavior detected",
-            "Trap/inducement behavior detected",
-            "Session expansion setup candidate"
+            "Trap/inducement behavior detected"
           ],
-          "blocked_conditions": [],
-          "next_trigger_conditions": [],
-          "watchlist_reason": "Waiting for confirmation / confluence",
-          "setup_type": "session-expansion",
-          "entry_zone_low": 2309.72998046875,
-          "entry_zone_high": 2337.900024,
-          "target_1": 2307.10009765625,
-          "target_2": 2307.10009765625,
-          "rr_estimate": 0.09,
-          "invalidation_level": 2337.900024,
-          "invalidation_reason": "Template invalidation for session-expansion",
+          "blocked_conditions": [
+            "HTF/LTF alignment missing",
+            "Not in a major kill zone"
+          ],
+          "next_trigger_conditions": [
+            "Needs HTF/LTF alignment",
+            "Needs London or New York kill zone timing"
+          ],
+          "watchlist_reason": "Waiting for confluence to improve",
+          "setup_type": null,
+          "entry_zone_low": null,
+          "entry_zone_high": null,
+          "target_1": null,
+          "target_2": null,
+          "rr_estimate": null,
+          "invalidation_level": null,
+          "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing; Not in a major kill zone",
           "checklist": [
             {
               "name": "HTF/LTF aligned",
-              "ok": true
+              "ok": false
             },
             {
               "name": "In kill zone",
-              "ok": true
+              "ok": false
             },
             {
               "name": "BOS present",
@@ -13095,27 +13040,27 @@
               "ok": false
             }
           ],
-          "no_trade_reason": null
+          "no_trade_reason": "Insufficient weighted confluence across structure, liquidity, session, and range position"
         }
       },
       "technical": {
-        "rsi": 40.67309901696664,
+        "rsi": 41.15815080350922,
         "rsi_status": "NEUTRAL",
-        "macd": -8.669840436937648,
+        "macd": -8.436068878155766,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
       "derivatives": {
         "oi_change_1h_pct": null,
-        "funding_current": -0.00546171675576,
+        "funding_current": -0.00568981633338,
         "funding_state": "balanced",
-        "long_short_value": 0.75,
+        "long_short_value": 0.78,
         "long_short_type": "funding_oi_price_proxy",
         "liq_bias": "below",
-        "liq_level": 2268.15,
+        "liq_level": 2269.24,
         "liq_confidence": "low",
-        "daily_change_pct": -0.29870382520894195,
-        "recent_range_pct": 2.5253962358204833,
+        "daily_change_pct": 0.0,
+        "recent_range_pct": 2.524183057496613,
         "source": {
           "oi": "okx",
           "funding": "okx",
@@ -13123,33 +13068,13 @@
         },
         "confidence_label": "inferred",
         "funding_change_1h_pct": -0.0,
-        "funding_change_4h_pct": 9.362023529034817,
-        "oi_change_hist_1h_pct": -0.003057861300968822,
-        "oi_change_hist_4h_pct": 2.4104902803938653,
+        "funding_change_4h_pct": 58.96299501567306,
+        "oi_change_hist_1h_pct": -0.012699848914884886,
+        "oi_change_hist_4h_pct": 2.108807374110393,
         "long_short_change_1h_pct": 0.0,
-        "sparkline": "\u2584\u2584\u2583\u2583\u2588\u2588\u2581\u2581"
+        "sparkline": "\u2583\u2583\u2588\u2588\u2581\u2581\u2584\u2584"
       },
       "derivatives_history_rows": [
-        {
-          "timestamp": "2026-04-18T06:03:28Z",
-          "funding_current": 0.008716631125900001,
-          "long_short_value": 1.222,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1618973366.1847274,
-          "liq_bias": "above",
-          "liq_level": 2453.81
-        },
-        {
-          "timestamp": "2026-04-18T07:02:41Z",
-          "funding_current": 0.00734845650301,
-          "long_short_value": 1.22,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1622693994.8705578,
-          "liq_bias": "above",
-          "liq_level": 2454.19
-        },
         {
           "timestamp": "2026-04-18T07:03:19Z",
           "funding_current": 0.0073402638965100004,
@@ -15529,6 +15454,26 @@
           "oi_current": 1511078876.7772236,
           "liq_bias": "below",
           "liq_level": 2268.15
+        },
+        {
+          "timestamp": "2026-04-24T10:04:19Z",
+          "funding_current": -0.00568981633338,
+          "long_short_value": 0.78,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1515665264.1312037,
+          "liq_bias": "below",
+          "liq_level": 2269.24
+        },
+        {
+          "timestamp": "2026-04-24T10:04:27Z",
+          "funding_current": -0.00568981633338,
+          "long_short_value": 0.78,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1515472776.9326036,
+          "liq_bias": "below",
+          "liq_level": 2269.24
         }
       ],
       "signal_change": null
@@ -15536,10 +15481,10 @@
     {
       "symbol": "SOL",
       "display_symbol": "SOL",
-      "price": 85.33000183105469,
-      "change_pct": -0.05855636445488385,
+      "price": 85.41999816894531,
+      "change_pct": -0.07019792422997607,
       "source": "yfinance",
-      "volume": 8121344.0,
+      "volume": 2187776.0,
       "market_cap": null,
       "ohlc": [
         {
@@ -20417,10 +20362,18 @@
         {
           "timestamp": "2026-04-24T09:00:00+00:00",
           "open": 85.37000274658203,
-          "high": 85.4000015258789,
+          "high": 85.4800033569336,
           "low": 85.0,
-          "close": 85.33000183105469,
-          "volume": 8121344.0
+          "close": 85.4800033569336,
+          "volume": 10975744.0
+        },
+        {
+          "timestamp": "2026-04-24T10:00:00+00:00",
+          "open": 85.47000122070312,
+          "high": 85.47000122070312,
+          "low": 85.20999908447266,
+          "close": 85.41999816894531,
+          "volume": 2187776.0
         }
       ],
       "is_major": true,
@@ -20428,18 +20381,17 @@
       "last_signal": {
         "symbol": "SOL",
         "type": "HOLD",
-        "reason": "In major kill zone timing",
-        "confidence": 47
+        "reason": "Liquidity reference identified",
+        "confidence": 40
       },
       "advisory": {
         "symbol": "SOL",
         "state": "PASS",
         "direction": "SHORT",
-        "score": 47,
+        "score": 36,
         "confidence": "LOW",
         "priority": 4,
         "reasons": [
-          "In major kill zone timing",
           "Liquidity reference identified",
           "Fair value gap present",
           "Sweep/run context supports setup",
@@ -20448,18 +20400,20 @@
         ],
         "blockers": [
           "HTF/LTF alignment missing",
+          "Not in a major kill zone",
           "Entry zone undefined",
           "Invalidation undefined",
           "Target not defined"
         ],
         "triggers": [
-          "Needs HTF/LTF alignment"
+          "Needs HTF/LTF alignment",
+          "Needs London or New York kill zone timing"
         ],
         "invalidators": [],
         "time_horizon": "CONTEXT",
         "display_signal": "HOLD",
-        "display_reason": "In major kill zone timing",
-        "display_confidence": 47
+        "display_reason": "Liquidity reference identified",
+        "display_confidence": 40
       },
       "trading_bible": {
         "symbol": "SOL",
@@ -20721,15 +20675,6 @@
             ]
           },
           {
-            "timestamp": "2026-04-23T17:00:00+00:00",
-            "classification": "sweep",
-            "direction": "bullish",
-            "level": 85.220001,
-            "notes": [
-              "equal_lows taken and rejected"
-            ]
-          },
-          {
             "timestamp": "2026-04-23T19:00:00+00:00",
             "classification": "sweep",
             "direction": "bullish",
@@ -20766,12 +20711,12 @@
             ]
           },
           {
-            "timestamp": "2026-04-23T17:00:00+00:00",
-            "classification": "run",
-            "direction": "bearish",
-            "level": 85.529999,
+            "timestamp": "2026-04-24T10:00:00+00:00",
+            "classification": "sweep",
+            "direction": "bullish",
+            "level": 85.220001,
             "notes": [
-              "equal_lows taken with continuation"
+              "equal_lows taken and rejected"
             ]
           },
           {
@@ -20781,6 +20726,15 @@
             "level": 85.529999,
             "notes": [
               "equal_lows taken and rejected"
+            ]
+          },
+          {
+            "timestamp": "2026-04-24T04:00:00+00:00",
+            "classification": "run",
+            "direction": "bearish",
+            "level": 85.529999,
+            "notes": [
+              "equal_lows taken with continuation"
             ]
           }
         ],
@@ -20802,6 +20756,14 @@
             ]
           },
           {
+            "timestamp": "2026-04-24T10:00:00+00:00",
+            "trap_type": "inducement",
+            "direction": "bullish",
+            "notes": [
+              "equal_lows taken and rejected"
+            ]
+          },
+          {
             "timestamp": "2026-04-24T03:00:00+00:00",
             "trap_type": "inducement",
             "direction": "bullish",
@@ -20812,9 +20774,9 @@
         ],
         "session": {
           "active_session": "London",
-          "london_kill_zone": true,
+          "london_kill_zone": false,
           "new_york_kill_zone": false,
-          "time_to_next_kill_zone_minutes": 191,
+          "time_to_next_kill_zone_minutes": 176,
           "asia_high": 88.31999969482422,
           "asia_low": 83.4000015258789,
           "london_high": 88.87000274658203,
@@ -20822,31 +20784,30 @@
           "new_york_high": 89.3499984741211,
           "new_york_low": 84.33999633789062
         },
-        "session_narrative": "Active session: London. Asia range: 83.40 to 88.32. London range: 84.48 to 88.87. NY range: 84.34 to 89.35. London kill zone is active. Recent run detected near liquidity.",
+        "session_narrative": "Active session: London. Asia range: 83.40 to 88.32. London range: 84.48 to 88.87. NY range: 84.34 to 89.35. Recent run detected near liquidity.",
         "premium_discount": {
           "range_high": 86.63999938964844,
           "range_low": 84.51000213623047,
           "equilibrium": 85.57500076293945,
-          "state": "discount"
+          "state": "equilibrium"
         },
         "setup": {
           "bias": "pass",
           "grade": "PASS",
           "execution_status": "PASS",
           "reasons": [
-            "Within major kill zone",
             "Nearby liquidity pools identified",
             "Fair value gap present",
             "Sweep/run behavior detected",
-            "Trap/inducement behavior detected",
-            "Session expansion setup candidate",
-            "Session-sweep execution logic observed but full template not confirmed"
+            "Trap/inducement behavior detected"
           ],
           "blocked_conditions": [
-            "HTF/LTF alignment missing"
+            "HTF/LTF alignment missing",
+            "Not in a major kill zone"
           ],
           "next_trigger_conditions": [
-            "Needs HTF/LTF alignment"
+            "Needs HTF/LTF alignment",
+            "Needs London or New York kill zone timing"
           ],
           "watchlist_reason": "Waiting for confluence to improve",
           "setup_type": null,
@@ -20856,7 +20817,7 @@
           "target_2": null,
           "rr_estimate": null,
           "invalidation_level": null,
-          "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing",
+          "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing; Not in a major kill zone",
           "checklist": [
             {
               "name": "HTF/LTF aligned",
@@ -20864,7 +20825,7 @@
             },
             {
               "name": "In kill zone",
-              "ok": true
+              "ok": false
             },
             {
               "name": "BOS present",
@@ -20895,23 +20856,23 @@
         }
       },
       "technical": {
-        "rsi": 40.80184301638977,
+        "rsi": 42.476435410557556,
         "rsi_status": "NEUTRAL",
-        "macd": -0.21951914312062115,
+        "macd": -0.20995755551830086,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
       "derivatives": {
         "oi_change_1h_pct": null,
-        "funding_current": 0.00301656437023,
+        "funding_current": 0.00303486696102,
         "funding_state": "balanced",
         "long_short_value": 1.145,
         "long_short_type": "funding_oi_price_proxy",
         "liq_bias": "above",
-        "liq_level": 86.87,
+        "liq_level": 86.96,
         "liq_confidence": "low",
-        "daily_change_pct": -0.05855636445488385,
-        "recent_range_pct": 2.4961879851299678,
+        "daily_change_pct": -0.07019792422997607,
+        "recent_range_pct": 2.4935580649454234,
         "source": {
           "oi": "okx",
           "funding": "okx",
@@ -20919,33 +20880,13 @@
         },
         "confidence_label": "inferred",
         "funding_change_1h_pct": 0.0,
-        "funding_change_4h_pct": -476.83603178114043,
-        "oi_change_hist_1h_pct": -0.025111527981599886,
-        "oi_change_hist_4h_pct": 1.6136974363449372,
+        "funding_change_4h_pct": 714.6097918032444,
+        "oi_change_hist_1h_pct": 0.022809008208552698,
+        "oi_change_hist_4h_pct": 0.9533078790260592,
         "long_short_change_1h_pct": 0.0,
-        "sparkline": "\u2581\u2581\u2581\u2581\u2583\u2583\u2588\u2588"
+        "sparkline": "\u2581\u2581\u2583\u2583\u2588\u2588\u2588\u2588"
       },
       "derivatives_history_rows": [
-        {
-          "timestamp": "2026-04-18T06:03:28Z",
-          "funding_current": 0.00069452597429,
-          "long_short_value": 1.04,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 234874170.0454002,
-          "liq_bias": "above",
-          "liq_level": 90.08
-        },
-        {
-          "timestamp": "2026-04-18T07:02:41Z",
-          "funding_current": 0.0020299291198,
-          "long_short_value": 1.103,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 233649031.7560002,
-          "liq_bias": "above",
-          "liq_level": 90.16
-        },
         {
           "timestamp": "2026-04-18T07:03:19Z",
           "funding_current": 0.0020448260043300004,
@@ -23325,6 +23266,26 @@
           "oi_current": 227711624.29600015,
           "liq_bias": "above",
           "liq_level": 86.87
+        },
+        {
+          "timestamp": "2026-04-24T10:04:19Z",
+          "funding_current": 0.00303486696102,
+          "long_short_value": 1.145,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 227535361.57940012,
+          "liq_bias": "above",
+          "liq_level": 86.96
+        },
+        {
+          "timestamp": "2026-04-24T10:04:27Z",
+          "funding_current": 0.00303486696102,
+          "long_short_value": 1.145,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 227587260.13870013,
+          "liq_bias": "above",
+          "liq_level": 86.96
         }
       ],
       "signal_change": null
@@ -23332,10 +23293,10 @@
     {
       "symbol": "ZEC",
       "display_symbol": "ZEC",
-      "price": 341.1600036621094,
-      "change_pct": -0.26310995232063317,
+      "price": 341.489990234375,
+      "change_pct": 0.12313686373396568,
       "source": "yfinance",
-      "volume": 12570048.0,
+      "volume": 832320.0,
       "market_cap": null,
       "ohlc": [
         {
@@ -28215,8 +28176,16 @@
           "open": 342.04998779296875,
           "high": 342.4800109863281,
           "low": 338.5299987792969,
-          "close": 341.1600036621094,
-          "volume": 12570048.0
+          "close": 341.07000732421875,
+          "volume": 14366016.0
+        },
+        {
+          "timestamp": "2026-04-24T10:00:00+00:00",
+          "open": 341.0400085449219,
+          "high": 341.7799987792969,
+          "low": 339.9599914550781,
+          "close": 341.489990234375,
+          "volume": 832320.0
         }
       ],
       "is_major": true,
@@ -28225,36 +28194,39 @@
         "symbol": "ZEC",
         "type": "HOLD",
         "reason": "Trend state leans bullish",
-        "confidence": 95
+        "confidence": 48
       },
       "advisory": {
         "symbol": "ZEC",
-        "state": "WATCHLIST",
+        "state": "PASS",
         "direction": "LONG",
-        "score": 100,
-        "confidence": "VERY_HIGH",
-        "priority": 2,
+        "score": 48,
+        "confidence": "LOW",
+        "priority": 4,
         "reasons": [
           "Trend state leans bullish",
-          "In major kill zone timing",
           "Liquidity reference identified",
           "Fair value gap present",
           "Sweep/run context supports setup",
-          "Execution status marked WATCHLIST"
+          "MACD bullish",
+          "Macro backdrop supports risk-taking"
         ],
         "blockers": [
-          "HTF/LTF alignment missing"
+          "HTF/LTF alignment missing",
+          "Not in a major kill zone",
+          "Entry zone undefined",
+          "Invalidation undefined",
+          "Target not defined"
         ],
         "triggers": [
-          "Needs HTF/LTF alignment"
+          "Needs HTF/LTF alignment",
+          "Needs London or New York kill zone timing"
         ],
-        "invalidators": [
-          "Lose invalidation level 331.67999267578125"
-        ],
-        "time_horizon": "INTRADAY",
+        "invalidators": [],
+        "time_horizon": "CONTEXT",
         "display_signal": "HOLD",
         "display_reason": "Trend state leans bullish",
-        "display_confidence": 95
+        "display_confidence": 48
       },
       "trading_bible": {
         "symbol": "ZEC",
@@ -28302,12 +28274,6 @@
             "strength": "internal"
           },
           {
-            "timestamp": "2026-04-22T05:00:00+00:00",
-            "price": 326.69000244140625,
-            "kind": "high",
-            "strength": "external"
-          },
-          {
             "timestamp": "2026-04-22T09:00:00+00:00",
             "price": 316.239990234375,
             "kind": "low",
@@ -28336,19 +28302,17 @@
             "price": 349.489990234375,
             "kind": "high",
             "strength": "external"
+          },
+          {
+            "timestamp": "2026-04-24T05:00:00+00:00",
+            "price": 335.8800048828125,
+            "kind": "low",
+            "strength": "external"
           }
         ],
         "bos_events": [],
         "choch_events": [],
         "liquidity_pools": [
-          {
-            "pool_type": "swing_high",
-            "level": 331.67999267578125,
-            "strength": "external",
-            "notes": [
-              "Major swing liquidity"
-            ]
-          },
           {
             "pool_type": "swing_low",
             "level": 311.6400146484375,
@@ -28368,6 +28332,14 @@
           {
             "pool_type": "swing_high",
             "level": 349.489990234375,
+            "strength": "external",
+            "notes": [
+              "Major swing liquidity"
+            ]
+          },
+          {
+            "pool_type": "swing_low",
+            "level": 335.8800048828125,
             "strength": "external",
             "notes": [
               "Major swing liquidity"
@@ -28456,24 +28428,6 @@
         ],
         "order_blocks": [],
         "sweeps": [
-          {
-            "timestamp": "2026-04-23T18:00:00+00:00",
-            "classification": "sweep",
-            "direction": "bearish",
-            "level": 331.67999267578125,
-            "notes": [
-              "swing_high taken and rejected"
-            ]
-          },
-          {
-            "timestamp": "2026-04-23T19:00:00+00:00",
-            "classification": "run",
-            "direction": "bullish",
-            "level": 331.67999267578125,
-            "notes": [
-              "swing_high taken with continuation"
-            ]
-          },
           {
             "timestamp": "2026-04-24T06:00:00+00:00",
             "classification": "sweep",
@@ -28566,9 +28520,9 @@
         ],
         "session": {
           "active_session": "London",
-          "london_kill_zone": true,
+          "london_kill_zone": false,
           "new_york_kill_zone": false,
-          "time_to_next_kill_zone_minutes": 191,
+          "time_to_next_kill_zone_minutes": 176,
           "asia_high": 350.7300109863281,
           "asia_low": 301.5799865722656,
           "london_high": 344.8299865722656,
@@ -28576,7 +28530,7 @@
           "new_york_high": 339.3599853515625,
           "new_york_low": 306.2900085449219
         },
-        "session_narrative": "Active session: London. Asia range: 301.58 to 350.73. London range: 306.65 to 344.83. NY range: 306.29 to 339.36. London kill zone is active. Recent run detected near liquidity.",
+        "session_narrative": "Active session: London. Asia range: 301.58 to 350.73. London range: 306.65 to 344.83. NY range: 306.29 to 339.36. Recent run detected near liquidity.",
         "premium_discount": {
           "range_high": 349.489990234375,
           "range_low": 311.6400146484375,
@@ -28584,32 +28538,32 @@
           "state": "premium"
         },
         "setup": {
-          "bias": "long",
-          "grade": "B",
-          "execution_status": "WATCHLIST",
+          "bias": "pass",
+          "grade": "PASS",
+          "execution_status": "PASS",
           "reasons": [
-            "Within major kill zone",
             "Nearby liquidity pools identified",
             "Fair value gap present",
             "Sweep/run behavior detected",
-            "Trap/inducement behavior detected",
-            "Session expansion setup candidate"
+            "Trap/inducement behavior detected"
           ],
           "blocked_conditions": [
-            "HTF/LTF alignment missing"
+            "HTF/LTF alignment missing",
+            "Not in a major kill zone"
           ],
           "next_trigger_conditions": [
-            "Needs HTF/LTF alignment"
+            "Needs HTF/LTF alignment",
+            "Needs London or New York kill zone timing"
           ],
-          "watchlist_reason": "Waiting for confirmation / confluence",
-          "setup_type": "session-expansion",
-          "entry_zone_low": 331.67999267578125,
-          "entry_zone_high": 341.1600036621094,
-          "target_1": 349.489990234375,
-          "target_2": 349.489990234375,
-          "rr_estimate": 0.88,
-          "invalidation_level": 331.67999267578125,
-          "invalidation_reason": "Template invalidation for session-expansion",
+          "watchlist_reason": "Waiting for confluence to improve",
+          "setup_type": null,
+          "entry_zone_low": null,
+          "entry_zone_high": null,
+          "target_1": null,
+          "target_2": null,
+          "rr_estimate": null,
+          "invalidation_level": null,
+          "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing; Not in a major kill zone",
           "checklist": [
             {
               "name": "HTF/LTF aligned",
@@ -28617,7 +28571,7 @@
             },
             {
               "name": "In kill zone",
-              "ok": true
+              "ok": false
             },
             {
               "name": "BOS present",
@@ -28644,13 +28598,13 @@
               "ok": false
             }
           ],
-          "no_trade_reason": null
+          "no_trade_reason": "Insufficient weighted confluence across structure, liquidity, session, and range position"
         }
       },
       "technical": {
-        "rsi": 58.35151813604187,
+        "rsi": 58.729242495977964,
         "rsi_status": "NEUTRAL",
-        "macd": 5.134029654373478,
+        "macd": 4.777523666395837,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
@@ -28658,13 +28612,13 @@
         "oi_change_1h_pct": null,
         "funding_current": 0.01,
         "funding_state": "crowded_longs",
-        "long_short_value": 1.194,
+        "long_short_value": 1.232,
         "long_short_type": "funding_oi_price_proxy",
         "liq_bias": "above",
-        "liq_level": 347.3,
+        "liq_level": 347.64,
         "liq_confidence": "low",
-        "daily_change_pct": -0.26310995232063317,
-        "recent_range_pct": 10.660694467217532,
+        "daily_change_pct": 0.12313686373396568,
+        "recent_range_pct": 10.40440416859995,
         "source": {
           "oi": "okx",
           "funding": "okx",
@@ -28672,33 +28626,13 @@
         },
         "confidence_label": "inferred",
         "funding_change_1h_pct": 0.0,
-        "funding_change_4h_pct": -744.83740413699,
-        "oi_change_hist_1h_pct": 0.039172702537072855,
-        "oi_change_hist_4h_pct": 1.894260219373567,
+        "funding_change_4h_pct": 224.5476814810302,
+        "oi_change_hist_1h_pct": 0.0647715382531341,
+        "oi_change_hist_4h_pct": -1.7037975351005714,
         "long_short_change_1h_pct": 0.0,
-        "sparkline": "\u2581\u2581\u2581\u2581\u2587\u2587\u2588\u2588"
+        "sparkline": "\u2581\u2581\u2586\u2586\u2587\u2587\u2588\u2588"
       },
       "derivatives_history_rows": [
-        {
-          "timestamp": "2026-04-18T06:03:28Z",
-          "funding_current": 0.01,
-          "long_short_value": 1.229,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 36210055.1004,
-          "liq_bias": "above",
-          "liq_level": 344.58
-        },
-        {
-          "timestamp": "2026-04-18T07:02:41Z",
-          "funding_current": 0.01,
-          "long_short_value": 1.232,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 36386894.4474,
-          "liq_bias": "above",
-          "liq_level": 341.95
-        },
         {
           "timestamp": "2026-04-18T07:03:19Z",
           "funding_current": 0.01,
@@ -31078,6 +31012,26 @@
           "oi_current": 35187051.82,
           "liq_bias": "above",
           "liq_level": 347.3
+        },
+        {
+          "timestamp": "2026-04-24T10:04:19Z",
+          "funding_current": 0.01,
+          "long_short_value": 1.232,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 35422270.6744,
+          "liq_bias": "above",
+          "liq_level": 347.64
+        },
+        {
+          "timestamp": "2026-04-24T10:04:27Z",
+          "funding_current": 0.01,
+          "long_short_value": 1.232,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 35445214.224,
+          "liq_bias": "above",
+          "liq_level": 347.64
         }
       ],
       "signal_change": null
@@ -31085,10 +31039,10 @@
     {
       "symbol": "GOLD",
       "display_symbol": "GOLD",
-      "price": 4699.10009765625,
-      "change_pct": -2.593177989955832,
+      "price": 4695.5,
+      "change_pct": -2.6678037830509873,
       "source": "yfinance-macro",
-      "volume": 3959.0,
+      "volume": 4983.0,
       "market_cap": null,
       "ohlc": [
         {
@@ -35343,9 +35297,9 @@
           "timestamp": "2026-04-24T05:00:00-04:00",
           "open": 4706.10009765625,
           "high": 4711.89990234375,
-          "low": 4695.0,
-          "close": 4699.10009765625,
-          "volume": 3959.0
+          "low": 4694.89990234375,
+          "close": 4695.5,
+          "volume": 4983.0
         }
       ],
       "is_major": true,
@@ -35424,9 +35378,9 @@
         }
       },
       "technical": {
-        "rsi": 42.012265285277785,
+        "rsi": 40.71843281400108,
         "rsi_status": "NEUTRAL",
-        "macd": -11.483386929321568,
+        "macd": -11.770574206743731,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
@@ -35435,10 +35389,10 @@
     {
       "symbol": "SILVER",
       "display_symbol": "SILVER",
-      "price": 74.8550033569336,
-      "change_pct": -5.4562671655347765,
+      "price": 74.55500030517578,
+      "change_pct": -5.835178488798883,
       "source": "yfinance-macro",
-      "volume": 1328.0,
+      "volume": 1576.0,
       "market_cap": null,
       "ohlc": [
         {
@@ -39693,9 +39647,9 @@
           "timestamp": "2026-04-24T05:00:00-04:00",
           "open": 74.80500030517578,
           "high": 74.93000030517578,
-          "low": 74.63999938964844,
-          "close": 74.8550033569336,
-          "volume": 1328.0
+          "low": 74.53500366210938,
+          "close": 74.55500030517578,
+          "volume": 1576.0
         }
       ],
       "is_major": true,
@@ -39774,9 +39728,9 @@
         }
       },
       "technical": {
-        "rsi": 39.30724172084227,
+        "rsi": 35.61251393830845,
         "rsi_status": "NEUTRAL",
-        "macd": -0.3702233621203703,
+        "macd": -0.39415522949705917,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
@@ -39785,10 +39739,10 @@
     {
       "symbol": "CRUDE",
       "display_symbol": "CRUDE",
-      "price": 97.41999816894531,
-      "change_pct": 8.78838062421821,
+      "price": 97.72000122070312,
+      "change_pct": 9.123392395892207,
       "source": "yfinance-macro",
-      "volume": 4795.0,
+      "volume": 6434.0,
       "market_cap": null,
       "ohlc": [
         {
@@ -44002,10 +43956,10 @@
         {
           "timestamp": "2026-04-24T05:00:00-04:00",
           "open": 96.97000122070312,
-          "high": 97.7300033569336,
+          "high": 97.77999877929688,
           "low": 96.66000366210938,
-          "close": 97.41999816894531,
-          "volume": 4795.0
+          "close": 97.72000122070312,
+          "volume": 6434.0
         }
       ],
       "is_major": true,
@@ -44084,9 +44038,9 @@
         }
       },
       "technical": {
-        "rsi": 57.70065255419609,
+        "rsi": 60.28516244718854,
         "rsi_status": "NEUTRAL",
-        "macd": 0.9273084457375944,
+        "macd": 0.9512403131142975,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
@@ -49633,8 +49587,8 @@
     {
       "symbol": "DXY",
       "display_symbol": "DXY",
-      "price": 98.78800201416016,
-      "change_pct": 0.581364864362051,
+      "price": 98.79399871826172,
+      "change_pct": 0.5874704305332995,
       "source": "yfinance-macro",
       "volume": 0.0,
       "market_cap": null,
@@ -53516,7 +53470,7 @@
           "open": 98.77400207519531,
           "high": 98.80999755859375,
           "low": 98.76599884033203,
-          "close": 98.78800201416016,
+          "close": 98.79399871826172,
           "volume": 0.0
         }
       ],
@@ -53596,9 +53550,9 @@
         }
       },
       "technical": {
-        "rsi": 49.05710819092274,
+        "rsi": 49.86744379009573,
         "rsi_status": "NEUTRAL",
-        "macd": 0.04003879415191136,
+        "macd": 0.04051716370986469,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
@@ -53607,8 +53561,8 @@
     {
       "symbol": "VIX",
       "display_symbol": "VIX",
-      "price": 19.280000686645508,
-      "change_pct": 6.873612573106216,
+      "price": 19.25,
+      "change_pct": 6.707311657790377,
       "source": "yfinance-macro",
       "volume": 0.0,
       "market_cap": null,
@@ -55858,7 +55812,7 @@
           "open": 19.190000534057617,
           "high": 19.329999923706055,
           "low": 19.15999984741211,
-          "close": 19.280000686645508,
+          "close": 19.25,
           "volume": 0.0
         }
       ],
@@ -55938,9 +55892,9 @@
         }
       },
       "technical": {
-        "rsi": 45.374451375033665,
+        "rsi": 45.01108037927039,
         "rsi_status": "NEUTRAL",
-        "macd": -0.008332578770311017,
+        "macd": -0.010725795938615335,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
@@ -55949,8 +55903,8 @@
     {
       "symbol": "USD",
       "display_symbol": "USD",
-      "price": 98.78800201416016,
-      "change_pct": 0.581364864362051,
+      "price": 98.79399871826172,
+      "change_pct": 0.5874704305332995,
       "source": "yfinance-fx-context",
       "volume": 0.0,
       "market_cap": null,
@@ -59832,7 +59786,7 @@
           "open": 98.77400207519531,
           "high": 98.80999755859375,
           "low": 98.76599884033203,
-          "close": 98.78800201416016,
+          "close": 98.79399871826172,
           "volume": 0.0
         }
       ],
@@ -59912,9 +59866,9 @@
         }
       },
       "technical": {
-        "rsi": 49.05710819092274,
+        "rsi": 49.86744379009573,
         "rsi_status": "NEUTRAL",
-        "macd": 0.04003879415191136,
+        "macd": 0.04051716370986469,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
@@ -59923,8 +59877,8 @@
     {
       "symbol": "EUR",
       "display_symbol": "EUR",
-      "price": 1.1690436601638794,
-      "change_pct": -1.0170766037356869,
+      "price": 1.1689070463180542,
+      "change_pct": -1.0286436976749234,
       "source": "yfinance-fx-context",
       "volume": 0.0,
       "market_cap": null,
@@ -63992,6 +63946,14 @@
           "low": 1.168770432472229,
           "close": 1.1690436601638794,
           "volume": 0.0
+        },
+        {
+          "timestamp": "2026-04-24T11:00:00+01:00",
+          "open": 1.1690436601638794,
+          "high": 1.1690436601638794,
+          "low": 1.1689070463180542,
+          "close": 1.1689070463180542,
+          "volume": 0.0
         }
       ],
       "is_major": true,
@@ -64070,9 +64032,9 @@
         }
       },
       "technical": {
-        "rsi": 50.0,
+        "rsi": 51.21966794380588,
         "rsi_status": "NEUTRAL",
-        "macd": -0.0004000985849414995,
+        "macd": -0.00029065896141644565,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
@@ -64081,8 +64043,8 @@
     {
       "symbol": "TRY",
       "display_symbol": "TRY",
-      "price": 45.02336883544922,
-      "change_pct": 1.0244614381046382,
+      "price": 45.023799896240234,
+      "change_pct": 1.0254286621348654,
       "source": "yfinance-fx-context",
       "volume": 0.0,
       "market_cap": null,
@@ -68148,7 +68110,15 @@
           "open": 45.02436828613281,
           "high": 45.02470016479492,
           "low": 44.85300064086914,
-          "close": 45.02336883544922,
+          "close": 45.023399353027344,
+          "volume": 0.0
+        },
+        {
+          "timestamp": "2026-04-24T11:00:00+01:00",
+          "open": 45.02370071411133,
+          "high": 45.02470016479492,
+          "low": 44.986698150634766,
+          "close": 45.023799896240234,
           "volume": 0.0
         }
       ],
@@ -68228,9 +68198,9 @@
         }
       },
       "technical": {
-        "rsi": 77.97028769654236,
-        "rsi_status": "OVERBOUGHT",
-        "macd": 0.030841953276407708,
+        "rsi": 66.89614142444331,
+        "rsi_status": "NEUTRAL",
+        "macd": 0.030311603789655805,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
@@ -68268,31 +68238,31 @@
     "score": 55,
     "factors": [
       "Tracked assets: 15",
-      "Average change: +0.92%",
+      "Average change: +0.97%",
       "Snapshots stored: 4320",
-      "OHLC rows stored: 6955"
+      "OHLC rows stored: 6961"
     ]
   },
   "regime": {
-    "current": "BEARISH",
-    "score": 0.35,
+    "current": "BULLISH",
+    "score": 0.65,
     "previous": "NEUTRAL"
   },
   "watchlists": {
     "top_gainers": [
       {
         "symbol": "CRUDE",
-        "price": 97.41999816894531,
-        "change_pct": 8.78838062421821,
-        "rsi": 57.70065255419609,
-        "macd": 0.9273084457375944
+        "price": 97.72000122070312,
+        "change_pct": 9.123392395892207,
+        "rsi": 60.28516244718854,
+        "macd": 0.9512403131142975
       },
       {
         "symbol": "VIX",
-        "price": 19.280000686645508,
-        "change_pct": 6.873612573106216,
-        "rsi": 45.374451375033665,
-        "macd": -0.008332578770311017
+        "price": 19.25,
+        "change_pct": 6.707311657790377,
+        "rsi": 45.01108037927039,
+        "macd": -0.010725795938615335
       },
       {
         "symbol": "NDX",
@@ -68305,33 +68275,40 @@
     "top_losers": [
       {
         "symbol": "SILVER",
-        "price": 74.8550033569336,
-        "change_pct": -5.4562671655347765,
-        "rsi": 39.30724172084227,
-        "macd": -0.3702233621203703
+        "price": 74.55500030517578,
+        "change_pct": -5.835178488798883,
+        "rsi": 35.61251393830845,
+        "macd": -0.39415522949705917
       },
       {
         "symbol": "GOLD",
-        "price": 4699.10009765625,
-        "change_pct": -2.593177989955832,
-        "rsi": 42.012265285277785,
-        "macd": -11.483386929321568
+        "price": 4695.5,
+        "change_pct": -2.6678037830509873,
+        "rsi": 40.71843281400108,
+        "macd": -11.770574206743731
       },
       {
         "symbol": "EUR",
-        "price": 1.1690436601638794,
-        "change_pct": -1.0170766037356869,
-        "rsi": 50.0,
-        "macd": -0.0004000985849414995
+        "price": 1.1689070463180542,
+        "change_pct": -1.0286436976749234,
+        "rsi": 51.21966794380588,
+        "macd": -0.00029065896141644565
       }
     ],
     "strongest_rsi": [
       {
         "symbol": "TRY",
-        "price": 45.02336883544922,
-        "change_pct": 1.0244614381046382,
-        "rsi": 77.97028769654236,
-        "macd": 0.030841953276407708
+        "price": 45.023799896240234,
+        "change_pct": 1.0254286621348654,
+        "rsi": 66.89614142444331,
+        "macd": 0.030311603789655805
+      },
+      {
+        "symbol": "CRUDE",
+        "price": 97.72000122070312,
+        "change_pct": 9.123392395892207,
+        "rsi": 60.28516244718854,
+        "macd": 0.9512403131142975
       },
       {
         "symbol": "SPX",
@@ -68339,13 +68316,6 @@
         "change_pct": 1.648126132147551,
         "rsi": 59.9436417051382,
         "macd": 4.715069751385272
-      },
-      {
-        "symbol": "NDX",
-        "price": 24437.083984375,
-        "change_pct": 2.5765668566781255,
-        "rsi": 58.4075860377667,
-        "macd": 44.51566763771916
       }
     ]
   },
@@ -68490,8 +68460,6 @@
   "history": {
     "BTC": {
       "dates": [
-        "2026-04-18T06:03:28Z",
-        "2026-04-18T07:02:41Z",
         "2026-04-18T07:03:19Z",
         "2026-04-18T08:02:53Z",
         "2026-04-18T08:03:42Z",
@@ -68729,11 +68697,11 @@
         "2026-04-24T06:01:41Z",
         "2026-04-24T06:01:49Z",
         "2026-04-24T09:49:22Z",
-        "2026-04-24T09:49:32Z"
+        "2026-04-24T09:49:32Z",
+        "2026-04-24T10:04:19Z",
+        "2026-04-24T10:04:27Z"
       ],
       "prices": [
-        77180.0078125,
-        77139.671875,
         77139.671875,
         77030.0,
         77030.0,
@@ -68971,11 +68939,11 @@
         77946.3984375,
         77946.3984375,
         77544.8828125,
-        77544.8828125
+        77544.8828125,
+        77542.4765625,
+        77542.4765625
       ],
       "change_pct": [
-        0.015185965818820696,
-        -0.02634541861067911,
         -0.02634541861067911,
         0.012973495827636508,
         0.012973495827636508,
@@ -69213,11 +69181,11 @@
         -0.03261394289644277,
         -0.03261394289644277,
         -0.3390927491764912,
-        -0.3390927491764912
+        -0.3390927491764912,
+        -0.01213904964035169,
+        -0.01213904964035169
       ],
       "rsi": [
-        58.556763707054735,
-        57.657574914075745,
         57.657574914075745,
         55.46161104399754,
         55.46161104399754,
@@ -69455,11 +69423,11 @@
         48.92205570528562,
         48.92205570528562,
         42.69946254072213,
-        42.69946254072213
+        42.69946254072213,
+        42.65231555530414,
+        42.65231555530414
       ],
       "macd": [
-        397.5254276282212,
-        364.84820177849906,
         364.84820177849906,
         321.55128987156786,
         321.55128987156786,
@@ -69697,7 +69665,9 @@
         -1.8241377103695413,
         -1.8241377103695413,
         -69.87793706939556,
-        -69.87793706939556
+        -69.87793706939556,
+        -89.54411361858365,
+        -89.54411361858365
       ],
       "signal_type": [
         "HOLD",
@@ -69717,8 +69687,6 @@
         "HOLD",
         "HOLD",
         "HOLD",
-        "HOLD",
-        "HOLD",
         "SELL",
         "SELL",
         "HOLD",
@@ -69904,6 +69872,8 @@
         "HOLD",
         "SELL",
         "SELL",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -69944,8 +69914,6 @@
     },
     "ETH": {
       "dates": [
-        "2026-04-18T06:03:28Z",
-        "2026-04-18T07:02:41Z",
         "2026-04-18T07:03:19Z",
         "2026-04-18T08:02:53Z",
         "2026-04-18T08:03:42Z",
@@ -70183,11 +70151,11 @@
         "2026-04-24T06:01:41Z",
         "2026-04-24T06:01:49Z",
         "2026-04-24T09:49:22Z",
-        "2026-04-24T09:49:32Z"
+        "2026-04-24T09:49:32Z",
+        "2026-04-24T10:04:19Z",
+        "2026-04-24T10:04:27Z"
       ],
       "prices": [
-        2410.419921875,
-        2410.800048828125,
         2410.800048828125,
         2403.31005859375,
         2403.31005859375,
@@ -70425,11 +70393,11 @@
         2314.090087890625,
         2314.090087890625,
         2309.72998046875,
-        2309.72998046875
+        2309.72998046875,
+        2310.840087890625,
+        2310.840087890625
       ],
       "change_pct": [
-        0.022409376764029265,
-        0.004567465105478062,
         0.004567465105478062,
         -0.05115242203367734,
         -0.05115242203367734,
@@ -70667,11 +70635,11 @@
         -0.04837025867068785,
         -0.04837025867068785,
         -0.29870382520894195,
-        -0.29870382520894195
+        -0.29870382520894195,
+        0.0,
+        0.0
       ],
       "rsi": [
-        54.17748455092014,
-        54.335846586796,
         54.335846586796,
         50.65735764063751,
         50.65735764063751,
@@ -70909,11 +70877,11 @@
         41.4098305932226,
         41.4098305932226,
         40.67309901696664,
-        40.67309901696664
+        40.67309901696664,
+        41.15815080350922,
+        41.15815080350922
       ],
       "macd": [
-        11.699919553495874,
-        10.56532203988263,
         10.56532203988263,
         8.556065088549985,
         8.556065088549985,
@@ -71151,7 +71119,9 @@
         -9.015214484263652,
         -9.015214484263652,
         -8.669840436937648,
-        -8.669840436937648
+        -8.669840436937648,
+        -8.436068878155766,
+        -8.436068878155766
       ],
       "signal_type": [
         "HOLD",
@@ -71213,8 +71183,6 @@
         "HOLD",
         "HOLD",
         "HOLD",
-        "HOLD",
-        "HOLD",
         "SELL",
         "SELL",
         "HOLD",
@@ -71372,6 +71340,8 @@
         "HOLD",
         "SELL",
         "SELL",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -71398,8 +71368,6 @@
     },
     "SOL": {
       "dates": [
-        "2026-04-18T06:03:28Z",
-        "2026-04-18T07:02:41Z",
         "2026-04-18T07:03:19Z",
         "2026-04-18T08:02:53Z",
         "2026-04-18T08:03:42Z",
@@ -71637,11 +71605,11 @@
         "2026-04-24T06:01:41Z",
         "2026-04-24T06:01:49Z",
         "2026-04-24T09:49:22Z",
-        "2026-04-24T09:49:32Z"
+        "2026-04-24T09:49:32Z",
+        "2026-04-24T10:04:19Z",
+        "2026-04-24T10:04:27Z"
       ],
       "prices": [
-        88.48999786376953,
-        88.56999969482422,
         88.56999969482422,
         88.30999755859375,
         88.30999755859375,
@@ -71879,11 +71847,11 @@
         85.62999725341797,
         85.62999725341797,
         85.33000183105469,
-        85.33000183105469
+        85.33000183105469,
+        85.41999816894531,
+        85.41999816894531
       ],
       "change_pct": [
-        0.05653032675615821,
-        0.011294192080178253,
         0.011294192080178253,
         -0.18085640318939214,
         -0.18085640318939214,
@@ -72121,11 +72089,11 @@
         -0.08167992685751728,
         -0.08167992685751728,
         -0.05855636445488385,
-        -0.05855636445488385
+        -0.05855636445488385,
+        -0.07019792422997607,
+        -0.07019792422997607
       ],
       "rsi": [
-        48.06675671504021,
-        49.0174845893113,
         49.0174845893113,
         45.94394838570947,
         45.94394838570947,
@@ -72363,11 +72331,11 @@
         44.403329444157954,
         44.403329444157954,
         40.80184301638977,
-        40.80184301638977
+        40.80184301638977,
+        42.476435410557556,
+        42.476435410557556
       ],
       "macd": [
-        0.09694341611378832,
-        0.07850142833605389,
         0.07850142833605389,
         0.03188317083589709,
         0.03188317083589709,
@@ -72605,7 +72573,9 @@
         -0.17465444913385397,
         -0.17465444913385397,
         -0.21951914312062115,
-        -0.21951914312062115
+        -0.21951914312062115,
+        -0.20995755551830086,
+        -0.20995755551830086
       ],
       "signal_type": [
         "HOLD",
@@ -72728,12 +72698,12 @@
         "HOLD",
         "HOLD",
         "HOLD",
+        "SELL",
+        "SELL",
+        "SELL",
+        "SELL",
         "HOLD",
         "HOLD",
-        "SELL",
-        "SELL",
-        "SELL",
-        "SELL",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -72852,8 +72822,6 @@
     },
     "ZEC": {
       "dates": [
-        "2026-04-18T06:03:28Z",
-        "2026-04-18T07:02:41Z",
         "2026-04-18T07:03:19Z",
         "2026-04-18T08:02:53Z",
         "2026-04-18T08:03:42Z",
@@ -73091,11 +73059,11 @@
         "2026-04-24T06:01:41Z",
         "2026-04-24T06:01:49Z",
         "2026-04-24T09:49:22Z",
-        "2026-04-24T09:49:32Z"
+        "2026-04-24T09:49:32Z",
+        "2026-04-24T10:04:19Z",
+        "2026-04-24T10:04:27Z"
       ],
       "prices": [
-        338.489990234375,
-        335.8999938964844,
         335.8999938964844,
         335.57000732421875,
         335.57000732421875,
@@ -73333,11 +73301,11 @@
         345.69000244140625,
         345.69000244140625,
         341.1600036621094,
-        341.1600036621094
+        341.1600036621094,
+        341.489990234375,
+        341.489990234375
       ],
       "change_pct": [
-        0.08870392111036013,
-        0.1222104009192478,
         0.1222104009192478,
         -0.07444464133985815,
         -0.07444464133985815,
@@ -73575,11 +73543,11 @@
         -0.04337089349776329,
         -0.04337089349776329,
         -0.26310995232063317,
-        -0.26310995232063317
+        -0.26310995232063317,
+        0.12313686373396568,
+        0.12313686373396568
       ],
       "rsi": [
-        52.61186686700421,
-        49.22950427754996,
         49.22950427754996,
         48.76586390680549,
         48.76586390680549,
@@ -73817,11 +73785,11 @@
         66.59292217545078,
         66.59292217545078,
         58.35151813604187,
-        58.35151813604187
+        58.35151813604187,
+        58.729242495977964,
+        58.729242495977964
       ],
       "macd": [
-        -0.38148272129961924,
-        -0.5639693549027811,
         -0.5639693549027811,
         -0.5442678547269679,
         -0.5442678547269679,
@@ -74059,7 +74027,9 @@
         6.371305267769287,
         6.371305267769287,
         5.134029654373478,
-        5.134029654373478
+        5.134029654373478,
+        4.777523666395837,
+        4.777523666395837
       ],
       "signal_type": [
         "HOLD",
@@ -74091,8 +74061,6 @@
         "HOLD",
         "HOLD",
         "HOLD",
-        "HOLD",
-        "HOLD",
         "SELL",
         "SELL",
         "HOLD",
@@ -74290,6 +74258,8 @@
         "HOLD",
         "BUY",
         "BUY",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -78668,8 +78638,6 @@
     },
     "GOLD": {
       "dates": [
-        "2026-04-18T02:03:14Z",
-        "2026-04-18T03:02:35Z",
         "2026-04-18T03:03:18Z",
         "2026-04-18T04:02:32Z",
         "2026-04-18T04:03:14Z",
@@ -78907,11 +78875,11 @@
         "2026-04-24T06:01:41Z",
         "2026-04-24T06:01:49Z",
         "2026-04-24T09:49:22Z",
-        "2026-04-24T09:49:32Z"
+        "2026-04-24T09:49:32Z",
+        "2026-04-24T10:04:19Z",
+        "2026-04-24T10:04:27Z"
       ],
       "prices": [
-        4849.39990234375,
-        4849.39990234375,
         4849.39990234375,
         4851.7001953125,
         4851.7001953125,
@@ -79149,11 +79117,11 @@
         4697.0,
         4697.0,
         4699.2001953125,
-        4699.10009765625
+        4699.10009765625,
+        4695.39990234375,
+        4695.5
       ],
       "change_pct": [
-        1.4136956881796476,
-        1.4136956881796476,
         1.4136956881796476,
         1.4618008590923879,
         1.4618008590923879,
@@ -79391,11 +79359,11 @@
         -2.636710546052708,
         -2.636710546052708,
         -2.591103083189996,
-        -2.593177989955832
+        -2.593177989955832,
+        -2.6698786898168234,
+        -2.6678037830509873
       ],
       "rsi": [
-        62.995834140390336,
-        62.995834140390336,
         62.995834140390336,
         63.86563734627604,
         63.86563734627604,
@@ -79633,11 +79601,11 @@
         28.459891046700207,
         28.459891046700207,
         42.04941509368854,
-        42.012265285277785
+        42.012265285277785,
+        40.68359660288379,
+        40.71843281400108
       ],
       "macd": [
-        17.09573030611955,
-        17.09573030611955,
         17.09573030611955,
         17.279229460322313,
         17.279229460322313,
@@ -79875,7 +79843,9 @@
         -8.293726876489018,
         -8.293726876489018,
         -11.475401931103079,
-        -11.483386929321568
+        -11.483386929321568,
+        -11.77855920496313,
+        -11.770574206743731
       ],
       "signal_type": [
         "HOLD",
@@ -80122,8 +80092,6 @@
     },
     "SILVER": {
       "dates": [
-        "2026-04-18T06:03:28Z",
-        "2026-04-18T07:02:41Z",
         "2026-04-18T07:03:19Z",
         "2026-04-18T08:02:53Z",
         "2026-04-18T08:03:42Z",
@@ -80361,11 +80329,11 @@
         "2026-04-24T06:01:41Z",
         "2026-04-24T06:01:49Z",
         "2026-04-24T09:49:22Z",
-        "2026-04-24T09:49:32Z"
+        "2026-04-24T09:49:32Z",
+        "2026-04-24T10:04:19Z",
+        "2026-04-24T10:04:27Z"
       ],
       "prices": [
-        80.93000030517578,
-        80.93000030517578,
         80.93000030517578,
         80.93000030517578,
         80.93000030517578,
@@ -80603,11 +80571,11 @@
         74.95999908447266,
         74.93000030517578,
         74.8550033569336,
-        74.8550033569336
+        74.8550033569336,
+        74.55000305175781,
+        74.55500030517578
       ],
       "change_pct": [
-        6.641192457585935,
-        6.641192457585935,
         6.641192457585935,
         6.641192457585935,
         6.641192457585935,
@@ -80845,11 +80813,11 @@
         -5.3236549476730035,
         -5.361544152776367,
         -5.4562671655347765,
-        -5.4562671655347765
+        -5.4562671655347765,
+        -5.8414901442776985,
+        -5.835178488798883
       ],
       "rsi": [
-        66.9962102488054,
-        66.9962102488054,
         66.9962102488054,
         66.9962102488054,
         66.9962102488054,
@@ -81087,11 +81055,11 @@
         24.738213882703036,
         24.54545634696518,
         39.30724172084227,
-        39.30724172084227
+        39.30724172084227,
+        35.56188384217678,
+        35.61251393830845
       ],
       "macd": [
-        0.8977258482027679,
-        0.8977258482027679,
         0.8977258482027679,
         0.8977258482027679,
         0.8977258482027679,
@@ -81329,7 +81297,9 @@
         -0.3247304713627557,
         -0.32712353637788283,
         -0.3702233621203703,
-        -0.3702233621203703
+        -0.3702233621203703,
+        -0.3945538707953631,
+        -0.39415522949705917
       ],
       "signal_type": [
         "HOLD",
@@ -81576,8 +81546,6 @@
     },
     "CRUDE": {
       "dates": [
-        "2026-04-18T06:03:28Z",
-        "2026-04-18T07:02:41Z",
         "2026-04-18T07:03:19Z",
         "2026-04-18T08:02:53Z",
         "2026-04-18T08:03:42Z",
@@ -81815,11 +81783,11 @@
         "2026-04-24T06:01:41Z",
         "2026-04-24T06:01:49Z",
         "2026-04-24T09:49:22Z",
-        "2026-04-24T09:49:32Z"
+        "2026-04-24T09:49:32Z",
+        "2026-04-24T10:04:19Z",
+        "2026-04-24T10:04:27Z"
       ],
       "prices": [
-        84.0,
-        84.0,
         84.0,
         84.0,
         84.0,
@@ -82057,11 +82025,11 @@
         96.0199966430664,
         96.02999877929688,
         97.43000030517578,
-        97.41999816894531
+        97.41999816894531,
+        97.73999786376953,
+        97.72000122070312
       ],
       "change_pct": [
-        -14.642824027917023,
-        -14.642824027917023,
         -14.642824027917023,
         -14.642824027917023,
         -14.642824027917023,
@@ -82299,11 +82267,11 @@
         7.22500655591166,
         7.236175886888329,
         8.79954995519488,
-        8.78838062421821
+        8.78838062421821,
+        9.145722538142286,
+        9.123392395892207
       ],
       "rsi": [
-        29.423613057093604,
-        29.423613057093604,
         29.423613057093604,
         29.423613057093604,
         29.423613057093604,
@@ -82541,11 +82509,11 @@
         67.24350934107906,
         67.28395817576089,
         57.79222923877718,
-        57.70065255419609
+        57.70065255419609,
+        60.44625060354326,
+        60.28516244718854
       ],
       "macd": [
-        -2.2824584253579587,
-        -2.2824584253579587,
         -2.2824584253579587,
         -2.2824584253579587,
         -2.2824584253579587,
@@ -82783,7 +82751,9 @@
         0.8358792884869075,
         0.8366771796961672,
         0.9281063369468683,
-        0.9273084457375944
+        0.9273084457375944,
+        0.9528354869201507,
+        0.9512403131142975
       ],
       "signal_type": [
         "HOLD",
@@ -83030,8 +83000,6 @@
     },
     "SPX": {
       "dates": [
-        "2026-04-18T06:03:28Z",
-        "2026-04-18T07:02:41Z",
         "2026-04-18T07:03:19Z",
         "2026-04-18T08:02:53Z",
         "2026-04-18T08:03:42Z",
@@ -83269,11 +83237,11 @@
         "2026-04-24T06:01:41Z",
         "2026-04-24T06:01:49Z",
         "2026-04-24T09:49:22Z",
-        "2026-04-24T09:49:32Z"
+        "2026-04-24T09:49:32Z",
+        "2026-04-24T10:04:19Z",
+        "2026-04-24T10:04:27Z"
       ],
       "prices": [
-        7125.1201171875,
-        7125.1201171875,
         7125.1201171875,
         7125.1201171875,
         7125.1201171875,
@@ -83511,11 +83479,11 @@
         7108.0400390625,
         7108.0400390625,
         7108.0400390625,
+        7108.0400390625,
+        7108.0400390625,
         7108.0400390625
       ],
       "change_pct": [
-        5.320637906649033,
-        5.320637906649033,
         5.320637906649033,
         5.320637906649033,
         5.320637906649033,
@@ -83753,11 +83721,11 @@
         1.648126132147551,
         1.648126132147551,
         1.648126132147551,
+        1.648126132147551,
+        1.648126132147551,
         1.648126132147551
       ],
       "rsi": [
-        74.99022824451893,
-        74.99022824451893,
         74.99022824451893,
         74.99022824451893,
         74.99022824451893,
@@ -83995,11 +83963,11 @@
         59.9436417051382,
         59.9436417051382,
         59.9436417051382,
+        59.9436417051382,
+        59.9436417051382,
         59.9436417051382
       ],
       "macd": [
-        44.60930999646553,
-        44.60930999646553,
         44.60930999646553,
         44.60930999646553,
         44.60930999646553,
@@ -84214,6 +84182,8 @@
         7.144330362583787,
         5.455492303531173,
         5.609466439927928,
+        4.715069751385272,
+        4.715069751385272,
         4.715069751385272,
         4.715069751385272,
         4.715069751385272,
@@ -84484,8 +84454,6 @@
     },
     "NDX": {
       "dates": [
-        "2026-04-18T06:03:28Z",
-        "2026-04-18T07:02:41Z",
         "2026-04-18T07:03:19Z",
         "2026-04-18T08:02:53Z",
         "2026-04-18T08:03:42Z",
@@ -84723,11 +84691,11 @@
         "2026-04-24T06:01:41Z",
         "2026-04-24T06:01:49Z",
         "2026-04-24T09:49:22Z",
-        "2026-04-24T09:49:32Z"
+        "2026-04-24T09:49:32Z",
+        "2026-04-24T10:04:19Z",
+        "2026-04-24T10:04:27Z"
       ],
       "prices": [
-        24466.5546875,
-        24466.5546875,
         24466.5546875,
         24466.5546875,
         24466.5546875,
@@ -84965,11 +84933,11 @@
         24437.083984375,
         24437.083984375,
         24437.083984375,
+        24437.083984375,
+        24437.083984375,
         24437.083984375
       ],
       "change_pct": [
-        8.565238153428025,
-        8.565238153428025,
         8.565238153428025,
         8.565238153428025,
         8.565238153428025,
@@ -85207,11 +85175,11 @@
         2.5765668566781255,
         2.5765668566781255,
         2.5765668566781255,
+        2.5765668566781255,
+        2.5765668566781255,
         2.5765668566781255
       ],
       "rsi": [
-        73.8908227200131,
-        73.8908227200131,
         73.8908227200131,
         73.8908227200131,
         73.8908227200131,
@@ -85449,11 +85417,11 @@
         58.4075860377667,
         58.4075860377667,
         58.4075860377667,
+        58.4075860377667,
+        58.4075860377667,
         58.4075860377667
       ],
       "macd": [
-        226.54477086414045,
-        226.54477086414045,
         226.54477086414045,
         226.54477086414045,
         226.54477086414045,
@@ -85668,6 +85636,8 @@
         63.36350503911672,
         53.777355677895684,
         54.48798156820703,
+        44.51566763771916,
+        44.51566763771916,
         44.51566763771916,
         44.51566763771916,
         44.51566763771916,
@@ -85938,8 +85908,6 @@
     },
     "DJI": {
       "dates": [
-        "2026-04-18T06:03:28Z",
-        "2026-04-18T07:02:41Z",
         "2026-04-18T07:03:19Z",
         "2026-04-18T08:02:53Z",
         "2026-04-18T08:03:42Z",
@@ -86177,11 +86145,11 @@
         "2026-04-24T06:01:41Z",
         "2026-04-24T06:01:49Z",
         "2026-04-24T09:49:22Z",
-        "2026-04-24T09:49:32Z"
+        "2026-04-24T09:49:32Z",
+        "2026-04-24T10:04:19Z",
+        "2026-04-24T10:04:27Z"
       ],
       "prices": [
-        49442.55859375,
-        49442.55859375,
         49442.55859375,
         49442.55859375,
         49442.55859375,
@@ -86419,11 +86387,11 @@
         49307.05859375,
         49307.05859375,
         49307.05859375,
+        49307.05859375,
+        49307.05859375,
         49307.05859375
       ],
       "change_pct": [
-        3.4786559909900374,
-        3.4786559909900374,
         3.4786559909900374,
         3.4786559909900374,
         3.4786559909900374,
@@ -86661,11 +86629,11 @@
         1.773303651552448,
         1.773303651552448,
         1.773303651552448,
+        1.773303651552448,
+        1.773303651552448,
         1.773303651552448
       ],
       "rsi": [
-        76.62643303196943,
-        76.62643303196943,
         76.62643303196943,
         76.62643303196943,
         76.62643303196943,
@@ -86903,11 +86871,11 @@
         55.407991695816015,
         55.407991695816015,
         55.407991695816015,
+        55.407991695816015,
+        55.407991695816015,
         55.407991695816015
       ],
       "macd": [
-        290.2592112481507,
-        290.2592112481507,
         290.2592112481507,
         290.2592112481507,
         290.2592112481507,
@@ -87122,6 +87090,8 @@
         1.5602077470830409,
         -6.184408599096059,
         -5.420341647535679,
+        -20.536154989640636,
+        -20.536154989640636,
         -20.536154989640636,
         -20.536154989640636,
         -20.536154989640636,
@@ -87392,8 +87362,6 @@
     },
     "DXY": {
       "dates": [
-        "2026-04-18T06:03:28Z",
-        "2026-04-18T07:02:41Z",
         "2026-04-18T07:03:19Z",
         "2026-04-18T08:02:53Z",
         "2026-04-18T08:03:42Z",
@@ -87631,11 +87599,11 @@
         "2026-04-24T06:01:41Z",
         "2026-04-24T06:01:49Z",
         "2026-04-24T09:49:22Z",
-        "2026-04-24T09:49:32Z"
+        "2026-04-24T09:49:32Z",
+        "2026-04-24T10:04:19Z",
+        "2026-04-24T10:04:27Z"
       ],
       "prices": [
-        98.22200012207031,
-        98.22200012207031,
         98.22200012207031,
         98.22699737548828,
         98.22699737548828,
@@ -87873,11 +87841,11 @@
         98.8489990234375,
         98.8489990234375,
         98.78900146484375,
-        98.78800201416016
+        98.78800201416016,
+        98.79399871826172,
+        98.79399871826172
       ],
       "change_pct": [
-        -0.674493439418145,
-        -0.674493439418145,
         -0.674493439418145,
         -0.6694400427602223,
         -0.6694400427602223,
@@ -88115,11 +88083,11 @@
         0.6434691920199784,
         0.6434691920199784,
         0.5823824587239258,
-        0.581364864362051
+        0.581364864362051,
+        0.5874704305332995,
+        0.5874704305332995
       ],
       "rsi": [
-        47.51207675531638,
-        47.51207675531638,
         47.51207675531638,
         47.766732837545554,
         47.766732837545554,
@@ -88357,11 +88325,11 @@
         61.96636847469143,
         61.96636847469143,
         49.19397842405349,
-        49.05710819092274
+        49.05710819092274,
+        49.86744379009573,
+        49.86744379009573
       ],
       "macd": [
-        -0.04288999250044867,
-        -0.04288999250044867,
         -0.04288999250044867,
         -0.042491351202144756,
         -0.042491351202144756,
@@ -88599,7 +88567,9 @@
         0.03982626192420469,
         0.03982626192420469,
         0.040118522411574986,
-        0.04003879415191136
+        0.04003879415191136,
+        0.04051716370986469,
+        0.04051716370986469
       ],
       "signal_type": [
         "HOLD",
@@ -88846,8 +88816,6 @@
     },
     "VIX": {
       "dates": [
-        "2026-04-18T06:03:28Z",
-        "2026-04-18T07:02:41Z",
         "2026-04-18T07:03:19Z",
         "2026-04-18T08:02:53Z",
         "2026-04-18T08:03:42Z",
@@ -89085,11 +89053,11 @@
         "2026-04-24T06:01:41Z",
         "2026-04-24T06:01:49Z",
         "2026-04-24T09:49:22Z",
-        "2026-04-24T09:49:32Z"
+        "2026-04-24T09:49:32Z",
+        "2026-04-24T10:04:19Z",
+        "2026-04-24T10:04:27Z"
       ],
       "prices": [
-        17.469999313354492,
-        17.469999313354492,
         17.469999313354492,
         17.469999313354492,
         17.469999313354492,
@@ -89327,11 +89295,11 @@
         19.309999465942383,
         19.309999465942383,
         19.299999237060547,
-        19.280000686645508
+        19.280000686645508,
+        19.25,
+        19.25
       ],
       "change_pct": [
-        -18.668530327465483,
-        -18.668530327465483,
         -18.668530327465483,
         -18.668530327465483,
         -18.668530327465483,
@@ -89569,11 +89537,11 @@
         6.9806109813832204,
         6.9806109813832204,
         6.984469277097988,
-        6.873612573106216
+        6.873612573106216,
+        6.707311657790377,
+        6.707311657790377
       ],
       "rsi": [
-        37.15844944176234,
-        37.15844944176234,
         37.15844944176234,
         37.15844944176234,
         37.15844944176234,
@@ -89811,11 +89779,11 @@
         54.424772225980185,
         54.424772225980185,
         45.61401967747413,
-        45.374451375033665
+        45.374451375033665,
+        45.01108037927039,
+        45.01108037927039
       ],
       "macd": [
-        -0.2305480085227387,
-        -0.2305480085227387,
         -0.2305480085227387,
         -0.2305480085227387,
         -0.2305480085227387,
@@ -90053,7 +90021,9 @@
         0.09867926705582519,
         0.09867926705582519,
         -0.006737252811277017,
-        -0.008332578770311017
+        -0.008332578770311017,
+        -0.010725795938615335,
+        -0.010725795938615335
       ],
       "signal_type": [
         "HOLD",
@@ -90300,8 +90270,6 @@
     },
     "USD": {
       "dates": [
-        "2026-04-18T06:03:28Z",
-        "2026-04-18T07:02:41Z",
         "2026-04-18T07:03:19Z",
         "2026-04-18T08:02:53Z",
         "2026-04-18T08:03:42Z",
@@ -90539,11 +90507,11 @@
         "2026-04-24T06:01:41Z",
         "2026-04-24T06:01:49Z",
         "2026-04-24T09:49:22Z",
-        "2026-04-24T09:49:32Z"
+        "2026-04-24T09:49:32Z",
+        "2026-04-24T10:04:19Z",
+        "2026-04-24T10:04:27Z"
       ],
       "prices": [
-        98.22200012207031,
-        98.22200012207031,
         98.22200012207031,
         98.22699737548828,
         98.22699737548828,
@@ -90781,11 +90749,11 @@
         98.8489990234375,
         98.8489990234375,
         98.78900146484375,
-        98.78800201416016
+        98.78800201416016,
+        98.79399871826172,
+        98.79399871826172
       ],
       "change_pct": [
-        -0.674493439418145,
-        -0.674493439418145,
         -0.674493439418145,
         -0.6694400427602223,
         -0.6694400427602223,
@@ -91023,11 +90991,11 @@
         0.6434691920199784,
         0.6434691920199784,
         0.5823824587239258,
-        0.581364864362051
+        0.581364864362051,
+        0.5874704305332995,
+        0.5874704305332995
       ],
       "rsi": [
-        47.51207675531638,
-        47.51207675531638,
         47.51207675531638,
         47.766732837545554,
         47.766732837545554,
@@ -91265,11 +91233,11 @@
         61.96636847469143,
         61.96636847469143,
         49.19397842405349,
-        49.05710819092274
+        49.05710819092274,
+        49.86744379009573,
+        49.86744379009573
       ],
       "macd": [
-        -0.04288999250044867,
-        -0.04288999250044867,
         -0.04288999250044867,
         -0.042491351202144756,
         -0.042491351202144756,
@@ -91507,7 +91475,9 @@
         0.03982626192420469,
         0.03982626192420469,
         0.040118522411574986,
-        0.04003879415191136
+        0.04003879415191136,
+        0.04051716370986469,
+        0.04051716370986469
       ],
       "signal_type": [
         "HOLD",
@@ -91754,8 +91724,6 @@
     },
     "EUR": {
       "dates": [
-        "2026-04-18T06:03:28Z",
-        "2026-04-18T07:02:41Z",
         "2026-04-18T07:03:19Z",
         "2026-04-18T08:02:53Z",
         "2026-04-18T08:03:42Z",
@@ -91993,11 +91961,11 @@
         "2026-04-24T06:01:41Z",
         "2026-04-24T06:01:49Z",
         "2026-04-24T09:49:22Z",
-        "2026-04-24T09:49:32Z"
+        "2026-04-24T09:49:32Z",
+        "2026-04-24T10:04:19Z",
+        "2026-04-24T10:04:27Z"
       ],
       "prices": [
-        1.176747441291809,
-        1.176747441291809,
         1.176747441291809,
         1.176747441291809,
         1.176747441291809,
@@ -92235,11 +92203,11 @@
         1.1683608293533325,
         1.1683608293533325,
         1.1690436601638794,
-        1.1690436601638794
+        1.1690436601638794,
+        1.1689070463180542,
+        1.1689070463180542
       ],
       "change_pct": [
-        0.9060955266337805,
-        0.9060955266337805,
         0.9060955266337805,
         0.9060955266337805,
         0.9060955266337805,
@@ -92477,11 +92445,11 @@
         -1.0748918865314514,
         -1.0748918865314514,
         -1.0170766037356869,
-        -1.0170766037356869
+        -1.0170766037356869,
+        -1.0286436976749234,
+        -1.0286436976749234
       ],
       "rsi": [
-        42.56615941174158,
-        42.56615941174158,
         42.56615941174158,
         42.56615941174158,
         42.56615941174158,
@@ -92719,11 +92687,11 @@
         27.009123270232678,
         27.009123270232678,
         50.0,
-        50.0
+        50.0,
+        51.21966794380588,
+        51.21966794380588
       ],
       "macd": [
-        -0.00014145672333731873,
-        -0.00014145672333731873,
         -0.00014145672333731873,
         -0.00014145672333731873,
         -0.00014145672333731873,
@@ -92961,7 +92929,9 @@
         -0.0006928156236076788,
         -0.0006928156236076788,
         -0.0004000985849414995,
-        -0.0004000985849414995
+        -0.0004000985849414995,
+        -0.00029065896141644565,
+        -0.00029065896141644565
       ],
       "signal_type": [
         "HOLD",
@@ -93208,8 +93178,6 @@
     },
     "TRY": {
       "dates": [
-        "2026-04-18T06:03:28Z",
-        "2026-04-18T07:02:41Z",
         "2026-04-18T07:03:19Z",
         "2026-04-18T08:02:53Z",
         "2026-04-18T08:03:42Z",
@@ -93447,11 +93415,11 @@
         "2026-04-24T06:01:41Z",
         "2026-04-24T06:01:49Z",
         "2026-04-24T09:49:22Z",
-        "2026-04-24T09:49:32Z"
+        "2026-04-24T09:49:32Z",
+        "2026-04-24T10:04:19Z",
+        "2026-04-24T10:04:27Z"
       ],
       "prices": [
-        44.8473014831543,
-        44.8473014831543,
         44.8473014831543,
         44.8473014831543,
         44.8473014831543,
@@ -93689,11 +93657,11 @@
         45.02280044555664,
         45.02040100097656,
         45.02336883544922,
-        45.02336883544922
+        45.02336883544922,
+        45.020301818847656,
+        45.023799896240234
       ],
       "change_pct": [
-        0.8151167480191268,
-        0.8151167480191268,
         0.8151167480191268,
         0.8151167480191268,
         0.8151167480191268,
@@ -93931,11 +93899,11 @@
         1.0231860719054888,
         1.017802143454046,
         1.0244614381046382,
-        1.0244614381046382
+        1.0244614381046382,
+        1.0175795963320469,
+        1.0254286621348654
       ],
       "rsi": [
-        46.12250472310109,
-        46.12250472310109,
         46.12250472310109,
         46.12250472310109,
         46.12250472310109,
@@ -94173,11 +94141,11 @@
         76.83308961771465,
         75.92613444431933,
         77.97028769654236,
-        77.97028769654236
+        77.97028769654236,
+        65.29093181502569,
+        66.89614142444331
       ],
       "macd": [
-        0.0066576834438620835,
-        0.0066576834438620835,
         0.0066576834438620835,
         0.0066576834438620835,
         0.0066576834438620835,
@@ -94415,7 +94383,9 @@
         0.02264466094229789,
         0.02245325225784711,
         0.030841953276407708,
-        0.030841953276407708
+        0.030841953276407708,
+        0.030032554880840223,
+        0.030311603789655805
       ],
       "signal_type": [
         "HOLD",
@@ -94663,26 +94633,6 @@
   },
   "derivatives_history": {
     "BTC": [
-      {
-        "timestamp": "2026-04-18T06:03:28Z",
-        "funding_current": -0.0054975306764,
-        "long_short_value": 0.782,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 2761246289.11155,
-        "liq_bias": "below",
-        "liq_level": 75790.77
-      },
-      {
-        "timestamp": "2026-04-18T07:02:41Z",
-        "funding_current": -0.0035033961429900002,
-        "long_short_value": 0.822,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 2759713830.7403884,
-        "liq_bias": "below",
-        "liq_level": 75751.16
-      },
       {
         "timestamp": "2026-04-18T07:03:19Z",
         "funding_current": -0.0034666717306200004,
@@ -97062,29 +97012,29 @@
         "oi_current": 2681810944.2711806,
         "liq_bias": "below",
         "liq_level": 76149.07
+      },
+      {
+        "timestamp": "2026-04-24T10:04:19Z",
+        "funding_current": 0.00034231174953,
+        "long_short_value": 1.016,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 2684723996.5517,
+        "liq_bias": "above",
+        "liq_level": 78938.24
+      },
+      {
+        "timestamp": "2026-04-24T10:04:27Z",
+        "funding_current": 0.00035062539585999997,
+        "long_short_value": 1.016,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 2684461254.03206,
+        "liq_bias": "above",
+        "liq_level": 78938.24
       }
     ],
     "ETH": [
-      {
-        "timestamp": "2026-04-18T06:03:28Z",
-        "funding_current": 0.008716631125900001,
-        "long_short_value": 1.222,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1618973366.1847274,
-        "liq_bias": "above",
-        "liq_level": 2453.81
-      },
-      {
-        "timestamp": "2026-04-18T07:02:41Z",
-        "funding_current": 0.00734845650301,
-        "long_short_value": 1.22,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1622693994.8705578,
-        "liq_bias": "above",
-        "liq_level": 2454.19
-      },
       {
         "timestamp": "2026-04-18T07:03:19Z",
         "funding_current": 0.0073402638965100004,
@@ -99464,29 +99414,29 @@
         "oi_current": 1511078876.7772236,
         "liq_bias": "below",
         "liq_level": 2268.15
+      },
+      {
+        "timestamp": "2026-04-24T10:04:19Z",
+        "funding_current": -0.00568981633338,
+        "long_short_value": 0.78,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1515665264.1312037,
+        "liq_bias": "below",
+        "liq_level": 2269.24
+      },
+      {
+        "timestamp": "2026-04-24T10:04:27Z",
+        "funding_current": -0.00568981633338,
+        "long_short_value": 0.78,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1515472776.9326036,
+        "liq_bias": "below",
+        "liq_level": 2269.24
       }
     ],
     "SOL": [
-      {
-        "timestamp": "2026-04-18T06:03:28Z",
-        "funding_current": 0.00069452597429,
-        "long_short_value": 1.04,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 234874170.0454002,
-        "liq_bias": "above",
-        "liq_level": 90.08
-      },
-      {
-        "timestamp": "2026-04-18T07:02:41Z",
-        "funding_current": 0.0020299291198,
-        "long_short_value": 1.103,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 233649031.7560002,
-        "liq_bias": "above",
-        "liq_level": 90.16
-      },
       {
         "timestamp": "2026-04-18T07:03:19Z",
         "funding_current": 0.0020448260043300004,
@@ -101866,29 +101816,29 @@
         "oi_current": 227711624.29600015,
         "liq_bias": "above",
         "liq_level": 86.87
+      },
+      {
+        "timestamp": "2026-04-24T10:04:19Z",
+        "funding_current": 0.00303486696102,
+        "long_short_value": 1.145,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 227535361.57940012,
+        "liq_bias": "above",
+        "liq_level": 86.96
+      },
+      {
+        "timestamp": "2026-04-24T10:04:27Z",
+        "funding_current": 0.00303486696102,
+        "long_short_value": 1.145,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 227587260.13870013,
+        "liq_bias": "above",
+        "liq_level": 86.96
       }
     ],
     "ZEC": [
-      {
-        "timestamp": "2026-04-18T06:03:28Z",
-        "funding_current": 0.01,
-        "long_short_value": 1.229,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 36210055.1004,
-        "liq_bias": "above",
-        "liq_level": 344.58
-      },
-      {
-        "timestamp": "2026-04-18T07:02:41Z",
-        "funding_current": 0.01,
-        "long_short_value": 1.232,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 36386894.4474,
-        "liq_bias": "above",
-        "liq_level": 341.95
-      },
       {
         "timestamp": "2026-04-18T07:03:19Z",
         "funding_current": 0.01,
@@ -104268,6 +104218,26 @@
         "oi_current": 35187051.82,
         "liq_bias": "above",
         "liq_level": 347.3
+      },
+      {
+        "timestamp": "2026-04-24T10:04:19Z",
+        "funding_current": 0.01,
+        "long_short_value": 1.232,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 35422270.6744,
+        "liq_bias": "above",
+        "liq_level": 347.64
+      },
+      {
+        "timestamp": "2026-04-24T10:04:27Z",
+        "funding_current": 0.01,
+        "long_short_value": 1.232,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 35445214.224,
+        "liq_bias": "above",
+        "liq_level": 347.64
       }
     ]
   },
@@ -104281,12 +104251,6 @@
       "ltf_bias": "bearish",
       "alignment_state": "aligned",
       "pivots": [
-        {
-          "timestamp": "2026-04-23T06:00:00+00:00",
-          "price": 78370.4921875,
-          "kind": "high",
-          "strength": "internal"
-        },
         {
           "timestamp": "2026-04-23T10:00:00+00:00",
           "price": 77216.890625,
@@ -104315,6 +104279,12 @@
           "timestamp": "2026-04-24T05:00:00+00:00",
           "price": 77468.0,
           "kind": "low",
+          "strength": "internal"
+        },
+        {
+          "timestamp": "2026-04-24T08:00:00+00:00",
+          "price": 78029.9765625,
+          "kind": "high",
           "strength": "internal"
         },
         {
@@ -104391,14 +104361,6 @@
         },
         {
           "pool_type": "equal_highs",
-          "level": 78399.886719,
-          "strength": "internal",
-          "notes": [
-            "Potential buy-side liquidity pool"
-          ]
-        },
-        {
-          "pool_type": "equal_highs",
           "level": 78659.019531,
           "strength": "internal",
           "notes": [
@@ -104415,13 +104377,6 @@
         }
       ],
       "fvgs": [
-        {
-          "timestamp": "2026-04-22T00:00:00+00:00",
-          "direction": "bullish",
-          "upper": 76234.046875,
-          "lower": 75662.140625,
-          "status": "open"
-        },
         {
           "timestamp": "2026-04-22T03:00:00+00:00",
           "direction": "bullish",
@@ -104484,37 +104439,17 @@
           "upper": 78100.359375,
           "lower": 77871.9375,
           "status": "open"
+        },
+        {
+          "timestamp": "2026-04-24T10:00:00+00:00",
+          "direction": "bearish",
+          "upper": 77593.203125,
+          "lower": 77546.3515625,
+          "status": "open"
         }
       ],
       "order_blocks": [],
       "sweeps": [
-        {
-          "timestamp": "2026-04-23T17:00:00+00:00",
-          "classification": "sweep",
-          "direction": "bullish",
-          "level": 77216.890625,
-          "notes": [
-            "swing_low taken and rejected"
-          ]
-        },
-        {
-          "timestamp": "2026-04-24T00:00:00+00:00",
-          "classification": "run",
-          "direction": "bullish",
-          "level": 78399.886719,
-          "notes": [
-            "equal_highs taken with continuation"
-          ]
-        },
-        {
-          "timestamp": "2026-04-23T17:00:00+00:00",
-          "classification": "sweep",
-          "direction": "bullish",
-          "level": 77484.796875,
-          "notes": [
-            "equal_lows taken and rejected"
-          ]
-        },
         {
           "timestamp": "2026-04-24T05:00:00+00:00",
           "classification": "sweep",
@@ -104526,6 +104461,15 @@
         },
         {
           "timestamp": "2026-04-24T09:00:00+00:00",
+          "classification": "sweep",
+          "direction": "bullish",
+          "level": 77484.796875,
+          "notes": [
+            "equal_lows taken and rejected"
+          ]
+        },
+        {
+          "timestamp": "2026-04-24T10:00:00+00:00",
           "classification": "sweep",
           "direction": "bullish",
           "level": 77484.796875,
@@ -104554,14 +104498,6 @@
       ],
       "traps": [
         {
-          "timestamp": "2026-04-23T17:00:00+00:00",
-          "trap_type": "inducement",
-          "direction": "bullish",
-          "notes": [
-            "equal_lows taken and rejected"
-          ]
-        },
-        {
           "timestamp": "2026-04-24T05:00:00+00:00",
           "trap_type": "inducement",
           "direction": "bullish",
@@ -104571,6 +104507,14 @@
         },
         {
           "timestamp": "2026-04-24T09:00:00+00:00",
+          "trap_type": "inducement",
+          "direction": "bullish",
+          "notes": [
+            "equal_lows taken and rejected"
+          ]
+        },
+        {
+          "timestamp": "2026-04-24T10:00:00+00:00",
           "trap_type": "inducement",
           "direction": "bullish",
           "notes": [
@@ -104596,9 +104540,9 @@
       ],
       "session": {
         "active_session": "London",
-        "london_kill_zone": true,
+        "london_kill_zone": false,
         "new_york_kill_zone": false,
-        "time_to_next_kill_zone_minutes": 191,
+        "time_to_next_kill_zone_minutes": 176,
         "asia_high": 78608.9296875,
         "asia_low": 73768.0,
         "london_high": 78514.7890625,
@@ -104606,7 +104550,7 @@
         "new_york_high": 79502.78125,
         "new_york_low": 74733.75
       },
-      "session_narrative": "Active session: London. Asia range: 73768.00 to 78608.93. London range: 74649.68 to 78514.79. NY range: 74733.75 to 79502.78. London kill zone is active. Recent sweep detected near liquidity.",
+      "session_narrative": "Active session: London. Asia range: 73768.00 to 78608.93. London range: 74649.68 to 78514.79. NY range: 74733.75 to 79502.78. Recent sweep detected near liquidity.",
       "premium_discount": {
         "range_high": 79502.78125,
         "range_low": 76982.9765625,
@@ -104614,29 +104558,31 @@
         "state": "discount"
       },
       "setup": {
-        "bias": "short",
-        "grade": "B",
-        "execution_status": "WATCHLIST",
+        "bias": "pass",
+        "grade": "PASS",
+        "execution_status": "PASS",
         "reasons": [
-          "Within major kill zone",
           "HTF/LTF alignment present",
           "Nearby liquidity pools identified",
           "Fair value gap present",
           "Sweep/run behavior detected",
-          "Trap/inducement behavior detected",
-          "Session expansion setup candidate"
+          "Trap/inducement behavior detected"
         ],
-        "blocked_conditions": [],
-        "next_trigger_conditions": [],
-        "watchlist_reason": "Waiting for confirmation / confluence",
-        "setup_type": "session-expansion",
-        "entry_zone_low": 77544.8828125,
-        "entry_zone_high": 78399.886719,
-        "target_1": 77484.796875,
-        "target_2": 77216.890625,
-        "rr_estimate": 0.07,
-        "invalidation_level": 78399.886719,
-        "invalidation_reason": "Template invalidation for session-expansion",
+        "blocked_conditions": [
+          "Not in a major kill zone"
+        ],
+        "next_trigger_conditions": [
+          "Needs London or New York kill zone timing"
+        ],
+        "watchlist_reason": "Waiting for confluence to improve",
+        "setup_type": null,
+        "entry_zone_low": null,
+        "entry_zone_high": null,
+        "target_1": null,
+        "target_2": null,
+        "rr_estimate": null,
+        "invalidation_level": null,
+        "invalidation_reason": "PASS diagnostics: Not in a major kill zone",
         "checklist": [
           {
             "name": "HTF/LTF aligned",
@@ -104644,7 +104590,7 @@
           },
           {
             "name": "In kill zone",
-            "ok": true
+            "ok": false
           },
           {
             "name": "BOS present",
@@ -104671,24 +104617,18 @@
             "ok": false
           }
         ],
-        "no_trade_reason": null
+        "no_trade_reason": "Insufficient weighted confluence across structure, liquidity, session, and range position"
       }
     },
     "ETH": {
       "symbol": "ETH",
-      "trend_state": "internal_range_or_transition|external_bearish",
+      "trend_state": "internal_range_or_transition|external_range_or_transition",
       "internal_structure": "range_or_transition",
-      "external_structure": "bearish",
+      "external_structure": "range_or_transition",
       "htf_bias": "bearish",
       "ltf_bias": "bearish",
-      "alignment_state": "aligned",
+      "alignment_state": "mixed",
       "pivots": [
-        {
-          "timestamp": "2026-04-23T10:00:00+00:00",
-          "price": 2307.10009765625,
-          "kind": "low",
-          "strength": "internal"
-        },
         {
           "timestamp": "2026-04-23T12:00:00+00:00",
           "price": 2336.3701171875,
@@ -104720,10 +104660,10 @@
           "strength": "internal"
         },
         {
-          "timestamp": "2026-04-22T16:00:00+00:00",
-          "price": 2384.820068359375,
-          "kind": "low",
-          "strength": "external"
+          "timestamp": "2026-04-24T08:00:00+00:00",
+          "price": 2324.260009765625,
+          "kind": "high",
+          "strength": "internal"
         },
         {
           "timestamp": "2026-04-23T03:00:00+00:00",
@@ -104754,19 +104694,17 @@
           "price": 2339.429931640625,
           "kind": "high",
           "strength": "external"
+        },
+        {
+          "timestamp": "2026-04-24T05:00:00+00:00",
+          "price": 2300.860107421875,
+          "kind": "low",
+          "strength": "external"
         }
       ],
       "bos_events": [],
       "choch_events": [],
       "liquidity_pools": [
-        {
-          "pool_type": "swing_low",
-          "level": 2307.10009765625,
-          "strength": "external",
-          "notes": [
-            "Major swing liquidity"
-          ]
-        },
         {
           "pool_type": "swing_high",
           "level": 2344.18994140625,
@@ -104786,6 +104724,14 @@
         {
           "pool_type": "swing_high",
           "level": 2339.429931640625,
+          "strength": "external",
+          "notes": [
+            "Major swing liquidity"
+          ]
+        },
+        {
+          "pool_type": "swing_low",
+          "level": 2300.860107421875,
           "strength": "external",
           "notes": [
             "Major swing liquidity"
@@ -104883,51 +104829,6 @@
       "order_blocks": [],
       "sweeps": [
         {
-          "timestamp": "2026-04-23T17:00:00+00:00",
-          "classification": "sweep",
-          "direction": "bullish",
-          "level": 2307.10009765625,
-          "notes": [
-            "swing_low taken and rejected"
-          ]
-        },
-        {
-          "timestamp": "2026-04-23T18:00:00+00:00",
-          "classification": "run",
-          "direction": "bearish",
-          "level": 2307.10009765625,
-          "notes": [
-            "swing_low taken with continuation"
-          ]
-        },
-        {
-          "timestamp": "2026-04-24T03:00:00+00:00",
-          "classification": "sweep",
-          "direction": "bullish",
-          "level": 2307.10009765625,
-          "notes": [
-            "swing_low taken and rejected"
-          ]
-        },
-        {
-          "timestamp": "2026-04-24T04:00:00+00:00",
-          "classification": "run",
-          "direction": "bearish",
-          "level": 2307.10009765625,
-          "notes": [
-            "swing_low taken with continuation"
-          ]
-        },
-        {
-          "timestamp": "2026-04-24T09:00:00+00:00",
-          "classification": "sweep",
-          "direction": "bullish",
-          "level": 2307.10009765625,
-          "notes": [
-            "swing_low taken and rejected"
-          ]
-        },
-        {
           "timestamp": "2026-04-23T22:00:00+00:00",
           "classification": "sweep",
           "direction": "bearish",
@@ -104948,22 +104849,6 @@
       ],
       "traps": [
         {
-          "timestamp": "2026-04-24T03:00:00+00:00",
-          "trap_type": "inducement",
-          "direction": "bullish",
-          "notes": [
-            "swing_low taken and rejected"
-          ]
-        },
-        {
-          "timestamp": "2026-04-24T09:00:00+00:00",
-          "trap_type": "inducement",
-          "direction": "bullish",
-          "notes": [
-            "swing_low taken and rejected"
-          ]
-        },
-        {
           "timestamp": "2026-04-23T22:00:00+00:00",
           "trap_type": "inducement",
           "direction": "bearish",
@@ -104982,9 +104867,9 @@
       ],
       "session": {
         "active_session": "London",
-        "london_kill_zone": true,
+        "london_kill_zone": false,
         "new_york_kill_zone": false,
-        "time_to_next_kill_zone_minutes": 191,
+        "time_to_next_kill_zone_minutes": 176,
         "asia_high": 2412.56005859375,
         "asia_low": 2261.639892578125,
         "london_high": 2407.68994140625,
@@ -104992,7 +104877,7 @@
         "new_york_high": 2424.75,
         "new_york_low": 2280.0
       },
-      "session_narrative": "Active session: London. Asia range: 2261.64 to 2412.56. London range: 2284.00 to 2407.69. NY range: 2280.00 to 2424.75. London kill zone is active. Recent sweep detected near liquidity.",
+      "session_narrative": "Active session: London. Asia range: 2261.64 to 2412.56. London range: 2284.00 to 2407.69. NY range: 2280.00 to 2424.75. Recent sweep detected near liquidity.",
       "premium_discount": {
         "range_high": 2424.75,
         "range_low": 2285.860107421875,
@@ -105000,37 +104885,40 @@
         "state": "discount"
       },
       "setup": {
-        "bias": "short",
-        "grade": "B",
-        "execution_status": "WATCHLIST",
+        "bias": "pass",
+        "grade": "PASS",
+        "execution_status": "PASS",
         "reasons": [
-          "Within major kill zone",
-          "HTF/LTF alignment present",
           "Nearby liquidity pools identified",
           "Fair value gap present",
           "Sweep/run behavior detected",
-          "Trap/inducement behavior detected",
-          "Session expansion setup candidate"
+          "Trap/inducement behavior detected"
         ],
-        "blocked_conditions": [],
-        "next_trigger_conditions": [],
-        "watchlist_reason": "Waiting for confirmation / confluence",
-        "setup_type": "session-expansion",
-        "entry_zone_low": 2309.72998046875,
-        "entry_zone_high": 2337.900024,
-        "target_1": 2307.10009765625,
-        "target_2": 2307.10009765625,
-        "rr_estimate": 0.09,
-        "invalidation_level": 2337.900024,
-        "invalidation_reason": "Template invalidation for session-expansion",
+        "blocked_conditions": [
+          "HTF/LTF alignment missing",
+          "Not in a major kill zone"
+        ],
+        "next_trigger_conditions": [
+          "Needs HTF/LTF alignment",
+          "Needs London or New York kill zone timing"
+        ],
+        "watchlist_reason": "Waiting for confluence to improve",
+        "setup_type": null,
+        "entry_zone_low": null,
+        "entry_zone_high": null,
+        "target_1": null,
+        "target_2": null,
+        "rr_estimate": null,
+        "invalidation_level": null,
+        "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing; Not in a major kill zone",
         "checklist": [
           {
             "name": "HTF/LTF aligned",
-            "ok": true
+            "ok": false
           },
           {
             "name": "In kill zone",
-            "ok": true
+            "ok": false
           },
           {
             "name": "BOS present",
@@ -105057,7 +104945,7 @@
             "ok": false
           }
         ],
-        "no_trade_reason": null
+        "no_trade_reason": "Insufficient weighted confluence across structure, liquidity, session, and range position"
       }
     },
     "SOL": {
@@ -105320,15 +105208,6 @@
           ]
         },
         {
-          "timestamp": "2026-04-23T17:00:00+00:00",
-          "classification": "sweep",
-          "direction": "bullish",
-          "level": 85.220001,
-          "notes": [
-            "equal_lows taken and rejected"
-          ]
-        },
-        {
           "timestamp": "2026-04-23T19:00:00+00:00",
           "classification": "sweep",
           "direction": "bullish",
@@ -105365,12 +105244,12 @@
           ]
         },
         {
-          "timestamp": "2026-04-23T17:00:00+00:00",
-          "classification": "run",
-          "direction": "bearish",
-          "level": 85.529999,
+          "timestamp": "2026-04-24T10:00:00+00:00",
+          "classification": "sweep",
+          "direction": "bullish",
+          "level": 85.220001,
           "notes": [
-            "equal_lows taken with continuation"
+            "equal_lows taken and rejected"
           ]
         },
         {
@@ -105380,6 +105259,15 @@
           "level": 85.529999,
           "notes": [
             "equal_lows taken and rejected"
+          ]
+        },
+        {
+          "timestamp": "2026-04-24T04:00:00+00:00",
+          "classification": "run",
+          "direction": "bearish",
+          "level": 85.529999,
+          "notes": [
+            "equal_lows taken with continuation"
           ]
         }
       ],
@@ -105401,6 +105289,14 @@
           ]
         },
         {
+          "timestamp": "2026-04-24T10:00:00+00:00",
+          "trap_type": "inducement",
+          "direction": "bullish",
+          "notes": [
+            "equal_lows taken and rejected"
+          ]
+        },
+        {
           "timestamp": "2026-04-24T03:00:00+00:00",
           "trap_type": "inducement",
           "direction": "bullish",
@@ -105411,9 +105307,9 @@
       ],
       "session": {
         "active_session": "London",
-        "london_kill_zone": true,
+        "london_kill_zone": false,
         "new_york_kill_zone": false,
-        "time_to_next_kill_zone_minutes": 191,
+        "time_to_next_kill_zone_minutes": 176,
         "asia_high": 88.31999969482422,
         "asia_low": 83.4000015258789,
         "london_high": 88.87000274658203,
@@ -105421,31 +105317,30 @@
         "new_york_high": 89.3499984741211,
         "new_york_low": 84.33999633789062
       },
-      "session_narrative": "Active session: London. Asia range: 83.40 to 88.32. London range: 84.48 to 88.87. NY range: 84.34 to 89.35. London kill zone is active. Recent run detected near liquidity.",
+      "session_narrative": "Active session: London. Asia range: 83.40 to 88.32. London range: 84.48 to 88.87. NY range: 84.34 to 89.35. Recent run detected near liquidity.",
       "premium_discount": {
         "range_high": 86.63999938964844,
         "range_low": 84.51000213623047,
         "equilibrium": 85.57500076293945,
-        "state": "discount"
+        "state": "equilibrium"
       },
       "setup": {
         "bias": "pass",
         "grade": "PASS",
         "execution_status": "PASS",
         "reasons": [
-          "Within major kill zone",
           "Nearby liquidity pools identified",
           "Fair value gap present",
           "Sweep/run behavior detected",
-          "Trap/inducement behavior detected",
-          "Session expansion setup candidate",
-          "Session-sweep execution logic observed but full template not confirmed"
+          "Trap/inducement behavior detected"
         ],
         "blocked_conditions": [
-          "HTF/LTF alignment missing"
+          "HTF/LTF alignment missing",
+          "Not in a major kill zone"
         ],
         "next_trigger_conditions": [
-          "Needs HTF/LTF alignment"
+          "Needs HTF/LTF alignment",
+          "Needs London or New York kill zone timing"
         ],
         "watchlist_reason": "Waiting for confluence to improve",
         "setup_type": null,
@@ -105455,7 +105350,7 @@
         "target_2": null,
         "rr_estimate": null,
         "invalidation_level": null,
-        "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing",
+        "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing; Not in a major kill zone",
         "checklist": [
           {
             "name": "HTF/LTF aligned",
@@ -105463,7 +105358,7 @@
           },
           {
             "name": "In kill zone",
-            "ok": true
+            "ok": false
           },
           {
             "name": "BOS present",
@@ -105539,12 +105434,6 @@
           "strength": "internal"
         },
         {
-          "timestamp": "2026-04-22T05:00:00+00:00",
-          "price": 326.69000244140625,
-          "kind": "high",
-          "strength": "external"
-        },
-        {
           "timestamp": "2026-04-22T09:00:00+00:00",
           "price": 316.239990234375,
           "kind": "low",
@@ -105573,19 +105462,17 @@
           "price": 349.489990234375,
           "kind": "high",
           "strength": "external"
+        },
+        {
+          "timestamp": "2026-04-24T05:00:00+00:00",
+          "price": 335.8800048828125,
+          "kind": "low",
+          "strength": "external"
         }
       ],
       "bos_events": [],
       "choch_events": [],
       "liquidity_pools": [
-        {
-          "pool_type": "swing_high",
-          "level": 331.67999267578125,
-          "strength": "external",
-          "notes": [
-            "Major swing liquidity"
-          ]
-        },
         {
           "pool_type": "swing_low",
           "level": 311.6400146484375,
@@ -105605,6 +105492,14 @@
         {
           "pool_type": "swing_high",
           "level": 349.489990234375,
+          "strength": "external",
+          "notes": [
+            "Major swing liquidity"
+          ]
+        },
+        {
+          "pool_type": "swing_low",
+          "level": 335.8800048828125,
           "strength": "external",
           "notes": [
             "Major swing liquidity"
@@ -105693,24 +105588,6 @@
       ],
       "order_blocks": [],
       "sweeps": [
-        {
-          "timestamp": "2026-04-23T18:00:00+00:00",
-          "classification": "sweep",
-          "direction": "bearish",
-          "level": 331.67999267578125,
-          "notes": [
-            "swing_high taken and rejected"
-          ]
-        },
-        {
-          "timestamp": "2026-04-23T19:00:00+00:00",
-          "classification": "run",
-          "direction": "bullish",
-          "level": 331.67999267578125,
-          "notes": [
-            "swing_high taken with continuation"
-          ]
-        },
         {
           "timestamp": "2026-04-24T06:00:00+00:00",
           "classification": "sweep",
@@ -105803,9 +105680,9 @@
       ],
       "session": {
         "active_session": "London",
-        "london_kill_zone": true,
+        "london_kill_zone": false,
         "new_york_kill_zone": false,
-        "time_to_next_kill_zone_minutes": 191,
+        "time_to_next_kill_zone_minutes": 176,
         "asia_high": 350.7300109863281,
         "asia_low": 301.5799865722656,
         "london_high": 344.8299865722656,
@@ -105813,7 +105690,7 @@
         "new_york_high": 339.3599853515625,
         "new_york_low": 306.2900085449219
       },
-      "session_narrative": "Active session: London. Asia range: 301.58 to 350.73. London range: 306.65 to 344.83. NY range: 306.29 to 339.36. London kill zone is active. Recent run detected near liquidity.",
+      "session_narrative": "Active session: London. Asia range: 301.58 to 350.73. London range: 306.65 to 344.83. NY range: 306.29 to 339.36. Recent run detected near liquidity.",
       "premium_discount": {
         "range_high": 349.489990234375,
         "range_low": 311.6400146484375,
@@ -105821,32 +105698,32 @@
         "state": "premium"
       },
       "setup": {
-        "bias": "long",
-        "grade": "B",
-        "execution_status": "WATCHLIST",
+        "bias": "pass",
+        "grade": "PASS",
+        "execution_status": "PASS",
         "reasons": [
-          "Within major kill zone",
           "Nearby liquidity pools identified",
           "Fair value gap present",
           "Sweep/run behavior detected",
-          "Trap/inducement behavior detected",
-          "Session expansion setup candidate"
+          "Trap/inducement behavior detected"
         ],
         "blocked_conditions": [
-          "HTF/LTF alignment missing"
+          "HTF/LTF alignment missing",
+          "Not in a major kill zone"
         ],
         "next_trigger_conditions": [
-          "Needs HTF/LTF alignment"
+          "Needs HTF/LTF alignment",
+          "Needs London or New York kill zone timing"
         ],
-        "watchlist_reason": "Waiting for confirmation / confluence",
-        "setup_type": "session-expansion",
-        "entry_zone_low": 331.67999267578125,
-        "entry_zone_high": 341.1600036621094,
-        "target_1": 349.489990234375,
-        "target_2": 349.489990234375,
-        "rr_estimate": 0.88,
-        "invalidation_level": 331.67999267578125,
-        "invalidation_reason": "Template invalidation for session-expansion",
+        "watchlist_reason": "Waiting for confluence to improve",
+        "setup_type": null,
+        "entry_zone_low": null,
+        "entry_zone_high": null,
+        "target_1": null,
+        "target_2": null,
+        "rr_estimate": null,
+        "invalidation_level": null,
+        "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing; Not in a major kill zone",
         "checklist": [
           {
             "name": "HTF/LTF aligned",
@@ -105854,7 +105731,7 @@
           },
           {
             "name": "In kill zone",
-            "ok": true
+            "ok": false
           },
           {
             "name": "BOS present",
@@ -105881,7 +105758,7 @@
             "ok": false
           }
         ],
-        "no_trade_reason": null
+        "no_trade_reason": "Insufficient weighted confluence across structure, liquidity, session, and range position"
       }
     },
     "GOLD": {
@@ -106382,7 +106259,7 @@
   },
   "generator_health": {
     "status": "ok",
-    "summary": "Generator sees 4 market assets, 15 trading-bible assets, 4 signals, 4320 snapshots, and 6955 OHLC rows.",
+    "summary": "Generator sees 4 market assets, 15 trading-bible assets, 4 signals, 4320 snapshots, and 6961 OHLC rows.",
     "quiet_mode": false,
     "issues": []
   },
@@ -106398,7 +106275,7 @@
     },
     "market_bias": "neutral",
     "crowding": "longs_crowded",
-    "liquidation_risk": "balanced",
+    "liquidation_risk": "upside_squeeze",
     "regime": {
       "summary": "Derivatives regime leans crowded long / upside squeeze watch.",
       "crowding": {
@@ -106408,56 +106285,56 @@
       },
       "pressure_board": [
         {
-          "symbol": "ETH",
-          "pressure_score": 34.09,
-          "funding": -0.00546171675576,
-          "long_short": 0.75,
-          "liq_bias": "below",
-          "confidence_label": "inferred",
-          "crowding_state": "crowded_shorts",
-          "funding_delta_1h_pct": 0,
-          "oi_delta_1h_pct": -0.003057861300968822,
-          "long_short_delta_1h_pct": 0,
-          "sparkline": "\u2584\u2584\u2583\u2583\u2588\u2588\u2581\u2581"
-        },
-        {
           "symbol": "ZEC",
-          "pressure_score": 29.41,
+          "pressure_score": 33.22,
           "funding": 0.01,
-          "long_short": 1.194,
+          "long_short": 1.232,
           "liq_bias": "above",
           "confidence_label": "inferred",
           "crowding_state": "crowded_longs",
           "funding_delta_1h_pct": 0,
-          "oi_delta_1h_pct": 0.039172702537072855,
+          "oi_delta_1h_pct": 0.0647715382531341,
           "long_short_delta_1h_pct": 0,
-          "sparkline": "\u2581\u2581\u2581\u2581\u2587\u2587\u2588\u2588"
+          "sparkline": "\u2581\u2581\u2586\u2586\u2587\u2587\u2588\u2588"
+        },
+        {
+          "symbol": "ETH",
+          "pressure_score": 31.14,
+          "funding": -0.00568981633338,
+          "long_short": 0.78,
+          "liq_bias": "below",
+          "confidence_label": "inferred",
+          "crowding_state": "crowded_shorts",
+          "funding_delta_1h_pct": 0,
+          "oi_delta_1h_pct": -0.012699848914884886,
+          "long_short_delta_1h_pct": 0,
+          "sparkline": "\u2583\u2583\u2588\u2588\u2581\u2581\u2584\u2584"
         },
         {
           "symbol": "SOL",
           "pressure_score": 23.11,
-          "funding": 0.00301656437023,
+          "funding": 0.00303486696102,
           "long_short": 1.145,
           "liq_bias": "above",
           "confidence_label": "inferred",
           "crowding_state": "crowded_longs",
           "funding_delta_1h_pct": 0,
-          "oi_delta_1h_pct": -0.025111527981599886,
+          "oi_delta_1h_pct": 0.022809008208552698,
           "long_short_delta_1h_pct": 0,
-          "sparkline": "\u2581\u2581\u2581\u2581\u2583\u2583\u2588\u2588"
+          "sparkline": "\u2581\u2581\u2583\u2583\u2588\u2588\u2588\u2588"
         },
         {
           "symbol": "BTC",
-          "pressure_score": 11.11,
-          "funding": 6.570360362999999e-05,
-          "long_short": 0.969,
-          "liq_bias": "below",
+          "pressure_score": 11.37,
+          "funding": 0.00035062539585999997,
+          "long_short": 1.016,
+          "liq_bias": "above",
           "confidence_label": "inferred",
           "crowding_state": "balanced",
-          "funding_delta_1h_pct": 0,
-          "oi_delta_1h_pct": 3.4676684592281624e-05,
+          "funding_delta_1h_pct": 2.428676883400802,
+          "oi_delta_1h_pct": -0.009786574708515263,
           "long_short_delta_1h_pct": 0,
-          "sparkline": "\u2588\u2588\u2586\u2586\u2586\u2586\u2581\u2581"
+          "sparkline": "\u2588\u2588\u2587\u2587\u2581\u2581\u2584\u2584"
         }
       ]
     }
