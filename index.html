@@ -118,6 +118,34 @@
     .crowding-long { border-color: rgba(34,197,94,0.35); }
     .crowding-short { border-color: rgba(239,68,68,0.35); }
     .crowding-balanced { border-color: rgba(56,189,248,0.28); }
+    .liqmap-overview-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:12px; }
+    .liq-card { border:1px solid #1f2937; background:linear-gradient(180deg, #0b1220, #111827); border-radius:14px; padding:14px; cursor:pointer; }
+    .liq-card.active { outline:2px solid var(--cyan); }
+    .liq-card.liq-bias-up { border-left:4px solid var(--green); }
+    .liq-card.liq-bias-down { border-left:4px solid var(--red); }
+    .liq-card.liq-bias-balanced { border-left:4px solid var(--blue); }
+    .liq-card-head { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:10px; }
+    .liq-symbol { font-weight:900; font-size:1.05rem; }
+    .liq-pill { display:inline-flex; align-items:center; padding:5px 8px; border-radius:999px; border:1px solid #263145; color:#cbd5e1; font-size:0.78rem; font-weight:800; }
+    .liq-pill.up { color:#86efac; border-color:rgba(34,197,94,0.35); }
+    .liq-pill.down { color:#fca5a5; border-color:rgba(239,68,68,0.35); }
+    .liq-pill.balanced { color:#7dd3fc; border-color:rgba(56,189,248,0.35); }
+    .liq-ladder { position:relative; height:118px; margin:14px 4px 8px; border:1px solid #1f2937; border-radius:14px; background:linear-gradient(90deg, rgba(239,68,68,0.10), rgba(56,189,248,0.08), rgba(34,197,94,0.10)); overflow:hidden; }
+    .liq-ladder::before { content:''; position:absolute; left:0; right:0; top:58px; height:1px; background:rgba(148,163,184,0.28); }
+    .liq-mark { position:absolute; top:0; bottom:0; width:2px; background:#e5e7eb; opacity:0.92; }
+    .liq-mark-label { position:absolute; top:8px; transform:translateX(-50%); font-size:0.72rem; color:#e5e7eb; background:rgba(2,6,23,0.78); border:1px solid #334155; border-radius:999px; padding:3px 6px; white-space:nowrap; }
+    .liq-cluster { position:absolute; transform:translate(-50%, -50%); border-radius:999px; box-shadow:0 0 18px rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); }
+    .liq-cluster.up { top:36px; background:rgba(34,197,94,0.86); }
+    .liq-cluster.down { top:82px; background:rgba(239,68,68,0.86); }
+    .liq-cluster-label { position:absolute; transform:translateX(-50%); font-size:0.68rem; color:#cbd5e1; white-space:nowrap; }
+    .liq-cluster-label.up { top:12px; }
+    .liq-cluster-label.down { bottom:10px; }
+    .liq-axis-row { display:flex; justify-content:space-between; gap:10px; color:var(--muted); font-size:0.76rem; }
+    .liq-tape-event { border:1px solid #1f2937; background:#0b1220; border-radius:12px; padding:10px; display:grid; gap:4px; }
+    .liq-source-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
+    .liq-source { font-size:0.78rem; border:1px solid #263145; border-radius:999px; padding:5px 8px; color:#cbd5e1; }
+    .liq-source.ok { border-color:rgba(34,197,94,0.35); color:#86efac; }
+    .liq-source.err { border-color:rgba(239,68,68,0.35); color:#fca5a5; }
     @media (max-width: 1100px) { .main-grid, .charts, .bottom-grid, .enhanced-grid { grid-template-columns:1fr; } }
     @media (max-width: 700px) { .summary-grid { grid-template-columns:1fr 1fr; } .asset-grid { grid-template-columns:1fr; } }
   </style>
@@ -147,6 +175,7 @@
           <select id="assetSelector"></select>
           <button onclick="loadDashboard()">Refresh Data</button>
           <button onclick="location.reload()">Reload UI</button>
+          <a class="view-link" href="https://paper.27.fyi/" target="_blank" rel="noopener noreferrer">Paper Reports / Liqmap ↗</a>
           <a class="view-link" href="./dashboard-enhanced.html">Open Slim Enhanced View</a>
           <a class="view-link" href="./dashboard-v3.html">Open V3 Preview</a>
         </div>
@@ -230,6 +259,18 @@
           <div id="derivativesDetailPanel" style="display:grid;gap:10px;"></div>
         </div>
 
+        <div id="liquidation-map-v1" class="panel" style="margin-bottom:18px;">
+          <h3>Liquidation Map V1.1 — Heatmap / Funding / OI</h3>
+          <div class="muted" style="margin-bottom:12px;">Our own liquidation-map model built from public exchange data, real public liquidation tape, and available CoinGlass benchmark endpoints. CoinGlass heatmap is plan-gated, so this panel is internal-model-first and paper-only confirmation/rejection context — not an entry trigger.</div>
+          <div class="actions" style="margin-bottom:12px;"><a class="view-link" href="https://paper.27.fyi/" target="_blank" rel="noopener noreferrer">Open Paper Trading Reports ↗</a><a class="view-link" href="./api/liquidation-map-v1.json" target="_blank" rel="noopener noreferrer">Open Liqmap JSON</a></div>
+          <div id="liqMapOverviewPanel" class="liqmap-overview-grid"></div>
+        </div>
+
+        <div class="bottom-grid">
+          <div class="panel"><h3>Selected Liquidation Cluster Map</h3><div id="liqMapDetailPanel" style="display:grid;gap:10px;"></div></div>
+          <div class="panel"><h3>Real Liquidation Tape</h3><div id="liqTapePanel" style="display:grid;gap:10px;"></div></div>
+        </div>
+
         <div class="panel" style="margin-bottom:18px;"><h3>Analyst Narrative</h3><div id="analystNarrativePanel" style="display:grid;gap:10px;"></div></div>
 
         <div class="enhanced-grid">
@@ -288,6 +329,7 @@
     let dashboardData = null;
     let enhancedData = null;
     let newsData = null;
+    let liqMapData = null;
     let selectedAsset = null;
     let currentTimeframe = '1D';
     let currentSort = { key: 'change_pct', dir: 'desc' };
@@ -309,6 +351,24 @@
     }
     function fmtFunding(v) { return (v === null || v === undefined || Number.isNaN(Number(v))) ? null : Number(v).toFixed(4) + '%'; }
     function fmtRatio(v) { return (v === null || v === undefined || Number.isNaN(Number(v))) ? null : Number(v).toFixed(2); }
+    function fmtPct(v, digits=2) { return (v === null || v === undefined || Number.isNaN(Number(v))) ? '-' : Number(v).toFixed(digits) + '%'; }
+    function fmtSignedPct(v, digits=2) { return (v === null || v === undefined || Number.isNaN(Number(v))) ? '-' : (Number(v) >= 0 ? '+' : '') + Number(v).toFixed(digits) + '%'; }
+    function liqBaseSymbol(symbol) { return String(symbol || '').toUpperCase().replace(/USDT$/, '').replace(/[^A-Z0-9]/g, ''); }
+    function liqRowForDisplay(displaySymbol) {
+      const target = liqBaseSymbol(displaySymbol);
+      return (liqMapData?.symbols || []).find(row => liqBaseSymbol(row.symbol) === target) || null;
+    }
+    function liqBiasClass(direction) {
+      if (String(direction || '').includes('upside')) return 'up';
+      if (String(direction || '').includes('downside')) return 'down';
+      return 'balanced';
+    }
+    function liqPressureLabel(score) {
+      if (score === null || score === undefined || Number.isNaN(Number(score))) return '-';
+      if (Number(score) > 0.2) return 'short-liq buy pressure';
+      if (Number(score) < -0.2) return 'long-liq sell pressure';
+      return 'balanced tape';
+    }
     function timeframeCount() { if (currentTimeframe === '1D') return 24; if (currentTimeframe === '7D') return 7*24; if (currentTimeframe === '30D') return 30*24; return null; }
     function slicedHistory(hist) {
       const count = timeframeCount(); if (!count || !hist) return hist;
@@ -810,6 +870,126 @@
       feedEl.innerHTML = feedHtml;
     }
 
+    function renderLiqClusterMap(row) {
+      const heat = row?.heatmap || {};
+      const mark = Number(row?.mark_price || heat.mark_price || 0);
+      if (!mark) return '<div class="muted">No mark price available for the cluster map.</div>';
+      const down = (heat.top_clusters_down || []).slice(0, 7).map(c => ({...c, side:'down'}));
+      const up = (heat.top_clusters_up || []).slice(0, 7).map(c => ({...c, side:'up'}));
+      const points = [...down, ...up].filter(c => Number(c.price) > 0);
+      if (!points.length) return '<div class="muted">No liquidation clusters available in this snapshot.</div>';
+      const prices = points.map(c => Number(c.price)).concat([mark]);
+      let min = Math.min(...prices), max = Math.max(...prices);
+      if (min === max) { min = mark * 0.99; max = mark * 1.01; }
+      const pad = (max - min) * 0.08;
+      min -= pad; max += pad;
+      const pos = price => Math.max(2, Math.min(98, ((Number(price) - min) / (max - min)) * 100));
+      const markPos = pos(mark);
+      const markers = points.map((c, idx) => {
+        const size = 8 + Math.max(0, Math.min(1, Number(c.strength || 0))) * 22;
+        const left = pos(c.price);
+        const label = `${fmtPrice(c.price)} • ${fmtCompact(c.estimated_notional_usd) || '-'}`;
+        return `<span class="liq-cluster ${c.side}" title="${escapeHtml(label)}" style="left:${left}%;width:${size}px;height:${size}px;"></span>${idx < 10 ? `<span class="liq-cluster-label ${c.side}" style="left:${left}%;">${escapeHtml(label)}</span>` : ''}`;
+      }).join('');
+      return `<div class="liq-ladder"><span class="liq-mark" style="left:${markPos}%;"></span><span class="liq-mark-label" style="left:${markPos}%;">MARK ${fmtPrice(mark)}</span>${markers}</div><div class="liq-axis-row"><span>${fmtPrice(min)}</span><span>Downside long-liq clusters • Upside short-liq clusters</span><span>${fmtPrice(max)}</span></div>`;
+    }
+
+    function renderLiqMapVisualPanel() {
+      const overview = document.getElementById('liqMapOverviewPanel');
+      if (!overview) return;
+      const rows = liqMapData?.symbols || [];
+      if (!liqMapData || !rows.length) {
+        overview.innerHTML = '<div class="muted">No liquidation-map V1.1 data loaded yet.</div>';
+        renderLiqMapDetailPanel();
+        renderLiqTapePanel();
+        return;
+      }
+      overview.innerHTML = rows.map(row => {
+        const heat = row.heatmap || {};
+        const bias = heat.bias || {};
+        const cls = liqBiasClass(bias.direction);
+        const active = liqBaseSymbol(row.symbol) === liqBaseSymbol(selectedAsset) ? 'active' : '';
+        const up = heat.nearest_cluster_up || {};
+        const down = heat.nearest_cluster_down || {};
+        const funding = row.funding || {};
+        const oi = row.open_interest || {};
+        const tape = row.liquidation_tape || {};
+        const tapeWindow = (tape.windows || {})[tape.primary_window || '60m'] || {};
+        const cgMetrics = row.coinglass_comparison?.metrics || {};
+        return `<div class="liq-card liq-bias-${cls} ${active}" onclick="selectAsset('${liqBaseSymbol(row.symbol)}')">
+          <div class="liq-card-head"><div><div class="liq-symbol">${escapeHtml(row.symbol)}</div><div class="muted">${escapeHtml(row.exchange || 'binance')} • ${escapeHtml(row.updated_at || liqMapData.generated_at || '-')}</div></div><span class="liq-pill ${cls}">${escapeHtml((bias.direction || 'balanced').replaceAll('_',' '))}</span></div>
+          <div class="price">${fmtPrice(row.mark_price)}</div>
+          <div class="tech-row"><span>Nearest upside short liq</span><span>${fmtPrice(up.price)} / ${fmtPct(up.distance_pct, 2)}</span></div>
+          <div class="tech-row"><span>Nearest downside long liq</span><span>${fmtPrice(down.price)} / ${fmtPct(down.distance_pct, 2)}</span></div>
+          <div class="tech-row"><span>Cluster confidence</span><span>${fmtPct((heat.confidence || 0) * 100, 0)}</span></div>
+          <div class="tech-row"><span>Funding / OI trend</span><span>${fmtSignedPct(funding.latest_rate_pct, 4)} / ${escapeHtml(oi.trend || '-')}</span></div>
+          <div class="tech-row"><span>Real tape ${escapeHtml(tape.primary_window || '60m')}</span><span>${tapeWindow.events || 0} events • ${fmtCompact(tapeWindow.total_notional_usd) || '$0'} • ${liqPressureLabel(tapeWindow.imbalance_score)}</span></div>
+          <div class="badge-row">${badge('OI Δ', fmtSignedPct(oi.change_24h_pct, 2))}${badge('CG OI Δ', cgMetrics.open_interest_usd ? fmtSignedPct(cgMetrics.open_interest_usd.relative_delta_pct, 2) : null)}${badge('CG Liq', cgMetrics.liquidation_history ? fmtCompact(cgMetrics.liquidation_history.total_liquidation_usd) : null)}${badge('MODE', row.paper_only ? 'PAPER' : 'LIVE?')}</div>
+        </div>`;
+      }).join('');
+      renderLiqMapDetailPanel();
+      renderLiqTapePanel();
+    }
+
+    function renderLiqMapDetailPanel() {
+      const el = document.getElementById('liqMapDetailPanel');
+      if (!el) return;
+      const row = liqRowForDisplay(selectedAsset) || (liqMapData?.symbols || [])[0];
+      if (!row) { el.innerHTML = '<div class="detail-box">No selected liquidation-map detail available.</div>'; return; }
+      const heat = row.heatmap || {};
+      const bias = heat.bias || {};
+      const up = heat.nearest_cluster_up || {};
+      const down = heat.nearest_cluster_down || {};
+      const funding = row.funding || {};
+      const oi = row.open_interest || {};
+      const cg = row.coinglass_comparison || {};
+      const cgMetrics = cg.metrics || {};
+      const liqHistory = cgMetrics.liquidation_history || null;
+      let html = renderLiqClusterMap(row);
+      html += `<div class="detail-box"><strong>${escapeHtml(row.symbol)} cluster read</strong>
+        <div class="detail-item"><span class="detail-label">Bias / Score</span><span class="detail-value">${escapeHtml((bias.direction || '-').replaceAll('_',' '))} / ${bias.score !== undefined ? Number(bias.score).toFixed(3) : '-'}</span></div>
+        <div class="detail-item"><span class="detail-label">Nearest upside short-liq cluster</span><span class="detail-value">${fmtPrice(up.price)} • ${fmtCompact(up.estimated_notional_usd) || '-'} • ${fmtPct(up.distance_pct, 3)}</span></div>
+        <div class="detail-item"><span class="detail-label">Nearest downside long-liq cluster</span><span class="detail-value">${fmtPrice(down.price)} • ${fmtCompact(down.estimated_notional_usd) || '-'} • ${fmtPct(down.distance_pct, 3)}</span></div>
+        <div class="detail-item"><span class="detail-label">Funding pressure</span><span class="detail-value">${fmtSignedPct(funding.calibrated_latest_rate_pct ?? funding.latest_rate_pct, 4)} • ${escapeHtml(funding.bias || '-')}</span></div>
+        <div class="detail-item"><span class="detail-label">Open interest</span><span class="detail-value">${fmtCompact(oi.current_open_interest_usd) || '-'} • ${escapeHtml(oi.trend || '-')} • ${fmtSignedPct(oi.change_24h_pct, 2)}</span></div>
+      </div>`;
+      if (cg.enabled) {
+        html += `<div class="detail-box"><strong>CoinGlass benchmark</strong>
+          <div class="detail-item"><span class="detail-label">OI relative delta</span><span class="detail-value">${cgMetrics.open_interest_usd ? fmtSignedPct(cgMetrics.open_interest_usd.relative_delta_pct, 2) : '-'}</span></div>
+          <div class="detail-item"><span class="detail-label">Funding delta</span><span class="detail-value">${cgMetrics.funding_rate ? Number(cgMetrics.funding_rate.delta || 0).toExponential(3) : '-'}</span></div>
+          <div class="detail-item"><span class="detail-label">CoinGlass heatmap</span><span class="detail-value">${escapeHtml(((cg.checks || {}).liq_heatmap_model1 || {}).ok ? 'ok' : (((cg.checks || {}).liq_heatmap_model1 || {}).status || '-'))}</span></div>
+          ${liqHistory ? `<div class="detail-item"><span class="detail-label">CG liquidation history</span><span class="detail-value">Long ${fmtCompact(liqHistory.long_liquidation_usd) || '$0'} • Short ${fmtCompact(liqHistory.short_liquidation_usd) || '$0'} • ${liqPressureLabel(liqHistory.imbalance_score)}</span></div>` : ''}
+        </div>`;
+      }
+      el.innerHTML = html;
+    }
+
+    function renderLiqTapePanel() {
+      const el = document.getElementById('liqTapePanel');
+      if (!el) return;
+      const row = liqRowForDisplay(selectedAsset) || (liqMapData?.symbols || [])[0];
+      if (!row) { el.innerHTML = '<div class="detail-box">No liquidation tape loaded yet.</div>'; return; }
+      const meta = liqMapData?.liquidation_tape || {};
+      const sources = meta.sources || {};
+      const sourceHtml = Object.entries(sources).map(([name, status]) => `<span class="liq-source ${status.ok ? 'ok' : 'err'}">${escapeHtml(name)}: ${status.ok ? 'ok' : 'error'} • ${status.events || 0} events</span>`).join('');
+      const tape = row.liquidation_tape || {};
+      const primary = (tape.windows || {})[tape.primary_window || '60m'] || {};
+      let html = `<div class="liq-source-row">${sourceHtml || '<span class="liq-source">sources unavailable</span>'}</div>`;
+      html += `<div class="detail-box"><strong>${escapeHtml(row.symbol)} real liquidation tape</strong>
+        <div class="detail-item"><span class="detail-label">Primary window</span><span class="detail-value">${escapeHtml(tape.primary_window || '60m')}</span></div>
+        <div class="detail-item"><span class="detail-label">Events / Notional</span><span class="detail-value">${primary.events || 0} • ${fmtCompact(primary.total_notional_usd) || '$0'}</span></div>
+        <div class="detail-item"><span class="detail-label">Long liq / Short liq</span><span class="detail-value">${fmtCompact(primary.long_liquidation_notional_usd) || '$0'} / ${fmtCompact(primary.short_liquidation_notional_usd) || '$0'}</span></div>
+        <div class="detail-item"><span class="detail-label">Tape pressure</span><span class="detail-value">${escapeHtml(primary.pressure || 'no_recent_real_liquidations')} (${primary.imbalance_score !== undefined ? Number(primary.imbalance_score).toFixed(3) : '-'})</span></div>
+      </div>`;
+      const latest = (tape.latest_events || []).slice(-8).reverse();
+      if (!latest.length) {
+        html += '<div class="muted">No recent public liquidation events captured for this symbol. That can be normal in a quiet 60-minute window.</div>';
+      } else {
+        html += latest.map(ev => `<div class="liq-tape-event"><div><strong>${escapeHtml(ev.exchange || ev.source || '-')}</strong> ${escapeHtml(ev.direction || '-')} • ${fmtCompact(ev.notional_usd) || '$0'}</div><div class="muted">${escapeHtml(ev.event_time || '-')} • ${fmtPrice(ev.price)} • qty ${formatAny(ev.quantity)}</div></div>`).join('');
+      }
+      el.innerHTML = html;
+    }
+
     function renderDerivativesRegimePanel() {
       const el = document.getElementById('derivativesRegimePanel');
       const regime = dashboardData.derivatives_summary?.regime;
@@ -884,17 +1064,20 @@
       el.innerHTML = updates.map((entry, index) => `<div class="update-log-item"><strong>${index + 1}.</strong> ${entry}</div>`).join('');
     }
 
-    function renderAll() { renderAssetCards(); renderWatchlists(); renderSignalsAndRisk(); renderSelectedAsset(); renderComparisonChart(); renderAlerts(); renderDerivativesRegimePanel(); renderDerivativesPressurePanel(); renderDerivativesDetailPanel(); renderCryptobiblePanel(); renderTradingBiblePanel(); renderTradingBibleEventsPanel(); renderPassDiagnosticsPanel(); renderEnhancedPanels(); renderUpdateLogPanel(); }
+    function renderAll() { renderAssetCards(); renderWatchlists(); renderSignalsAndRisk(); renderSelectedAsset(); renderComparisonChart(); renderAlerts(); renderDerivativesRegimePanel(); renderDerivativesPressurePanel(); renderDerivativesDetailPanel(); renderLiqMapVisualPanel(); renderCryptobiblePanel(); renderTradingBiblePanel(); renderTradingBibleEventsPanel(); renderPassDiagnosticsPanel(); renderEnhancedPanels(); renderUpdateLogPanel(); }
     function setSort(key) { if (currentSort.key === key) currentSort.dir = currentSort.dir === 'asc' ? 'desc' : 'asc'; else { currentSort.key = key; currentSort.dir = 'desc'; } renderAssetCards(); }
     async function loadDashboard() {
-      const [res1, res2, res3] = await Promise.all([
-        fetch('./dashboard-data.json?_=' + Date.now()),
-        fetch('./dashboard-enhanced.json?_=' + Date.now()),
-        fetch('./news-data.json?_=' + Date.now())
+      const cacheBust = Date.now();
+      const [res1, res2, res3, liqRes] = await Promise.all([
+        fetch('./dashboard-data.json?_=' + cacheBust),
+        fetch('./dashboard-enhanced.json?_=' + cacheBust),
+        fetch('./news-data.json?_=' + cacheBust),
+        fetch('./api/liquidation-map-v1.json?_=' + cacheBust).catch(() => null)
       ]);
       dashboardData = await res1.json();
       enhancedData = await res2.json();
       newsData = await res3.json();
+      liqMapData = liqRes && liqRes.ok ? await liqRes.json() : null;
       document.getElementById('headline').textContent = dashboardData.summary.headline;
       const visibleVersion = enhancedData?.summary?.version || dashboardData.summary.version || '';
       const gitRevision = dashboardData?.summary?.git_revision || dashboardData?.source?.git_revision || '';
