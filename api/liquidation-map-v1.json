@@ -1,52 +1,52 @@
 {
   "exchange": "binance",
-  "generated_at": "2026-05-09T02:05:33.797632Z",
+  "generated_at": "2026-05-09T03:05:36.038173Z",
   "learning_state_used": {
     "endpoint_status": {
       "funding_rate_history": {
-        "last_checked": "2026-05-09T02:01:38.748938Z",
+        "last_checked": "2026-05-09T03:01:42.908101Z",
         "status": "ok"
       },
       "liq_heatmap_model1": {
-        "last_checked": "2026-05-09T02:01:38.748938Z",
-        "status": "cooldown"
+        "last_checked": "2026-05-09T03:01:42.908101Z",
+        "status": "upgrade_required"
       },
       "liquidation_history": {
-        "last_checked": "2026-05-09T02:01:38.748938Z",
+        "last_checked": "2026-05-09T03:01:42.908101Z",
         "status": "ok"
       },
       "open_interest_history": {
-        "last_checked": "2026-05-09T02:01:38.748938Z",
+        "last_checked": "2026-05-09T03:01:42.908101Z",
         "status": "ok"
       },
       "supported_coins": {
-        "last_checked": "2026-05-09T02:01:38.748938Z",
+        "last_checked": "2026-05-09T03:01:42.908101Z",
         "status": "ok"
       }
     },
     "metrics": {
-      "funding_absolute_delta_ema": 0.00025666239838247567,
-      "funding_relative_error_pct_ema": 44.08968010831017,
-      "last_heatmap_benchmark_status": "cooldown",
-      "oi_relative_error_pct_ema": 0.3643613818859355
+      "funding_absolute_delta_ema": 0.00015701907875401096,
+      "funding_relative_error_pct_ema": 52.944612039623145,
+      "last_heatmap_benchmark_status": "upgrade_required",
+      "oi_relative_error_pct_ema": 0.3005232009382082
     },
     "notes": [
       "Learning state stores derived calibration metrics only; it does not store the CoinGlass API key or raw paid payloads."
     ],
     "parameters": {
       "confidence_multiplier": 1.0,
-      "funding_scale_multiplier": 1.3923470024095943,
-      "oi_scale_multiplier": 1.0050347343370274
+      "funding_scale_multiplier": 1.3963452176084963,
+      "oi_scale_multiplier": 1.002305970357927
     },
-    "samples": 792,
-    "updated_at": "2026-05-09T02:01:38.748938Z",
+    "samples": 814,
+    "updated_at": "2026-05-09T03:01:42.908101Z",
     "version": "liqmap-v1-mvp"
   },
   "liquidation_tape": {
     "capture_seconds": 3.0,
     "captured_events": 0,
     "enabled": true,
-    "generated_at": "2026-05-09T02:05:26.277549Z",
+    "generated_at": "2026-05-09T03:05:28.520916Z",
     "history_file": "liquidation-tape-v1.jsonl",
     "paper_only": true,
     "raw_payload_stored": false,
@@ -83,31 +83,23 @@
       "added_symbols": [
         {
           "reason": "paper_candidate",
-          "symbol": "ICPUSDT"
+          "symbol": "PLUMEUSDT"
         },
         {
           "reason": "paper_candidate",
-          "symbol": "SIRENUSDT"
+          "symbol": "PLAYUSDT"
         },
         {
           "reason": "paper_candidate",
-          "symbol": "SAHARAUSDT"
+          "symbol": "DEEPUSDT"
         },
         {
           "reason": "paper_candidate",
-          "symbol": "TIAUSDT"
+          "symbol": "BILLUSDT"
         },
         {
           "reason": "paper_candidate",
-          "symbol": "SPORTFUNUSDT"
-        },
-        {
-          "reason": "paper_candidate",
-          "symbol": "AGTUSDT"
-        },
-        {
-          "reason": "paper_candidate",
-          "symbol": "OPUSDT"
+          "symbol": "STRKUSDT"
         },
         {
           "reason": "paper_candidate",
@@ -115,7 +107,15 @@
         },
         {
           "reason": "paper_candidate",
-          "symbol": "PLAYUSDT"
+          "symbol": "SAHARAUSDT"
+        },
+        {
+          "reason": "paper_candidate",
+          "symbol": "SIRENUSDT"
+        },
+        {
+          "reason": "paper_candidate",
+          "symbol": "SNDKUSDT"
         }
       ],
       "core_symbols": [
@@ -144,15 +144,15 @@
       "BTCUSDT",
       "ETHUSDT",
       "SOLUSDT",
-      "ICPUSDT",
-      "SIRENUSDT",
-      "SAHARAUSDT",
-      "TIAUSDT",
-      "SPORTFUNUSDT",
-      "AGTUSDT",
-      "OPUSDT",
+      "PLUMEUSDT",
+      "PLAYUSDT",
+      "DEEPUSDT",
+      "BILLUSDT",
+      "STRKUSDT",
       "FILUSDT",
-      "PLAYUSDT"
+      "SAHARAUSDT",
+      "SIRENUSDT",
+      "SNDKUSDT"
     ]
   },
   "symbols": [
@@ -162,9 +162,9 @@
         "checks": {
           "funding_rate_history": {
             "latest": {
-              "close": 0.000321,
+              "close": -0.00112,
               "high": 0.001644,
-              "low": 0.000261,
+              "low": -0.00112,
               "open": 0.001644,
               "time": 1778284800000
             },
@@ -177,9 +177,9 @@
             ]
           },
           "liq_heatmap_model1": {
-            "error": "GET https://open-api-v4.coinglass.com/api/futures/liquidation/heatmap/model1 failed: CoinGlass API error: {'code': '401', 'msg': 'Upgrade plan'}",
+            "error": "skipped until heatmap probe cooldown expires",
             "ok": false,
-            "status": "upgrade_required"
+            "status": "cooldown"
           },
           "liquidation_history": {
             "latest": {
@@ -199,8 +199,8 @@
           },
           "open_interest_history": {
             "latest": {
-              "close": 8121304090.0992,
-              "high": 8122157539.0,
+              "close": 8126564316.837,
+              "high": 8129734955.0,
               "low": 8076492142.0,
               "open": 8082847723.0,
               "time": 1778284800000
@@ -231,31 +231,31 @@
         "limit": 30,
         "metrics": {
           "funding_rate": {
-            "abs_relative_delta_pct": 98.6076529975904,
-            "coinglass": 0.000321,
-            "coinglass_raw": 0.000321,
+            "abs_relative_delta_pct": 98.6036547823915,
+            "coinglass": -0.00112,
+            "coinglass_raw": -0.00112,
             "coinglass_unit_normalized": false,
-            "delta": -0.0003165305661222652,
-            "internal": 4.469433877734798e-06,
-            "internal_raw": 3.21e-06,
-            "relative_delta_pct": -98.6076529975904
+            "delta": 0.0011043609335627848,
+            "internal": -1.563906643721516e-05,
+            "internal_raw": -1.12e-05,
+            "relative_delta_pct": -98.6036547823915
           },
           "liquidation_history": {
-            "imbalance_score": 0.9474446819857623,
+            "imbalance_score": 0.9528367246565772,
             "interval": "4h",
-            "long_liquidation_usd": 12915.42,
+            "long_liquidation_usd": 16050.72,
             "raw_payload_stored": false,
-            "short_liquidation_usd": 478582.7,
+            "short_liquidation_usd": 664594.12,
             "time": 1778284800000,
-            "total_liquidation_usd": 491498.12
+            "total_liquidation_usd": 680644.84
           },
           "open_interest_usd": {
-            "abs_relative_delta_pct": 0.38444530558884876,
-            "coinglass": 8121304090.0992,
-            "delta": 31221972.326981544,
-            "internal": 8152526062.426182,
-            "internal_raw": 8111685879.0,
-            "relative_delta_pct": 0.38444530558884876
+            "abs_relative_delta_pct": 0.2261061648232424,
+            "coinglass": 8126564316.837,
+            "delta": 18374662.908694267,
+            "internal": 8144938979.745694,
+            "internal_raw": 8126200202.9551,
+            "relative_delta_pct": 0.2261061648232424
           }
         },
         "raw_payload_stored": false
@@ -265,9 +265,9 @@
         "checks": {
           "funding_rate_history": {
             "latest": {
-              "close": 0.000321,
+              "close": -0.00112,
               "high": 0.001644,
-              "low": 0.000261,
+              "low": -0.00112,
               "open": 0.001644,
               "time": 1778284800000
             },
@@ -280,9 +280,9 @@
             ]
           },
           "liq_heatmap_model1": {
-            "error": "GET https://open-api-v4.coinglass.com/api/futures/liquidation/heatmap/model1 failed: CoinGlass API error: {'code': '401', 'msg': 'Upgrade plan'}",
+            "error": "skipped until heatmap probe cooldown expires",
             "ok": false,
-            "status": "upgrade_required"
+            "status": "cooldown"
           },
           "liquidation_history": {
             "latest": {
@@ -302,8 +302,8 @@
           },
           "open_interest_history": {
             "latest": {
-              "close": 8121304090.0992,
-              "high": 8122157539.0,
+              "close": 8126564316.837,
+              "high": 8129734955.0,
               "low": 8076492142.0,
               "open": 8082847723.0,
               "time": 1778284800000
@@ -334,58 +334,58 @@
         "limit": 30,
         "metrics": {
           "funding_rate": {
-            "abs_relative_delta_pct": 98.6076529975904,
-            "coinglass": 0.000321,
-            "coinglass_raw": 0.000321,
+            "abs_relative_delta_pct": 98.6036547823915,
+            "coinglass": -0.00112,
+            "coinglass_raw": -0.00112,
             "coinglass_unit_normalized": false,
-            "delta": -0.0003165305661222652,
-            "internal": 4.469433877734798e-06,
-            "internal_raw": 3.21e-06,
-            "relative_delta_pct": -98.6076529975904
+            "delta": 0.0011043609335627848,
+            "internal": -1.563906643721516e-05,
+            "internal_raw": -1.12e-05,
+            "relative_delta_pct": -98.6036547823915
           },
           "liquidation_history": {
-            "imbalance_score": 0.9474446819857623,
+            "imbalance_score": 0.9528367246565772,
             "interval": "4h",
-            "long_liquidation_usd": 12915.42,
+            "long_liquidation_usd": 16050.72,
             "raw_payload_stored": false,
-            "short_liquidation_usd": 478582.7,
+            "short_liquidation_usd": 664594.12,
             "time": 1778284800000,
-            "total_liquidation_usd": 491498.12
+            "total_liquidation_usd": 680644.84
           },
           "open_interest_usd": {
-            "abs_relative_delta_pct": 0.38444530558884876,
-            "coinglass": 8121304090.0992,
-            "delta": 31221972.326981544,
-            "internal": 8152526062.426182,
-            "internal_raw": 8111685879.0,
-            "relative_delta_pct": 0.38444530558884876
+            "abs_relative_delta_pct": 0.2261061648232424,
+            "coinglass": 8126564316.837,
+            "delta": 18374662.908694267,
+            "internal": 8144938979.745694,
+            "internal_raw": 8126200202.9551,
+            "relative_delta_pct": 0.2261061648232424
           }
         },
         "raw_payload_stored": false
       },
       "exchange": "binance",
       "funding": {
-        "avg_24h_rate": 2.0666666666666666e-06,
-        "avg_window_rate": -3.228315068493151e-05,
+        "avg_24h_rate": -2.7366666666666666e-06,
+        "avg_window_rate": -3.248054794520548e-05,
         "bias": "neutral",
-        "calibrated_latest_rate": 4.469433877734798e-06,
-        "calibrated_latest_rate_pct": 0.00044694338777347977,
+        "calibrated_latest_rate": -1.563906643721516e-05,
+        "calibrated_latest_rate_pct": -0.0015639066437215159,
         "calibration_applied": {
-          "funding_scale_multiplier": 1.3923470024095943
+          "funding_scale_multiplier": 1.3963452176084963
         },
-        "latest_rate": 3.21e-06,
-        "latest_rate_pct": 0.000321,
+        "latest_rate": -1.12e-05,
+        "latest_rate_pct": -0.00112,
         "next_funding_time": "2026-05-09T08:00:00Z",
-        "pressure_score": 0.004469433877734797,
+        "pressure_score": -0.01563906643721516,
         "samples": 73,
-        "zscore": 0.9455282124536325
+        "zscore": 0.5692078362668229
       },
       "heatmap": {
         "assumptions": {
           "calibration_applied": {
             "confidence_multiplier": 1.0,
-            "funding_scale_multiplier": 1.3923470024095943,
-            "oi_scale_multiplier": 1.0050347343370274
+            "funding_scale_multiplier": 1.3963452176084963,
+            "oi_scale_multiplier": 1.002305970357927
           },
           "leverage_buckets": [
             3.0,
@@ -397,206 +397,206 @@
             75.0,
             100.0
           ],
-          "long_share": 0.4938181128542869,
+          "long_share": 0.4930297538386447,
           "maintenance_margin_buffer": 0.004,
           "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
-          "oi_notional_used_usd": 8152526062.426182,
+          "oi_notional_used_usd": 8144938979.745694,
           "scan_pct": 0.12,
-          "short_share": 0.5061818871457131
+          "short_share": 0.5069702461613552
         },
         "bias": {
-          "direction": "balanced_nearby_liquidity",
-          "score": 0.011694664490941952
+          "direction": "upside_liquidity_heavier",
+          "score": 0.30115319320247624
         },
-        "cluster_count_down": 84,
+        "cluster_count_down": 87,
         "cluster_count_up": 97,
-        "confidence": 0.7217924069818734,
+        "confidence": 0.7554036176208667,
         "internal_model_version": "liqmap-v1.1",
-        "mark_price": 80369.69272414,
+        "mark_price": 80385.6,
         "nearest_cluster_down": {
-          "confidence": 0.5209842787766864,
-          "distance_pct": 0.10002865684199305,
-          "estimated_notional_usd": 21587007.325789195,
-          "price": 80289.3,
-          "significance_vs_median": 0.9256195573650386,
-          "strength": 0.2051211628053527
+          "confidence": 0.530586208037361,
+          "distance_pct": 0.10001791365618809,
+          "estimated_notional_usd": 13754728.60454221,
+          "price": 80305.2,
+          "significance_vs_median": 0.5845259859070099,
+          "strength": 0.14967913712685116
         },
         "nearest_cluster_up": {
-          "confidence": 0.5202093064822446,
-          "distance_pct": 9.052989694647274e-06,
-          "estimated_notional_usd": 20088647.171841636,
-          "price": 80369.7,
-          "significance_vs_median": 0.8663780820836706,
-          "strength": 0.20205351269691432
+          "confidence": 0.5538842630510921,
+          "distance_pct": 0.10001791365616998,
+          "estimated_notional_usd": 25609345.097313337,
+          "price": 80466.0,
+          "significance_vs_median": 1.0622288734244965,
+          "strength": 0.23779874618756927
         },
-        "price_bin_size": 80.36969272414,
+        "price_bin_size": 80.38560000000001,
         "status": "ok",
         "top_clusters_down": [
           {
-            "confidence": 0.7217924069818734,
-            "distance_pct": 10.000029179812945,
-            "estimated_notional_usd": 105240273.75114839,
-            "price": 72332.7,
-            "significance_vs_median": 4.512550263979317,
+            "confidence": 0.7554036176208667,
+            "distance_pct": 10.000049760156054,
+            "estimated_notional_usd": 91894761.47824967,
+            "price": 72347.0,
+            "significance_vs_median": 3.9051934499838254,
             "strength": 1.0
           },
           {
-            "confidence": 0.7046432017569582,
-            "distance_pct": 10.199980174464102,
-            "estimated_notional_usd": 98096205.19931602,
-            "price": 72172.0,
-            "significance_vs_median": 4.206222968540239,
-            "strength": 0.9321165909476323
+            "confidence": 0.7521071587985153,
+            "distance_pct": 10.099943273422115,
+            "estimated_notional_usd": 90749007.68087888,
+            "price": 72266.7,
+            "significance_vs_median": 3.856503076856892,
+            "strength": 0.9875318921455389
           },
           {
-            "confidence": 0.6627516129889056,
-            "distance_pct": 5.199961058062782,
-            "estimated_notional_usd": 80644878.56469546,
-            "price": 76190.5,
-            "significance_vs_median": 3.45793539948603,
-            "strength": 0.7662929379620267
+            "confidence": 0.72296514044751,
+            "distance_pct": 10.199961187078285,
+            "estimated_notional_usd": 80620084.497517,
+            "price": 72186.3,
+            "significance_vs_median": 3.4260606464642045,
+            "strength": 0.8773088171799517
           },
           {
-            "confidence": 0.6538835216733248,
-            "distance_pct": 5.000010063411624,
-            "estimated_notional_usd": 76950581.86397284,
-            "price": 76351.2,
-            "significance_vs_median": 3.2995293163596844,
-            "strength": 0.7311894878374274
+            "confidence": 0.7219159720755106,
+            "distance_pct": 5.200060707390385,
+            "estimated_notional_usd": 80255423.89925654,
+            "price": 76205.5,
+            "significance_vs_median": 3.4105638960849025,
+            "strength": 0.8733405757655945
           },
           {
-            "confidence": 0.642051593189928,
-            "distance_pct": 9.899991469981238,
-            "estimated_notional_usd": 72021600.77842623,
-            "price": 72413.1,
-            "significance_vs_median": 3.088181757996936,
-            "strength": 0.6843539855163131
+            "confidence": 0.7081270233937609,
+            "distance_pct": 9.900031846499886,
+            "estimated_notional_usd": 75462783.92852698,
+            "price": 72427.4,
+            "significance_vs_median": 3.2068941120760104,
+            "strength": 0.8211870047280995
           },
           {
-            "confidence": 0.6357712356011006,
-            "distance_pct": 4.700021358928761,
-            "estimated_notional_usd": 69405310.13660586,
-            "price": 76592.3,
-            "significance_vs_median": 2.9759990107882963,
-            "strength": 0.6594938198348093
+            "confidence": 0.6897346719053822,
+            "distance_pct": 4.699971139109499,
+            "estimated_notional_usd": 69070134.21074402,
+            "price": 76607.5,
+            "significance_vs_median": 2.9352297276830464,
+            "strength": 0.7516221066321833
           },
           {
-            "confidence": 0.6342259854912201,
-            "distance_pct": 10.300017884295789,
-            "estimated_notional_usd": 68761585.10270895,
-            "price": 72091.6,
-            "significance_vs_median": 2.948397015201413,
-            "strength": 0.6533771022422736
+            "confidence": 0.6870487527575796,
+            "distance_pct": 5.000024880078027,
+            "estimated_notional_usd": 68136586.3556458,
+            "price": 76366.3,
+            "significance_vs_median": 2.8955573360218647,
+            "strength": 0.7414632266255229
           },
           {
-            "confidence": 0.6339075562053077,
-            "distance_pct": 10.099942464632413,
-            "estimated_notional_usd": 68628932.85336953,
-            "price": 72252.4,
-            "significance_vs_median": 2.942709079191388,
-            "strength": 0.6521166318480871
+            "confidence": 0.6850297694196382,
+            "distance_pct": 10.299979100734474,
+            "estimated_notional_usd": 67434846.10923664,
+            "price": 72105.9,
+            "significance_vs_median": 2.8657359254236585,
+            "strength": 0.7338268800577672
           },
           {
-            "confidence": 0.6283439226873307,
-            "distance_pct": 2.1999495882219837,
-            "estimated_notional_usd": 66311217.324958116,
-            "price": 78601.6,
-            "significance_vs_median": 2.8433287996959846,
-            "strength": 0.6300935465234337
+            "confidence": 0.6829316571057473,
+            "distance_pct": 4.900006966421857,
+            "estimated_notional_usd": 66705602.91813371,
+            "price": 76446.7,
+            "significance_vs_median": 2.834745739611875,
+            "strength": 0.7258912460850349
           },
           {
-            "confidence": 0.625147082283756,
-            "distance_pct": 10.600006588778653,
-            "estimated_notional_usd": 64979467.73698161,
-            "price": 71850.5,
-            "significance_vs_median": 2.78622530936311,
-            "strength": 0.617439174385201
+            "confidence": 0.6747031873216197,
+            "distance_pct": 4.20000597121874,
+            "estimated_notional_usd": 63845624.6779111,
+            "price": 77009.4,
+            "significance_vs_median": 2.7132070565449724,
+            "strength": 0.694768925354059
           }
         ],
         "top_clusters_up": [
           {
-            "confidence": 0.7217924069818734,
-            "distance_pct": 9.199994457163232,
-            "estimated_notional_usd": 99422409.95322435,
-            "price": 87763.7,
-            "significance_vs_median": 4.28786448955857,
+            "confidence": 0.7554036176208667,
+            "distance_pct": 9.100012937640562,
+            "estimated_notional_usd": 107693356.2850385,
+            "price": 87700.7,
+            "significance_vs_median": 4.466923776741189,
             "strength": 1.0
           },
           {
-            "confidence": 0.6823787897109319,
-            "distance_pct": 9.300032166994935,
-            "estimated_notional_usd": 83911037.44640628,
-            "price": 87844.1,
-            "significance_vs_median": 3.618893948735914,
-            "strength": 0.8439851486790979
+            "confidence": 0.7533496931639914,
+            "distance_pct": 4.200005971218721,
+            "estimated_notional_usd": 106856740.07784176,
+            "price": 83761.8,
+            "significance_vs_median": 4.432222464080426,
+            "strength": 0.9922314965745666
           },
           {
-            "confidence": 0.6818511691545093,
-            "distance_pct": 4.300013050593617,
-            "estimated_notional_usd": 83703390.4563656,
-            "price": 83825.6,
-            "significance_vs_median": 3.6099386019948922,
-            "strength": 0.841896615619616
+            "confidence": 0.734133743600975,
+            "distance_pct": 8.899977110328203,
+            "estimated_notional_usd": 99029590.06398414,
+            "price": 87539.9,
+            "significance_vs_median": 4.107566573437726,
+            "strength": 0.9195515255544321
           },
           {
-            "confidence": 0.6778995731035984,
-            "distance_pct": 3.899986636279066,
-            "estimated_notional_usd": 82148225.45030206,
-            "price": 83504.1,
-            "significance_vs_median": 3.542867839899694,
-            "strength": 0.8262546189430598
+            "confidence": 0.6884254291982443,
+            "distance_pct": 3.8999522302501934,
+            "estimated_notional_usd": 80411419.12543675,
+            "price": 83520.6,
+            "significance_vs_median": 3.335318838631237,
+            "strength": 0.7466701930303574
           },
           {
-            "confidence": 0.6710398863581892,
-            "distance_pct": 4.199975340761911,
-            "estimated_notional_usd": 79448570.76860477,
-            "price": 83745.2,
-            "significance_vs_median": 3.42643781724015,
-            "strength": 0.7991012368940086
+            "confidence": 0.6812826859731658,
+            "distance_pct": 4.300023884874891,
+            "estimated_notional_usd": 77501996.27595358,
+            "price": 83842.2,
+            "significance_vs_median": 3.2146412912758295,
+            "strength": 0.71965438676481
           },
           {
-            "confidence": 0.670531675725941,
-            "distance_pct": 3.0000205228304933,
-            "estimated_notional_usd": 79248562.62485743,
-            "price": 82780.8,
-            "significance_vs_median": 3.4178119167253644,
-            "strength": 0.7970895360728211
+            "confidence": 0.6741810145177117,
+            "distance_pct": 3.3999870623594166,
+            "estimated_notional_usd": 74609303.0135841,
+            "price": 83118.7,
+            "significance_vs_median": 3.0946576566466213,
+            "strength": 0.692793925152738
           },
           {
-            "confidence": 0.6479137672152899,
-            "distance_pct": 9.000043462512073,
-            "estimated_notional_usd": 70347202.42180653,
-            "price": 87603.0,
-            "significance_vs_median": 3.0339163106805223,
-            "strength": 0.7075588134999248
+            "confidence": 0.6615612640923438,
+            "distance_pct": 9.300048764952919,
+            "estimated_notional_usd": 69468954.39886318,
+            "price": 87861.5,
+            "significance_vs_median": 2.8814453820931023,
+            "strength": 0.645062581344345
           },
           {
-            "confidence": 0.6410045230698604,
-            "distance_pct": 4.000024346110754,
-            "estimated_notional_usd": 67628044.24498719,
-            "price": 83584.5,
-            "significance_vs_median": 2.916645146228143,
-            "strength": 0.6802092634528214
+            "confidence": 0.652504928611616,
+            "distance_pct": 3.999970143906364,
+            "estimated_notional_usd": 65780076.25360063,
+            "price": 83601.0,
+            "significance_vs_median": 2.72843745230994,
+            "strength": 0.6108090463769792
           },
           {
-            "confidence": 0.6350081374921375,
-            "distance_pct": 8.900005752680386,
-            "estimated_notional_usd": 65268144.87946643,
-            "price": 87522.6,
-            "significance_vs_median": 2.8148680047053314,
-            "strength": 0.6564731724987696
+            "confidence": 0.6419959699804599,
+            "distance_pct": 3.299969148703247,
+            "estimated_notional_usd": 61499507.37378872,
+            "price": 83038.3,
+            "significance_vs_median": 2.5508872712514026,
+            "strength": 0.5710612937999097
           },
           {
-            "confidence": 0.6303998935401824,
-            "distance_pct": 3.4999602219645145,
-            "estimated_notional_usd": 63454553.702343844,
-            "price": 83182.6,
-            "significance_vs_median": 2.736651904224371,
-            "strength": 0.6382319009587231
+            "confidence": 0.6419150982406967,
+            "distance_pct": 2.900021894468657,
+            "estimated_notional_usd": 61466566.23617111,
+            "price": 82716.8,
+            "significance_vs_median": 2.5495209330116735,
+            "strength": 0.5707554147860695
           }
         ]
       },
-      "index_price": 80416.095,
+      "index_price": 80419.73891304,
       "liquidation_tape": {
         "latest_events": [],
         "paper_only": true,
@@ -633,42 +633,42 @@
           }
         }
       },
-      "mark_price": 80369.69272414,
+      "mark_price": 80385.6,
       "open_interest": {
-        "calibrated_current_open_interest_usd": 8152526062.426182,
+        "calibrated_current_open_interest_usd": 8144938979.745694,
         "calibration_applied": {
-          "oi_scale_multiplier": 1.0050347343370274
+          "oi_scale_multiplier": 1.002305970357927
         },
-        "change_24h_pct": -2.239406403680445,
-        "change_24h_usd": -185814760.67020035,
-        "current_open_interest_contracts": 101047.441,
-        "current_open_interest_usd": 8111685879.0,
+        "change_24h_pct": -1.6978527296298218,
+        "change_24h_usd": -140353914.7335024,
+        "current_open_interest_contracts": 101113.714,
+        "current_open_interest_usd": 8126200202.9551,
         "samples": 72,
         "trend": "flat",
-        "trend_score": -0.22394064036804448,
-        "window_percentile": 0.1388888888888889
+        "trend_score": -0.16978527296298218,
+        "window_percentile": 0.1527777777777778
       },
       "orderbook_depth": {
-        "depth_imbalance_score": -0.6912481301620311,
-        "top50_ask_depth_usd": 1878408.4989,
-        "top50_bid_depth_usd": 342919.6024
+        "depth_imbalance_score": 0.9346634545654222,
+        "top50_ask_depth_usd": 92607.2363,
+        "top50_bid_depth_usd": 2742168.7894
       },
       "paper_only": true,
       "source_errors": [],
       "symbol": "BTCUSDT",
-      "updated_at": "2026-05-09T02:05:43.978285Z",
+      "updated_at": "2026-05-09T03:05:38.852351Z",
       "v13_features": {
-        "funding_pressure_score": 0.004469433877734797,
+        "funding_pressure_score": -0.01563906643721516,
         "liq_sweep_confirmation": null,
-        "liqmap_bias_score": 0.011694664490941952,
-        "liqmap_cluster_strength_down": 0.2051211628053527,
-        "liqmap_cluster_strength_up": 0.20205351269691432,
-        "liqmap_confidence": 0.7217924069818734,
-        "liqmap_nearest_down_distance_pct": 0.10002865684199305,
-        "liqmap_nearest_down_price": 80289.3,
-        "liqmap_nearest_up_distance_pct": 9.052989694647274e-06,
-        "liqmap_nearest_up_price": 80369.7,
-        "open_interest_trend_score": -0.22394064036804448,
+        "liqmap_bias_score": 0.30115319320247624,
+        "liqmap_cluster_strength_down": 0.14967913712685116,
+        "liqmap_cluster_strength_up": 0.23779874618756927,
+        "liqmap_confidence": 0.7554036176208667,
+        "liqmap_nearest_down_distance_pct": 0.10001791365618809,
+        "liqmap_nearest_down_price": 80305.2,
+        "liqmap_nearest_up_distance_pct": 0.10001791365616998,
+        "liqmap_nearest_up_price": 80466.0,
+        "open_interest_trend_score": -0.16978527296298218,
         "recent_real_liq_imbalance": 0.0,
         "recent_real_liq_notional_usd": 0
       }
@@ -678,57 +678,24 @@
         "api_key_source": "env_or_key_file",
         "checks": {
           "funding_rate_history": {
-            "latest": {
-              "close": 0.007413,
-              "high": 0.007744,
-              "low": 0.006101,
-              "open": 0.006142,
-              "time": 1778284800000
-            },
-            "ok": true,
-            "payload_type": "list",
-            "sample_count": 30,
-            "top_level_keys": [
-              "code",
-              "data"
-            ]
+            "error": "GET https://open-api-v4.coinglass.com/api/futures/funding-rate/history failed: CoinGlass API error: {'code': '429', 'msg': 'Too Many Requests'}",
+            "ok": false,
+            "status": "rate_limited"
           },
           "liq_heatmap_model1": {
-            "error": "GET https://open-api-v4.coinglass.com/api/futures/liquidation/heatmap/model1 failed: CoinGlass API error: {'code': '401', 'msg': 'Upgrade plan'}",
+            "error": "skipped until heatmap probe cooldown expires",
             "ok": false,
-            "status": "upgrade_required"
+            "status": "cooldown"
           },
           "liquidation_history": {
-            "latest": {
-              "close": 0.0,
-              "high": 0.0,
-              "low": 0.0,
-              "open": 0.0,
-              "time": 1778284800000
-            },
-            "ok": true,
-            "payload_type": "list",
-            "sample_count": 30,
-            "top_level_keys": [
-              "code",
-              "data"
-            ]
+            "error": "GET https://open-api-v4.coinglass.com/api/futures/liquidation/history failed: CoinGlass API error: {'code': '429', 'msg': 'Too Many Requests'}",
+            "ok": false,
+            "status": "rate_limited"
           },
           "open_interest_history": {
-            "latest": {
-              "close": 5191251220.45296,
-              "high": 5195325414.0,
-              "low": 5160686881.0,
-              "open": 5166487338.0,
-              "time": 1778284800000
-            },
-            "ok": true,
-            "payload_type": "list",
-            "sample_count": 30,
-            "top_level_keys": [
-              "code",
-              "data"
-            ]
+            "error": "GET https://open-api-v4.coinglass.com/api/futures/open-interest/history failed: CoinGlass API error: {'code': '429', 'msg': 'Too Many Requests'}",
+            "ok": false,
+            "status": "rate_limited"
           },
           "supported_coins": {
             "latest": null,
@@ -746,92 +713,31 @@
         "exchange": "Binance",
         "interval": "4h",
         "limit": 30,
-        "metrics": {
-          "funding_rate": {
-            "abs_relative_delta_pct": 39.234700240959434,
-            "coinglass": 7.413e-05,
-            "coinglass_raw": 0.007413,
-            "coinglass_unit_normalized": true,
-            "delta": 2.9084683288623227e-05,
-            "internal": 0.00010321468328862322,
-            "internal_raw": 7.413e-05,
-            "relative_delta_pct": 39.234700240959434
-          },
-          "liquidation_history": {
-            "imbalance_score": -0.8336943479907164,
-            "interval": "4h",
-            "long_liquidation_usd": 795106.18,
-            "raw_payload_stored": false,
-            "short_liquidation_usd": 72111.61,
-            "time": 1778284800000,
-            "total_liquidation_usd": 867217.79
-          },
-          "open_interest_usd": {
-            "abs_relative_delta_pct": 0.3571624605248992,
-            "coinglass": 5191251220.45296,
-            "delta": 18541200.59099865,
-            "internal": 5209792421.043959,
-            "internal_raw": 5183693899.37613,
-            "relative_delta_pct": 0.3571624605248992
-          }
-        },
+        "metrics": {},
         "raw_payload_stored": false
       },
       "coinglass_validation": {
         "api_key_source": "env_or_key_file",
         "checks": {
           "funding_rate_history": {
-            "latest": {
-              "close": 0.007413,
-              "high": 0.007744,
-              "low": 0.006101,
-              "open": 0.006142,
-              "time": 1778284800000
-            },
-            "ok": true,
-            "payload_type": "list",
-            "sample_count": 30,
-            "top_level_keys": [
-              "code",
-              "data"
-            ]
+            "error": "GET https://open-api-v4.coinglass.com/api/futures/funding-rate/history failed: CoinGlass API error: {'code': '429', 'msg': 'Too Many Requests'}",
+            "ok": false,
+            "status": "rate_limited"
           },
           "liq_heatmap_model1": {
-            "error": "GET https://open-api-v4.coinglass.com/api/futures/liquidation/heatmap/model1 failed: CoinGlass API error: {'code': '401', 'msg': 'Upgrade plan'}",
+            "error": "skipped until heatmap probe cooldown expires",
             "ok": false,
-            "status": "upgrade_required"
+            "status": "cooldown"
           },
           "liquidation_history": {
-            "latest": {
-              "close": 0.0,
-              "high": 0.0,
-              "low": 0.0,
-              "open": 0.0,
-              "time": 1778284800000
-            },
-            "ok": true,
-            "payload_type": "list",
-            "sample_count": 30,
-            "top_level_keys": [
-              "code",
-              "data"
-            ]
+            "error": "GET https://open-api-v4.coinglass.com/api/futures/liquidation/history failed: CoinGlass API error: {'code': '429', 'msg': 'Too Many Requests'}",
+            "ok": false,
+            "status": "rate_limited"
           },
           "open_interest_history": {
-            "latest": {
-              "close": 5191251220.45296,
-              "high": 5195325414.0,
-              "low": 5160686881.0,
-              "open": 5166487338.0,
-              "time": 1778284800000
-            },
-            "ok": true,
-            "payload_type": "list",
-            "sample_count": 30,
-            "top_level_keys": [
-              "code",
-              "data"
-            ]
+            "error": "GET https://open-api-v4.coinglass.com/api/futures/open-interest/history failed: CoinGlass API error: {'code': '429', 'msg': 'Too Many Requests'}",
+            "ok": false,
+            "status": "rate_limited"
           },
           "supported_coins": {
             "latest": null,
@@ -849,60 +755,32 @@
         "exchange": "Binance",
         "interval": "4h",
         "limit": 30,
-        "metrics": {
-          "funding_rate": {
-            "abs_relative_delta_pct": 39.234700240959434,
-            "coinglass": 7.413e-05,
-            "coinglass_raw": 0.007413,
-            "coinglass_unit_normalized": true,
-            "delta": 2.9084683288623227e-05,
-            "internal": 0.00010321468328862322,
-            "internal_raw": 7.413e-05,
-            "relative_delta_pct": 39.234700240959434
-          },
-          "liquidation_history": {
-            "imbalance_score": -0.8336943479907164,
-            "interval": "4h",
-            "long_liquidation_usd": 795106.18,
-            "raw_payload_stored": false,
-            "short_liquidation_usd": 72111.61,
-            "time": 1778284800000,
-            "total_liquidation_usd": 867217.79
-          },
-          "open_interest_usd": {
-            "abs_relative_delta_pct": 0.3571624605248992,
-            "coinglass": 5191251220.45296,
-            "delta": 18541200.59099865,
-            "internal": 5209792421.043959,
-            "internal_raw": 5183693899.37613,
-            "relative_delta_pct": 0.3571624605248992
-          }
-        },
+        "metrics": {},
         "raw_payload_stored": false
       },
       "exchange": "binance",
       "funding": {
-        "avg_24h_rate": 3.4179999999999995e-05,
-        "avg_window_rate": -2.643780821917808e-05,
+        "avg_24h_rate": 3.325333333333333e-05,
+        "avg_window_rate": -2.6475890410958903e-05,
         "bias": "neutral",
-        "calibrated_latest_rate": 0.00010321468328862322,
-        "calibrated_latest_rate_pct": 0.010321468328862323,
+        "calibrated_latest_rate": 9.962923127636621e-05,
+        "calibrated_latest_rate_pct": 0.009962923127636622,
         "calibration_applied": {
-          "funding_scale_multiplier": 1.3923470024095943
+          "funding_scale_multiplier": 1.3963452176084963
         },
-        "latest_rate": 7.413e-05,
-        "latest_rate_pct": 0.0074129999999999995,
+        "latest_rate": 7.135e-05,
+        "latest_rate_pct": 0.007135,
         "next_funding_time": "2026-05-09T08:00:00Z",
-        "pressure_score": 0.10321468328862322,
+        "pressure_score": 0.0996292312763662,
         "samples": 73,
-        "zscore": 1.6710079978751904
+        "zscore": 1.6271705398804441
       },
       "heatmap": {
         "assumptions": {
           "calibration_applied": {
             "confidence_multiplier": 1.0,
-            "funding_scale_multiplier": 1.3923470024095943,
-            "oi_scale_multiplier": 1.0050347343370274
+            "funding_scale_multiplier": 1.3963452176084963,
+            "oi_scale_multiplier": 1.002305970357927
           },
           "leverage_buckets": [
             3.0,
@@ -914,206 +792,206 @@
             75.0,
             100.0
           ],
-          "long_share": 0.5076259773942376,
+          "long_share": 0.5075973486054883,
           "maintenance_margin_buffer": 0.004,
           "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
-          "oi_notional_used_usd": 5209792421.043959,
+          "oi_notional_used_usd": 5208327027.906955,
           "scan_pct": 0.12,
-          "short_share": 0.49237402260576235
+          "short_share": 0.49240265139451167
         },
         "bias": {
-          "direction": "upside_liquidity_heavier",
-          "score": 0.6850103483546873
+          "direction": "balanced_nearby_liquidity",
+          "score": 0.04597916760351128
         },
-        "cluster_count_down": 98,
-        "cluster_count_up": 108,
-        "confidence": 0.8897536219241405,
+        "cluster_count_down": 97,
+        "cluster_count_up": 107,
+        "confidence": 0.7008337948518014,
         "internal_model_version": "liqmap-v1.1",
-        "mark_price": 2314.69825581,
+        "mark_price": 2316.56,
         "nearest_cluster_down": {
-          "confidence": 0.5968659875583114,
-          "distance_pct": 0.09928965057242535,
-          "estimated_notional_usd": 3394190.1587748607,
-          "price": 2312.4,
-          "significance_vs_median": 0.2573382078600827,
-          "strength": 0.05949041189163704
+          "confidence": 0.4911680080063769,
+          "distance_pct": 0.10187519425355386,
+          "estimated_notional_usd": 8248224.252013556,
+          "price": 2314.2,
+          "significance_vs_median": 0.5960959324902968,
+          "strength": 0.14523941386228972
         },
         "nearest_cluster_up": {
-          "confidence": 0.6642461282330572,
-          "distance_pct": 7.535280227459292e-05,
-          "estimated_notional_usd": 16518212.20154999,
-          "price": 2314.7,
-          "significance_vs_median": 1.1724245091499963,
-          "strength": 0.27585894684157874
+          "confidence": 0.4868089187732129,
+          "distance_pct": 0.00172669820768569,
+          "estimated_notional_usd": 8221337.5415992765,
+          "price": 2316.6,
+          "significance_vs_median": 0.5976426496771263,
+          "strength": 0.12746838061921334
         },
-        "price_bin_size": 2.3146982558099998,
+        "price_bin_size": 2.31656,
         "status": "ok",
         "top_clusters_down": [
           {
-            "confidence": 0.8897536219241405,
-            "distance_pct": 10.100593251114063,
-            "estimated_notional_usd": 57054406.7665466,
-            "price": 2080.9,
-            "significance_vs_median": 4.325708961787478,
+            "confidence": 0.7008337948518014,
+            "distance_pct": 10.198742963704793,
+            "estimated_notional_usd": 56790536.62275308,
+            "price": 2080.3,
+            "significance_vs_median": 4.104229813647496,
             "strength": 1.0
           },
           {
-            "confidence": 0.8708751899426181,
-            "distance_pct": 5.801976800773272,
-            "estimated_notional_usd": 53595671.63921013,
-            "price": 2180.4,
-            "significance_vs_median": 4.063477131072149,
-            "strength": 0.9393783000585947
+            "confidence": 0.6923651462701034,
+            "distance_pct": 0.9997582622509176,
+            "estimated_notional_usd": 54829855.33566316,
+            "price": 2293.4,
+            "significance_vs_median": 3.9625321458302287,
+            "strength": 0.9654752111233903
           },
           {
-            "confidence": 0.8589492921321689,
-            "distance_pct": 10.800468492275089,
-            "estimated_notional_usd": 51410716.78054394,
-            "price": 2064.7,
-            "significance_vs_median": 3.8978198339608734,
-            "strength": 0.9010823123778092
+            "confidence": 0.6679628709190188,
+            "distance_pct": 4.798494319162891,
+            "estimated_notional_usd": 49180183.58677434,
+            "price": 2205.4,
+            "significance_vs_median": 3.554232583825009,
+            "strength": 0.8659925845298376
           },
           {
-            "confidence": 0.8379780575576989,
-            "distance_pct": 5.201466562986967,
-            "estimated_notional_usd": 47568557.3386302,
-            "price": 2194.3,
-            "significance_vs_median": 3.606517821155656,
-            "strength": 0.8337402846596882
+            "confidence": 0.66793557001634,
+            "distance_pct": 5.199951652450186,
+            "estimated_notional_usd": 49173862.81806055,
+            "price": 2196.1,
+            "significance_vs_median": 3.553775784348493,
+            "strength": 0.8658812848470088
           },
           {
-            "confidence": 0.8267529082550429,
-            "distance_pct": 2.799425611841766,
-            "estimated_notional_usd": 45511987.26751979,
-            "price": 2249.9,
-            "significance_vs_median": 3.4505943072446783,
-            "strength": 0.7976945138303564
+            "confidence": 0.6610452071379136,
+            "distance_pct": 6.20143661290879,
+            "estimated_notional_usd": 47578589.92101459,
+            "price": 2172.9,
+            "significance_vs_median": 3.438486037599796,
+            "strength": 0.8377908142877499
           },
           {
-            "confidence": 0.8244494486139354,
-            "distance_pct": 10.498053264612922,
-            "estimated_notional_usd": 45089968.27871297,
-            "price": 2071.7,
-            "significance_vs_median": 3.418597982589235,
-            "strength": 0.7902977321841355
+            "confidence": 0.642561790425673,
+            "distance_pct": 2.899126290706904,
+            "estimated_notional_usd": 43299266.139945805,
+            "price": 2249.4,
+            "significance_vs_median": 3.1292209859031983,
+            "strength": 0.7624380524447798
           },
           {
-            "confidence": 0.822770977021512,
-            "distance_pct": 4.700321328575382,
-            "estimated_notional_usd": 44782453.93310241,
-            "price": 2205.9,
-            "significance_vs_median": 3.3952830865790324,
-            "strength": 0.7849078882958476
+            "confidence": 0.6315093990823293,
+            "distance_pct": 10.500915150050064,
+            "estimated_notional_usd": 40740390.69772696,
+            "price": 2073.3,
+            "significance_vs_median": 2.9442920610520584,
+            "strength": 0.7173799213829642
           },
           {
-            "confidence": 0.8184283200675974,
-            "distance_pct": 0.8985298951081501,
-            "estimated_notional_usd": 43986831.70307939,
-            "price": 2293.9,
-            "significance_vs_median": 3.334961186735428,
-            "strength": 0.7709629141016802
+            "confidence": 0.6313647432442263,
+            "distance_pct": 11.200227924163416,
+            "estimated_notional_usd": 40706899.64043479,
+            "price": 2057.1,
+            "significance_vs_median": 2.9418716754736973,
+            "strength": 0.7167901918385043
           },
           {
-            "confidence": 0.8059146550915918,
-            "distance_pct": 4.501591321825963,
-            "estimated_notional_usd": 41694191.473923005,
-            "price": 2210.5,
-            "significance_vs_median": 3.1611394795709744,
-            "strength": 0.730779510941652
+            "confidence": 0.6256652427192612,
+            "distance_pct": 9.801602375936731,
+            "estimated_notional_usd": 39387337.975164026,
+            "price": 2089.5,
+            "significance_vs_median": 2.846507471336546,
+            "strength": 0.693554601126687
           },
           {
-            "confidence": 0.8041139295003209,
-            "distance_pct": 5.499561573111107,
-            "estimated_notional_usd": 41364278.85918263,
-            "price": 2187.4,
-            "significance_vs_median": 3.1361264080999387,
-            "strength": 0.7249970896803059
+            "confidence": 0.6253206194384283,
+            "distance_pct": 10.79877059087612,
+            "estimated_notional_usd": 39307549.98876858,
+            "price": 2066.4,
+            "significance_vs_median": 2.840741224845332,
+            "strength": 0.6921496489790173
           }
         ],
         "top_clusters_up": [
           {
-            "confidence": 0.8897536219241405,
-            "distance_pct": 4.000596793018945,
-            "estimated_notional_usd": 59879196.92536247,
-            "price": 2407.3,
-            "significance_vs_median": 4.250086946874703,
+            "confidence": 0.7008337948518014,
+            "distance_pct": 8.89853921331629,
+            "estimated_notional_usd": 64497073.71868873,
+            "price": 2522.7,
+            "significance_vs_median": 4.688556069936009,
             "strength": 1.0
           },
           {
-            "confidence": 0.8613116560484472,
-            "distance_pct": 7.798068008948131,
-            "estimated_notional_usd": 54410324.793154925,
-            "price": 2495.2,
-            "significance_vs_median": 3.8619190478931253,
-            "strength": 0.9086682451833094
+            "confidence": 0.6967150422743951,
+            "distance_pct": 3.399005421832382,
+            "estimated_notional_usd": 63414088.23741357,
+            "price": 2395.3,
+            "significance_vs_median": 4.6098294260880746,
+            "strength": 0.9832087656255737
           },
           {
-            "confidence": 0.8383265266704398,
-            "distance_pct": 3.2013565484832203,
-            "estimated_notional_usd": 49990702.95477857,
-            "price": 2388.8,
-            "significance_vs_median": 3.5482245087225492,
-            "strength": 0.8348592753688798
+            "confidence": 0.6489493826197035,
+            "distance_pct": 7.6984839589736564,
+            "estimated_notional_usd": 50854577.81833014,
+            "price": 2494.9,
+            "significance_vs_median": 3.696827247606986,
+            "strength": 0.788478839212739
           },
           {
-            "confidence": 0.801234701811833,
-            "distance_pct": 3.49945155860734,
-            "estimated_notional_usd": 42858620.44724293,
-            "price": 2395.7,
-            "significance_vs_median": 3.0420057829254494,
-            "strength": 0.7157514236649641
+            "confidence": 0.6165562385373976,
+            "distance_pct": 2.7989777946610555,
+            "estimated_notional_usd": 42337119.176499575,
+            "price": 2381.4,
+            "significance_vs_median": 3.0776583440724967,
+            "strength": 0.6564192254854492
           },
           {
-            "confidence": 0.788934183721953,
-            "distance_pct": 8.601628471021902,
-            "estimated_notional_usd": 40493454.801258214,
-            "price": 2513.8,
-            "significance_vs_median": 2.8741317940386946,
-            "strength": 0.6762524696470467
+            "confidence": 0.6058455368708325,
+            "distance_pct": 8.501398625548228,
+            "estimated_notional_usd": 39520845.51568548,
+            "price": 2513.5,
+            "significance_vs_median": 2.8729318936198345,
+            "strength": 0.6127540869227666
           },
           {
-            "confidence": 0.7719519475504804,
-            "distance_pct": 2.998306324195754,
-            "estimated_notional_usd": 37228080.01856416,
-            "price": 2384.1,
-            "significance_vs_median": 2.6423630420649418,
-            "strength": 0.6217197612881781
+            "confidence": 0.6020281157008006,
+            "distance_pct": 3.200435127948332,
+            "estimated_notional_usd": 38517092.16431025,
+            "price": 2390.7,
+            "significance_vs_median": 2.799964957339355,
+            "strength": 0.5971913133967426
           },
           {
-            "confidence": 0.7696272726786585,
-            "distance_pct": 3.5988165619820593,
-            "estimated_notional_usd": 36781087.37120237,
-            "price": 2398.0,
-            "significance_vs_median": 2.610636537478227,
-            "strength": 0.6142548541031511
+            "confidence": 0.5941678161764363,
+            "distance_pct": 4.400490382290986,
+            "estimated_notional_usd": 36450303.71237533,
+            "price": 2418.5,
+            "significance_vs_median": 2.649721651978584,
+            "strength": 0.5651466277579886
           },
           {
-            "confidence": 0.7691115274058374,
-            "distance_pct": 5.499712278715675,
-            "estimated_notional_usd": 36681918.946552135,
-            "price": 2442.0,
-            "significance_vs_median": 2.603597791990818,
-            "strength": 0.6125987125758382
+            "confidence": 0.59371061445917,
+            "distance_pct": 3.8997479020616845,
+            "estimated_notional_usd": 36330087.017512515,
+            "price": 2406.9,
+            "significance_vs_median": 2.6409826087645447,
+            "strength": 0.5632827184682874
           },
           {
-            "confidence": 0.76876595290598,
-            "distance_pct": 4.501742027430531,
-            "estimated_notional_usd": 36615471.2628677,
-            "price": 2418.9,
-            "significance_vs_median": 2.5988814890412426,
-            "strength": 0.6114890169370129
+            "confidence": 0.5935959138341035,
+            "distance_pct": 3.4982905687743884,
+            "estimated_notional_usd": 36299927.6162604,
+            "price": 2397.6,
+            "significance_vs_median": 2.638790198541052,
+            "strength": 0.5628151096371695
           },
           {
-            "confidence": 0.7614350609766973,
-            "distance_pct": 8.99908848452074,
-            "estimated_notional_usd": 35205874.23460663,
-            "price": 2523.0,
-            "significance_vs_median": 2.498831551203345,
-            "strength": 0.5879483366901137
+            "confidence": 0.581055752452018,
+            "distance_pct": 3.101149981006326,
+            "estimated_notional_usd": 33002615.5164406,
+            "price": 2388.4,
+            "significance_vs_median": 2.3990950965971636,
+            "strength": 0.5116916724064914
           }
         ]
       },
-      "index_price": 2315.8672093,
+      "index_price": 2317.39139535,
       "liquidation_tape": {
         "latest_events": [],
         "paper_only": true,
@@ -1150,42 +1028,42 @@
           }
         }
       },
-      "mark_price": 2314.69825581,
+      "mark_price": 2316.56,
       "open_interest": {
-        "calibrated_current_open_interest_usd": 5209792421.043959,
+        "calibrated_current_open_interest_usd": 5208327027.906955,
         "calibration_applied": {
-          "oi_scale_multiplier": 1.0050347343370274
+          "oi_scale_multiplier": 1.002305970357927
         },
-        "change_24h_pct": -1.5865948667990466,
-        "change_24h_usd": -83570140.88351154,
-        "current_open_interest_contracts": 2242562.533,
-        "current_open_interest_usd": 5183693899.37613,
+        "change_24h_pct": -1.4527197158918481,
+        "change_24h_usd": -76601119.33797455,
+        "current_open_interest_contracts": 2245550.469,
+        "current_open_interest_usd": 5196344411.72394,
         "samples": 72,
         "trend": "flat",
-        "trend_score": -0.15865948667990465,
-        "window_percentile": 0.20833333333333334
+        "trend_score": -0.1452719715891848,
+        "window_percentile": 0.25
       },
       "orderbook_depth": {
-        "depth_imbalance_score": 0.024533656433244455,
-        "top50_ask_depth_usd": 1575877.0937100002,
-        "top50_bid_depth_usd": 1655145.9018100002
+        "depth_imbalance_score": -0.6540062562166261,
+        "top50_ask_depth_usd": 5990950.132680001,
+        "top50_bid_depth_usd": 1253218.51561
       },
       "paper_only": true,
       "source_errors": [],
       "symbol": "ETHUSDT",
-      "updated_at": "2026-05-09T02:05:50.668777Z",
+      "updated_at": "2026-05-09T03:05:52.259920Z",
       "v13_features": {
-        "funding_pressure_score": 0.10321468328862322,
+        "funding_pressure_score": 0.0996292312763662,
         "liq_sweep_confirmation": null,
-        "liqmap_bias_score": 0.6850103483546873,
-        "liqmap_cluster_strength_down": 0.05949041189163704,
-        "liqmap_cluster_strength_up": 0.27585894684157874,
-        "liqmap_confidence": 0.8897536219241405,
-        "liqmap_nearest_down_distance_pct": 0.09928965057242535,
-        "liqmap_nearest_down_price": 2312.4,
-        "liqmap_nearest_up_distance_pct": 7.535280227459292e-05,
-        "liqmap_nearest_up_price": 2314.7,
-        "open_interest_trend_score": -0.15865948667990465,
+        "liqmap_bias_score": 0.04597916760351128,
+        "liqmap_cluster_strength_down": 0.14523941386228972,
+        "liqmap_cluster_strength_up": 0.12746838061921334,
+        "liqmap_confidence": 0.7008337948518014,
+        "liqmap_nearest_down_distance_pct": 0.10187519425355386,
+        "liqmap_nearest_down_price": 2314.2,
+        "liqmap_nearest_up_distance_pct": 0.00172669820768569,
+        "liqmap_nearest_up_price": 2316.6,
+        "open_interest_trend_score": -0.1452719715891848,
         "recent_real_liq_imbalance": 0.0,
         "recent_real_liq_notional_usd": 0
       }
@@ -1200,9 +1078,9 @@
             "status": "rate_limited"
           },
           "liq_heatmap_model1": {
-            "error": "GET https://open-api-v4.coinglass.com/api/futures/liquidation/heatmap/model1 failed: CoinGlass API error: {'code': '429', 'msg': 'Too Many Requests'}",
+            "error": "skipped until heatmap probe cooldown expires",
             "ok": false,
-            "status": "rate_limited"
+            "status": "cooldown"
           },
           "liquidation_history": {
             "error": "GET https://open-api-v4.coinglass.com/api/futures/liquidation/history failed: CoinGlass API error: {'code': '429', 'msg': 'Too Many Requests'}",
@@ -1210,47 +1088,21 @@
             "status": "rate_limited"
           },
           "open_interest_history": {
-            "latest": {
-              "close": 1107508184.7456,
-              "high": 1111502633.0,
-              "low": 1071903745.0,
-              "open": 1074477748.0,
-              "time": 1778284800000
-            },
-            "ok": true,
-            "payload_type": "list",
-            "sample_count": 30,
-            "top_level_keys": [
-              "code",
-              "data"
-            ]
+            "error": "GET https://open-api-v4.coinglass.com/api/futures/open-interest/history failed: CoinGlass API error: {'code': '429', 'msg': 'Too Many Requests'}",
+            "ok": false,
+            "status": "rate_limited"
           },
           "supported_coins": {
-            "latest": null,
-            "ok": true,
-            "payload_type": "list",
-            "sample_count": 1175,
-            "target_coin_supported": true,
-            "top_level_keys": [
-              "code",
-              "data"
-            ]
+            "error": "GET https://open-api-v4.coinglass.com/api/futures/supported-coins failed: CoinGlass API error: {'code': '429', 'msg': 'Too Many Requests'}",
+            "ok": false,
+            "status": "rate_limited"
           }
         },
         "enabled": true,
         "exchange": "Binance",
         "interval": "4h",
         "limit": 30,
-        "metrics": {
-          "open_interest_usd": {
-            "abs_relative_delta_pct": 0.6373643827053338,
-            "coinglass": 1107508184.7456,
-            "delta": 7058862.705114841,
-            "internal": 1114567047.4507148,
-            "internal_raw": 1108983609.5923,
-            "relative_delta_pct": 0.6373643827053338
-          }
-        },
+        "metrics": {},
         "raw_payload_stored": false
       },
       "coinglass_validation": {
@@ -1262,9 +1114,9 @@
             "status": "rate_limited"
           },
           "liq_heatmap_model1": {
-            "error": "GET https://open-api-v4.coinglass.com/api/futures/liquidation/heatmap/model1 failed: CoinGlass API error: {'code': '429', 'msg': 'Too Many Requests'}",
+            "error": "skipped until heatmap probe cooldown expires",
             "ok": false,
-            "status": "rate_limited"
+            "status": "cooldown"
           },
           "liquidation_history": {
             "error": "GET https://open-api-v4.coinglass.com/api/futures/liquidation/history failed: CoinGlass API error: {'code': '429', 'msg': 'Too Many Requests'}",
@@ -1272,391 +1124,46 @@
             "status": "rate_limited"
           },
           "open_interest_history": {
-            "latest": {
-              "close": 1107508184.7456,
-              "high": 1111502633.0,
-              "low": 1071903745.0,
-              "open": 1074477748.0,
-              "time": 1778284800000
-            },
-            "ok": true,
-            "payload_type": "list",
-            "sample_count": 30,
-            "top_level_keys": [
-              "code",
-              "data"
-            ]
+            "error": "GET https://open-api-v4.coinglass.com/api/futures/open-interest/history failed: CoinGlass API error: {'code': '429', 'msg': 'Too Many Requests'}",
+            "ok": false,
+            "status": "rate_limited"
           },
           "supported_coins": {
-            "latest": null,
-            "ok": true,
-            "payload_type": "list",
-            "sample_count": 1175,
-            "target_coin_supported": true,
-            "top_level_keys": [
-              "code",
-              "data"
-            ]
+            "error": "GET https://open-api-v4.coinglass.com/api/futures/supported-coins failed: CoinGlass API error: {'code': '429', 'msg': 'Too Many Requests'}",
+            "ok": false,
+            "status": "rate_limited"
           }
         },
         "enabled": true,
         "exchange": "Binance",
         "interval": "4h",
         "limit": 30,
-        "metrics": {
-          "open_interest_usd": {
-            "abs_relative_delta_pct": 0.6373643827053338,
-            "coinglass": 1107508184.7456,
-            "delta": 7058862.705114841,
-            "internal": 1114567047.4507148,
-            "internal_raw": 1108983609.5923,
-            "relative_delta_pct": 0.6373643827053338
-          }
-        },
+        "metrics": {},
         "raw_payload_stored": false
       },
       "exchange": "binance",
       "funding": {
-        "avg_24h_rate": 6.334333333333334e-05,
-        "avg_window_rate": 1.730416666666667e-05,
+        "avg_24h_rate": 5.8656666666666664e-05,
+        "avg_window_rate": 1.824438356164384e-05,
         "bias": "neutral",
-        "calibrated_latest_rate": 0.00013923470024095944,
-        "calibrated_latest_rate_pct": 0.013923470024095944,
+        "calibrated_latest_rate": 0.00012000190800127416,
+        "calibrated_latest_rate_pct": 0.012000190800127417,
         "calibration_applied": {
-          "funding_scale_multiplier": 1.3923470024095943
+          "funding_scale_multiplier": 1.3963452176084963
         },
-        "latest_rate": 0.0001,
-        "latest_rate_pct": 0.01,
+        "latest_rate": 8.594e-05,
+        "latest_rate_pct": 0.008594,
         "next_funding_time": "2026-05-09T08:00:00Z",
-        "pressure_score": 0.13923470024095944,
-        "samples": 72,
-        "zscore": 1.2519244017437787
-      },
-      "heatmap": {
-        "assumptions": {
-          "calibration_applied": {
-            "confidence_multiplier": 1.0,
-            "funding_scale_multiplier": 1.3923470024095943,
-            "oi_scale_multiplier": 1.0050347343370274
-          },
-          "leverage_buckets": [
-            3.0,
-            5.0,
-            10.0,
-            20.0,
-            25.0,
-            50.0,
-            75.0,
-            100.0
-          ],
-          "long_share": 0.5467081640289152,
-          "maintenance_margin_buffer": 0.004,
-          "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
-          "oi_notional_used_usd": 1114567047.4507148,
-          "scan_pct": 0.12,
-          "short_share": 0.4532918359710848
-        },
-        "bias": {
-          "direction": "upside_liquidity_heavier",
-          "score": 0.3450055465694592
-        },
-        "cluster_count_down": 84,
-        "cluster_count_up": 48,
-        "confidence": 0.7707519412993107,
-        "internal_model_version": "liqmap-v1.1",
-        "mark_price": 93.41460305,
-        "nearest_cluster_down": {
-          "confidence": 0.5191905715156659,
-          "distance_pct": 0.800306403485804,
-          "estimated_notional_usd": 1127370.0311274817,
-          "price": 92.667,
-          "significance_vs_median": 0.34167235849960564,
-          "strength": 0.06747329160303929
-        },
-        "nearest_cluster_up": {
-          "confidence": 0.5246560540424242,
-          "distance_pct": 0.00042493356182988183,
-          "estimated_notional_usd": 1286444.396521454,
-          "price": 93.415,
-          "significance_vs_median": 0.37756412145245294,
-          "strength": 0.08773359005372124
-        },
-        "price_bin_size": 0.09341460305,
-        "status": "ok",
-        "top_clusters_down": [
-          {
-            "confidence": 0.7707519412993107,
-            "distance_pct": 6.100334277446788,
-            "estimated_notional_usd": 16708389.413696546,
-            "price": 87.716,
-            "significance_vs_median": 5.0,
-            "strength": 1.0
-          },
-          {
-            "confidence": 0.7514540147148789,
-            "distance_pct": 6.999551286965504,
-            "estimated_notional_usd": 15513128.91557624,
-            "price": 86.876,
-            "significance_vs_median": 4.701568427353378,
-            "strength": 0.9284634521900416
-          },
-          {
-            "confidence": 0.7340814932230277,
-            "distance_pct": 9.200491967406592,
-            "estimated_notional_usd": 14437122.71350543,
-            "price": 84.82,
-            "significance_vs_median": 4.375462919249656,
-            "strength": 0.8640642946513285
-          },
-          {
-            "confidence": 0.7140785139529943,
-            "distance_pct": 8.899682467793774,
-            "estimated_notional_usd": 13198193.191124594,
-            "price": 85.101,
-            "significance_vs_median": 3.9999801937568553,
-            "strength": 0.7899141481766937
-          },
-          {
-            "confidence": 0.7061224490246523,
-            "distance_pct": 9.899526142663403,
-            "estimated_notional_usd": 12705416.410794258,
-            "price": 84.167,
-            "significance_vs_median": 3.850634193685412,
-            "strength": 0.7604213725339147
-          },
-          {
-            "confidence": 0.6839236748775912,
-            "distance_pct": 11.900283988842572,
-            "estimated_notional_usd": 11330485.39276035,
-            "price": 82.298,
-            "significance_vs_median": 3.4339334559195813,
-            "strength": 0.678131512991449
-          },
-          {
-            "confidence": 0.670753898343509,
-            "distance_pct": 9.799969973752399,
-            "estimated_notional_usd": 10514785.654688004,
-            "price": 84.26,
-            "significance_vs_median": 3.1867191024779173,
-            "strength": 0.6293117424034065
-          },
-          {
-            "confidence": 0.6666677896204822,
-            "distance_pct": 4.799681102964339,
-            "estimated_notional_usd": 10261703.318288261,
-            "price": 88.931,
-            "significance_vs_median": 3.110017366238033,
-            "strength": 0.6141647207406075
-          },
-          {
-            "confidence": 0.6554429435899949,
-            "distance_pct": 5.9001514431848685,
-            "estimated_notional_usd": 9566467.226523476,
-            "price": 87.903,
-            "significance_vs_median": 2.8993119646142587,
-            "strength": 0.5725547202461928
-          },
-          {
-            "confidence": 0.6314469893149763,
-            "distance_pct": 6.400073280619684,
-            "estimated_notional_usd": 8080223.814095482,
-            "price": 87.436,
-            "significance_vs_median": 2.4488757475712033,
-            "strength": 0.48360279462195166
-          }
-        ],
-        "top_clusters_up": [
-          {
-            "confidence": 0.7707519412993107,
-            "distance_pct": 3.499877795605535,
-            "estimated_notional_usd": 14663077.114862567,
-            "price": 96.684,
-            "significance_vs_median": 4.303529825022116,
-            "strength": 1.0
-          },
-          {
-            "confidence": 0.6738224534342191,
-            "distance_pct": 6.800218319827243,
-            "estimated_notional_usd": 9394439.051867267,
-            "price": 99.767,
-            "significance_vs_median": 2.7572144872704776,
-            "strength": 0.6406867384162508
-          },
-          {
-            "confidence": 0.6687024471278217,
-            "distance_pct": 4.299538636213261,
-            "estimated_notional_usd": 9116139.220693018,
-            "price": 97.431,
-            "significance_vs_median": 2.675535067979759,
-            "strength": 0.6217071048104122
-          },
-          {
-            "confidence": 0.6615210935947867,
-            "distance_pct": 3.200138792432625,
-            "estimated_notional_usd": 8725794.10073701,
-            "price": 96.404,
-            "significance_vs_median": 2.560970993016271,
-            "strength": 0.5950861495430929
-          },
-          {
-            "confidence": 0.6450168381692746,
-            "distance_pct": 1.8994856179501758,
-            "estimated_notional_usd": 7828699.20988939,
-            "price": 95.189,
-            "significance_vs_median": 2.297678739392065,
-            "strength": 0.5339056153468758
-          },
-          {
-            "confidence": 0.6420773022516192,
-            "distance_pct": 3.2996949613436306,
-            "estimated_notional_usd": 7668919.650908779,
-            "price": 96.497,
-            "significance_vs_median": 2.25078434661792,
-            "strength": 0.5230088876185153
-          },
-          {
-            "confidence": 0.6365470376142504,
-            "distance_pct": 8.099800997869783,
-            "estimated_notional_usd": 7368320.076840749,
-            "price": 100.981,
-            "significance_vs_median": 2.1625600794837405,
-            "strength": 0.5025084447910448
-          },
-          {
-            "confidence": 0.6343546784236964,
-            "distance_pct": 3.4003216266945295,
-            "estimated_notional_usd": 7249153.584439728,
-            "price": 96.591,
-            "significance_vs_median": 2.127585391007796,
-            "strength": 0.49438146765878704
-          },
-          {
-            "confidence": 0.6139404965365781,
-            "distance_pct": 4.60034813582608,
-            "estimated_notional_usd": 6139533.198690069,
-            "price": 97.712,
-            "significance_vs_median": 1.8019181120922436,
-            "strength": 0.41870701153627626
-          },
-          {
-            "confidence": 0.6063709685980578,
-            "distance_pct": 0.19953727138382615,
-            "estimated_notional_usd": 5728088.715755196,
-            "price": 93.601,
-            "significance_vs_median": 1.6811614939703712,
-            "strength": 0.39064711116803563
-          }
-        ]
-      },
-      "index_price": 93.46441187,
-      "liquidation_tape": {
-        "latest_events": [],
-        "paper_only": true,
-        "primary_window": "60m",
-        "raw_payload_stored": false,
-        "status": "no_recent_events",
-        "windows": {
-          "15m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          },
-          "240m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          },
-          "60m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          }
-        }
-      },
-      "mark_price": 93.41460305,
-      "open_interest": {
-        "calibrated_current_open_interest_usd": 1114567047.4507148,
-        "calibration_applied": {
-          "oi_scale_multiplier": 1.0050347343370274
-        },
-        "change_24h_pct": 18.44274380584318,
-        "change_24h_usd": 172680064.13391614,
-        "current_open_interest_contracts": 11858305.55,
-        "current_open_interest_usd": 1108983609.5923,
-        "samples": 72,
-        "trend": "rising",
-        "trend_score": 1.0,
-        "window_percentile": 1.0
-      },
-      "orderbook_depth": {
-        "depth_imbalance_score": 0.019949402387867396,
-        "top50_ask_depth_usd": 12450308.2471,
-        "top50_bid_depth_usd": 12957172.3002
-      },
-      "paper_only": true,
-      "source_errors": [],
-      "symbol": "SOLUSDT",
-      "updated_at": "2026-05-09T02:06:04.450078Z",
-      "v13_features": {
-        "funding_pressure_score": 0.13923470024095944,
-        "liq_sweep_confirmation": null,
-        "liqmap_bias_score": 0.3450055465694592,
-        "liqmap_cluster_strength_down": 0.06747329160303929,
-        "liqmap_cluster_strength_up": 0.08773359005372124,
-        "liqmap_confidence": 0.7707519412993107,
-        "liqmap_nearest_down_distance_pct": 0.800306403485804,
-        "liqmap_nearest_down_price": 92.667,
-        "liqmap_nearest_up_distance_pct": 0.00042493356182988183,
-        "liqmap_nearest_up_price": 93.415,
-        "open_interest_trend_score": 1.0,
-        "recent_real_liq_imbalance": 0.0,
-        "recent_real_liq_notional_usd": 0
-      }
-    },
-    {
-      "coinglass_comparison": {
-        "enabled": false,
-        "reason": "disabled for this run"
-      },
-      "coinglass_validation": {
-        "enabled": false,
-        "reason": "disabled for this run"
-      },
-      "exchange": "binance",
-      "funding": {
-        "avg_24h_rate": -9.427333333333333e-05,
-        "avg_window_rate": -4.843e-05,
-        "bias": "neutral",
-        "calibrated_latest_rate": -2.5967271594938932e-05,
-        "calibrated_latest_rate_pct": -0.0025967271594938934,
-        "calibration_applied": {
-          "funding_scale_multiplier": 1.3923470024095943
-        },
-        "latest_rate": -1.865e-05,
-        "latest_rate_pct": -0.001865,
-        "next_funding_time": "2026-05-09T08:00:00Z",
-        "pressure_score": -0.02596727159493893,
+        "pressure_score": 0.12000190800127417,
         "samples": 73,
-        "zscore": 0.26527116588978883
+        "zscore": 1.024376106576047
       },
       "heatmap": {
         "assumptions": {
           "calibration_applied": {
             "confidence_multiplier": 1.0,
-            "funding_scale_multiplier": 1.3923470024095943,
-            "oi_scale_multiplier": 1.0050347343370274
+            "funding_scale_multiplier": 1.3963452176084963,
+            "oi_scale_multiplier": 1.002305970357927
           },
           "leverage_buckets": [
             3.0,
@@ -1668,78 +1175,206 @@
             75.0,
             100.0
           ],
-          "long_share": 0.5268839274086073,
+          "long_share": 0.5444002289601529,
           "maintenance_margin_buffer": 0.004,
           "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
-          "oi_notional_used_usd": 42132638.83130418,
+          "oi_notional_used_usd": 1110989142.6938536,
           "scan_pct": 0.12,
-          "short_share": 0.47311607259139266
+          "short_share": 0.45559977103984706
         },
         "bias": {
           "direction": "upside_liquidity_heavier",
-          "score": 0.4108179690652856
+          "score": 0.7138983180359015
         },
-        "cluster_count_down": 2,
-        "cluster_count_up": 2,
-        "confidence": 0.9416666666666667,
+        "cluster_count_down": 85,
+        "cluster_count_up": 46,
+        "confidence": 0.8998644113125656,
         "internal_model_version": "liqmap-v1.1",
-        "mark_price": 3.99660475,
+        "mark_price": 93.57,
         "nearest_cluster_down": {
-          "confidence": 0.8867361111111111,
-          "distance_pct": 7.000010446367,
-          "estimated_notional_usd": 684796.4217040846,
-          "price": 3.716842,
-          "significance_vs_median": 0.9090909090909091,
-          "strength": 0.8333333333333334
+          "confidence": 0.5945101705263979,
+          "distance_pct": 0.70001068718605,
+          "estimated_notional_usd": 522104.29940082406,
+          "price": 92.915,
+          "significance_vs_median": 0.14654308170113822,
+          "strength": 0.03047539496765478
         },
         "nearest_cluster_up": {
-          "confidence": 0.8867361111111111,
-          "distance_pct": 2.0000038782919463,
-          "estimated_notional_usd": 614913.7916481126,
-          "price": 4.076537,
-          "significance_vs_median": 1.0116546980720102,
-          "strength": 0.8333333333333333
+          "confidence": 0.6322818157122144,
+          "distance_pct": 0.10045954900075697,
+          "estimated_notional_usd": 2024623.823312368,
+          "price": 93.664,
+          "significance_vs_median": 0.6035530477763704,
+          "strength": 0.1504034473369852
         },
-        "price_bin_size": 0.00399660475,
+        "price_bin_size": 0.09357,
         "status": "ok",
         "top_clusters_down": [
           {
-            "confidence": 0.9416666666666667,
-            "distance_pct": 11.89999461417845,
-            "estimated_notional_usd": 821755.7060449015,
-            "price": 3.521009,
-            "significance_vs_median": 1.0909090909090908,
+            "confidence": 0.8998644113125656,
+            "distance_pct": 7.199957251255739,
+            "estimated_notional_usd": 17131994.514097758,
+            "price": 86.833,
+            "significance_vs_median": 4.808570384622496,
             "strength": 1.0
           },
           {
-            "confidence": 0.8867361111111111,
-            "distance_pct": 7.000010446367,
-            "estimated_notional_usd": 684796.4217040846,
-            "price": 3.716842,
-            "significance_vs_median": 0.9090909090909091,
-            "strength": 0.8333333333333334
+            "confidence": 0.8649592624024373,
+            "distance_pct": 6.199636635673814,
+            "estimated_notional_usd": 15233312.216998508,
+            "price": 87.769,
+            "significance_vs_median": 4.275652430666493,
+            "strength": 0.8891733069645311
+          },
+          {
+            "confidence": 0.8489016506889059,
+            "distance_pct": 9.100138933418817,
+            "estimated_notional_usd": 14359850.735064277,
+            "price": 85.055,
+            "significance_vs_median": 4.030491190935695,
+            "strength": 0.8381890808596565
+          },
+          {
+            "confidence": 0.7743299973231722,
+            "distance_pct": 10.0,
+            "estimated_notional_usd": 10303489.924930142,
+            "price": 84.213,
+            "significance_vs_median": 2.8919607971217354,
+            "strength": 0.6014180028163969
+          },
+          {
+            "confidence": 0.7721355458473883,
+            "distance_pct": 9.69969007160414,
+            "estimated_notional_usd": 10184121.685601268,
+            "price": 84.494,
+            "significance_vs_median": 2.8584567833287693,
+            "strength": 0.5944504405030512
+          },
+          {
+            "confidence": 0.7665386356344099,
+            "distance_pct": 9.899540450999243,
+            "estimated_notional_usd": 9879675.073234795,
+            "price": 84.307,
+            "significance_vs_median": 2.7730053805327084,
+            "strength": 0.5766797943523098
+          },
+          {
+            "confidence": 0.7534784601662267,
+            "distance_pct": 6.100245805279469,
+            "estimated_notional_usd": 9169260.571858622,
+            "price": 87.862,
+            "significance_vs_median": 2.5736078072196444,
+            "strength": 0.53521267265836
+          },
+          {
+            "confidence": 0.747899175616333,
+            "distance_pct": 8.400128246232768,
+            "estimated_notional_usd": 8865772.715879634,
+            "price": 85.71,
+            "significance_vs_median": 2.488425506049033,
+            "strength": 0.5174979894246448
+          },
+          {
+            "confidence": 0.7456133155671812,
+            "distance_pct": 5.000534359303183,
+            "estimated_notional_usd": 8741432.263410978,
+            "price": 88.891,
+            "significance_vs_median": 2.4535259024530047,
+            "strength": 0.5102401974398098
+          },
+          {
+            "confidence": 0.7454993811318029,
+            "distance_pct": 9.400448861814677,
+            "estimated_notional_usd": 8735234.745215606,
+            "price": 84.774,
+            "significance_vs_median": 2.4517863967329965,
+            "strength": 0.509878446320273
           }
         ],
         "top_clusters_up": [
           {
-            "confidence": 0.9416666666666667,
-            "distance_pct": 6.899988046103374,
-            "estimated_notional_usd": 737896.5499777352,
-            "price": 4.27237,
-            "significance_vs_median": 1.2139856376864124,
+            "confidence": 0.8998644113125656,
+            "distance_pct": 3.399593886929584,
+            "estimated_notional_usd": 13461286.022095714,
+            "price": 96.751,
+            "significance_vs_median": 4.012893709969855,
             "strength": 1.0
           },
           {
-            "confidence": 0.8867361111111111,
-            "distance_pct": 2.0000038782919463,
-            "estimated_notional_usd": 614913.7916481126,
-            "price": 4.076537,
-            "significance_vs_median": 1.0116546980720102,
-            "strength": 0.8333333333333333
+            "confidence": 0.8171313805434653,
+            "distance_pct": 2.9998931281393633,
+            "estimated_notional_usd": 9925219.995585784,
+            "price": 96.377,
+            "significance_vs_median": 2.9587702709070363,
+            "strength": 0.7373158834374564
+          },
+          {
+            "confidence": 0.8029758422067232,
+            "distance_pct": 1.799722133162351,
+            "estimated_notional_usd": 9320202.655664908,
+            "price": 95.254,
+            "significance_vs_median": 2.77841081091146,
+            "strength": 0.6923708953488158
+          },
+          {
+            "confidence": 0.8026367310844408,
+            "distance_pct": 6.600406113070431,
+            "estimated_notional_usd": 9305708.815567821,
+            "price": 99.746,
+            "significance_vs_median": 2.774090106361877,
+            "strength": 0.6912941898933863
+          },
+          {
+            "confidence": 0.7961868736225622,
+            "distance_pct": 4.0996045741156495,
+            "estimated_notional_usd": 9030037.51917312,
+            "price": 97.406,
+            "significance_vs_median": 2.6919107655837577,
+            "strength": 0.6708153667005496
+          },
+          {
+            "confidence": 0.7864444900220504,
+            "distance_pct": 3.1003526771401204,
+            "estimated_notional_usd": 8613641.415383052,
+            "price": 96.471,
+            "significance_vs_median": 2.5677804779565303,
+            "strength": 0.6398825046317559
+          },
+          {
+            "confidence": 0.7569112513627925,
+            "distance_pct": 3.3002030565352234,
+            "estimated_notional_usd": 7351370.700712034,
+            "price": 96.658,
+            "significance_vs_median": 2.191489668678125,
+            "strength": 0.5461120645267694
+          },
+          {
+            "confidence": 0.7556795391429683,
+            "distance_pct": 7.8999679384418195,
+            "estimated_notional_usd": 7298726.482381472,
+            "price": 100.962,
+            "significance_vs_median": 2.175796097331507,
+            "strength": 0.5422012778274786
+          },
+          {
+            "confidence": 0.7531126172446224,
+            "distance_pct": 3.8003633643261856,
+            "estimated_notional_usd": 7189014.493916092,
+            "price": 97.126,
+            "significance_vs_median": 2.143090266127984,
+            "strength": 0.5340510915610777
+          },
+          {
+            "confidence": 0.7345930697611254,
+            "distance_pct": 3.199743507534466,
+            "estimated_notional_usd": 6397476.433797184,
+            "price": 96.564,
+            "significance_vs_median": 1.9071278107251979,
+            "strength": 0.47525001870521105
           }
         ]
       },
-      "index_price": 3.99991564,
+      "index_price": 93.60748767,
       "liquidation_tape": {
         "latest_events": [],
         "paper_only": true,
@@ -1776,518 +1411,41 @@
           }
         }
       },
-      "mark_price": 3.99660475,
+      "mark_price": 93.57,
       "open_interest": {
-        "calibrated_current_open_interest_usd": 42132638.83130418,
+        "calibrated_current_open_interest_usd": 1110989142.6938536,
         "calibration_applied": {
-          "oi_scale_multiplier": 1.0050347343370274
+          "oi_scale_multiplier": 1.002305970357927
         },
-        "change_24h_pct": 61.90995073302362,
-        "change_24h_usd": 16029667.239,
-        "current_open_interest_contracts": 10417155.0,
-        "current_open_interest_usd": 41921574.839,
-        "samples": 72,
-        "trend": "rising",
-        "trend_score": 1.0,
-        "window_percentile": 1.0
-      },
-      "orderbook_depth": {
-        "depth_imbalance_score": 0.1521046873633054,
-        "top50_ask_depth_usd": 480831.812,
-        "top50_bid_depth_usd": 653345.497
-      },
-      "paper_only": true,
-      "source_errors": [],
-      "symbol": "ICPUSDT",
-      "updated_at": "2026-05-09T02:06:06.133864Z",
-      "v13_features": {
-        "funding_pressure_score": -0.02596727159493893,
-        "liq_sweep_confirmation": null,
-        "liqmap_bias_score": 0.4108179690652856,
-        "liqmap_cluster_strength_down": 0.8333333333333334,
-        "liqmap_cluster_strength_up": 0.8333333333333333,
-        "liqmap_confidence": 0.9416666666666667,
-        "liqmap_nearest_down_distance_pct": 7.000010446367,
-        "liqmap_nearest_down_price": 3.716842,
-        "liqmap_nearest_up_distance_pct": 2.0000038782919463,
-        "liqmap_nearest_up_price": 4.076537,
-        "open_interest_trend_score": 1.0,
-        "recent_real_liq_imbalance": 0.0,
-        "recent_real_liq_notional_usd": 0
-      }
-    },
-    {
-      "coinglass_comparison": {
-        "enabled": false,
-        "reason": "disabled for this run"
-      },
-      "coinglass_validation": {
-        "enabled": false,
-        "reason": "disabled for this run"
-      },
-      "exchange": "binance",
-      "funding": {
-        "avg_24h_rate": -0.00182026,
-        "avg_window_rate": -0.0005236339726027397,
-        "bias": "shorts_paying_crowded",
-        "calibrated_latest_rate": -0.0016171971198287198,
-        "calibrated_latest_rate_pct": -0.16171971198287197,
-        "calibration_applied": {
-          "funding_scale_multiplier": 1.3923470024095943
-        },
-        "latest_rate": -0.00116149,
-        "latest_rate_pct": -0.116149,
-        "next_funding_time": "2026-05-09T04:00:00Z",
-        "pressure_score": -1.0,
-        "samples": 73,
-        "zscore": -0.5425449361809666
-      },
-      "heatmap": {
-        "assumptions": {
-          "calibration_applied": {
-            "confidence_multiplier": 1.0,
-            "funding_scale_multiplier": 1.3923470024095943,
-            "oi_scale_multiplier": 1.0050347343370274
-          },
-          "leverage_buckets": [
-            3.0,
-            5.0,
-            10.0,
-            20.0,
-            25.0,
-            50.0,
-            75.0,
-            100.0
-          ],
-          "long_share": 0.41000000000000003,
-          "maintenance_margin_buffer": 0.004,
-          "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
-          "oi_notional_used_usd": 18448251.636577293,
-          "scan_pct": 0.12,
-          "short_share": 0.59
-        },
-        "bias": {
-          "direction": "balanced_nearby_liquidity",
-          "score": 0.0
-        },
-        "cluster_count_down": 0,
-        "cluster_count_up": 0,
-        "confidence": 0.65,
-        "internal_model_version": "liqmap-v1.1",
-        "mark_price": 1.284,
-        "nearest_cluster_down": null,
-        "nearest_cluster_up": null,
-        "price_bin_size": 0.001284,
-        "status": "ok",
-        "top_clusters_down": [],
-        "top_clusters_up": []
-      },
-      "index_price": 1.28636039,
-      "liquidation_tape": {
-        "latest_events": [],
-        "paper_only": true,
-        "primary_window": "60m",
-        "raw_payload_stored": false,
-        "status": "no_recent_events",
-        "windows": {
-          "15m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          },
-          "240m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          },
-          "60m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          }
-        }
-      },
-      "mark_price": 1.284,
-      "open_interest": {
-        "calibrated_current_open_interest_usd": 18448251.636577293,
-        "calibration_applied": {
-          "oi_scale_multiplier": 1.0050347343370274
-        },
-        "change_24h_pct": 22.341841449091397,
-        "change_24h_usd": 3352108.712730279,
-        "current_open_interest_contracts": 14417183.0,
-        "current_open_interest_usd": 18355834.8844,
-        "samples": 72,
-        "trend": "rising",
-        "trend_score": 1.0,
-        "window_percentile": 0.9583333333333334
-      },
-      "orderbook_depth": {
-        "depth_imbalance_score": 0.7308431304121481,
-        "top50_ask_depth_usd": 14904.1819,
-        "top50_bid_depth_usd": 95842.9963
-      },
-      "paper_only": true,
-      "source_errors": [],
-      "symbol": "SIRENUSDT",
-      "updated_at": "2026-05-09T02:06:07.821223Z",
-      "v13_features": {
-        "funding_pressure_score": -1.0,
-        "liq_sweep_confirmation": null,
-        "liqmap_bias_score": 0.0,
-        "liqmap_cluster_strength_down": null,
-        "liqmap_cluster_strength_up": null,
-        "liqmap_confidence": 0.65,
-        "liqmap_nearest_down_distance_pct": null,
-        "liqmap_nearest_down_price": null,
-        "liqmap_nearest_up_distance_pct": null,
-        "liqmap_nearest_up_price": null,
-        "open_interest_trend_score": 1.0,
-        "recent_real_liq_imbalance": 0.0,
-        "recent_real_liq_notional_usd": 0
-      }
-    },
-    {
-      "coinglass_comparison": {
-        "enabled": false,
-        "reason": "disabled for this run"
-      },
-      "coinglass_validation": {
-        "enabled": false,
-        "reason": "disabled for this run"
-      },
-      "exchange": "binance",
-      "funding": {
-        "avg_24h_rate": 5e-05,
-        "avg_window_rate": 3.7616250000000004e-05,
-        "bias": "neutral",
-        "calibrated_latest_rate": 6.961735012047972e-05,
-        "calibrated_latest_rate_pct": 0.006961735012047972,
-        "calibration_applied": {
-          "funding_scale_multiplier": 1.3923470024095943
-        },
-        "latest_rate": 5e-05,
-        "latest_rate_pct": 0.005,
-        "next_funding_time": "2026-05-09T04:00:00Z",
-        "pressure_score": 0.06961735012047972,
-        "samples": 72,
-        "zscore": 0.26608434085840277
-      },
-      "heatmap": {
-        "assumptions": {
-          "calibration_applied": {
-            "confidence_multiplier": 1.0,
-            "funding_scale_multiplier": 1.3923470024095943,
-            "oi_scale_multiplier": 1.0050347343370274
-          },
-          "leverage_buckets": [
-            3.0,
-            5.0,
-            10.0,
-            20.0,
-            25.0,
-            50.0,
-            75.0,
-            100.0
-          ],
-          "long_share": 0.5383540820144576,
-          "maintenance_margin_buffer": 0.004,
-          "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
-          "oi_notional_used_usd": 15916891.224178609,
-          "scan_pct": 0.12,
-          "short_share": 0.46164591798554244
-        },
-        "bias": {
-          "direction": "downside_liquidity_heavier",
-          "score": -1.0
-        },
-        "cluster_count_down": 3,
-        "cluster_count_up": 0,
-        "confidence": 1.0,
-        "internal_model_version": "liqmap-v1.1",
-        "mark_price": 0.03045069,
-        "nearest_cluster_down": {
-          "confidence": 0.8945800852004367,
-          "distance_pct": 1.7000928386187564,
-          "estimated_notional_usd": 239750.36653963523,
-          "price": 0.029933,
-          "significance_vs_median": 0.8336680516326571,
-          "strength": 0.6988002434298193
-        },
-        "nearest_cluster_up": null,
-        "price_bin_size": 3.045069e-05,
-        "status": "ok",
-        "top_clusters_down": [
-          {
-            "confidence": 1.0,
-            "distance_pct": 6.898661409642931,
-            "estimated_notional_usd": 343088.5561271466,
-            "price": 0.02835,
-            "significance_vs_median": 1.192999085891679,
-            "strength": 1.0
-          },
-          {
-            "confidence": 0.9433782633524825,
-            "distance_pct": 11.699866242768229,
-            "estimated_notional_usd": 287584.92792198004,
-            "price": 0.026888,
-            "significance_vs_median": 1.0,
-            "strength": 0.8382236095785217
-          },
-          {
-            "confidence": 0.8945800852004367,
-            "distance_pct": 1.7000928386187564,
-            "estimated_notional_usd": 239750.36653963523,
-            "price": 0.029933,
-            "significance_vs_median": 0.8336680516326571,
-            "strength": 0.6988002434298193
-          }
-        ],
-        "top_clusters_up": []
-      },
-      "index_price": 0.03048038,
-      "liquidation_tape": {
-        "latest_events": [],
-        "paper_only": true,
-        "primary_window": "60m",
-        "raw_payload_stored": false,
-        "status": "no_recent_events",
-        "windows": {
-          "15m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          },
-          "240m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          },
-          "60m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          }
-        }
-      },
-      "mark_price": 0.03045069,
-      "open_interest": {
-        "calibrated_current_open_interest_usd": 15916891.224178609,
-        "calibration_applied": {
-          "oi_scale_multiplier": 1.0050347343370274
-        },
-        "change_24h_pct": 57.89925719899301,
-        "change_24h_usd": 5807244.1088454,
-        "current_open_interest_contracts": 519734192.0,
-        "current_open_interest_usd": 15837155.3543154,
-        "samples": 72,
-        "trend": "rising",
-        "trend_score": 1.0,
-        "window_percentile": 0.9305555555555556
-      },
-      "orderbook_depth": {
-        "depth_imbalance_score": 0.23918208138557262,
-        "top50_ask_depth_usd": 137003.93016,
-        "top50_bid_depth_usd": 223145.1326
-      },
-      "paper_only": true,
-      "source_errors": [],
-      "symbol": "SAHARAUSDT",
-      "updated_at": "2026-05-09T02:06:09.532101Z",
-      "v13_features": {
-        "funding_pressure_score": 0.06961735012047972,
-        "liq_sweep_confirmation": null,
-        "liqmap_bias_score": -1.0,
-        "liqmap_cluster_strength_down": 0.6988002434298193,
-        "liqmap_cluster_strength_up": null,
-        "liqmap_confidence": 1.0,
-        "liqmap_nearest_down_distance_pct": 1.7000928386187564,
-        "liqmap_nearest_down_price": 0.029933,
-        "liqmap_nearest_up_distance_pct": null,
-        "liqmap_nearest_up_price": null,
-        "open_interest_trend_score": 1.0,
-        "recent_real_liq_imbalance": 0.0,
-        "recent_real_liq_notional_usd": 0
-      }
-    },
-    {
-      "coinglass_comparison": {
-        "enabled": false,
-        "reason": "disabled for this run"
-      },
-      "coinglass_validation": {
-        "enabled": false,
-        "reason": "disabled for this run"
-      },
-      "exchange": "binance",
-      "funding": {
-        "avg_24h_rate": 1.847e-05,
-        "avg_window_rate": 1.13625e-05,
-        "bias": "neutral",
-        "calibrated_latest_rate": 6.961735012047972e-05,
-        "calibrated_latest_rate_pct": 0.006961735012047972,
-        "calibration_applied": {
-          "funding_scale_multiplier": 1.3923470024095943
-        },
-        "latest_rate": 5e-05,
-        "latest_rate_pct": 0.005,
-        "next_funding_time": "2026-05-09T04:00:00Z",
-        "pressure_score": 0.06961735012047972,
-        "samples": 72,
-        "zscore": 1.1505605026586734
-      },
-      "heatmap": {
-        "assumptions": {
-          "calibration_applied": {
-            "confidence_multiplier": 1.0,
-            "funding_scale_multiplier": 1.3923470024095943,
-            "oi_scale_multiplier": 1.0050347343370274
-          },
-          "leverage_buckets": [
-            3.0,
-            5.0,
-            10.0,
-            20.0,
-            25.0,
-            50.0,
-            75.0,
-            100.0
-          ],
-          "long_share": 0.5383540820144576,
-          "maintenance_margin_buffer": 0.004,
-          "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
-          "oi_notional_used_usd": 13900470.926811952,
-          "scan_pct": 0.12,
-          "short_share": 0.46164591798554244
-        },
-        "bias": {
-          "direction": "upside_liquidity_heavier",
-          "score": 1.0
-        },
-        "cluster_count_down": 0,
-        "cluster_count_up": 1,
-        "confidence": 1.0,
-        "internal_model_version": "liqmap-v1.1",
-        "mark_price": 0.4488,
-        "nearest_cluster_down": null,
-        "nearest_cluster_up": {
-          "confidence": 1.0,
-          "distance_pct": 2.79991087344029,
-          "estimated_notional_usd": 227336.9813277073,
-          "price": 0.461366,
-          "significance_vs_median": 1.0,
-          "strength": 1.0
-        },
-        "price_bin_size": 0.0004488,
-        "status": "ok",
-        "top_clusters_down": [],
-        "top_clusters_up": [
-          {
-            "confidence": 1.0,
-            "distance_pct": 2.79991087344029,
-            "estimated_notional_usd": 227336.9813277073,
-            "price": 0.461366,
-            "significance_vs_median": 1.0,
-            "strength": 1.0
-          }
-        ]
-      },
-      "index_price": 0.44931429,
-      "liquidation_tape": {
-        "latest_events": [],
-        "paper_only": true,
-        "primary_window": "60m",
-        "raw_payload_stored": false,
-        "status": "no_recent_events",
-        "windows": {
-          "15m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          },
-          "240m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          },
-          "60m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          }
-        }
-      },
-      "mark_price": 0.4488,
-      "open_interest": {
-        "calibrated_current_open_interest_usd": 13900470.926811952,
-        "calibration_applied": {
-          "oi_scale_multiplier": 1.0050347343370274
-        },
-        "change_24h_pct": 22.318036926505297,
-        "change_24h_usd": 2523561.72418024,
-        "current_open_interest_contracts": 30893829.0,
-        "current_open_interest_usd": 13830836.34018024,
+        "change_24h_pct": 18.59176477677625,
+        "change_24h_usd": 173770312.29269993,
+        "current_open_interest_contracts": 11878224.79,
+        "current_open_interest_usd": 1108433128.7552,
         "samples": 72,
         "trend": "rising",
         "trend_score": 1.0,
         "window_percentile": 0.9861111111111112
       },
       "orderbook_depth": {
-        "depth_imbalance_score": -0.012721119627244343,
-        "top50_ask_depth_usd": 540525.735,
-        "top50_bid_depth_usd": 526946.2956
+        "depth_imbalance_score": -0.042013858817256035,
+        "top50_ask_depth_usd": 13359100.7424,
+        "top50_bid_depth_usd": 12281826.4475
       },
       "paper_only": true,
       "source_errors": [],
-      "symbol": "TIAUSDT",
-      "updated_at": "2026-05-09T02:06:11.238895Z",
+      "symbol": "SOLUSDT",
+      "updated_at": "2026-05-09T03:06:09.331053Z",
       "v13_features": {
-        "funding_pressure_score": 0.06961735012047972,
+        "funding_pressure_score": 0.12000190800127417,
         "liq_sweep_confirmation": null,
-        "liqmap_bias_score": 1.0,
-        "liqmap_cluster_strength_down": null,
-        "liqmap_cluster_strength_up": 1.0,
-        "liqmap_confidence": 1.0,
-        "liqmap_nearest_down_distance_pct": null,
-        "liqmap_nearest_down_price": null,
-        "liqmap_nearest_up_distance_pct": 2.79991087344029,
-        "liqmap_nearest_up_price": 0.461366,
+        "liqmap_bias_score": 0.7138983180359015,
+        "liqmap_cluster_strength_down": 0.03047539496765478,
+        "liqmap_cluster_strength_up": 0.1504034473369852,
+        "liqmap_confidence": 0.8998644113125656,
+        "liqmap_nearest_down_distance_pct": 0.70001068718605,
+        "liqmap_nearest_down_price": 92.915,
+        "liqmap_nearest_up_distance_pct": 0.10045954900075697,
+        "liqmap_nearest_up_price": 93.664,
         "open_interest_trend_score": 1.0,
         "recent_real_liq_imbalance": 0.0,
         "recent_real_liq_notional_usd": 0
@@ -2304,27 +1462,27 @@
       },
       "exchange": "binance",
       "funding": {
-        "avg_24h_rate": 0.00149004,
-        "avg_window_rate": 0.0003689728767123288,
-        "bias": "longs_paying_crowded",
-        "calibrated_latest_rate": 0.0015885286950491062,
-        "calibrated_latest_rate_pct": 0.15885286950491062,
+        "avg_24h_rate": 1.3526666666666669e-05,
+        "avg_window_rate": -2.018835616438356e-05,
+        "bias": "neutral",
+        "calibrated_latest_rate": -8.297083283029685e-05,
+        "calibrated_latest_rate_pct": -0.008297083283029685,
         "calibration_applied": {
-          "funding_scale_multiplier": 1.3923470024095943
+          "funding_scale_multiplier": 1.3963452176084963
         },
-        "latest_rate": 0.0011409,
-        "latest_rate_pct": 0.11409,
+        "latest_rate": -5.942e-05,
+        "latest_rate_pct": -0.005941999999999999,
         "next_funding_time": "2026-05-09T04:00:00Z",
-        "pressure_score": 1.0,
+        "pressure_score": -0.08297083283029684,
         "samples": 73,
-        "zscore": 1.683603230277475
+        "zscore": -0.5009095766170321
       },
       "heatmap": {
         "assumptions": {
           "calibration_applied": {
             "confidence_multiplier": 1.0,
-            "funding_scale_multiplier": 1.3923470024095943,
-            "oi_scale_multiplier": 1.0050347343370274
+            "funding_scale_multiplier": 1.3963452176084963,
+            "oi_scale_multiplier": 1.002305970357927
           },
           "leverage_buckets": [
             3.0,
@@ -2336,301 +1494,54 @@
             75.0,
             100.0
           ],
-          "long_share": 0.65,
+          "long_share": 0.5200435000603644,
           "maintenance_margin_buffer": 0.004,
           "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
-          "oi_notional_used_usd": 4607984.307133985,
+          "oi_notional_used_usd": 7619628.403138655,
           "scan_pct": 0.12,
-          "short_share": 0.35
-        },
-        "bias": {
-          "direction": "balanced_nearby_liquidity",
-          "score": 0.014408462496981808
-        },
-        "cluster_count_down": 10,
-        "cluster_count_up": 2,
-        "confidence": 0.9416666666666667,
-        "internal_model_version": "liqmap-v1.1",
-        "mark_price": 0.08511962,
-        "nearest_cluster_down": {
-          "confidence": 0.7602691290782448,
-          "distance_pct": 2.299845793484503,
-          "estimated_notional_usd": 82958.83819214234,
-          "price": 0.083162,
-          "significance_vs_median": 0.7584112311081951,
-          "strength": 0.4496155623107302
-        },
-        "nearest_cluster_up": {
-          "confidence": 0.8867361111111111,
-          "distance_pct": 2.1997043689809788,
-          "estimated_notional_usd": 82793.21896753203,
-          "price": 0.086992,
-          "significance_vs_median": 0.9090909090909091,
-          "strength": 0.8333333333333335
-        },
-        "price_bin_size": 8.511962e-05,
-        "status": "ok",
-        "top_clusters_down": [
-          {
-            "confidence": 0.9416666666666667,
-            "distance_pct": 11.69955880912061,
-            "estimated_notional_usd": 184510.60227049998,
-            "price": 0.075161,
-            "significance_vs_median": 1.6867993341032435,
-            "strength": 1.0
-          },
-          {
-            "confidence": 0.8867361111111111,
-            "distance_pct": 6.800570773224781,
-            "estimated_notional_usd": 153758.83522541664,
-            "price": 0.079331,
-            "significance_vs_median": 1.4056661117527027,
-            "strength": 0.8333333333333333
-          },
-          {
-            "confidence": 0.8589273900566441,
-            "distance_pct": 6.300098614162045,
-            "estimated_notional_usd": 138190.68188999707,
-            "price": 0.079757,
-            "significance_vs_median": 1.2633417663966338,
-            "strength": 0.7489579470745207
-          },
-          {
-            "confidence": 0.8286313867358004,
-            "distance_pct": 8.399497084221002,
-            "estimated_notional_usd": 121230.07358925995,
-            "price": 0.07797,
-            "significance_vs_median": 1.1082875720272112,
-            "strength": 0.6570358131048305
-          },
-          {
-            "confidence": 0.8224061614612046,
-            "distance_pct": 11.20026146733267,
-            "estimated_notional_usd": 117745.00638920367,
-            "price": 0.075586,
-            "significance_vs_median": 1.0764270233106572,
-            "strength": 0.6381476453942996
-          },
-          {
-            "confidence": 0.792540044502056,
-            "distance_pct": 3.399474762692784,
-            "estimated_notional_usd": 101025.0613243833,
-            "price": 0.082226,
-            "significance_vs_median": 0.9235729766893429,
-            "strength": 0.5475298442540255
-          },
-          {
-            "confidence": 0.7906076388888889,
-            "distance_pct": 5.799626455099293,
-            "estimated_notional_usd": 99943.24289652081,
-            "price": 0.080183,
-            "significance_vs_median": 0.9136829726392567,
-            "strength": 0.5416666666666666
-          },
-          {
-            "confidence": 0.7629734447079325,
-            "distance_pct": 3.89994692175552,
-            "estimated_notional_usd": 84472.7949220433,
-            "price": 0.0818,
-            "significance_vs_median": 0.7722518514976627,
-            "strength": 0.45782081833001
-          },
-          {
-            "confidence": 0.7602691290782448,
-            "distance_pct": 2.299845793484503,
-            "estimated_notional_usd": 82958.83819214234,
-            "price": 0.083162,
-            "significance_vs_median": 0.7584112311081951,
-            "strength": 0.4496155623107302
-          },
-          {
-            "confidence": 0.7463548983210542,
-            "distance_pct": 5.300329113311355,
-            "estimated_notional_usd": 75169.23587465068,
-            "price": 0.080608,
-            "significance_vs_median": 0.6871985428377888,
-            "strength": 0.40739792158094823
-          }
-        ],
-        "top_clusters_up": [
-          {
-            "confidence": 0.9416666666666667,
-            "distance_pct": 7.099867222151604,
-            "estimated_notional_usd": 99351.86276103841,
-            "price": 0.091163,
-            "significance_vs_median": 1.0909090909090908,
-            "strength": 1.0
-          },
-          {
-            "confidence": 0.8867361111111111,
-            "distance_pct": 2.1997043689809788,
-            "estimated_notional_usd": 82793.21896753203,
-            "price": 0.086992,
-            "significance_vs_median": 0.9090909090909091,
-            "strength": 0.8333333333333335
-          }
-        ]
-      },
-      "index_price": 0.0848515,
-      "liquidation_tape": {
-        "latest_events": [],
-        "paper_only": true,
-        "primary_window": "60m",
-        "raw_payload_stored": false,
-        "status": "no_recent_events",
-        "windows": {
-          "15m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          },
-          "240m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          },
-          "60m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          }
-        }
-      },
-      "mark_price": 0.08511962,
-      "open_interest": {
-        "calibrated_current_open_interest_usd": 4607984.307133985,
-        "calibration_applied": {
-          "oi_scale_multiplier": 1.0050347343370274
-        },
-        "change_24h_pct": 73.22785295882449,
-        "change_24h_usd": 1938154.9654825702,
-        "current_open_interest_contracts": 54096605.0,
-        "current_open_interest_usd": 4584900.55089852,
-        "samples": 72,
-        "trend": "rising",
-        "trend_score": 1.0,
-        "window_percentile": 0.9583333333333334
-      },
-      "orderbook_depth": {
-        "depth_imbalance_score": 0.18275233897435494,
-        "top50_ask_depth_usd": 14480.14426,
-        "top50_bid_depth_usd": 20956.22332
-      },
-      "paper_only": true,
-      "source_errors": [],
-      "symbol": "SPORTFUNUSDT",
-      "updated_at": "2026-05-09T02:06:12.940985Z",
-      "v13_features": {
-        "funding_pressure_score": 1.0,
-        "liq_sweep_confirmation": null,
-        "liqmap_bias_score": 0.014408462496981808,
-        "liqmap_cluster_strength_down": 0.4496155623107302,
-        "liqmap_cluster_strength_up": 0.8333333333333335,
-        "liqmap_confidence": 0.9416666666666667,
-        "liqmap_nearest_down_distance_pct": 2.299845793484503,
-        "liqmap_nearest_down_price": 0.083162,
-        "liqmap_nearest_up_distance_pct": 2.1997043689809788,
-        "liqmap_nearest_up_price": 0.086992,
-        "open_interest_trend_score": 1.0,
-        "recent_real_liq_imbalance": 0.0,
-        "recent_real_liq_notional_usd": 0
-      }
-    },
-    {
-      "coinglass_comparison": {
-        "enabled": false,
-        "reason": "disabled for this run"
-      },
-      "coinglass_validation": {
-        "enabled": false,
-        "reason": "disabled for this run"
-      },
-      "exchange": "binance",
-      "funding": {
-        "avg_24h_rate": 0.00026038,
-        "avg_window_rate": 0.0003086331506849315,
-        "bias": "longs_paying_crowded",
-        "calibrated_latest_rate": 0.0006041115174054748,
-        "calibrated_latest_rate_pct": 0.060411151740547474,
-        "calibration_applied": {
-          "funding_scale_multiplier": 1.3923470024095943
-        },
-        "latest_rate": 0.00043388,
-        "latest_rate_pct": 0.043387999999999996,
-        "next_funding_time": "2026-05-09T04:00:00Z",
-        "pressure_score": 0.6041115174054748,
-        "samples": 73,
-        "zscore": 0.6026601062987034
-      },
-      "heatmap": {
-        "assumptions": {
-          "calibration_applied": {
-            "confidence_multiplier": 1.0,
-            "funding_scale_multiplier": 1.3923470024095943,
-            "oi_scale_multiplier": 1.0050347343370274
-          },
-          "leverage_buckets": [
-            3.0,
-            5.0,
-            10.0,
-            20.0,
-            25.0,
-            50.0,
-            75.0,
-            100.0
-          ],
-          "long_share": 0.602493382088657,
-          "maintenance_margin_buffer": 0.004,
-          "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
-          "oi_notional_used_usd": 8039067.318497481,
-          "scan_pct": 0.12,
-          "short_share": 0.397506617911343
+          "short_share": 0.47995649993963563
         },
         "bias": {
           "direction": "downside_liquidity_heavier",
           "score": -1.0
         },
-        "cluster_count_down": 1,
+        "cluster_count_down": 2,
         "cluster_count_up": 0,
         "confidence": 1.0,
         "internal_model_version": "liqmap-v1.1",
-        "mark_price": 0.01976691,
+        "mark_price": 0.01608,
         "nearest_cluster_down": {
-          "confidence": 1.0,
-          "distance_pct": 7.198444268729911,
-          "estimated_notional_usd": 127979.80697303466,
-          "price": 0.018344,
-          "significance_vs_median": 1.0,
-          "strength": 1.0
+          "confidence": 0.9740854888499797,
+          "distance_pct": 8.899253731343283,
+          "estimated_notional_usd": 114483.13411792759,
+          "price": 0.014649,
+          "significance_vs_median": 0.9615560465568965,
+          "strength": 0.9259585395713706
         },
         "nearest_cluster_up": null,
-        "price_bin_size": 1.976691e-05,
+        "price_bin_size": 1.6080000000000002e-05,
         "status": "ok",
         "top_clusters_down": [
           {
             "confidence": 1.0,
-            "distance_pct": 7.198444268729911,
-            "estimated_notional_usd": 127979.80697303466,
-            "price": 0.018344,
-            "significance_vs_median": 1.0,
+            "distance_pct": 11.697761194029855,
+            "estimated_notional_usd": 123637.42999867167,
+            "price": 0.014199,
+            "significance_vs_median": 1.0384439534431034,
             "strength": 1.0
+          },
+          {
+            "confidence": 0.9740854888499797,
+            "distance_pct": 8.899253731343283,
+            "estimated_notional_usd": 114483.13411792759,
+            "price": 0.014649,
+            "significance_vs_median": 0.9615560465568965,
+            "strength": 0.9259585395713706
           }
         ],
         "top_clusters_up": []
       },
-      "index_price": 0.01976509,
+      "index_price": 0.01613684,
       "liquidation_tape": {
         "latest_events": [],
         "paper_only": true,
@@ -2667,407 +1578,41 @@
           }
         }
       },
-      "mark_price": 0.01976691,
+      "mark_price": 0.01608,
       "open_interest": {
-        "calibrated_current_open_interest_usd": 8039067.318497481,
+        "calibrated_current_open_interest_usd": 7619628.403138655,
         "calibration_applied": {
-          "oi_scale_multiplier": 1.0050347343370274
+          "oi_scale_multiplier": 1.002305970357927
         },
-        "change_24h_pct": 31.917307375144187,
-        "change_24h_usd": 1935303.4104681099,
-        "current_open_interest_contracts": 372971700.0,
-        "current_open_interest_usd": 7998795.508098,
+        "change_24h_pct": 37.733055186072015,
+        "change_24h_usd": 2082654.6695543407,
+        "current_open_interest_contracts": 483767476.0,
+        "current_open_interest_usd": 7602098.19005434,
         "samples": 72,
         "trend": "rising",
         "trend_score": 1.0,
         "window_percentile": 1.0
       },
       "orderbook_depth": {
-        "depth_imbalance_score": -0.0758668369596602,
-        "top50_ask_depth_usd": 5937.178183999999,
-        "top50_bid_depth_usd": 5099.834911
+        "depth_imbalance_score": -0.12984320726642284,
+        "top50_ask_depth_usd": 338354.00675,
+        "top50_bid_depth_usd": 260585.74803
       },
       "paper_only": true,
       "source_errors": [],
-      "symbol": "AGTUSDT",
-      "updated_at": "2026-05-09T02:06:14.628721Z",
+      "symbol": "PLUMEUSDT",
+      "updated_at": "2026-05-09T03:06:10.990393Z",
       "v13_features": {
-        "funding_pressure_score": 0.6041115174054748,
+        "funding_pressure_score": -0.08297083283029684,
         "liq_sweep_confirmation": null,
         "liqmap_bias_score": -1.0,
-        "liqmap_cluster_strength_down": 1.0,
+        "liqmap_cluster_strength_down": 0.9259585395713706,
         "liqmap_cluster_strength_up": null,
         "liqmap_confidence": 1.0,
-        "liqmap_nearest_down_distance_pct": 7.198444268729911,
-        "liqmap_nearest_down_price": 0.018344,
+        "liqmap_nearest_down_distance_pct": 8.899253731343283,
+        "liqmap_nearest_down_price": 0.014649,
         "liqmap_nearest_up_distance_pct": null,
         "liqmap_nearest_up_price": null,
-        "open_interest_trend_score": 1.0,
-        "recent_real_liq_imbalance": 0.0,
-        "recent_real_liq_notional_usd": 0
-      }
-    },
-    {
-      "coinglass_comparison": {
-        "enabled": false,
-        "reason": "disabled for this run"
-      },
-      "coinglass_validation": {
-        "enabled": false,
-        "reason": "disabled for this run"
-      },
-      "exchange": "binance",
-      "funding": {
-        "avg_24h_rate": 8.419333333333333e-05,
-        "avg_window_rate": 3.108342465753425e-05,
-        "bias": "neutral",
-        "calibrated_latest_rate": 0.00013923470024095944,
-        "calibrated_latest_rate_pct": 0.013923470024095944,
-        "calibration_applied": {
-          "funding_scale_multiplier": 1.3923470024095943
-        },
-        "latest_rate": 0.0001,
-        "latest_rate_pct": 0.01,
-        "next_funding_time": "2026-05-09T08:00:00Z",
-        "pressure_score": 0.13923470024095944,
-        "samples": 73,
-        "zscore": 0.7077525086677219
-      },
-      "heatmap": {
-        "assumptions": {
-          "calibration_applied": {
-            "confidence_multiplier": 1.0,
-            "funding_scale_multiplier": 1.3923470024095943,
-            "oi_scale_multiplier": 1.0050347343370274
-          },
-          "leverage_buckets": [
-            3.0,
-            5.0,
-            10.0,
-            20.0,
-            25.0,
-            50.0,
-            75.0,
-            100.0
-          ],
-          "long_share": 0.5467081640289152,
-          "maintenance_margin_buffer": 0.004,
-          "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
-          "oi_notional_used_usd": 24568533.659413222,
-          "scan_pct": 0.12,
-          "short_share": 0.4532918359710848
-        },
-        "bias": {
-          "direction": "downside_liquidity_heavier",
-          "score": -1.0
-        },
-        "cluster_count_down": 1,
-        "cluster_count_up": 0,
-        "confidence": 1.0,
-        "internal_model_version": "liqmap-v1.1",
-        "mark_price": 0.16927255,
-        "nearest_cluster_down": {
-          "confidence": 1.0,
-          "distance_pct": 5.900277392879108,
-          "estimated_notional_usd": 478557.22761651786,
-          "price": 0.159285,
-          "significance_vs_median": 1.0,
-          "strength": 1.0
-        },
-        "nearest_cluster_up": null,
-        "price_bin_size": 0.00016927254999999999,
-        "status": "ok",
-        "top_clusters_down": [
-          {
-            "confidence": 1.0,
-            "distance_pct": 5.900277392879108,
-            "estimated_notional_usd": 478557.22761651786,
-            "price": 0.159285,
-            "significance_vs_median": 1.0,
-            "strength": 1.0
-          }
-        ],
-        "top_clusters_up": []
-      },
-      "index_price": 0.16926526,
-      "liquidation_tape": {
-        "latest_events": [],
-        "paper_only": true,
-        "primary_window": "60m",
-        "raw_payload_stored": false,
-        "status": "no_recent_events",
-        "windows": {
-          "15m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          },
-          "240m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          },
-          "60m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          }
-        }
-      },
-      "mark_price": 0.16927255,
-      "open_interest": {
-        "calibrated_current_open_interest_usd": 24568533.659413222,
-        "calibration_applied": {
-          "oi_scale_multiplier": 1.0050347343370274
-        },
-        "change_24h_pct": 14.019302855827107,
-        "change_24h_usd": 3005703.9503099993,
-        "current_open_interest_contracts": 144650574.8,
-        "current_open_interest_usd": 24445457.27628,
-        "samples": 72,
-        "trend": "rising",
-        "trend_score": 1.0,
-        "window_percentile": 0.9444444444444444
-      },
-      "orderbook_depth": {
-        "depth_imbalance_score": 0.08523046607147346,
-        "top50_ask_depth_usd": 1446227.55523,
-        "top50_bid_depth_usd": 1715721.98854
-      },
-      "paper_only": true,
-      "source_errors": [],
-      "symbol": "OPUSDT",
-      "updated_at": "2026-05-09T02:06:16.311110Z",
-      "v13_features": {
-        "funding_pressure_score": 0.13923470024095944,
-        "liq_sweep_confirmation": null,
-        "liqmap_bias_score": -1.0,
-        "liqmap_cluster_strength_down": 1.0,
-        "liqmap_cluster_strength_up": null,
-        "liqmap_confidence": 1.0,
-        "liqmap_nearest_down_distance_pct": 5.900277392879108,
-        "liqmap_nearest_down_price": 0.159285,
-        "liqmap_nearest_up_distance_pct": null,
-        "liqmap_nearest_up_price": null,
-        "open_interest_trend_score": 1.0,
-        "recent_real_liq_imbalance": 0.0,
-        "recent_real_liq_notional_usd": 0
-      }
-    },
-    {
-      "coinglass_comparison": {
-        "enabled": false,
-        "reason": "disabled for this run"
-      },
-      "coinglass_validation": {
-        "enabled": false,
-        "reason": "disabled for this run"
-      },
-      "exchange": "binance",
-      "funding": {
-        "avg_24h_rate": 7.790333333333334e-05,
-        "avg_window_rate": 4.0239041095890416e-05,
-        "bias": "neutral",
-        "calibrated_latest_rate": 0.00011559264814004452,
-        "calibrated_latest_rate_pct": 0.011559264814004452,
-        "calibration_applied": {
-          "funding_scale_multiplier": 1.3923470024095943
-        },
-        "latest_rate": 8.302e-05,
-        "latest_rate_pct": 0.008302,
-        "next_funding_time": "2026-05-09T08:00:00Z",
-        "pressure_score": 0.11559264814004452,
-        "samples": 73,
-        "zscore": 0.5807410186972024
-      },
-      "heatmap": {
-        "assumptions": {
-          "calibration_applied": {
-            "confidence_multiplier": 1.0,
-            "funding_scale_multiplier": 1.3923470024095943,
-            "oi_scale_multiplier": 1.0050347343370274
-          },
-          "leverage_buckets": [
-            3.0,
-            5.0,
-            10.0,
-            20.0,
-            25.0,
-            50.0,
-            75.0,
-            100.0
-          ],
-          "long_share": 0.5438711177768054,
-          "maintenance_margin_buffer": 0.004,
-          "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
-          "oi_notional_used_usd": 74024490.66073671,
-          "scan_pct": 0.12,
-          "short_share": 0.4561288822231946
-        },
-        "bias": {
-          "direction": "upside_liquidity_heavier",
-          "score": 0.37932558112402964
-        },
-        "cluster_count_down": 4,
-        "cluster_count_up": 2,
-        "confidence": 1.0,
-        "internal_model_version": "liqmap-v1.1",
-        "mark_price": 1.2724252,
-        "nearest_cluster_down": {
-          "confidence": 0.8245422498019052,
-          "distance_pct": 6.100020653473389,
-          "estimated_notional_usd": 517287.48509734345,
-          "price": 1.194807,
-          "significance_vs_median": 0.8162991718087038,
-          "strength": 0.49869214229115755
-        },
-        "nearest_cluster_up": {
-          "confidence": 1.0,
-          "distance_pct": 3.9000170697656653,
-          "estimated_notional_usd": 793364.7435096524,
-          "price": 1.32205,
-          "significance_vs_median": 1.1748300795690325,
-          "strength": 1.0
-        },
-        "price_bin_size": 0.0012724252,
-        "status": "ok",
-        "top_clusters_down": [
-          {
-            "confidence": 1.0,
-            "distance_pct": 9.499984753524213,
-            "estimated_notional_usd": 1037288.2209869053,
-            "price": 1.151545,
-            "significance_vs_median": 1.6368799557545743,
-            "strength": 1.0
-          },
-          {
-            "confidence": 0.9031005944635508,
-            "distance_pct": 8.799982898798294,
-            "estimated_notional_usd": 750109.329605214,
-            "price": 1.160452,
-            "significance_vs_median": 1.1837008281912962,
-            "strength": 0.7231445556101455
-          },
-          {
-            "confidence": 0.8245422498019052,
-            "distance_pct": 6.100020653473389,
-            "estimated_notional_usd": 517287.48509734345,
-            "price": 1.194807,
-            "significance_vs_median": 0.8162991718087038,
-            "strength": 0.49869214229115755
-          },
-          {
-            "confidence": 0.8228948387981379,
-            "distance_pct": 8.59997114172212,
-            "estimated_notional_usd": 512405.08501353755,
-            "price": 1.162997,
-            "significance_vs_median": 0.8085945602345431,
-            "strength": 0.4939852537089652
-          }
-        ],
-        "top_clusters_up": [
-          {
-            "confidence": 1.0,
-            "distance_pct": 3.9000170697656653,
-            "estimated_notional_usd": 793364.7435096524,
-            "price": 1.32205,
-            "significance_vs_median": 1.1748300795690325,
-            "strength": 1.0
-          },
-          {
-            "confidence": 0.9627290003779261,
-            "distance_pct": 4.699985507989002,
-            "estimated_notional_usd": 708880.4662081811,
-            "price": 1.332229,
-            "significance_vs_median": 1.0497241039929799,
-            "strength": 0.8935114296512175
-          }
-        ]
-      },
-      "index_price": 1.27396265,
-      "liquidation_tape": {
-        "latest_events": [],
-        "paper_only": true,
-        "primary_window": "60m",
-        "raw_payload_stored": false,
-        "status": "no_recent_events",
-        "windows": {
-          "15m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          },
-          "240m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          },
-          "60m": {
-            "events": 0,
-            "imbalance_score": 0.0,
-            "largest_event": null,
-            "long_liquidation_notional_usd": 0,
-            "pressure": "no_recent_real_liquidations",
-            "short_liquidation_notional_usd": 0,
-            "total_notional_usd": 0
-          }
-        }
-      },
-      "mark_price": 1.2724252,
-      "open_interest": {
-        "calibrated_current_open_interest_usd": 74024490.66073671,
-        "calibration_applied": {
-          "oi_scale_multiplier": 1.0050347343370274
-        },
-        "change_24h_pct": 27.388678737805517,
-        "change_24h_usd": 15835602.990400009,
-        "current_open_interest_contracts": 57718871.8,
-        "current_open_interest_usd": 73653664.0294,
-        "samples": 72,
-        "trend": "rising",
-        "trend_score": 1.0,
-        "window_percentile": 0.9583333333333334
-      },
-      "orderbook_depth": {
-        "depth_imbalance_score": 0.05909907959174877,
-        "top50_ask_depth_usd": 4730393.4561,
-        "top50_bid_depth_usd": 5324636.47
-      },
-      "paper_only": true,
-      "source_errors": [],
-      "symbol": "FILUSDT",
-      "updated_at": "2026-05-09T02:06:18.007776Z",
-      "v13_features": {
-        "funding_pressure_score": 0.11559264814004452,
-        "liq_sweep_confirmation": null,
-        "liqmap_bias_score": 0.37932558112402964,
-        "liqmap_cluster_strength_down": 0.49869214229115755,
-        "liqmap_cluster_strength_up": 1.0,
-        "liqmap_confidence": 1.0,
-        "liqmap_nearest_down_distance_pct": 6.100020653473389,
-        "liqmap_nearest_down_price": 1.194807,
-        "liqmap_nearest_up_distance_pct": 3.9000170697656653,
-        "liqmap_nearest_up_price": 1.32205,
         "open_interest_trend_score": 1.0,
         "recent_real_liq_imbalance": 0.0,
         "recent_real_liq_notional_usd": 0
@@ -3087,15 +1632,15 @@
         "avg_24h_rate": 0.00012971333333333334,
         "avg_window_rate": 0.0002743759722222222,
         "bias": "neutral",
-        "calibrated_latest_rate": 6.961735012047972e-05,
-        "calibrated_latest_rate_pct": 0.006961735012047972,
+        "calibrated_latest_rate": 6.981726088042482e-05,
+        "calibrated_latest_rate_pct": 0.006981726088042482,
         "calibration_applied": {
-          "funding_scale_multiplier": 1.3923470024095943
+          "funding_scale_multiplier": 1.3963452176084963
         },
         "latest_rate": 5e-05,
         "latest_rate_pct": 0.005,
         "next_funding_time": "2026-05-09T04:00:00Z",
-        "pressure_score": 0.06961735012047972,
+        "pressure_score": 0.06981726088042482,
         "samples": 72,
         "zscore": -0.7421903704654775
       },
@@ -3103,8 +1648,8 @@
         "assumptions": {
           "calibration_applied": {
             "confidence_multiplier": 1.0,
-            "funding_scale_multiplier": 1.3923470024095943,
-            "oi_scale_multiplier": 1.0050347343370274
+            "funding_scale_multiplier": 1.3963452176084963,
+            "oi_scale_multiplier": 1.002305970357927
           },
           "leverage_buckets": [
             3.0,
@@ -3116,12 +1661,12 @@
             75.0,
             100.0
           ],
-          "long_share": 0.5258456603146415,
+          "long_share": 0.5337426614451235,
           "maintenance_margin_buffer": 0.004,
           "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
-          "oi_notional_used_usd": 7375288.023553771,
+          "oi_notional_used_usd": 7552741.727540277,
           "scan_pct": 0.12,
-          "short_share": 0.4741543396853585
+          "short_share": 0.4662573385548765
         },
         "bias": {
           "direction": "balanced_nearby_liquidity",
@@ -3131,15 +1676,15 @@
         "cluster_count_up": 0,
         "confidence": 0.65,
         "internal_model_version": "liqmap-v1.1",
-        "mark_price": 0.08515,
+        "mark_price": 0.08607691,
         "nearest_cluster_down": null,
         "nearest_cluster_up": null,
-        "price_bin_size": 8.515000000000001e-05,
+        "price_bin_size": 8.607691e-05,
         "status": "ok",
         "top_clusters_down": [],
         "top_clusters_up": []
       },
-      "index_price": 0.08530575,
+      "index_price": 0.08607595,
       "liquidation_tape": {
         "latest_events": [],
         "paper_only": true,
@@ -3176,32 +1721,32 @@
           }
         }
       },
-      "mark_price": 0.08515,
+      "mark_price": 0.08607691,
       "open_interest": {
-        "calibrated_current_open_interest_usd": 7375288.023553771,
+        "calibrated_current_open_interest_usd": 7552741.727540277,
         "calibration_applied": {
-          "oi_scale_multiplier": 1.0050347343370274
+          "oi_scale_multiplier": 1.002305970357927
         },
-        "change_24h_pct": 5.830526100061344,
-        "change_24h_usd": 404291.58561863936,
-        "current_open_interest_contracts": 85782547.0,
-        "current_open_interest_usd": 7338341.42400948,
+        "change_24h_pct": 8.454863379824191,
+        "change_24h_usd": 587437.7872435395,
+        "current_open_interest_contracts": 86521900.0,
+        "current_open_interest_usd": 7535365.39829566,
         "samples": 72,
         "trend": "rising",
-        "trend_score": 0.5830526100061344,
-        "window_percentile": 0.5555555555555556
+        "trend_score": 0.8454863379824191,
+        "window_percentile": 0.6388888888888888
       },
       "orderbook_depth": {
-        "depth_imbalance_score": 0.2015718477381565,
-        "top50_ask_depth_usd": 14948.63545,
-        "top50_bid_depth_usd": 22496.52579
+        "depth_imbalance_score": 0.13820675713173491,
+        "top50_ask_depth_usd": 21913.66726,
+        "top50_bid_depth_usd": 28942.30647
       },
       "paper_only": true,
       "source_errors": [],
       "symbol": "PLAYUSDT",
-      "updated_at": "2026-05-09T02:06:19.704753Z",
+      "updated_at": "2026-05-09T03:06:12.624837Z",
       "v13_features": {
-        "funding_pressure_score": 0.06961735012047972,
+        "funding_pressure_score": 0.06981726088042482,
         "liq_sweep_confirmation": null,
         "liqmap_bias_score": 0.0,
         "liqmap_cluster_strength_down": null,
@@ -3211,7 +1756,1368 @@
         "liqmap_nearest_down_price": null,
         "liqmap_nearest_up_distance_pct": null,
         "liqmap_nearest_up_price": null,
-        "open_interest_trend_score": 0.5830526100061344,
+        "open_interest_trend_score": 0.8454863379824191,
+        "recent_real_liq_imbalance": 0.0,
+        "recent_real_liq_notional_usd": 0
+      }
+    },
+    {
+      "coinglass_comparison": {
+        "enabled": false,
+        "reason": "disabled for this run"
+      },
+      "coinglass_validation": {
+        "enabled": false,
+        "reason": "disabled for this run"
+      },
+      "exchange": "binance",
+      "funding": {
+        "avg_24h_rate": -0.00021652,
+        "avg_window_rate": 1.1436712328767124e-05,
+        "bias": "shorts_paying_crowded",
+        "calibrated_latest_rate": -0.0010466445213106244,
+        "calibrated_latest_rate_pct": -0.10466445213106244,
+        "calibration_applied": {
+          "funding_scale_multiplier": 1.3963452176084963
+        },
+        "latest_rate": -0.00074956,
+        "latest_rate_pct": -0.07495600000000001,
+        "next_funding_time": "2026-05-09T04:00:00Z",
+        "pressure_score": -1.0,
+        "samples": 73,
+        "zscore": -6.798675590581475
+      },
+      "heatmap": {
+        "assumptions": {
+          "calibration_applied": {
+            "confidence_multiplier": 1.0,
+            "funding_scale_multiplier": 1.3963452176084963,
+            "oi_scale_multiplier": 1.002305970357927
+          },
+          "leverage_buckets": [
+            3.0,
+            5.0,
+            10.0,
+            20.0,
+            25.0,
+            50.0,
+            75.0,
+            100.0
+          ],
+          "long_share": 0.41000000000000003,
+          "maintenance_margin_buffer": 0.004,
+          "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
+          "oi_notional_used_usd": 3460593.6723410054,
+          "scan_pct": 0.12,
+          "short_share": 0.59
+        },
+        "bias": {
+          "direction": "balanced_nearby_liquidity",
+          "score": -0.06980206319544331
+        },
+        "cluster_count_down": 8,
+        "cluster_count_up": 10,
+        "confidence": 0.825,
+        "internal_model_version": "liqmap-v1.1",
+        "mark_price": 0.03865582,
+        "nearest_cluster_down": {
+          "confidence": 0.6806249999999999,
+          "distance_pct": 0.10042472259029019,
+          "estimated_notional_usd": 60098.94794116257,
+          "price": 0.038617,
+          "significance_vs_median": 0.8667282009265629,
+          "strength": 0.5
+        },
+        "nearest_cluster_up": {
+          "confidence": 0.6705855595262435,
+          "distance_pct": 0.6989374433138446,
+          "estimated_notional_usd": 80678.13670373354,
+          "price": 0.038926,
+          "significance_vs_median": 0.9144320323843882,
+          "strength": 0.4652313749826617
+        },
+        "price_bin_size": 3.865582e-05,
+        "status": "ok",
+        "top_clusters_down": [
+          {
+            "confidence": 0.825,
+            "distance_pct": 8.200110617236948,
+            "estimated_notional_usd": 120197.89588232515,
+            "price": 0.035486,
+            "significance_vs_median": 1.7334564018531258,
+            "strength": 1.0
+          },
+          {
+            "confidence": 0.776875,
+            "distance_pct": 3.1012665104504396,
+            "estimated_notional_usd": 100164.91323527096,
+            "price": 0.037457,
+            "significance_vs_median": 1.4445470015442714,
+            "strength": 0.8333333333333334
+          },
+          {
+            "confidence": 0.740354738438965,
+            "distance_pct": 7.198967710424972,
+            "estimated_notional_usd": 84962.63238086902,
+            "price": 0.035873,
+            "significance_vs_median": 1.225304469248768,
+            "strength": 0.7068562370180609
+          },
+          {
+            "confidence": 0.7129931729578731,
+            "distance_pct": 7.499051889210999,
+            "estimated_notional_usd": 73572.83983065707,
+            "price": 0.035757,
+            "significance_vs_median": 1.0610444489962236,
+            "strength": 0.6120975686852752
+          },
+          {
+            "confidence": 0.69265625,
+            "distance_pct": 2.1001236036384636,
+            "estimated_notional_usd": 65107.19360292612,
+            "price": 0.037844,
+            "significance_vs_median": 0.9389555510037765,
+            "strength": 0.5416666666666666
+          },
+          {
+            "confidence": 0.6835359774648943,
+            "distance_pct": 2.400207782424491,
+            "estimated_notional_usd": 61310.69985888089,
+            "price": 0.037728,
+            "significance_vs_median": 0.8842037074968531,
+            "strength": 0.5100813072377294
+          },
+          {
+            "confidence": 0.6806249999999999,
+            "distance_pct": 0.10042472259029019,
+            "estimated_notional_usd": 60098.94794116257,
+            "price": 0.038617,
+            "significance_vs_median": 0.8667282009265629,
+            "strength": 0.5
+          },
+          {
+            "confidence": 0.6689180799853273,
+            "distance_pct": 6.298715174066925,
+            "estimated_notional_usd": 55225.711047564866,
+            "price": 0.036221,
+            "significance_vs_median": 0.7964479050116992,
+            "strength": 0.4594565540617396
+          }
+        ],
+        "top_clusters_up": [
+          {
+            "confidence": 0.825,
+            "distance_pct": 11.300187138702528,
+            "estimated_notional_usd": 173415.0812737861,
+            "price": 0.043024,
+            "significance_vs_median": 1.9655424839274163,
+            "strength": 1.0
+          },
+          {
+            "confidence": 0.7813418025096596,
+            "distance_pct": 6.599730648580214,
+            "estimated_notional_usd": 147195.20294978828,
+            "price": 0.041207,
+            "significance_vs_median": 1.6683579230998589,
+            "strength": 0.8488027792542325
+          },
+          {
+            "confidence": 0.7767295880793896,
+            "distance_pct": 6.198756099340274,
+            "estimated_notional_usd": 144425.2374423341,
+            "price": 0.041052,
+            "significance_vs_median": 1.636962240302703,
+            "strength": 0.8328297422662847
+          },
+          {
+            "confidence": 0.7398281876030087,
+            "distance_pct": 1.7000803501258033,
+            "estimated_notional_usd": 122263.30025539687,
+            "price": 0.039313,
+            "significance_vs_median": 1.3857716936265263,
+            "strength": 0.7050326843394243
+          },
+          {
+            "confidence": 0.6922527520591086,
+            "distance_pct": 5.20020012510406,
+            "estimated_notional_usd": 93690.83957494245,
+            "price": 0.040666,
+            "significance_vs_median": 1.0619222053048427,
+            "strength": 0.5402692712003764
+          },
+          {
+            "confidence": 0.683156008067065,
+            "distance_pct": 7.000705197820153,
+            "estimated_notional_usd": 88227.592479853,
+            "price": 0.041362,
+            "significance_vs_median": 1.0,
+            "strength": 0.5087653959032554
+          },
+          {
+            "confidence": 0.6802525403622541,
+            "distance_pct": 3.2005012440558693,
+            "estimated_notional_usd": 86483.8519153315,
+            "price": 0.039893,
+            "significance_vs_median": 0.9802358818198548,
+            "strength": 0.49871009649265513
+          },
+          {
+            "confidence": 0.6705855595262435,
+            "distance_pct": 0.6989374433138446,
+            "estimated_notional_usd": 80678.13670373354,
+            "price": 0.038926,
+            "significance_vs_median": 0.9144320323843882,
+            "strength": 0.4652313749826617
+          },
+          {
+            "confidence": 0.6319777171170906,
+            "distance_pct": 5.999562291008178,
+            "estimated_notional_usd": 57491.35876714905,
+            "price": 0.040975,
+            "significance_vs_median": 0.6516256099845108,
+            "strength": 0.33152456144446996
+          },
+          {
+            "confidence": 0.6243936048402389,
+            "distance_pct": 3.9998634099600037,
+            "estimated_notional_usd": 52936.55548791179,
+            "price": 0.040202,
+            "significance_vs_median": 0.5999999999999999,
+            "strength": 0.30525923754195317
+          }
+        ]
+      },
+      "index_price": 0.03883343,
+      "liquidation_tape": {
+        "latest_events": [],
+        "paper_only": true,
+        "primary_window": "60m",
+        "raw_payload_stored": false,
+        "status": "no_recent_events",
+        "windows": {
+          "15m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          },
+          "240m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          },
+          "60m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          }
+        }
+      },
+      "mark_price": 0.03865582,
+      "open_interest": {
+        "calibrated_current_open_interest_usd": 3460593.6723410054,
+        "calibration_applied": {
+          "oi_scale_multiplier": 1.002305970357927
+        },
+        "change_24h_pct": 98.8179375291413,
+        "change_24h_usd": 1716052.2740000002,
+        "current_open_interest_contracts": 88388876.0,
+        "current_open_interest_usd": 3452632.00528,
+        "samples": 72,
+        "trend": "rising",
+        "trend_score": 1.0,
+        "window_percentile": 1.0
+      },
+      "orderbook_depth": {
+        "depth_imbalance_score": 0.15689031202820722,
+        "top50_ask_depth_usd": 115381.05758,
+        "top50_bid_depth_usd": 158322.49304
+      },
+      "paper_only": true,
+      "source_errors": [],
+      "symbol": "DEEPUSDT",
+      "updated_at": "2026-05-09T03:06:14.768650Z",
+      "v13_features": {
+        "funding_pressure_score": -1.0,
+        "liq_sweep_confirmation": null,
+        "liqmap_bias_score": -0.06980206319544331,
+        "liqmap_cluster_strength_down": 0.5,
+        "liqmap_cluster_strength_up": 0.4652313749826617,
+        "liqmap_confidence": 0.825,
+        "liqmap_nearest_down_distance_pct": 0.10042472259029019,
+        "liqmap_nearest_down_price": 0.038617,
+        "liqmap_nearest_up_distance_pct": 0.6989374433138446,
+        "liqmap_nearest_up_price": 0.038926,
+        "open_interest_trend_score": 1.0,
+        "recent_real_liq_imbalance": 0.0,
+        "recent_real_liq_notional_usd": 0
+      }
+    },
+    {
+      "coinglass_comparison": {
+        "enabled": false,
+        "reason": "disabled for this run"
+      },
+      "coinglass_validation": {
+        "enabled": false,
+        "reason": "disabled for this run"
+      },
+      "exchange": "binance",
+      "funding": {
+        "avg_24h_rate": 0.00030714,
+        "avg_window_rate": 0.00016522333333333333,
+        "bias": "neutral",
+        "calibrated_latest_rate": 6.981726088042482e-05,
+        "calibrated_latest_rate_pct": 0.006981726088042482,
+        "calibration_applied": {
+          "funding_scale_multiplier": 1.3963452176084963
+        },
+        "latest_rate": 5e-05,
+        "latest_rate_pct": 0.005,
+        "next_funding_time": "2026-05-09T04:00:00Z",
+        "pressure_score": 0.06981726088042482,
+        "samples": 12,
+        "zscore": -0.5468319181493388
+      },
+      "heatmap": {
+        "assumptions": {
+          "calibration_applied": {
+            "confidence_multiplier": 1.0,
+            "funding_scale_multiplier": 1.3963452176084963,
+            "oi_scale_multiplier": 1.002305970357927
+          },
+          "leverage_buckets": [
+            3.0,
+            5.0,
+            10.0,
+            20.0,
+            25.0,
+            50.0,
+            75.0,
+            100.0
+          ],
+          "long_share": 0.538378071305651,
+          "maintenance_margin_buffer": 0.004,
+          "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
+          "oi_notional_used_usd": 3877265.8150785356,
+          "scan_pct": 0.12,
+          "short_share": 0.46162192869434904
+        },
+        "bias": {
+          "direction": "balanced_nearby_liquidity",
+          "score": 0.0
+        },
+        "cluster_count_down": 0,
+        "cluster_count_up": 0,
+        "confidence": 0.5525,
+        "internal_model_version": "liqmap-v1.1",
+        "mark_price": 0.08807825,
+        "nearest_cluster_down": null,
+        "nearest_cluster_up": null,
+        "price_bin_size": 8.807825e-05,
+        "status": "ok",
+        "top_clusters_down": [],
+        "top_clusters_up": []
+      },
+      "index_price": 0.0879722,
+      "liquidation_tape": {
+        "latest_events": [],
+        "paper_only": true,
+        "primary_window": "60m",
+        "raw_payload_stored": false,
+        "status": "no_recent_events",
+        "windows": {
+          "15m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          },
+          "240m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          },
+          "60m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          }
+        }
+      },
+      "mark_price": 0.08807825,
+      "open_interest": {
+        "calibrated_current_open_interest_usd": 3877265.8150785356,
+        "calibration_applied": {
+          "oi_scale_multiplier": 1.002305970357927
+        },
+        "change_24h_pct": 158.14213208500826,
+        "change_24h_usd": 2369812.33562375,
+        "current_open_interest_contracts": 43740416.0,
+        "current_open_interest_usd": 3868345.52496375,
+        "samples": 43,
+        "trend": "rising",
+        "trend_score": 1.0,
+        "window_percentile": 0.9069767441860465
+      },
+      "orderbook_depth": {
+        "depth_imbalance_score": -0.06884808461687958,
+        "top50_ask_depth_usd": 39026.50797,
+        "top50_bid_depth_usd": 33998.85182
+      },
+      "paper_only": true,
+      "source_errors": [],
+      "symbol": "BILLUSDT",
+      "updated_at": "2026-05-09T03:06:16.450093Z",
+      "v13_features": {
+        "funding_pressure_score": 0.06981726088042482,
+        "liq_sweep_confirmation": null,
+        "liqmap_bias_score": 0.0,
+        "liqmap_cluster_strength_down": null,
+        "liqmap_cluster_strength_up": null,
+        "liqmap_confidence": 0.5525,
+        "liqmap_nearest_down_distance_pct": null,
+        "liqmap_nearest_down_price": null,
+        "liqmap_nearest_up_distance_pct": null,
+        "liqmap_nearest_up_price": null,
+        "open_interest_trend_score": 1.0,
+        "recent_real_liq_imbalance": 0.0,
+        "recent_real_liq_notional_usd": 0
+      }
+    },
+    {
+      "coinglass_comparison": {
+        "enabled": false,
+        "reason": "disabled for this run"
+      },
+      "coinglass_validation": {
+        "enabled": false,
+        "reason": "disabled for this run"
+      },
+      "exchange": "binance",
+      "funding": {
+        "avg_24h_rate": 2.962666666666667e-05,
+        "avg_window_rate": 2.6605555555555556e-05,
+        "bias": "neutral",
+        "calibrated_latest_rate": 6.981726088042482e-05,
+        "calibrated_latest_rate_pct": 0.006981726088042482,
+        "calibration_applied": {
+          "funding_scale_multiplier": 1.3963452176084963
+        },
+        "latest_rate": 5e-05,
+        "latest_rate_pct": 0.005,
+        "next_funding_time": "2026-05-09T04:00:00Z",
+        "pressure_score": 0.06981726088042482,
+        "samples": 72,
+        "zscore": 0.7157587409693356
+      },
+      "heatmap": {
+        "assumptions": {
+          "calibration_applied": {
+            "confidence_multiplier": 1.0,
+            "funding_scale_multiplier": 1.3963452176084963,
+            "oi_scale_multiplier": 1.002305970357927
+          },
+          "leverage_buckets": [
+            3.0,
+            5.0,
+            10.0,
+            20.0,
+            25.0,
+            50.0,
+            75.0,
+            100.0
+          ],
+          "long_share": 0.538378071305651,
+          "maintenance_margin_buffer": 0.004,
+          "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
+          "oi_notional_used_usd": 14458308.280325497,
+          "scan_pct": 0.12,
+          "short_share": 0.46162192869434904
+        },
+        "bias": {
+          "direction": "downside_liquidity_heavier",
+          "score": -0.36031543442337155
+        },
+        "cluster_count_down": 4,
+        "cluster_count_up": 2,
+        "confidence": 1.0,
+        "internal_model_version": "liqmap-v1.1",
+        "mark_price": 0.05575918,
+        "nearest_cluster_down": {
+          "confidence": 0.9672606738457807,
+          "distance_pct": 2.2008573296809626,
+          "estimated_notional_usd": 294849.6917924065,
+          "price": 0.054532,
+          "significance_vs_median": 1.041042119313492,
+          "strength": 0.9064590681308019
+        },
+        "nearest_cluster_up": {
+          "confidence": 1.0,
+          "distance_pct": 6.0991212568047075,
+          "estimated_notional_usd": 307514.2190809264,
+          "price": 0.05916,
+          "significance_vs_median": 1.0756566305143502,
+          "strength": 1.0
+        },
+        "price_bin_size": 5.575918e-05,
+        "status": "ok",
+        "top_clusters_down": [
+          {
+            "confidence": 1.0,
+            "distance_pct": 8.300301403284617,
+            "estimated_notional_usd": 325276.34413808933,
+            "price": 0.051131,
+            "significance_vs_median": 1.1484711840990374,
+            "strength": 1.0
+          },
+          {
+            "confidence": 0.9672606738457807,
+            "distance_pct": 2.2008573296809626,
+            "estimated_notional_usd": 294849.6917924065,
+            "price": 0.054532,
+            "significance_vs_median": 1.041042119313492,
+            "strength": 0.9064590681308019
+          },
+          {
+            "confidence": 0.9422452586423229,
+            "distance_pct": 5.599400852021129,
+            "estimated_notional_usd": 271601.3409224718,
+            "price": 0.052637,
+            "significance_vs_median": 0.9589578806865082,
+            "strength": 0.8349864532637795
+          },
+          {
+            "confidence": 0.9263504160371507,
+            "distance_pct": 3.300227872791524,
+            "estimated_notional_usd": 256829.2943702983,
+            "price": 0.053919,
+            "significance_vs_median": 0.9068013986641373,
+            "strength": 0.7895726172490021
+          }
+        ],
+        "top_clusters_up": [
+          {
+            "confidence": 1.0,
+            "distance_pct": 6.0991212568047075,
+            "estimated_notional_usd": 307514.2190809264,
+            "price": 0.05916,
+            "significance_vs_median": 1.0756566305143502,
+            "strength": 1.0
+          },
+          {
+            "confidence": 0.9507652908393999,
+            "distance_pct": 11.099194787297813,
+            "estimated_notional_usd": 264256.0101117879,
+            "price": 0.061948,
+            "significance_vs_median": 0.9243433694856499,
+            "strength": 0.8593294023982854
+          }
+        ]
+      },
+      "index_price": 0.05579147,
+      "liquidation_tape": {
+        "latest_events": [],
+        "paper_only": true,
+        "primary_window": "60m",
+        "raw_payload_stored": false,
+        "status": "no_recent_events",
+        "windows": {
+          "15m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          },
+          "240m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          },
+          "60m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          }
+        }
+      },
+      "mark_price": 0.05575918,
+      "open_interest": {
+        "calibrated_current_open_interest_usd": 14458308.280325497,
+        "calibration_applied": {
+          "oi_scale_multiplier": 1.002305970357927
+        },
+        "change_24h_pct": 61.10123344035671,
+        "change_24h_usd": 5471019.65596848,
+        "current_open_interest_contracts": 261455599.3,
+        "current_open_interest_usd": 14425044.5551695,
+        "samples": 72,
+        "trend": "rising",
+        "trend_score": 1.0,
+        "window_percentile": 0.8055555555555556
+      },
+      "orderbook_depth": {
+        "depth_imbalance_score": 0.02845232439671606,
+        "top50_ask_depth_usd": 285905.562419,
+        "top50_bid_depth_usd": 302651.375338
+      },
+      "paper_only": true,
+      "source_errors": [],
+      "symbol": "STRKUSDT",
+      "updated_at": "2026-05-09T03:06:18.181431Z",
+      "v13_features": {
+        "funding_pressure_score": 0.06981726088042482,
+        "liq_sweep_confirmation": null,
+        "liqmap_bias_score": -0.36031543442337155,
+        "liqmap_cluster_strength_down": 0.9064590681308019,
+        "liqmap_cluster_strength_up": 1.0,
+        "liqmap_confidence": 1.0,
+        "liqmap_nearest_down_distance_pct": 2.2008573296809626,
+        "liqmap_nearest_down_price": 0.054532,
+        "liqmap_nearest_up_distance_pct": 6.0991212568047075,
+        "liqmap_nearest_up_price": 0.05916,
+        "open_interest_trend_score": 1.0,
+        "recent_real_liq_imbalance": 0.0,
+        "recent_real_liq_notional_usd": 0
+      }
+    },
+    {
+      "coinglass_comparison": {
+        "enabled": false,
+        "reason": "disabled for this run"
+      },
+      "coinglass_validation": {
+        "enabled": false,
+        "reason": "disabled for this run"
+      },
+      "exchange": "binance",
+      "funding": {
+        "avg_24h_rate": 5.689666666666667e-05,
+        "avg_window_rate": 3.937575342465754e-05,
+        "bias": "neutral",
+        "calibrated_latest_rate": 2.792690435216993e-05,
+        "calibrated_latest_rate_pct": 0.002792690435216993,
+        "calibration_applied": {
+          "funding_scale_multiplier": 1.3963452176084963
+        },
+        "latest_rate": 2e-05,
+        "latest_rate_pct": 0.002,
+        "next_funding_time": "2026-05-09T08:00:00Z",
+        "pressure_score": 0.027926904352169928,
+        "samples": 73,
+        "zscore": -0.26351896646307316
+      },
+      "heatmap": {
+        "assumptions": {
+          "calibration_applied": {
+            "confidence_multiplier": 1.0,
+            "funding_scale_multiplier": 1.3963452176084963,
+            "oi_scale_multiplier": 1.002305970357927
+          },
+          "leverage_buckets": [
+            3.0,
+            5.0,
+            10.0,
+            20.0,
+            25.0,
+            50.0,
+            75.0,
+            100.0
+          ],
+          "long_share": 0.5333512285222605,
+          "maintenance_margin_buffer": 0.004,
+          "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
+          "oi_notional_used_usd": 75370682.90698236,
+          "scan_pct": 0.12,
+          "short_share": 0.46664877147773953
+        },
+        "bias": {
+          "direction": "upside_liquidity_heavier",
+          "score": 0.7961357893034047
+        },
+        "cluster_count_down": 3,
+        "cluster_count_up": 2,
+        "confidence": 0.9286475262561916,
+        "internal_model_version": "liqmap-v1.1",
+        "mark_price": 1.30673887,
+        "nearest_cluster_down": {
+          "confidence": 0.8148882042898081,
+          "distance_pct": 10.999968953246185,
+          "estimated_notional_usd": 511715.7250656569,
+          "price": 1.162998,
+          "significance_vs_median": 0.6831072015638291,
+          "strength": 0.6499999999999999
+        },
+        "nearest_cluster_up": {
+          "confidence": 0.8483826532762511,
+          "distance_pct": 1.20002016929365,
+          "estimated_notional_usd": 826558.2776438246,
+          "price": 1.32242,
+          "significance_vs_median": 1.286040209283752,
+          "strength": 0.7530513978337464
+        },
+        "price_bin_size": 0.00130673887,
+        "status": "ok",
+        "top_clusters_down": [
+          {
+            "confidence": 0.9286475262561916,
+            "distance_pct": 11.899995750489916,
+            "estimated_notional_usd": 787254.9616394722,
+            "price": 1.151237,
+            "significance_vs_median": 1.0509341562520447,
+            "strength": 1.0
+          },
+          {
+            "confidence": 0.9128949148547953,
+            "distance_pct": 11.200008919915264,
+            "estimated_notional_usd": 749100.176215669,
+            "price": 1.160384,
+            "significance_vs_median": 1.0,
+            "strength": 0.9515343982788688
+          },
+          {
+            "confidence": 0.8148882042898081,
+            "distance_pct": 10.999968953246185,
+            "estimated_notional_usd": 511715.7250656569,
+            "price": 1.162998,
+            "significance_vs_median": 0.6831072015638291,
+            "strength": 0.6499999999999999
+          }
+        ],
+        "top_clusters_up": [
+          {
+            "confidence": 0.9286475262561916,
+            "distance_pct": 2.0000269832028414,
+            "estimated_notional_usd": 1097612.0355417049,
+            "price": 1.332874,
+            "significance_vs_median": 1.707772156035059,
+            "strength": 1.0
+          },
+          {
+            "confidence": 0.8483826532762511,
+            "distance_pct": 1.20002016929365,
+            "estimated_notional_usd": 826558.2776438246,
+            "price": 1.32242,
+            "significance_vs_median": 1.286040209283752,
+            "strength": 0.7530513978337464
+          }
+        ]
+      },
+      "index_price": 1.30752982,
+      "liquidation_tape": {
+        "latest_events": [],
+        "paper_only": true,
+        "primary_window": "60m",
+        "raw_payload_stored": false,
+        "status": "no_recent_events",
+        "windows": {
+          "15m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          },
+          "240m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          },
+          "60m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          }
+        }
+      },
+      "mark_price": 1.30673887,
+      "open_interest": {
+        "calibrated_current_open_interest_usd": 75370682.90698236,
+        "calibration_applied": {
+          "oi_scale_multiplier": 1.002305970357927
+        },
+        "change_24h_pct": 29.038345940263643,
+        "change_24h_usd": 16922137.528426394,
+        "current_open_interest_contracts": 58552443.7,
+        "current_open_interest_usd": 75197280.20782639,
+        "samples": 72,
+        "trend": "rising",
+        "trend_score": 1.0,
+        "window_percentile": 1.0
+      },
+      "orderbook_depth": {
+        "depth_imbalance_score": -0.05040852123369938,
+        "top50_ask_depth_usd": 5021762.1929,
+        "top50_bid_depth_usd": 4539779.038699999
+      },
+      "paper_only": true,
+      "source_errors": [],
+      "symbol": "FILUSDT",
+      "updated_at": "2026-05-09T03:06:19.879455Z",
+      "v13_features": {
+        "funding_pressure_score": 0.027926904352169928,
+        "liq_sweep_confirmation": null,
+        "liqmap_bias_score": 0.7961357893034047,
+        "liqmap_cluster_strength_down": 0.6499999999999999,
+        "liqmap_cluster_strength_up": 0.7530513978337464,
+        "liqmap_confidence": 0.9286475262561916,
+        "liqmap_nearest_down_distance_pct": 10.999968953246185,
+        "liqmap_nearest_down_price": 1.162998,
+        "liqmap_nearest_up_distance_pct": 1.20002016929365,
+        "liqmap_nearest_up_price": 1.32242,
+        "open_interest_trend_score": 1.0,
+        "recent_real_liq_imbalance": 0.0,
+        "recent_real_liq_notional_usd": 0
+      }
+    },
+    {
+      "coinglass_comparison": {
+        "enabled": false,
+        "reason": "disabled for this run"
+      },
+      "coinglass_validation": {
+        "enabled": false,
+        "reason": "disabled for this run"
+      },
+      "exchange": "binance",
+      "funding": {
+        "avg_24h_rate": 5e-05,
+        "avg_window_rate": 3.7616250000000004e-05,
+        "bias": "neutral",
+        "calibrated_latest_rate": 6.981726088042482e-05,
+        "calibrated_latest_rate_pct": 0.006981726088042482,
+        "calibration_applied": {
+          "funding_scale_multiplier": 1.3963452176084963
+        },
+        "latest_rate": 5e-05,
+        "latest_rate_pct": 0.005,
+        "next_funding_time": "2026-05-09T04:00:00Z",
+        "pressure_score": 0.06981726088042482,
+        "samples": 72,
+        "zscore": 0.26608434085840277
+      },
+      "heatmap": {
+        "assumptions": {
+          "calibration_applied": {
+            "confidence_multiplier": 1.0,
+            "funding_scale_multiplier": 1.3963452176084963,
+            "oi_scale_multiplier": 1.002305970357927
+          },
+          "leverage_buckets": [
+            3.0,
+            5.0,
+            10.0,
+            20.0,
+            25.0,
+            50.0,
+            75.0,
+            100.0
+          ],
+          "long_share": 0.538378071305651,
+          "maintenance_margin_buffer": 0.004,
+          "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
+          "oi_notional_used_usd": 16171964.52404537,
+          "scan_pct": 0.12,
+          "short_share": 0.46162192869434904
+        },
+        "bias": {
+          "direction": "downside_liquidity_heavier",
+          "score": -0.4776097737179462
+        },
+        "cluster_count_down": 2,
+        "cluster_count_up": 1,
+        "confidence": 1.0,
+        "internal_model_version": "liqmap-v1.1",
+        "mark_price": 0.03097253,
+        "nearest_cluster_down": {
+          "confidence": 0.9072345511081598,
+          "distance_pct": 3.4014980371316144,
+          "estimated_notional_usd": 256088.0170047871,
+          "price": 0.029919,
+          "significance_vs_median": 0.8472329205863699,
+          "strength": 0.7349558603090279
+        },
+        "nearest_cluster_up": {
+          "confidence": 1.0,
+          "distance_pct": 11.001587535793812,
+          "estimated_notional_usd": 246866.82387091906,
+          "price": 0.03438,
+          "significance_vs_median": 1.0,
+          "strength": 1.0
+        },
+        "price_bin_size": 3.0972530000000004e-05,
+        "status": "ok",
+        "top_clusters_down": [
+          {
+            "confidence": 1.0,
+            "distance_pct": 8.399475276963171,
+            "estimated_notional_usd": 348439.99597079126,
+            "price": 0.028371,
+            "significance_vs_median": 1.15276707941363,
+            "strength": 1.0
+          },
+          {
+            "confidence": 0.9072345511081598,
+            "distance_pct": 3.4014980371316144,
+            "estimated_notional_usd": 256088.0170047871,
+            "price": 0.029919,
+            "significance_vs_median": 0.8472329205863699,
+            "strength": 0.7349558603090279
+          }
+        ],
+        "top_clusters_up": [
+          {
+            "confidence": 1.0,
+            "distance_pct": 11.001587535793812,
+            "estimated_notional_usd": 246866.82387091906,
+            "price": 0.03438,
+            "significance_vs_median": 1.0,
+            "strength": 1.0
+          }
+        ]
+      },
+      "index_price": 0.0309819,
+      "liquidation_tape": {
+        "latest_events": [],
+        "paper_only": true,
+        "primary_window": "60m",
+        "raw_payload_stored": false,
+        "status": "no_recent_events",
+        "windows": {
+          "15m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          },
+          "240m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          },
+          "60m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          }
+        }
+      },
+      "mark_price": 0.03097253,
+      "open_interest": {
+        "calibrated_current_open_interest_usd": 16171964.52404537,
+        "calibration_applied": {
+          "oi_scale_multiplier": 1.002305970357927
+        },
+        "change_24h_pct": 60.82272008041425,
+        "change_24h_usd": 6102122.163469041,
+        "current_open_interest_contracts": 521655978.0,
+        "current_open_interest_usd": 16134758.24978904,
+        "samples": 72,
+        "trend": "rising",
+        "trend_score": 1.0,
+        "window_percentile": 1.0
+      },
+      "orderbook_depth": {
+        "depth_imbalance_score": 0.1969988406889715,
+        "top50_ask_depth_usd": 107912.31683,
+        "top50_bid_depth_usd": 160860.18886
+      },
+      "paper_only": true,
+      "source_errors": [],
+      "symbol": "SAHARAUSDT",
+      "updated_at": "2026-05-09T03:06:21.525752Z",
+      "v13_features": {
+        "funding_pressure_score": 0.06981726088042482,
+        "liq_sweep_confirmation": null,
+        "liqmap_bias_score": -0.4776097737179462,
+        "liqmap_cluster_strength_down": 0.7349558603090279,
+        "liqmap_cluster_strength_up": 1.0,
+        "liqmap_confidence": 1.0,
+        "liqmap_nearest_down_distance_pct": 3.4014980371316144,
+        "liqmap_nearest_down_price": 0.029919,
+        "liqmap_nearest_up_distance_pct": 11.001587535793812,
+        "liqmap_nearest_up_price": 0.03438,
+        "open_interest_trend_score": 1.0,
+        "recent_real_liq_imbalance": 0.0,
+        "recent_real_liq_notional_usd": 0
+      }
+    },
+    {
+      "coinglass_comparison": {
+        "enabled": false,
+        "reason": "disabled for this run"
+      },
+      "coinglass_validation": {
+        "enabled": false,
+        "reason": "disabled for this run"
+      },
+      "exchange": "binance",
+      "funding": {
+        "avg_24h_rate": -0.0017418733333333333,
+        "avg_window_rate": -0.000520412602739726,
+        "bias": "shorts_paying_crowded",
+        "calibrated_latest_rate": -0.0012934764654272783,
+        "calibrated_latest_rate_pct": -0.12934764654272785,
+        "calibration_applied": {
+          "funding_scale_multiplier": 1.3963452176084963
+        },
+        "latest_rate": -0.00092633,
+        "latest_rate_pct": -0.092633,
+        "next_funding_time": "2026-05-09T04:00:00Z",
+        "pressure_score": -1.0,
+        "samples": 73,
+        "zscore": -0.34569010543766976
+      },
+      "heatmap": {
+        "assumptions": {
+          "calibration_applied": {
+            "confidence_multiplier": 1.0,
+            "funding_scale_multiplier": 1.3963452176084963,
+            "oi_scale_multiplier": 1.002305970357927
+          },
+          "leverage_buckets": [
+            3.0,
+            5.0,
+            10.0,
+            20.0,
+            25.0,
+            50.0,
+            75.0,
+            100.0
+          ],
+          "long_share": 0.4061607011683997,
+          "maintenance_margin_buffer": 0.004,
+          "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
+          "oi_notional_used_usd": 17928088.26761866,
+          "scan_pct": 0.12,
+          "short_share": 0.5938392988316004
+        },
+        "bias": {
+          "direction": "upside_liquidity_heavier",
+          "score": 1.0
+        },
+        "cluster_count_down": 0,
+        "cluster_count_up": 1,
+        "confidence": 1.0,
+        "internal_model_version": "liqmap-v1.1",
+        "mark_price": 1.2216,
+        "nearest_cluster_down": null,
+        "nearest_cluster_up": {
+          "confidence": 1.0,
+          "distance_pct": 3.1000327439423763,
+          "estimated_notional_usd": 304143.6260825587,
+          "price": 1.25947,
+          "significance_vs_median": 1.0,
+          "strength": 1.0
+        },
+        "price_bin_size": 0.0012216,
+        "status": "ok",
+        "top_clusters_down": [],
+        "top_clusters_up": [
+          {
+            "confidence": 1.0,
+            "distance_pct": 3.1000327439423763,
+            "estimated_notional_usd": 304143.6260825587,
+            "price": 1.25947,
+            "significance_vs_median": 1.0,
+            "strength": 1.0
+          }
+        ]
+      },
+      "index_price": 1.22705897,
+      "liquidation_tape": {
+        "latest_events": [],
+        "paper_only": true,
+        "primary_window": "60m",
+        "raw_payload_stored": false,
+        "status": "no_recent_events",
+        "windows": {
+          "15m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          },
+          "240m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          },
+          "60m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          }
+        }
+      },
+      "mark_price": 1.2216,
+      "open_interest": {
+        "calibrated_current_open_interest_usd": 17928088.26761866,
+        "calibration_applied": {
+          "oi_scale_multiplier": 1.002305970357927
+        },
+        "change_24h_pct": 8.720233722799904,
+        "change_24h_usd": 1434668.0024613999,
+        "current_open_interest_contracts": 14017775.0,
+        "current_open_interest_usd": 17886841.74076752,
+        "samples": 72,
+        "trend": "rising",
+        "trend_score": 0.8720233722799904,
+        "window_percentile": 0.9305555555555556
+      },
+      "orderbook_depth": {
+        "depth_imbalance_score": -0.2756846692304108,
+        "top50_ask_depth_usd": 30964.8454,
+        "top50_bid_depth_usd": 17581.392
+      },
+      "paper_only": true,
+      "source_errors": [],
+      "symbol": "SIRENUSDT",
+      "updated_at": "2026-05-09T03:06:23.186046Z",
+      "v13_features": {
+        "funding_pressure_score": -1.0,
+        "liq_sweep_confirmation": null,
+        "liqmap_bias_score": 1.0,
+        "liqmap_cluster_strength_down": null,
+        "liqmap_cluster_strength_up": 1.0,
+        "liqmap_confidence": 1.0,
+        "liqmap_nearest_down_distance_pct": null,
+        "liqmap_nearest_down_price": null,
+        "liqmap_nearest_up_distance_pct": 3.1000327439423763,
+        "liqmap_nearest_up_price": 1.25947,
+        "open_interest_trend_score": 0.8720233722799904,
+        "recent_real_liq_imbalance": 0.0,
+        "recent_real_liq_notional_usd": 0
+      }
+    },
+    {
+      "coinglass_comparison": {
+        "enabled": false,
+        "reason": "disabled for this run"
+      },
+      "coinglass_validation": {
+        "enabled": false,
+        "reason": "disabled for this run"
+      },
+      "exchange": "binance",
+      "funding": {
+        "avg_24h_rate": -7.848333333333335e-05,
+        "avg_window_rate": 0.00030643917808219177,
+        "bias": "neutral",
+        "calibrated_latest_rate": -0.0001740265044705469,
+        "calibrated_latest_rate_pct": -0.01740265044705469,
+        "calibration_applied": {
+          "funding_scale_multiplier": 1.3963452176084963
+        },
+        "latest_rate": -0.00012463,
+        "latest_rate_pct": -0.012463,
+        "next_funding_time": "2026-05-09T08:00:00Z",
+        "pressure_score": -0.1740265044705469,
+        "samples": 73,
+        "zscore": -0.5121659360149586
+      },
+      "heatmap": {
+        "assumptions": {
+          "calibration_applied": {
+            "confidence_multiplier": 1.0,
+            "funding_scale_multiplier": 1.3963452176084963,
+            "oi_scale_multiplier": 1.002305970357927
+          },
+          "leverage_buckets": [
+            3.0,
+            5.0,
+            10.0,
+            20.0,
+            25.0,
+            50.0,
+            75.0,
+            100.0
+          ],
+          "long_share": 0.5091168194635344,
+          "maintenance_margin_buffer": 0.004,
+          "model_note": "Synthetic OI distribution across recent traded price areas; validate against CoinGlass before trusting edge.",
+          "oi_notional_used_usd": 12092080.324148118,
+          "scan_pct": 0.12,
+          "short_share": 0.4908831805364656
+        },
+        "bias": {
+          "direction": "upside_liquidity_heavier",
+          "score": 1.0
+        },
+        "cluster_count_down": 0,
+        "cluster_count_up": 2,
+        "confidence": 1.0,
+        "internal_model_version": "liqmap-v1.1",
+        "mark_price": 1560.17982844,
+        "nearest_cluster_down": null,
+        "nearest_cluster_up": {
+          "confidence": 1.0,
+          "distance_pct": 0.597378032333565,
+          "estimated_notional_usd": 221090.76233880303,
+          "price": 1569.5,
+          "significance_vs_median": 1.0770074125029185,
+          "strength": 1.0
+        },
+        "price_bin_size": 1.56017982844,
+        "status": "ok",
+        "top_clusters_down": [],
+        "top_clusters_up": [
+          {
+            "confidence": 1.0,
+            "distance_pct": 0.597378032333565,
+            "estimated_notional_usd": 221090.76233880303,
+            "price": 1569.5,
+            "significance_vs_median": 1.0770074125029185,
+            "strength": 1.0
+          },
+          {
+            "confidence": 0.9499491014395438,
+            "distance_pct": 5.30196391801263,
+            "estimated_notional_usd": 189474.21571459342,
+            "price": 1642.9,
+            "significance_vs_median": 0.9229925874970815,
+            "strength": 0.8569974326844108
+          }
+        ]
+      },
+      "index_price": 1562.1489205,
+      "liquidation_tape": {
+        "latest_events": [],
+        "paper_only": true,
+        "primary_window": "60m",
+        "raw_payload_stored": false,
+        "status": "no_recent_events",
+        "windows": {
+          "15m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          },
+          "240m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          },
+          "60m": {
+            "events": 0,
+            "imbalance_score": 0.0,
+            "largest_event": null,
+            "long_liquidation_notional_usd": 0,
+            "pressure": "no_recent_real_liquidations",
+            "short_liquidation_notional_usd": 0,
+            "total_notional_usd": 0
+          }
+        }
+      },
+      "mark_price": 1560.17982844,
+      "open_interest": {
+        "calibrated_current_open_interest_usd": 12092080.324148118,
+        "calibration_applied": {
+          "oi_scale_multiplier": 1.002305970357927
+        },
+        "change_24h_pct": 11.646432605852839,
+        "change_24h_usd": 1258487.1145358793,
+        "current_open_interest_contracts": 7723.53,
+        "current_open_interest_usd": 12064260.49705161,
+        "samples": 72,
+        "trend": "rising",
+        "trend_score": 1.0,
+        "window_percentile": 0.4444444444444444
+      },
+      "orderbook_depth": {
+        "depth_imbalance_score": -0.7435025225758108,
+        "top50_ask_depth_usd": 109241.1636,
+        "top50_bid_depth_usd": 16071.1456
+      },
+      "paper_only": true,
+      "source_errors": [],
+      "symbol": "SNDKUSDT",
+      "updated_at": "2026-05-09T03:06:25.357086Z",
+      "v13_features": {
+        "funding_pressure_score": -0.1740265044705469,
+        "liq_sweep_confirmation": null,
+        "liqmap_bias_score": 1.0,
+        "liqmap_cluster_strength_down": null,
+        "liqmap_cluster_strength_up": 1.0,
+        "liqmap_confidence": 1.0,
+        "liqmap_nearest_down_distance_pct": null,
+        "liqmap_nearest_down_price": null,
+        "liqmap_nearest_up_distance_pct": 0.597378032333565,
+        "liqmap_nearest_up_price": 1569.5,
+        "open_interest_trend_score": 1.0,
         "recent_real_liq_imbalance": 0.0,
         "recent_real_liq_notional_usd": 0
       }
