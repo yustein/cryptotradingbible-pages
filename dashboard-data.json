@@ -1,9 +1,9 @@
 {
   "schema_version": "1.5.0",
-  "generated_at_utc": "2026-07-02T16:05:17Z",
-  "generated_at_local": "2026-07-02 19:05:17 TRT",
+  "generated_at_utc": "2026-07-02T17:05:14Z",
+  "generated_at_local": "2026-07-02 20:05:14 TRT",
   "source": {
-    "upstream_report_time": "2026-07-02 19:05:02 TRT",
+    "upstream_report_time": "2026-07-02 20:05:02 TRT",
     "generator": "generate_dashboard_data.py",
     "input_file": "professional_briefing_test.json",
     "mode": "derived_with_binance_public_overlay",
@@ -25,8 +25,8 @@
     ],
     "tracked_assets": 18,
     "market_bias": "BULLISH",
-    "avg_change_pct": 1.0437,
-    "top_gainer": "SILVER",
+    "avg_change_pct": 1.1132,
+    "top_gainer": "ZEC",
     "top_loser": "VIX",
     "git_revision": null
   },
@@ -34,8 +34,8 @@
     {
       "symbol": "BTC",
       "display_symbol": "BTC",
-      "price": 61652.57,
-      "change_pct": 2.526,
+      "price": 61646.0,
+      "change_pct": 3.087,
       "source": "binance-spot-public",
       "provenance": {
         "source_name": "Binance Spot Public",
@@ -51,23 +51,15 @@
         "method": "GET",
         "interval": "1h",
         "limit": 120,
-        "data_timestamp_utc": "2026-07-02T16:05:17Z",
-        "fetched_at_utc": "2026-07-02T16:05:18Z",
+        "data_timestamp_utc": "2026-07-02T17:05:14Z",
+        "fetched_at_utc": "2026-07-02T17:05:14Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-02T16:05:17Z",
+      "data_timestamp_utc": "2026-07-02T17:05:14Z",
       "symbol_pair": "BTCUSDT",
-      "volume": 22835.97186,
+      "volume": 23574.44692,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-05-14T14:00:00Z",
-          "open": 79701.73,
-          "high": 81020.0,
-          "low": 79561.52,
-          "close": 80964.85,
-          "volume": 1882.78042
-        },
         {
           "timestamp": "2026-05-14T15:00:00Z",
           "open": 80964.84,
@@ -8055,10 +8047,18 @@
         {
           "timestamp": "2026-07-02T16:00:00Z",
           "open": 61612.93,
-          "high": 61670.55,
-          "low": 61508.0,
-          "close": 61655.13,
-          "volume": 81.8306
+          "high": 61790.13,
+          "low": 61108.99,
+          "close": 61682.34,
+          "volume": 1526.68052
+        },
+        {
+          "timestamp": "2026-07-02T17:00:00Z",
+          "open": 61682.34,
+          "high": 61701.83,
+          "low": 61624.0,
+          "close": 61646.0,
+          "volume": 69.88759
         }
       ],
       "is_major": true,
@@ -8067,39 +8067,39 @@
         "symbol": "BTC",
         "type": "HOLD",
         "reason": "Trend state leans bullish",
-        "confidence": 74
+        "confidence": 46
       },
       "advisory": {
         "symbol": "BTC",
-        "state": "WAIT",
+        "state": "PASS",
         "direction": "LONG",
-        "score": 74,
-        "confidence": "HIGH",
-        "priority": 3,
+        "score": 46,
+        "confidence": "LOW",
+        "priority": 4,
         "reasons": [
           "Trend state leans bullish",
-          "HTF/LTF alignment present",
           "Liquidity reference identified",
           "Fair value gap present",
           "Sweep/run context supports setup",
           "MACD bullish"
         ],
         "blockers": [
+          "HTF/LTF alignment missing",
           "Not in a major kill zone",
-          "Price has not retested bullish FVG yet",
           "Entry zone undefined",
           "Invalidation undefined",
           "Target not defined",
           "Macro backdrop is risk-off"
         ],
         "triggers": [
+          "Needs HTF/LTF alignment",
           "Needs London or New York kill zone timing"
         ],
         "invalidators": [],
         "time_horizon": "CONTEXT",
         "display_signal": "HOLD",
         "display_reason": "Trend state leans bullish",
-        "display_confidence": 74
+        "display_confidence": 46
       },
       "trading_bible": {
         "symbol": "BTC",
@@ -8107,8 +8107,8 @@
         "internal_structure": "bullish",
         "external_structure": "bullish",
         "htf_bias": "bullish",
-        "ltf_bias": "bullish",
-        "alignment_state": "aligned",
+        "ltf_bias": "bearish",
+        "alignment_state": "mixed",
         "pivots": [
           {
             "timestamp": "2026-07-01T22:00:00+00:00",
@@ -8489,7 +8489,6 @@
           "grade": "PASS",
           "execution_status": "PASS",
           "reasons": [
-            "HTF/LTF alignment present",
             "Recent BOS present",
             "Nearby liquidity pools identified",
             "Fair value gap present",
@@ -8498,10 +8497,11 @@
             "Trap/inducement behavior detected"
           ],
           "blocked_conditions": [
-            "Not in a major kill zone",
-            "Price has not retested bullish FVG yet"
+            "HTF/LTF alignment missing",
+            "Not in a major kill zone"
           ],
           "next_trigger_conditions": [
+            "Needs HTF/LTF alignment",
             "Needs London or New York kill zone timing"
           ],
           "watchlist_reason": "Waiting for confluence to improve",
@@ -8512,11 +8512,11 @@
           "target_2": null,
           "rr_estimate": null,
           "invalidation_level": null,
-          "invalidation_reason": "PASS diagnostics: Not in a major kill zone; Price has not retested bullish FVG yet",
+          "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing; Not in a major kill zone",
           "checklist": [
             {
               "name": "HTF/LTF aligned",
-              "ok": true
+              "ok": false
             },
             {
               "name": "In kill zone",
@@ -8551,137 +8551,37 @@
         }
       },
       "technical": {
-        "rsi": 66.64783921173316,
+        "rsi": 59.39621338992368,
         "rsi_status": "NEUTRAL",
-        "macd": 404.72824526068143,
+        "macd": 404.75985894392943,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
       "derivatives": {
         "oi_change_1h_pct": null,
-        "funding_current": 0.0031281537258499997,
+        "funding_current": 0.0036105502891199998,
         "funding_state": "balanced",
-        "long_short_value": 1.276,
+        "long_short_value": 1.301,
         "long_short_type": "funding_oi_price_proxy",
         "liq_bias": "above",
-        "liq_level": 62762.32,
+        "liq_level": 62755.63,
         "liq_confidence": "low",
-        "daily_change_pct": 2.526,
-        "recent_range_pct": 4.236644149627502,
+        "daily_change_pct": 3.087,
+        "recent_range_pct": 4.2370956753074,
         "source": {
           "oi": "okx",
           "funding": "okx",
           "long_short": "internal_proxy"
         },
         "confidence_label": "inferred",
-        "funding_change_1h_pct": 0.0,
-        "funding_change_4h_pct": -8.762043036141327,
+        "funding_change_1h_pct": -0.22545337034118573,
+        "funding_change_4h_pct": 2.54130871150171,
         "oi_change_hist_1h_pct": 0.0,
-        "oi_change_hist_4h_pct": -0.26910961573797687,
+        "oi_change_hist_4h_pct": -0.7873108644311755,
         "long_short_change_1h_pct": 0.0,
-        "sparkline": "\u2588\u2588\u2583\u2583\u2581\u2581\u2581\u2581"
+        "sparkline": "\u2581\u2581\u2586\u2585\u2588\u2588\u2588\u2588"
       },
       "derivatives_history_rows": [
-        {
-          "timestamp": "2026-06-19T06:05:16Z",
-          "funding_current": 0.00352815043027,
-          "long_short_value": 1.056,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1903074770.984006,
-          "liq_bias": "above",
-          "liq_level": 63983.79
-        },
-        {
-          "timestamp": "2026-06-19T06:15:06Z",
-          "funding_current": 0.00366147020529,
-          "long_short_value": 1.063,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1905258866.7698665,
-          "liq_bias": "above",
-          "liq_level": 63974.22
-        },
-        {
-          "timestamp": "2026-06-19T06:15:16Z",
-          "funding_current": 0.00366147020529,
-          "long_short_value": 1.063,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1905258866.7698665,
-          "liq_bias": "above",
-          "liq_level": 63978.74
-        },
-        {
-          "timestamp": "2026-06-19T06:30:07Z",
-          "funding_current": 0.00382368712304,
-          "long_short_value": 1.071,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1907564297.0220063,
-          "liq_bias": "above",
-          "liq_level": 63976.01
-        },
-        {
-          "timestamp": "2026-06-19T06:30:17Z",
-          "funding_current": 0.00382368712304,
-          "long_short_value": 1.071,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1907952545.0535061,
-          "liq_bias": "above",
-          "liq_level": 63989.43
-        },
-        {
-          "timestamp": "2026-06-19T06:45:08Z",
-          "funding_current": 0.00411570906528,
-          "long_short_value": 1.086,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1907801786.077806,
-          "liq_bias": "above",
-          "liq_level": 63946.7
-        },
-        {
-          "timestamp": "2026-06-19T06:45:17Z",
-          "funding_current": 0.00411570906528,
-          "long_short_value": 1.086,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1907631712.274496,
-          "liq_bias": "above",
-          "liq_level": 63935.02
-        },
-        {
-          "timestamp": "2026-06-19T07:00:09Z",
-          "funding_current": 0.00398581832004,
-          "long_short_value": 1.079,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1914791267.650966,
-          "liq_bias": "above",
-          "liq_level": 64021.18
-        },
-        {
-          "timestamp": "2026-06-19T07:00:20Z",
-          "funding_current": 0.00398581832004,
-          "long_short_value": 1.079,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1915501417.344006,
-          "liq_bias": "above",
-          "liq_level": 64033.19
-        },
-        {
-          "timestamp": "2026-06-19T07:05:09Z",
-          "funding_current": 0.00398581832004,
-          "long_short_value": 1.079,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1914791267.650966,
-          "liq_bias": "above",
-          "liq_level": 63981.18
-        },
         {
           "timestamp": "2026-06-19T07:05:17Z",
           "funding_current": 0.00398581832004,
@@ -10981,6 +10881,106 @@
           "oi_current": 1952487251.143745,
           "liq_bias": "above",
           "liq_level": 62762.32
+        },
+        {
+          "timestamp": "2026-07-02T16:15:08Z",
+          "funding_current": 0.0029797499533100002,
+          "long_short_value": 1.269,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1958430406.674065,
+          "liq_bias": "above",
+          "liq_level": 62774.46
+        },
+        {
+          "timestamp": "2026-07-02T16:15:19Z",
+          "funding_current": 0.0029797499533100002,
+          "long_short_value": 1.269,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1958430406.674065,
+          "liq_bias": "above",
+          "liq_level": 62747.48
+        },
+        {
+          "timestamp": "2026-07-02T16:30:09Z",
+          "funding_current": 0.00334431631727,
+          "long_short_value": 1.287,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1969802662.3236163,
+          "liq_bias": "above",
+          "liq_level": 62312.38
+        },
+        {
+          "timestamp": "2026-07-02T16:30:30Z",
+          "funding_current": 0.00334634168492,
+          "long_short_value": 1.287,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1969802662.3236163,
+          "liq_bias": "above",
+          "liq_level": 62338.26
+        },
+        {
+          "timestamp": "2026-07-02T16:45:08Z",
+          "funding_current": 0.0035320955633700002,
+          "long_short_value": 1.297,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1969391723.6149871,
+          "liq_bias": "above",
+          "liq_level": 62548.21
+        },
+        {
+          "timestamp": "2026-07-02T16:45:18Z",
+          "funding_current": 0.0035210690545000004,
+          "long_short_value": 1.296,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1968457751.5487273,
+          "liq_bias": "above",
+          "liq_level": 62541.14
+        },
+        {
+          "timestamp": "2026-07-02T17:00:10Z",
+          "funding_current": 0.0036187087900500002,
+          "long_short_value": 1.301,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1952959869.8090465,
+          "liq_bias": "above",
+          "liq_level": 62769.9
+        },
+        {
+          "timestamp": "2026-07-02T17:00:20Z",
+          "funding_current": 0.0036105502891199998,
+          "long_short_value": 1.301,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1952959869.8090465,
+          "liq_bias": "above",
+          "liq_level": 62776.93
+        },
+        {
+          "timestamp": "2026-07-02T17:05:06Z",
+          "funding_current": 0.0036187087900500002,
+          "long_short_value": 1.301,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1952959869.8090465,
+          "liq_bias": "above",
+          "liq_level": 62775.99
+        },
+        {
+          "timestamp": "2026-07-02T17:05:14Z",
+          "funding_current": 0.0036105502891199998,
+          "long_short_value": 1.301,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1952959869.8090465,
+          "liq_bias": "above",
+          "liq_level": 62755.63
         }
       ],
       "signal_change": null
@@ -10988,8 +10988,8 @@
     {
       "symbol": "ETH",
       "display_symbol": "ETH",
-      "price": 1697.83,
-      "change_pct": 4.967,
+      "price": 1696.5,
+      "change_pct": 5.457,
       "source": "binance-spot-public",
       "provenance": {
         "source_name": "Binance Spot Public",
@@ -11005,23 +11005,15 @@
         "method": "GET",
         "interval": "1h",
         "limit": 120,
-        "data_timestamp_utc": "2026-07-02T16:05:18Z",
-        "fetched_at_utc": "2026-07-02T16:05:18Z",
+        "data_timestamp_utc": "2026-07-02T17:05:14Z",
+        "fetched_at_utc": "2026-07-02T17:05:15Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-02T16:05:18Z",
+      "data_timestamp_utc": "2026-07-02T17:05:14Z",
       "symbol_pair": "ETHUSDT",
-      "volume": 410461.2288,
+      "volume": 410306.1831,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-05-14T14:00:00Z",
-          "open": 2249.42,
-          "high": 2289.0,
-          "low": 2246.13,
-          "close": 2286.99,
-          "volume": 22674.6006
-        },
         {
           "timestamp": "2026-05-14T15:00:00Z",
           "open": 2287.0,
@@ -19009,10 +19001,18 @@
         {
           "timestamp": "2026-07-02T16:00:00Z",
           "open": 1697.06,
-          "high": 1699.2,
-          "low": 1691.48,
-          "close": 1697.82,
-          "volume": 2333.3562
+          "high": 1704.0,
+          "low": 1686.49,
+          "close": 1699.67,
+          "volume": 15511.6102
+        },
+        {
+          "timestamp": "2026-07-02T17:00:00Z",
+          "open": 1699.66,
+          "high": 1699.67,
+          "low": 1695.94,
+          "close": 1696.49,
+          "volume": 632.5003
         }
       ],
       "is_major": true,
@@ -19470,23 +19470,23 @@
         }
       },
       "technical": {
-        "rsi": 75.46210720887241,
+        "rsi": 70.70142317746146,
         "rsi_status": "OVERBOUGHT",
-        "macd": 20.150872403845142,
+        "macd": 20.7637795699643,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
       "derivatives": {
         "oi_change_1h_pct": null,
-        "funding_current": 0.0041761011536000005,
+        "funding_current": 0.00597211457175,
         "funding_state": "balanced",
-        "long_short_value": 1.329,
+        "long_short_value": 1.34,
         "long_short_type": "funding_oi_price_proxy",
         "liq_bias": "above",
-        "liq_level": 1728.39,
+        "liq_level": 1727.04,
         "liq_confidence": "low",
-        "daily_change_pct": 4.967,
-        "recent_range_pct": 7.5260774046871575,
+        "daily_change_pct": 5.457,
+        "recent_range_pct": 7.531977600943117,
         "source": {
           "oi": "okx",
           "funding": "okx",
@@ -19494,113 +19494,13 @@
         },
         "confidence_label": "inferred",
         "funding_change_1h_pct": 0.0,
-        "funding_change_4h_pct": -12.06548814358168,
+        "funding_change_4h_pct": 16.304885770262132,
         "oi_change_hist_1h_pct": 0.0,
-        "oi_change_hist_4h_pct": -0.6522060270015146,
+        "oi_change_hist_4h_pct": 0.2998787839706117,
         "long_short_change_1h_pct": 0.0,
-        "sparkline": "\u2588\u2588\u2588\u2588\u2581\u2581\u2581\u2581"
+        "sparkline": "\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584"
       },
       "derivatives_history_rows": [
-        {
-          "timestamp": "2026-06-19T06:05:16Z",
-          "funding_current": -0.00472431453675,
-          "long_short_value": 0.66,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1247387630.2041032,
-          "liq_bias": "below",
-          "liq_level": 1669.49
-        },
-        {
-          "timestamp": "2026-06-19T06:15:06Z",
-          "funding_current": -0.00508612154873,
-          "long_short_value": 0.66,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1252087128.2696033,
-          "liq_bias": "below",
-          "liq_level": 1668.79
-        },
-        {
-          "timestamp": "2026-06-19T06:15:16Z",
-          "funding_current": -0.00508612154873,
-          "long_short_value": 0.66,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1252087128.2696033,
-          "liq_bias": "below",
-          "liq_level": 1669.0
-        },
-        {
-          "timestamp": "2026-06-19T06:30:07Z",
-          "funding_current": -0.00530728569368,
-          "long_short_value": 0.66,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1255622763.3272033,
-          "liq_bias": "below",
-          "liq_level": 1671.05
-        },
-        {
-          "timestamp": "2026-06-19T06:30:17Z",
-          "funding_current": -0.00530728569368,
-          "long_short_value": 0.66,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1255566659.8841133,
-          "liq_bias": "below",
-          "liq_level": 1671.7
-        },
-        {
-          "timestamp": "2026-06-19T06:45:08Z",
-          "funding_current": -0.00522399055047,
-          "long_short_value": 0.66,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1252272737.0515134,
-          "liq_bias": "below",
-          "liq_level": 1669.48
-        },
-        {
-          "timestamp": "2026-06-19T06:45:17Z",
-          "funding_current": -0.00524115353451,
-          "long_short_value": 0.66,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1252175047.7804234,
-          "liq_bias": "below",
-          "liq_level": 1668.99
-        },
-        {
-          "timestamp": "2026-06-19T07:00:09Z",
-          "funding_current": -0.00541062221784,
-          "long_short_value": 0.66,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1256180894.0979037,
-          "liq_bias": "below",
-          "liq_level": 1669.2
-        },
-        {
-          "timestamp": "2026-06-19T07:00:20Z",
-          "funding_current": -0.00541062221784,
-          "long_short_value": 0.66,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1256840958.8025036,
-          "liq_bias": "below",
-          "liq_level": 1669.75
-        },
-        {
-          "timestamp": "2026-06-19T07:05:09Z",
-          "funding_current": -0.00541062221784,
-          "long_short_value": 0.66,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1256180894.0979037,
-          "liq_bias": "below",
-          "liq_level": 1668.16
-        },
         {
           "timestamp": "2026-06-19T07:05:17Z",
           "funding_current": -0.00541062221784,
@@ -21900,6 +21800,106 @@
           "oi_current": 1310897394.5850022,
           "liq_bias": "above",
           "liq_level": 1728.39
+        },
+        {
+          "timestamp": "2026-07-02T16:15:08Z",
+          "funding_current": 0.0042452003192,
+          "long_short_value": 1.332,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1311125579.8613722,
+          "liq_bias": "above",
+          "liq_level": 1729.51
+        },
+        {
+          "timestamp": "2026-07-02T16:15:19Z",
+          "funding_current": 0.0042452003192,
+          "long_short_value": 1.332,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1311125579.8613722,
+          "liq_bias": "above",
+          "liq_level": 1728.68
+        },
+        {
+          "timestamp": "2026-07-02T16:30:09Z",
+          "funding_current": 0.00455604530833,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1301140258.5409915,
+          "liq_bias": "above",
+          "liq_level": 1719.53
+        },
+        {
+          "timestamp": "2026-07-02T16:30:30Z",
+          "funding_current": 0.00457548522799,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1301140258.5409915,
+          "liq_bias": "above",
+          "liq_level": 1720.61
+        },
+        {
+          "timestamp": "2026-07-02T16:45:08Z",
+          "funding_current": 0.00511159701086,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1310177793.219202,
+          "liq_bias": "above",
+          "liq_level": 1727.65
+        },
+        {
+          "timestamp": "2026-07-02T16:45:18Z",
+          "funding_current": 0.00513487849818,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1309447840.0130422,
+          "liq_bias": "above",
+          "liq_level": 1726.86
+        },
+        {
+          "timestamp": "2026-07-02T17:00:10Z",
+          "funding_current": 0.00597211457175,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1313374596.2724028,
+          "liq_bias": "above",
+          "liq_level": 1729.7
+        },
+        {
+          "timestamp": "2026-07-02T17:00:20Z",
+          "funding_current": 0.00597211457175,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1313374596.2724028,
+          "liq_bias": "above",
+          "liq_level": 1729.61
+        },
+        {
+          "timestamp": "2026-07-02T17:05:06Z",
+          "funding_current": 0.00597211457175,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1313374596.2724028,
+          "liq_bias": "above",
+          "liq_level": 1728.35
+        },
+        {
+          "timestamp": "2026-07-02T17:05:14Z",
+          "funding_current": 0.00597211457175,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1313374596.2724028,
+          "liq_bias": "above",
+          "liq_level": 1727.04
         }
       ],
       "signal_change": null
@@ -21907,8 +21907,8 @@
     {
       "symbol": "SOL",
       "display_symbol": "SOL",
-      "price": 80.98,
-      "change_pct": 4.815,
+      "price": 80.59,
+      "change_pct": 4.744,
       "source": "binance-spot-public",
       "provenance": {
         "source_name": "Binance Spot Public",
@@ -21924,23 +21924,15 @@
         "method": "GET",
         "interval": "1h",
         "limit": 120,
-        "data_timestamp_utc": "2026-07-02T16:05:18Z",
-        "fetched_at_utc": "2026-07-02T16:05:19Z",
+        "data_timestamp_utc": "2026-07-02T17:05:14Z",
+        "fetched_at_utc": "2026-07-02T17:05:15Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-02T16:05:18Z",
+      "data_timestamp_utc": "2026-07-02T17:05:14Z",
       "symbol_pair": "SOLUSDT",
-      "volume": 4033711.606,
+      "volume": 3950079.163,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-05-14T14:00:00Z",
-          "open": 90.78,
-          "high": 92.35,
-          "low": 90.63,
-          "close": 92.28,
-          "volume": 242705.269
-        },
         {
           "timestamp": "2026-05-14T15:00:00Z",
           "open": 92.29,
@@ -29928,10 +29920,18 @@
         {
           "timestamp": "2026-07-02T16:00:00Z",
           "open": 80.87,
-          "high": 80.98,
-          "low": 80.67,
-          "close": 80.98,
-          "volume": 13615.706
+          "high": 81.11,
+          "low": 80.15,
+          "close": 80.56,
+          "volume": 130433.907
+        },
+        {
+          "timestamp": "2026-07-02T17:00:00Z",
+          "open": 80.55,
+          "high": 80.72,
+          "low": 80.51,
+          "close": 80.59,
+          "volume": 15402.712
         }
       ],
       "is_major": true,
@@ -29984,12 +29984,6 @@
         "alignment_state": "mixed",
         "pivots": [
           {
-            "timestamp": "2026-07-01T20:00:00+00:00",
-            "price": 76.52999877929688,
-            "kind": "low",
-            "strength": "internal"
-          },
-          {
             "timestamp": "2026-07-01T22:00:00+00:00",
             "price": 78.77999877929688,
             "kind": "high",
@@ -30017,6 +30011,12 @@
             "timestamp": "2026-07-02T11:00:00+00:00",
             "price": 82.6500015258789,
             "kind": "high",
+            "strength": "internal"
+          },
+          {
+            "timestamp": "2026-07-02T15:00:00+00:00",
+            "price": 80.01000213623047,
+            "kind": "low",
             "strength": "internal"
           },
           {
@@ -30314,23 +30314,23 @@
         }
       },
       "technical": {
-        "rsi": 65.75682382134002,
+        "rsi": 61.70212765957453,
         "rsi_status": "NEUTRAL",
-        "macd": 0.9752402925838908,
+        "macd": 0.9043217809708608,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
       "derivatives": {
         "oi_change_1h_pct": null,
-        "funding_current": 0.00833845124539,
+        "funding_current": 0.00864522097887,
         "funding_state": "balanced",
         "long_short_value": 1.34,
         "long_short_type": "funding_oi_price_proxy",
         "liq_bias": "above",
-        "liq_level": 82.44,
+        "liq_level": 82.04,
         "liq_confidence": "low",
-        "daily_change_pct": 4.815,
-        "recent_range_pct": 7.643862682143736,
+        "daily_change_pct": 4.744,
+        "recent_range_pct": 7.680853703933488,
         "source": {
           "oi": "okx",
           "funding": "okx",
@@ -30338,113 +30338,13 @@
         },
         "confidence_label": "inferred",
         "funding_change_1h_pct": 0.0,
-        "funding_change_4h_pct": -5.680620255331159,
+        "funding_change_4h_pct": 6.024848989761071,
         "oi_change_hist_1h_pct": 0.0,
-        "oi_change_hist_4h_pct": -0.030111850797577534,
+        "oi_change_hist_4h_pct": 0.3679921875406088,
         "long_short_change_1h_pct": 0.0,
         "sparkline": "\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584"
       },
       "derivatives_history_rows": [
-        {
-          "timestamp": "2026-06-19T06:05:16Z",
-          "funding_current": 0.01,
-          "long_short_value": 1.1,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 183845319.69000015,
-          "liq_bias": "above",
-          "liq_level": 70.05
-        },
-        {
-          "timestamp": "2026-06-19T06:15:06Z",
-          "funding_current": 0.01,
-          "long_short_value": 1.1,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 184839947.00080013,
-          "liq_bias": "above",
-          "liq_level": 70.02
-        },
-        {
-          "timestamp": "2026-06-19T06:15:16Z",
-          "funding_current": 0.01,
-          "long_short_value": 1.1,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 184839947.00080013,
-          "liq_bias": "above",
-          "liq_level": 70.05
-        },
-        {
-          "timestamp": "2026-06-19T06:30:07Z",
-          "funding_current": 0.01,
-          "long_short_value": 1.1,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 185171187.15340015,
-          "liq_bias": "above",
-          "liq_level": 70.0
-        },
-        {
-          "timestamp": "2026-06-19T06:30:17Z",
-          "funding_current": 0.01,
-          "long_short_value": 1.1,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 185250327.62500018,
-          "liq_bias": "above",
-          "liq_level": 70.01
-        },
-        {
-          "timestamp": "2026-06-19T06:45:08Z",
-          "funding_current": 0.01,
-          "long_short_value": 1.1,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 185074694.22400016,
-          "liq_bias": "above",
-          "liq_level": 69.87
-        },
-        {
-          "timestamp": "2026-06-19T06:45:17Z",
-          "funding_current": 0.01,
-          "long_short_value": 1.1,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 185023837.08900017,
-          "liq_bias": "above",
-          "liq_level": 69.84
-        },
-        {
-          "timestamp": "2026-06-19T07:00:09Z",
-          "funding_current": 0.01,
-          "long_short_value": 1.1,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 185488243.11990014,
-          "liq_bias": "above",
-          "liq_level": 69.94
-        },
-        {
-          "timestamp": "2026-06-19T07:00:20Z",
-          "funding_current": 0.01,
-          "long_short_value": 1.1,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 185609293.60680014,
-          "liq_bias": "above",
-          "liq_level": 69.99
-        },
-        {
-          "timestamp": "2026-06-19T07:05:09Z",
-          "funding_current": 0.01,
-          "long_short_value": 1.1,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 185488243.11990014,
-          "liq_bias": "above",
-          "liq_level": 69.89
-        },
         {
           "timestamp": "2026-06-19T07:05:17Z",
           "funding_current": 0.01,
@@ -32744,6 +32644,106 @@
           "oi_current": 270515927.24400014,
           "liq_bias": "above",
           "liq_level": 82.44
+        },
+        {
+          "timestamp": "2026-07-02T16:15:08Z",
+          "funding_current": 0.00806918083579,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 271030769.2128001,
+          "liq_bias": "above",
+          "liq_level": 82.44
+        },
+        {
+          "timestamp": "2026-07-02T16:15:19Z",
+          "funding_current": 0.00806918083579,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 271030769.2128001,
+          "liq_bias": "above",
+          "liq_level": 82.42
+        },
+        {
+          "timestamp": "2026-07-02T16:30:09Z",
+          "funding_current": 0.0079446664414,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 267804097.29760012,
+          "liq_bias": "above",
+          "liq_level": 82.02
+        },
+        {
+          "timestamp": "2026-07-02T16:30:30Z",
+          "funding_current": 0.0079446664414,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 267804097.29760012,
+          "liq_bias": "above",
+          "liq_level": 82.02
+        },
+        {
+          "timestamp": "2026-07-02T16:45:08Z",
+          "funding_current": 0.00812979477134,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 267048214.79920012,
+          "liq_bias": "above",
+          "liq_level": 81.71
+        },
+        {
+          "timestamp": "2026-07-02T16:45:18Z",
+          "funding_current": 0.00815395736117,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 266984761.7598001,
+          "liq_bias": "above",
+          "liq_level": 81.7
+        },
+        {
+          "timestamp": "2026-07-02T17:00:10Z",
+          "funding_current": 0.00864522097887,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 267967244.82500008,
+          "liq_bias": "above",
+          "liq_level": 81.99
+        },
+        {
+          "timestamp": "2026-07-02T17:00:20Z",
+          "funding_current": 0.00864522097887,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 267967244.82500008,
+          "liq_bias": "above",
+          "liq_level": 81.97
+        },
+        {
+          "timestamp": "2026-07-02T17:05:06Z",
+          "funding_current": 0.00864522097887,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 267967244.82500008,
+          "liq_bias": "above",
+          "liq_level": 82.11
+        },
+        {
+          "timestamp": "2026-07-02T17:05:14Z",
+          "funding_current": 0.00864522097887,
+          "long_short_value": 1.34,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 267967244.82500008,
+          "liq_bias": "above",
+          "liq_level": 82.04
         }
       ],
       "signal_change": null
@@ -32751,8 +32751,8 @@
     {
       "symbol": "ZEC",
       "display_symbol": "ZEC",
-      "price": 438.65,
-      "change_pct": 5.371,
+      "price": 437.78,
+      "change_pct": 6.379,
       "source": "binance-spot-public",
       "provenance": {
         "source_name": "Binance Spot Public",
@@ -32768,23 +32768,15 @@
         "method": "GET",
         "interval": "1h",
         "limit": 120,
-        "data_timestamp_utc": "2026-07-02T16:05:19Z",
-        "fetched_at_utc": "2026-07-02T16:05:20Z",
+        "data_timestamp_utc": "2026-07-02T17:05:15Z",
+        "fetched_at_utc": "2026-07-02T17:05:16Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-02T16:05:19Z",
+      "data_timestamp_utc": "2026-07-02T17:05:15Z",
       "symbol_pair": "ZECUSDT",
-      "volume": 253352.694,
+      "volume": 250825.376,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-05-14T14:00:00Z",
-          "open": 524.94,
-          "high": 558.77,
-          "low": 524.92,
-          "close": 552.46,
-          "volume": 34046.052
-        },
         {
           "timestamp": "2026-05-14T15:00:00Z",
           "open": 552.53,
@@ -40772,10 +40764,18 @@
         {
           "timestamp": "2026-07-02T16:00:00Z",
           "open": 437.95,
-          "high": 438.84,
-          "low": 436.71,
-          "close": 438.65,
-          "volume": 242.651
+          "high": 439.41,
+          "low": 433.48,
+          "close": 438.76,
+          "volume": 5611.154
+        },
+        {
+          "timestamp": "2026-07-02T17:00:00Z",
+          "open": 438.79,
+          "high": 439.73,
+          "low": 437.66,
+          "close": 437.77,
+          "volume": 513.054
         }
       ],
       "is_major": true,
@@ -41141,23 +41141,23 @@
         }
       },
       "technical": {
-        "rsi": 66.4292589027911,
+        "rsi": 62.02349062435601,
         "rsi_status": "NEUTRAL",
-        "macd": 7.116170506359197,
+        "macd": 7.161281801636335,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
       "derivatives": {
         "oi_change_1h_pct": null,
-        "funding_current": -0.00054574832,
+        "funding_current": -0.00344765911253,
         "funding_state": "balanced",
-        "long_short_value": 1.093,
+        "long_short_value": 0.948,
         "long_short_type": "funding_oi_price_proxy",
         "liq_bias": "below",
-        "liq_level": 430.75,
+        "liq_level": 429.9,
         "liq_confidence": "low",
-        "daily_change_pct": 5.371,
-        "recent_range_pct": 10.944944716744557,
+        "daily_change_pct": 6.379,
+        "recent_range_pct": 10.966695600529945,
         "source": {
           "oi": "okx",
           "funding": "okx",
@@ -41165,113 +41165,13 @@
         },
         "confidence_label": "inferred",
         "funding_change_1h_pct": -0.0,
-        "funding_change_4h_pct": -146.62529713853823,
+        "funding_change_4h_pct": 15.913054138362886,
         "oi_change_hist_1h_pct": 0.0,
-        "oi_change_hist_4h_pct": -0.05225142642324083,
+        "oi_change_hist_4h_pct": -0.12621343373595167,
         "long_short_change_1h_pct": 0.0,
-        "sparkline": "\u2588\u2588\u2585\u2585\u2581\u2581\u2581\u2581"
+        "sparkline": "\u2588\u2588\u2584\u2583\u2581\u2581\u2581\u2581"
       },
       "derivatives_history_rows": [
-        {
-          "timestamp": "2026-06-19T06:05:16Z",
-          "funding_current": -0.00155198315263,
-          "long_short_value": 0.802,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 46397758.8858,
-          "liq_bias": "below",
-          "liq_level": 443.98
-        },
-        {
-          "timestamp": "2026-06-19T06:15:06Z",
-          "funding_current": -0.0020759275413800003,
-          "long_short_value": 0.776,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 46672449.6225,
-          "liq_bias": "below",
-          "liq_level": 444.02
-        },
-        {
-          "timestamp": "2026-06-19T06:15:16Z",
-          "funding_current": -0.0020759275413800003,
-          "long_short_value": 0.776,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 46672449.6225,
-          "liq_bias": "below",
-          "liq_level": 444.44
-        },
-        {
-          "timestamp": "2026-06-19T06:30:07Z",
-          "funding_current": -0.0035586250224399997,
-          "long_short_value": 0.702,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 46443586.0545,
-          "liq_bias": "below",
-          "liq_level": 442.19
-        },
-        {
-          "timestamp": "2026-06-19T06:30:17Z",
-          "funding_current": -0.0035586250224399997,
-          "long_short_value": 0.702,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 46466609.652,
-          "liq_bias": "below",
-          "liq_level": 442.31
-        },
-        {
-          "timestamp": "2026-06-19T06:45:08Z",
-          "funding_current": -0.00362451442329,
-          "long_short_value": 0.699,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 46459454.9313,
-          "liq_bias": "below",
-          "liq_level": 441.41
-        },
-        {
-          "timestamp": "2026-06-19T06:45:17Z",
-          "funding_current": -0.00381478414769,
-          "long_short_value": 0.689,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 46431815.8538,
-          "liq_bias": "below",
-          "liq_level": 441.18
-        },
-        {
-          "timestamp": "2026-06-19T07:00:09Z",
-          "funding_current": -0.00434856220233,
-          "long_short_value": 0.663,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 46784092.928,
-          "liq_bias": "below",
-          "liq_level": 442.66
-        },
-        {
-          "timestamp": "2026-06-19T07:00:20Z",
-          "funding_current": -0.00434856220233,
-          "long_short_value": 0.663,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 46835048.9805,
-          "liq_bias": "below",
-          "liq_level": 443.01
-        },
-        {
-          "timestamp": "2026-06-19T07:05:09Z",
-          "funding_current": -0.00434856220233,
-          "long_short_value": 0.663,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 46784092.928,
-          "liq_bias": "below",
-          "liq_level": 442.35
-        },
         {
           "timestamp": "2026-06-19T07:05:17Z",
           "funding_current": -0.00434856220233,
@@ -43571,6 +43471,106 @@
           "oi_current": 48616797.4455,
           "liq_bias": "below",
           "liq_level": 430.75
+        },
+        {
+          "timestamp": "2026-07-02T16:15:08Z",
+          "funding_current": -0.0016000354093299999,
+          "long_short_value": 1.04,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 48703861.6456,
+          "liq_bias": "below",
+          "liq_level": 430.29
+        },
+        {
+          "timestamp": "2026-07-02T16:15:19Z",
+          "funding_current": -0.0016000354093299999,
+          "long_short_value": 1.04,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 48703861.6456,
+          "liq_bias": "below",
+          "liq_level": 430.17
+        },
+        {
+          "timestamp": "2026-07-02T16:30:09Z",
+          "funding_current": -0.00214650194361,
+          "long_short_value": 1.013,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 48202973.0851,
+          "liq_bias": "below",
+          "liq_level": 428.51
+        },
+        {
+          "timestamp": "2026-07-02T16:30:30Z",
+          "funding_current": -0.00214650194361,
+          "long_short_value": 1.013,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 48254398.051,
+          "liq_bias": "below",
+          "liq_level": 428.44
+        },
+        {
+          "timestamp": "2026-07-02T16:45:08Z",
+          "funding_current": -0.00285724047034,
+          "long_short_value": 0.977,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 48072217.703,
+          "liq_bias": "below",
+          "liq_level": 428.52
+        },
+        {
+          "timestamp": "2026-07-02T16:45:18Z",
+          "funding_current": -0.00297434929841,
+          "long_short_value": 0.971,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 48087163.8648,
+          "liq_bias": "below",
+          "liq_level": 428.61
+        },
+        {
+          "timestamp": "2026-07-02T17:00:10Z",
+          "funding_current": -0.00344765911253,
+          "long_short_value": 0.948,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 48026471.4041,
+          "liq_bias": "below",
+          "liq_level": 430.71
+        },
+        {
+          "timestamp": "2026-07-02T17:00:20Z",
+          "funding_current": -0.00344765911253,
+          "long_short_value": 0.948,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 48026471.4041,
+          "liq_bias": "below",
+          "liq_level": 430.96
+        },
+        {
+          "timestamp": "2026-07-02T17:05:06Z",
+          "funding_current": -0.00344765911253,
+          "long_short_value": 0.948,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 48026471.4041,
+          "liq_bias": "below",
+          "liq_level": 430.2
+        },
+        {
+          "timestamp": "2026-07-02T17:05:14Z",
+          "funding_current": -0.00344765911253,
+          "long_short_value": 0.948,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 48026471.4041,
+          "liq_bias": "below",
+          "liq_level": 429.9
         }
       ],
       "signal_change": null
@@ -43578,8 +43578,8 @@
     {
       "symbol": "HYPE",
       "display_symbol": "HYPE",
-      "price": 65.508,
-      "change_pct": 1.08,
+      "price": 65.552,
+      "change_pct": 2.031,
       "source": "binance-usdm-futures-public",
       "provenance": {
         "source_name": "Binance USD-M Futures Public",
@@ -43595,23 +43595,15 @@
         "method": "GET",
         "interval": "1h",
         "limit": 120,
-        "data_timestamp_utc": "2026-07-02T16:05:13Z",
-        "fetched_at_utc": "2026-07-02T16:05:20Z",
+        "data_timestamp_utc": "2026-07-02T17:05:07Z",
+        "fetched_at_utc": "2026-07-02T17:05:17Z",
         "fallback_reason": "Binance spot unavailable/unsupported (spot HYPEUSDT: HTTP 400: {\"code\":-1121,\"msg\":\"Invalid symbol.\"}); used Binance public USD-M futures market data."
       },
-      "data_timestamp_utc": "2026-07-02T16:05:13Z",
+      "data_timestamp_utc": "2026-07-02T17:05:07Z",
       "symbol_pair": "HYPEUSDT",
-      "volume": 12758254.34,
+      "volume": 12555664.67,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-05-14T14:00:00Z",
-          "open": 41.011,
-          "high": 42.085,
-          "low": 40.873,
-          "close": 41.902,
-          "volume": 1704925.25
-        },
         {
           "timestamp": "2026-05-14T15:00:00Z",
           "open": 41.903,
@@ -51599,10 +51591,18 @@
         {
           "timestamp": "2026-07-02T16:00:00Z",
           "open": 65.399,
-          "high": 65.522,
-          "low": 65.191,
-          "close": 65.514,
-          "volume": 26021.19
+          "high": 65.843,
+          "low": 65.069,
+          "close": 65.661,
+          "volume": 362708.56
+        },
+        {
+          "timestamp": "2026-07-02T17:00:00Z",
+          "open": 65.662,
+          "high": 65.731,
+          "low": 65.493,
+          "close": 65.494,
+          "volume": 16950.19
         }
       ],
       "is_major": false,
@@ -51641,9 +51641,9 @@
       },
       "trading_bible": null,
       "technical": {
-        "rsi": 75.8875739644972,
+        "rsi": 70.81659973226252,
         "rsi_status": "OVERBOUGHT",
-        "macd": 0.4336367127200873,
+        "macd": 0.46876839883861976,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
@@ -51652,8 +51652,8 @@
     {
       "symbol": "ASTER",
       "display_symbol": "ASTER",
-      "price": 0.636,
-      "change_pct": 0.792,
+      "price": 0.634,
+      "change_pct": 1.278,
       "source": "binance-spot-public",
       "provenance": {
         "source_name": "Binance Spot Public",
@@ -51669,23 +51669,15 @@
         "method": "GET",
         "interval": "1h",
         "limit": 120,
-        "data_timestamp_utc": "2026-07-02T16:05:20Z",
-        "fetched_at_utc": "2026-07-02T16:05:22Z",
+        "data_timestamp_utc": "2026-07-02T17:05:17Z",
+        "fetched_at_utc": "2026-07-02T17:05:18Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-02T16:05:20Z",
+      "data_timestamp_utc": "2026-07-02T17:05:17Z",
       "symbol_pair": "ASTERUSDT",
-      "volume": 12625175.85,
+      "volume": 13211082.38,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-05-14T14:00:00Z",
-          "open": 0.67,
-          "high": 0.677,
-          "low": 0.669,
-          "close": 0.675,
-          "volume": 513713.79
-        },
         {
           "timestamp": "2026-05-14T15:00:00Z",
           "open": 0.675,
@@ -59674,9 +59666,17 @@
           "timestamp": "2026-07-02T16:00:00Z",
           "open": 0.636,
           "high": 0.637,
-          "low": 0.635,
-          "close": 0.636,
-          "volume": 30756.63
+          "low": 0.631,
+          "close": 0.634,
+          "volume": 808560.89
+        },
+        {
+          "timestamp": "2026-07-02T17:00:00Z",
+          "open": 0.635,
+          "high": 0.635,
+          "low": 0.633,
+          "close": 0.634,
+          "volume": 38145.96
         }
       ],
       "is_major": false,
@@ -59714,9 +59714,9 @@
       },
       "trading_bible": null,
       "technical": {
-        "rsi": 55.0,
+        "rsi": 50.0,
         "rsi_status": "NEUTRAL",
-        "macd": 0.002094135212392989,
+        "macd": 0.0020256783098543396,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
@@ -59725,8 +59725,8 @@
     {
       "symbol": "SENT",
       "display_symbol": "SENT",
-      "price": 0.01336,
-      "change_pct": 2.063,
+      "price": 0.01326,
+      "change_pct": 1.531,
       "source": "binance-spot-public",
       "provenance": {
         "source_name": "Binance Spot Public",
@@ -59742,23 +59742,15 @@
         "method": "GET",
         "interval": "1h",
         "limit": 120,
-        "data_timestamp_utc": "2026-07-02T16:05:14Z",
-        "fetched_at_utc": "2026-07-02T16:05:21Z",
+        "data_timestamp_utc": "2026-07-02T17:05:16Z",
+        "fetched_at_utc": "2026-07-02T17:05:17Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-02T16:05:14Z",
+      "data_timestamp_utc": "2026-07-02T17:05:16Z",
       "symbol_pair": "SENTUSDT",
-      "volume": 36895063.0,
+      "volume": 37805822.0,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-05-14T14:00:00Z",
-          "open": 0.01588,
-          "high": 0.01617,
-          "low": 0.01585,
-          "close": 0.01617,
-          "volume": 2268477.0
-        },
         {
           "timestamp": "2026-05-14T15:00:00Z",
           "open": 0.01616,
@@ -67746,10 +67738,18 @@
         {
           "timestamp": "2026-07-02T16:00:00Z",
           "open": 0.01334,
-          "high": 0.01336,
-          "low": 0.01334,
-          "close": 0.01336,
-          "volume": 45412.0
+          "high": 0.01337,
+          "low": 0.01326,
+          "close": 0.01328,
+          "volume": 1452650.0
+        },
+        {
+          "timestamp": "2026-07-02T17:00:00Z",
+          "open": 0.01328,
+          "high": 0.01329,
+          "low": 0.01325,
+          "close": 0.01326,
+          "volume": 72381.0
         }
       ],
       "is_major": false,
@@ -67787,9 +67787,9 @@
       },
       "trading_bible": null,
       "technical": {
-        "rsi": 52.57731958762885,
+        "rsi": 43.29896907216488,
         "rsi_status": "NEUTRAL",
-        "macd": 7.612905126447994e-05,
+        "macd": 5.799312062631373e-05,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
@@ -67798,8 +67798,8 @@
     {
       "symbol": "GOLD",
       "display_symbol": "GOLD",
-      "price": 4141.10009765625,
-      "change_pct": 3.222993350974569,
+      "price": 4129.89990234375,
+      "change_pct": 2.9438120563890715,
       "source": "yfinance-macro",
       "provenance": {
         "source_name": "yfinance-macro",
@@ -67815,23 +67815,15 @@
         "method": "python-library",
         "interval": "1h",
         "limit": 240,
-        "data_timestamp_utc": "2026-07-02T11:00:00-04:00",
-        "fetched_at_utc": "2026-07-02T16:05:22Z",
+        "data_timestamp_utc": "2026-07-02T12:00:00-04:00",
+        "fetched_at_utc": "2026-07-02T17:05:19Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-02T11:00:00-04:00",
+      "data_timestamp_utc": "2026-07-02T12:00:00-04:00",
       "symbol_pair": "GC=F",
-      "volume": 6818.0,
+      "volume": 6300.0,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-04-27T01:00:00-04:00",
-          "open": 4741.2001953125,
-          "high": 4741.2001953125,
-          "low": 4724.0,
-          "close": 4725.7001953125,
-          "volume": 2966.0
-        },
         {
           "timestamp": "2026-04-27T02:00:00-04:00",
           "open": 4725.39990234375,
@@ -75821,8 +75813,16 @@
           "open": 4141.89990234375,
           "high": 4144.7001953125,
           "low": 4127.7998046875,
-          "close": 4141.10009765625,
-          "volume": 6818.0
+          "close": 4141.39990234375,
+          "volume": 6996.0
+        },
+        {
+          "timestamp": "2026-07-02T12:00:00-04:00",
+          "open": 4141.7001953125,
+          "high": 4143.2001953125,
+          "low": 4113.0,
+          "close": 4129.89990234375,
+          "volume": 6300.0
         }
       ],
       "is_major": true,
@@ -75901,9 +75901,9 @@
         }
       },
       "technical": {
-        "rsi": 74.7953183987299,
-        "rsi_status": "OVERBOUGHT",
-        "macd": 11.999315464209758,
+        "rsi": 68.60821756227388,
+        "rsi_status": "NEUTRAL",
+        "macd": 12.985303130319153,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
@@ -75912,8 +75912,8 @@
     {
       "symbol": "SILVER",
       "display_symbol": "SILVER",
-      "price": 61.63999938964844,
-      "change_pct": 6.958178461238658,
+      "price": 61.29999923706055,
+      "change_pct": 6.368207705926627,
       "source": "yfinance-macro",
       "provenance": {
         "source_name": "yfinance-macro",
@@ -75929,23 +75929,15 @@
         "method": "python-library",
         "interval": "1h",
         "limit": 240,
-        "data_timestamp_utc": "2026-07-02T11:00:00-04:00",
-        "fetched_at_utc": "2026-07-02T16:05:22Z",
+        "data_timestamp_utc": "2026-07-02T12:00:00-04:00",
+        "fetched_at_utc": "2026-07-02T17:05:19Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-02T11:00:00-04:00",
+      "data_timestamp_utc": "2026-07-02T12:00:00-04:00",
       "symbol_pair": "SI=F",
-      "volume": 2271.0,
+      "volume": 1943.0,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-04-27T01:00:00-04:00",
-          "open": 76.43499755859375,
-          "high": 76.43499755859375,
-          "low": 75.57499694824219,
-          "close": 75.6050033569336,
-          "volume": 1495.0
-        },
         {
           "timestamp": "2026-04-27T02:00:00-04:00",
           "open": 75.65499877929688,
@@ -83935,8 +83927,16 @@
           "open": 61.83000183105469,
           "high": 61.88999938964844,
           "low": 61.2599983215332,
-          "close": 61.63999938964844,
-          "volume": 2271.0
+          "close": 61.599998474121094,
+          "volume": 2355.0
+        },
+        {
+          "timestamp": "2026-07-02T12:00:00-04:00",
+          "open": 61.6150016784668,
+          "high": 61.630001068115234,
+          "low": 60.94499969482422,
+          "close": 61.29999923706055,
+          "volume": 1943.0
         }
       ],
       "is_major": true,
@@ -84015,9 +84015,9 @@
         }
       },
       "technical": {
-        "rsi": 62.565902386698845,
+        "rsi": 56.85589112291983,
         "rsi_status": "NEUTRAL",
-        "macd": 0.324776962045938,
+        "macd": 0.2700558433555216,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
@@ -84026,8 +84026,8 @@
     {
       "symbol": "CRUDE",
       "display_symbol": "CRUDE",
-      "price": 67.66999816894531,
-      "change_pct": -2.6190815236348195,
+      "price": 68.26000213623047,
+      "change_pct": -1.7700327606145367,
       "source": "yfinance-macro",
       "provenance": {
         "source_name": "yfinance-macro",
@@ -84043,23 +84043,15 @@
         "method": "python-library",
         "interval": "1h",
         "limit": 240,
-        "data_timestamp_utc": "2026-07-02T11:00:00-04:00",
-        "fetched_at_utc": "2026-07-02T16:05:22Z",
+        "data_timestamp_utc": "2026-07-02T12:00:00-04:00",
+        "fetched_at_utc": "2026-07-02T17:05:19Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-02T11:00:00-04:00",
+      "data_timestamp_utc": "2026-07-02T12:00:00-04:00",
       "symbol_pair": "CL=F",
-      "volume": 12112.0,
+      "volume": 14019.0,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-04-27T04:00:00-04:00",
-          "open": 96.83999633789062,
-          "high": 97.0999984741211,
-          "low": 96.38999938964844,
-          "close": 96.4800033569336,
-          "volume": 5292.0
-        },
         {
           "timestamp": "2026-04-27T05:00:00-04:00",
           "open": 96.4800033569336,
@@ -92049,8 +92041,16 @@
           "open": 67.73999786376953,
           "high": 67.88999938964844,
           "low": 67.43000030517578,
-          "close": 67.66999816894531,
-          "volume": 12112.0
+          "close": 67.7300033569336,
+          "volume": 13618.0
+        },
+        {
+          "timestamp": "2026-07-02T12:00:00-04:00",
+          "open": 67.73999786376953,
+          "high": 68.27999877929688,
+          "low": 67.68000030517578,
+          "close": 68.26000213623047,
+          "volume": 14019.0
         }
       ],
       "is_major": true,
@@ -92129,9 +92129,9 @@
         }
       },
       "technical": {
-        "rsi": 47.36832351087883,
+        "rsi": 59.6492073435166,
         "rsi_status": "NEUTRAL",
-        "macd": -0.26453139374298473,
+        "macd": -0.07855101241655404,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
@@ -92140,8 +92140,8 @@
     {
       "symbol": "SPX",
       "display_symbol": "SPX",
-      "price": 7472.18994140625,
-      "change_pct": 1.0690982883688454,
+      "price": 7433.0400390625,
+      "change_pct": 0.539555361999412,
       "source": "yfinance-macro",
       "provenance": {
         "source_name": "yfinance-macro",
@@ -92157,13 +92157,13 @@
         "method": "python-library",
         "interval": "1h",
         "limit": 240,
-        "data_timestamp_utc": "2026-07-02T11:30:00-04:00",
-        "fetched_at_utc": "2026-07-02T16:05:23Z",
+        "data_timestamp_utc": "2026-07-02T12:30:00-04:00",
+        "fetched_at_utc": "2026-07-02T17:05:19Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-02T11:30:00-04:00",
+      "data_timestamp_utc": "2026-07-02T12:30:00-04:00",
       "symbol_pair": "^GSPC",
-      "volume": 201044000.0,
+      "volume": 181072000.0,
       "market_cap": null,
       "ohlc": [
         {
@@ -96514,9 +96514,17 @@
           "timestamp": "2026-07-02T11:30:00-04:00",
           "open": 7476.3798828125,
           "high": 7494.18017578125,
-          "low": 7464.27001953125,
-          "close": 7472.18994140625,
-          "volume": 201044000.0
+          "low": 7461.1201171875,
+          "close": 7462.0400390625,
+          "volume": 339710000.0
+        },
+        {
+          "timestamp": "2026-07-02T12:30:00-04:00",
+          "open": 7462.35009765625,
+          "high": 7463.009765625,
+          "low": 7433.0400390625,
+          "close": 7433.0400390625,
+          "volume": 181072000.0
         }
       ],
       "is_major": true,
@@ -96595,9 +96603,9 @@
         }
       },
       "technical": {
-        "rsi": 43.03064295190534,
+        "rsi": 32.600590863643816,
         "rsi_status": "NEUTRAL",
-        "macd": 30.67101166107841,
+        "macd": 23.640433578839293,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
@@ -96606,8 +96614,8 @@
     {
       "symbol": "NDX",
       "display_symbol": "NDX",
-      "price": 25836.1171875,
-      "change_pct": 0.6045203575192686,
+      "price": 25657.763671875,
+      "change_pct": -0.08997912022004462,
       "source": "yfinance-macro",
       "provenance": {
         "source_name": "yfinance-macro",
@@ -96623,13 +96631,13 @@
         "method": "python-library",
         "interval": "1h",
         "limit": 240,
-        "data_timestamp_utc": "2026-07-02T11:30:00-04:00",
-        "fetched_at_utc": "2026-07-02T16:05:23Z",
+        "data_timestamp_utc": "2026-07-02T12:30:00-04:00",
+        "fetched_at_utc": "2026-07-02T17:05:19Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-02T11:30:00-04:00",
+      "data_timestamp_utc": "2026-07-02T12:30:00-04:00",
       "symbol_pair": "^IXIC",
-      "volume": 455923000.0,
+      "volume": 439961000.0,
       "market_cap": null,
       "ohlc": [
         {
@@ -100980,9 +100988,17 @@
           "timestamp": "2026-07-02T11:30:00-04:00",
           "open": 25850.400390625,
           "high": 25953.162109375,
-          "low": 25798.974609375,
-          "close": 25836.1171875,
-          "volume": 455923000.0
+          "low": 25775.228515625,
+          "close": 25778.3828125,
+          "volume": 770177000.0
+        },
+        {
+          "timestamp": "2026-07-02T12:30:00-04:00",
+          "open": 25778.337890625,
+          "high": 25780.515625,
+          "low": 25654.109375,
+          "close": 25657.763671875,
+          "volume": 439961000.0
         }
       ],
       "is_major": true,
@@ -101061,9 +101077,9 @@
         }
       },
       "technical": {
-        "rsi": 28.630463979468104,
+        "rsi": 21.538986914553206,
         "rsi_status": "OVERSOLD",
-        "macd": 145.88750470761443,
+        "macd": 107.86757959951501,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
@@ -101072,8 +101088,8 @@
     {
       "symbol": "DJI",
       "display_symbol": "DJI",
-      "price": 52698.55078125,
-      "change_pct": 1.5805152684429589,
+      "price": 52512.6484375,
+      "change_pct": 1.2221741833887738,
       "source": "yfinance-macro",
       "provenance": {
         "source_name": "yfinance-macro",
@@ -101089,13 +101105,13 @@
         "method": "python-library",
         "interval": "1h",
         "limit": 240,
-        "data_timestamp_utc": "2026-07-02T11:30:00-04:00",
-        "fetched_at_utc": "2026-07-02T16:05:23Z",
+        "data_timestamp_utc": "2026-07-02T12:30:00-04:00",
+        "fetched_at_utc": "2026-07-02T17:05:19Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-02T11:30:00-04:00",
+      "data_timestamp_utc": "2026-07-02T12:30:00-04:00",
       "symbol_pair": "^DJI",
-      "volume": 30795752.0,
+      "volume": 29742193.0,
       "market_cap": null,
       "ohlc": [
         {
@@ -105447,8 +105463,16 @@
           "open": 52657.87109375,
           "high": 52728.48828125,
           "low": 52624.671875,
-          "close": 52698.55078125,
-          "volume": 30795752.0
+          "close": 52655.44140625,
+          "volume": 53030927.0
+        },
+        {
+          "timestamp": "2026-07-02T12:30:00-04:00",
+          "open": 52655.73046875,
+          "high": 52697.51171875,
+          "low": 52512.6484375,
+          "close": 52512.6484375,
+          "volume": 29742193.0
         }
       ],
       "is_major": true,
@@ -105527,9 +105551,9 @@
         }
       },
       "technical": {
-        "rsi": 64.50211425775123,
+        "rsi": 55.60332989791187,
         "rsi_status": "NEUTRAL",
-        "macd": 164.4701693943789,
+        "macd": 153.79140933664894,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
@@ -105538,8 +105562,8 @@
     {
       "symbol": "DXY",
       "display_symbol": "DXY",
-      "price": 100.75499725341797,
-      "change_pct": -0.7349702971428236,
+      "price": 100.81300354003906,
+      "change_pct": -0.6778218090146084,
       "source": "yfinance-macro",
       "provenance": {
         "source_name": "yfinance-macro",
@@ -105555,23 +105579,15 @@
         "method": "python-library",
         "interval": "1h",
         "limit": 240,
-        "data_timestamp_utc": "2026-07-02T11:00:00-04:00",
-        "fetched_at_utc": "2026-07-02T16:05:23Z",
+        "data_timestamp_utc": "2026-07-02T12:00:00-04:00",
+        "fetched_at_utc": "2026-07-02T17:05:19Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-02T11:00:00-04:00",
+      "data_timestamp_utc": "2026-07-02T12:00:00-04:00",
       "symbol_pair": "DX-Y.NYB",
       "volume": 0.0,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-04-28T12:00:00-04:00",
-          "open": 98.61499786376953,
-          "high": 98.68199920654297,
-          "low": 98.59600067138672,
-          "close": 98.64199829101562,
-          "volume": 0.0
-        },
         {
           "timestamp": "2026-04-28T13:00:00-04:00",
           "open": 98.64099884033203,
@@ -113561,7 +113577,15 @@
           "open": 100.76399993896484,
           "high": 100.79499816894531,
           "low": 100.70600128173828,
-          "close": 100.75499725341797,
+          "close": 100.7509994506836,
+          "volume": 0.0
+        },
+        {
+          "timestamp": "2026-07-02T12:00:00-04:00",
+          "open": 100.75199890136719,
+          "high": 100.84500122070312,
+          "low": 100.74600219726562,
+          "close": 100.81300354003906,
           "volume": 0.0
         }
       ],
@@ -113641,9 +113665,9 @@
         }
       },
       "technical": {
-        "rsi": 22.62622023043909,
+        "rsi": 26.683706562714733,
         "rsi_status": "OVERSOLD",
-        "macd": -0.15332598435975342,
+        "macd": -0.162456709957425,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
@@ -113652,8 +113676,8 @@
     {
       "symbol": "VIX",
       "display_symbol": "VIX",
-      "price": 16.719999313354492,
-      "change_pct": -13.233010294931322,
+      "price": 16.709999084472656,
+      "change_pct": -13.284905617423684,
       "source": "yfinance-macro",
       "provenance": {
         "source_name": "yfinance-macro",
@@ -113669,11 +113693,11 @@
         "method": "python-library",
         "interval": "1h",
         "limit": 240,
-        "data_timestamp_utc": "2026-07-02T10:00:00-05:00",
-        "fetched_at_utc": "2026-07-02T16:05:23Z",
+        "data_timestamp_utc": "2026-07-02T11:00:00-05:00",
+        "fetched_at_utc": "2026-07-02T17:05:19Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-02T10:00:00-05:00",
+      "data_timestamp_utc": "2026-07-02T11:00:00-05:00",
       "symbol_pair": "^VIX",
       "volume": 0.0,
       "market_cap": null,
@@ -121603,7 +121627,15 @@
           "open": 16.170000076293945,
           "high": 16.860000610351562,
           "low": 16.1299991607666,
-          "close": 16.719999313354492,
+          "close": 16.670000076293945,
+          "volume": 0.0
+        },
+        {
+          "timestamp": "2026-07-02T11:00:00-05:00",
+          "open": 16.68000030517578,
+          "high": 16.829999923706055,
+          "low": 16.510000228881836,
+          "close": 16.709999084472656,
           "volume": 0.0
         }
       ],
@@ -121683,9 +121715,9 @@
         }
       },
       "technical": {
-        "rsi": 61.18879066867182,
+        "rsi": 55.59997131349845,
         "rsi_status": "NEUTRAL",
-        "macd": -0.05775954340647971,
+        "macd": -0.0351487607925165,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
@@ -121694,8 +121726,8 @@
     {
       "symbol": "USD",
       "display_symbol": "USD",
-      "price": 100.75499725341797,
-      "change_pct": -0.7349702971428236,
+      "price": 100.81300354003906,
+      "change_pct": -0.6778218090146084,
       "source": "yfinance-fx-context",
       "provenance": {
         "source_name": "yfinance-fx-context",
@@ -121711,23 +121743,15 @@
         "method": "python-library",
         "interval": "1h",
         "limit": 240,
-        "data_timestamp_utc": "2026-07-02T11:00:00-04:00",
-        "fetched_at_utc": "2026-07-02T16:05:23Z",
+        "data_timestamp_utc": "2026-07-02T12:00:00-04:00",
+        "fetched_at_utc": "2026-07-02T17:05:19Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-02T11:00:00-04:00",
+      "data_timestamp_utc": "2026-07-02T12:00:00-04:00",
       "symbol_pair": "DX-Y.NYB",
       "volume": 0.0,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-04-28T12:00:00-04:00",
-          "open": 98.61499786376953,
-          "high": 98.68199920654297,
-          "low": 98.59600067138672,
-          "close": 98.64199829101562,
-          "volume": 0.0
-        },
         {
           "timestamp": "2026-04-28T13:00:00-04:00",
           "open": 98.64099884033203,
@@ -129717,7 +129741,15 @@
           "open": 100.76399993896484,
           "high": 100.79499816894531,
           "low": 100.70600128173828,
-          "close": 100.75499725341797,
+          "close": 100.7509994506836,
+          "volume": 0.0
+        },
+        {
+          "timestamp": "2026-07-02T12:00:00-04:00",
+          "open": 100.75199890136719,
+          "high": 100.84500122070312,
+          "low": 100.74600219726562,
+          "close": 100.81300354003906,
           "volume": 0.0
         }
       ],
@@ -129797,9 +129829,9 @@
         }
       },
       "technical": {
-        "rsi": 22.62622023043909,
+        "rsi": 26.683706562714733,
         "rsi_status": "OVERSOLD",
-        "macd": -0.15332598435975342,
+        "macd": -0.162456709957425,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
@@ -129808,8 +129840,8 @@
     {
       "symbol": "EUR",
       "display_symbol": "EUR",
-      "price": 1.1449507474899292,
-      "change_pct": 0.5839171597310905,
+      "price": 1.1437721252441406,
+      "change_pct": 0.480375201622489,
       "source": "yfinance-fx-context",
       "provenance": {
         "source_name": "yfinance-fx-context",
@@ -129825,23 +129857,15 @@
         "method": "python-library",
         "interval": "1h",
         "limit": 240,
-        "data_timestamp_utc": "2026-07-02T17:00:00+01:00",
-        "fetched_at_utc": "2026-07-02T16:05:23Z",
+        "data_timestamp_utc": "2026-07-02T18:00:00+01:00",
+        "fetched_at_utc": "2026-07-02T17:05:20Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-02T17:00:00+01:00",
+      "data_timestamp_utc": "2026-07-02T18:00:00+01:00",
       "symbol_pair": "EURUSD=X",
       "volume": 0.0,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-05-01T11:00:00+01:00",
-          "open": 1.1735711097717285,
-          "high": 1.1749500036239624,
-          "low": 1.1735711097717285,
-          "close": 1.1748120784759521,
-          "volume": 0.0
-        },
         {
           "timestamp": "2026-05-01T12:00:00+01:00",
           "open": 1.1749500036239624,
@@ -137830,8 +137854,16 @@
           "timestamp": "2026-07-02T17:00:00+01:00",
           "open": 1.145081877708435,
           "high": 1.145081877708435,
-          "low": 1.144688606262207,
-          "close": 1.1449507474899292,
+          "low": 1.1439030170440674,
+          "close": 1.144164800643921,
+          "volume": 0.0
+        },
+        {
+          "timestamp": "2026-07-02T18:00:00+01:00",
+          "open": 1.1440337896347046,
+          "high": 1.1440337896347046,
+          "low": 1.1437721252441406,
+          "close": 1.1437721252441406,
           "volume": 0.0
         }
       ],
@@ -137911,9 +137943,9 @@
         }
       },
       "technical": {
-        "rsi": 78.1461754231145,
+        "rsi": 70.79296495802959,
         "rsi_status": "OVERBOUGHT",
-        "macd": 0.0017302299135761867,
+        "macd": 0.0017555902094867903,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
@@ -137922,8 +137954,8 @@
     {
       "symbol": "TRY",
       "display_symbol": "TRY",
-      "price": 46.69129943847656,
-      "change_pct": 0.4760029217217932,
+      "price": 46.69179916381836,
+      "change_pct": 0.47707829134110735,
       "source": "yfinance-fx-context",
       "provenance": {
         "source_name": "yfinance-fx-context",
@@ -137939,23 +137971,15 @@
         "method": "python-library",
         "interval": "1h",
         "limit": 240,
-        "data_timestamp_utc": "2026-07-02T17:00:00+01:00",
-        "fetched_at_utc": "2026-07-02T16:05:23Z",
+        "data_timestamp_utc": "2026-07-02T18:00:00+01:00",
+        "fetched_at_utc": "2026-07-02T17:05:20Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-02T17:00:00+01:00",
+      "data_timestamp_utc": "2026-07-02T18:00:00+01:00",
       "symbol_pair": "TRY=X",
       "volume": 0.0,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-05-01T11:00:00+01:00",
-          "open": 45.18013000488281,
-          "high": 45.183448791503906,
-          "low": 45.16400146484375,
-          "close": 45.17932891845703,
-          "volume": 0.0
-        },
         {
           "timestamp": "2026-05-01T12:00:00+01:00",
           "open": 45.170589447021484,
@@ -145943,9 +145967,17 @@
         {
           "timestamp": "2026-07-02T17:00:00+01:00",
           "open": 46.691200256347656,
-          "high": 46.69200134277344,
-          "low": 46.682350158691406,
-          "close": 46.69129943847656,
+          "high": 46.69369888305664,
+          "low": 46.68048095703125,
+          "close": 46.69169998168945,
+          "volume": 0.0
+        },
+        {
+          "timestamp": "2026-07-02T18:00:00+01:00",
+          "open": 46.69070053100586,
+          "high": 46.69269943237305,
+          "low": 46.6870002746582,
+          "close": 46.69179916381836,
           "volume": 0.0
         }
       ],
@@ -146025,9 +146057,9 @@
         }
       },
       "technical": {
-        "rsi": 71.23039806996381,
+        "rsi": 71.8760698390962,
         "rsi_status": "OVERBOUGHT",
-        "macd": 0.007446631861661501,
+        "macd": 0.008395543462988542,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
@@ -146062,14 +146094,14 @@
     {
       "symbol": "HYPE",
       "type": "HOLD",
-      "reason": "Mixed or neutral momentum",
-      "confidence": 63
+      "reason": "MACD bullish, waiting for stronger entry",
+      "confidence": 67
     },
     {
       "symbol": "ASTER",
       "type": "HOLD",
-      "reason": "Mixed or neutral momentum",
-      "confidence": 63
+      "reason": "MACD bullish, waiting for stronger entry",
+      "confidence": 67
     },
     {
       "symbol": "SENT",
@@ -146084,7 +146116,7 @@
       "public_endpoint_only": true,
       "private_credentials_used": false,
       "real_order": false,
-      "generated_at_utc": "2026-07-02T16:05:17Z",
+      "generated_at_utc": "2026-07-02T17:05:14Z",
       "preferred_market_type": "spot",
       "kline_interval": "1h",
       "kline_limit": 120,
@@ -146116,8 +146148,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-02T16:05:17Z",
-          "fetched_at_utc": "2026-07-02T16:05:18Z",
+          "data_timestamp_utc": "2026-07-02T17:05:14Z",
+          "fetched_at_utc": "2026-07-02T17:05:14Z",
           "fallback_reason": null
         },
         "ETH": {
@@ -146134,8 +146166,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-02T16:05:18Z",
-          "fetched_at_utc": "2026-07-02T16:05:18Z",
+          "data_timestamp_utc": "2026-07-02T17:05:14Z",
+          "fetched_at_utc": "2026-07-02T17:05:15Z",
           "fallback_reason": null
         },
         "SOL": {
@@ -146152,8 +146184,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-02T16:05:18Z",
-          "fetched_at_utc": "2026-07-02T16:05:19Z",
+          "data_timestamp_utc": "2026-07-02T17:05:14Z",
+          "fetched_at_utc": "2026-07-02T17:05:15Z",
           "fallback_reason": null
         },
         "ZEC": {
@@ -146170,8 +146202,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-02T16:05:19Z",
-          "fetched_at_utc": "2026-07-02T16:05:20Z",
+          "data_timestamp_utc": "2026-07-02T17:05:15Z",
+          "fetched_at_utc": "2026-07-02T17:05:16Z",
           "fallback_reason": null
         },
         "HYPE": {
@@ -146188,8 +146220,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-02T16:05:13Z",
-          "fetched_at_utc": "2026-07-02T16:05:20Z",
+          "data_timestamp_utc": "2026-07-02T17:05:07Z",
+          "fetched_at_utc": "2026-07-02T17:05:17Z",
           "fallback_reason": "Binance spot unavailable/unsupported (spot HYPEUSDT: HTTP 400: {\"code\":-1121,\"msg\":\"Invalid symbol.\"}); used Binance public USD-M futures market data."
         },
         "SENT": {
@@ -146206,8 +146238,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-02T16:05:14Z",
-          "fetched_at_utc": "2026-07-02T16:05:21Z",
+          "data_timestamp_utc": "2026-07-02T17:05:16Z",
+          "fetched_at_utc": "2026-07-02T17:05:17Z",
           "fallback_reason": null
         },
         "ASTER": {
@@ -146224,8 +146256,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-02T16:05:20Z",
-          "fetched_at_utc": "2026-07-02T16:05:22Z",
+          "data_timestamp_utc": "2026-07-02T17:05:17Z",
+          "fetched_at_utc": "2026-07-02T17:05:18Z",
           "fallback_reason": null
         }
       }
@@ -146242,7 +146274,7 @@
       "public_endpoint_only": true,
       "private_credentials_used": false,
       "real_order": false,
-      "generated_at_utc": "2026-07-02T16:05:17Z",
+      "generated_at_utc": "2026-07-02T17:05:14Z",
       "preferred_market_type": "spot",
       "kline_interval": "1h",
       "kline_limit": 120,
@@ -146274,8 +146306,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-02T16:05:17Z",
-          "fetched_at_utc": "2026-07-02T16:05:18Z",
+          "data_timestamp_utc": "2026-07-02T17:05:14Z",
+          "fetched_at_utc": "2026-07-02T17:05:14Z",
           "fallback_reason": null
         },
         "ETH": {
@@ -146292,8 +146324,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-02T16:05:18Z",
-          "fetched_at_utc": "2026-07-02T16:05:18Z",
+          "data_timestamp_utc": "2026-07-02T17:05:14Z",
+          "fetched_at_utc": "2026-07-02T17:05:15Z",
           "fallback_reason": null
         },
         "SOL": {
@@ -146310,8 +146342,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-02T16:05:18Z",
-          "fetched_at_utc": "2026-07-02T16:05:19Z",
+          "data_timestamp_utc": "2026-07-02T17:05:14Z",
+          "fetched_at_utc": "2026-07-02T17:05:15Z",
           "fallback_reason": null
         },
         "ZEC": {
@@ -146328,8 +146360,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-02T16:05:19Z",
-          "fetched_at_utc": "2026-07-02T16:05:20Z",
+          "data_timestamp_utc": "2026-07-02T17:05:15Z",
+          "fetched_at_utc": "2026-07-02T17:05:16Z",
           "fallback_reason": null
         },
         "HYPE": {
@@ -146346,8 +146378,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-02T16:05:13Z",
-          "fetched_at_utc": "2026-07-02T16:05:20Z",
+          "data_timestamp_utc": "2026-07-02T17:05:07Z",
+          "fetched_at_utc": "2026-07-02T17:05:17Z",
           "fallback_reason": "Binance spot unavailable/unsupported (spot HYPEUSDT: HTTP 400: {\"code\":-1121,\"msg\":\"Invalid symbol.\"}); used Binance public USD-M futures market data."
         },
         "SENT": {
@@ -146364,8 +146396,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-02T16:05:14Z",
-          "fetched_at_utc": "2026-07-02T16:05:21Z",
+          "data_timestamp_utc": "2026-07-02T17:05:16Z",
+          "fetched_at_utc": "2026-07-02T17:05:17Z",
           "fallback_reason": null
         },
         "ASTER": {
@@ -146382,8 +146414,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-02T16:05:20Z",
-          "fetched_at_utc": "2026-07-02T16:05:22Z",
+          "data_timestamp_utc": "2026-07-02T17:05:17Z",
+          "fetched_at_utc": "2026-07-02T17:05:18Z",
           "fallback_reason": null
         }
       }
@@ -146394,9 +146426,9 @@
     "score": 55,
     "factors": [
       "Tracked assets: 18",
-      "Average change: +1.04%",
-      "Snapshots stored: 1968",
-      "OHLC rows stored: 16623"
+      "Average change: +1.11%",
+      "Snapshots stored: 2128",
+      "OHLC rows stored: 16627"
     ]
   },
   "regime": {
@@ -146407,75 +146439,91 @@
   "watchlists": {
     "top_gainers": [
       {
-        "symbol": "SILVER",
-        "price": 61.63999938964844,
-        "change_pct": 6.958178461238658,
-        "rsi": 62.565902386698845,
-        "macd": 0.324776962045938
+        "symbol": "ZEC",
+        "price": 437.78,
+        "change_pct": 6.379,
+        "rsi": 62.02349062435601,
+        "macd": 7.161281801636335
       },
       {
-        "symbol": "ZEC",
-        "price": 438.65,
-        "change_pct": 5.371,
-        "rsi": 66.4292589027911,
-        "macd": 7.116170506359197
+        "symbol": "SILVER",
+        "price": 61.29999923706055,
+        "change_pct": 6.368207705926627,
+        "rsi": 56.85589112291983,
+        "macd": 0.2700558433555216
       },
       {
         "symbol": "ETH",
-        "price": 1697.83,
-        "change_pct": 4.967,
-        "rsi": 75.46210720887241,
-        "macd": 20.150872403845142
+        "price": 1696.5,
+        "change_pct": 5.457,
+        "rsi": 70.70142317746146,
+        "macd": 20.7637795699643
       }
     ],
     "top_losers": [
       {
         "symbol": "VIX",
-        "price": 16.719999313354492,
-        "change_pct": -13.233010294931322,
-        "rsi": 61.18879066867182,
-        "macd": -0.05775954340647971
+        "price": 16.709999084472656,
+        "change_pct": -13.284905617423684,
+        "rsi": 55.59997131349845,
+        "macd": -0.0351487607925165
       },
       {
         "symbol": "CRUDE",
-        "price": 67.66999816894531,
-        "change_pct": -2.6190815236348195,
-        "rsi": 47.36832351087883,
-        "macd": -0.26453139374298473
+        "price": 68.26000213623047,
+        "change_pct": -1.7700327606145367,
+        "rsi": 59.6492073435166,
+        "macd": -0.07855101241655404
       },
       {
         "symbol": "DXY",
-        "price": 100.75499725341797,
-        "change_pct": -0.7349702971428236,
-        "rsi": 22.62622023043909,
-        "macd": -0.15332598435975342
+        "price": 100.81300354003906,
+        "change_pct": -0.6778218090146084,
+        "rsi": 26.683706562714733,
+        "macd": -0.162456709957425
       }
     ],
     "strongest_rsi": [
       {
-        "symbol": "EUR",
-        "price": 1.1449507474899292,
-        "change_pct": 0.5839171597310905,
-        "rsi": 78.1461754231145,
-        "macd": 0.0017302299135761867
+        "symbol": "TRY",
+        "price": 46.69179916381836,
+        "change_pct": 0.47707829134110735,
+        "rsi": 71.8760698390962,
+        "macd": 0.008395543462988542
       },
       {
         "symbol": "HYPE",
-        "price": 65.508,
-        "change_pct": 1.08,
-        "rsi": 75.8875739644972,
-        "macd": 0.4336367127200873
+        "price": 65.552,
+        "change_pct": 2.031,
+        "rsi": 70.81659973226252,
+        "macd": 0.46876839883861976
       },
       {
-        "symbol": "ETH",
-        "price": 1697.83,
-        "change_pct": 4.967,
-        "rsi": 75.46210720887241,
-        "macd": 20.150872403845142
+        "symbol": "EUR",
+        "price": 1.1437721252441406,
+        "change_pct": 0.480375201622489,
+        "rsi": 70.79296495802959,
+        "macd": 0.0017555902094867903
       }
     ]
   },
   "alerts": [
+    {
+      "timestamp": "2026-07-02T16:45:08Z",
+      "symbol": "ETH",
+      "type": "signal_change",
+      "message": "ETH: BUY -> HOLD",
+      "from": "BUY",
+      "to": "HOLD"
+    },
+    {
+      "timestamp": "2026-07-02T16:30:09Z",
+      "symbol": "ETH",
+      "type": "signal_change",
+      "message": "ETH: HOLD -> BUY",
+      "from": "HOLD",
+      "to": "BUY"
+    },
     {
       "timestamp": "2026-07-02T14:45:08Z",
       "symbol": "ZEC",
@@ -146592,16 +146640,6 @@
   "history": {
     "BTC": {
       "dates": [
-        "2026-06-19T06:15:06Z",
-        "2026-06-19T06:15:16Z",
-        "2026-06-19T06:30:07Z",
-        "2026-06-19T06:30:17Z",
-        "2026-06-19T06:45:08Z",
-        "2026-06-19T06:45:17Z",
-        "2026-06-19T07:00:09Z",
-        "2026-06-19T07:00:20Z",
-        "2026-06-19T07:05:09Z",
-        "2026-06-19T07:05:17Z",
         "2026-06-19T07:15:07Z",
         "2026-06-19T07:15:17Z",
         "2026-06-19T07:30:09Z",
@@ -146831,19 +146869,19 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
-        62843.05,
-        62847.49,
-        62844.8,
-        62857.99,
-        62816.01,
-        62804.54,
-        62889.17,
-        62900.97,
-        62849.88,
-        62841.99,
         62772.99,
         62760.24,
         62754.0,
@@ -147073,19 +147111,19 @@
         61654.0,
         61656.57,
         61644.0,
-        61652.57
+        61652.57,
+        61664.5,
+        61638.0,
+        61210.59,
+        61236.01,
+        61442.25,
+        61435.3,
+        61660.02,
+        61666.93,
+        61666.0,
+        61646.0
       ],
       "change_pct": [
-        -1.765,
-        -1.77,
-        -1.783,
-        -1.763,
-        -2.025,
-        -2.045,
-        -1.883,
-        -1.865,
-        -1.929,
-        -1.951,
         -2.044,
         -2.064,
         -2.406,
@@ -147315,19 +147353,19 @@
         2.497,
         2.501,
         2.542,
-        2.526
+        2.526,
+        2.543,
+        2.515,
+        1.8,
+        1.806,
+        2.315,
+        2.307,
+        2.89,
+        2.943,
+        3.086,
+        3.087
       ],
       "rsi": [
-        54.17014066324205,
-        54.27933608444365,
-        54.21816227834498,
-        54.53550979460931,
-        53.49370363698894,
-        53.20069869379417,
-        57.72426472593951,
-        58.03746110290634,
-        56.512914734975446,
-        56.215366142631744,
         54.20047537087123,
         53.93111814507291,
         53.75958377579166,
@@ -147557,19 +147595,19 @@
         66.63756072373772,
         66.72086808561127,
         66.54721696655588,
-        66.64783921173316
+        66.64783921173316,
+        66.73208181926009,
+        66.49272088489711,
+        59.69717343815028,
+        60.01376581769208,
+        63.30900866076741,
+        63.194627303040605,
+        59.66355260200963,
+        59.79370165888068,
+        59.77850757982706,
+        59.39621338992368
       ],
       "macd": [
-        -336.584188858782,
-        -336.23000082459475,
-        -336.4286333032287,
-        -335.39239398699283,
-        -338.7412258958211,
-        -339.65621165080665,
-        -299.3025902675072,
-        -298.3612797261958,
-        -302.4368352817546,
-        -303.2273765922946,
         -308.8090290139444,
         -309.5868067917254,
         -310.08618001110153,
@@ -147799,7 +147837,17 @@
         404.6373050897455,
         405.3759945484344,
         403.84038201282965,
-        404.72824526068143
+        404.72824526068143,
+        405.47570964814804,
+        403.3617495341896,
+        369.26636491880345,
+        370.9750828675169,
+        387.74556719800603,
+        387.19274668518483,
+        405.8782635023381,
+        406.41911820319365,
+        406.35609826017026,
+        404.75985894392943
       ],
       "signal_type": [
         "HOLD",
@@ -147998,16 +148046,6 @@
         "HOLD",
         "HOLD",
         "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
         "BUY",
         "BUY",
         "HOLD",
@@ -148022,6 +148060,16 @@
         "HOLD",
         "BUY",
         "BUY",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -148046,16 +148094,6 @@
     },
     "ETH": {
       "dates": [
-        "2026-06-19T00:45:08Z",
-        "2026-06-19T00:45:18Z",
-        "2026-06-19T01:00:09Z",
-        "2026-06-19T01:00:20Z",
-        "2026-06-19T01:05:07Z",
-        "2026-06-19T01:05:15Z",
-        "2026-06-19T01:15:08Z",
-        "2026-06-19T01:15:17Z",
-        "2026-06-19T01:30:07Z",
-        "2026-06-19T01:30:17Z",
         "2026-06-19T01:45:07Z",
         "2026-06-19T01:45:16Z",
         "2026-06-19T02:00:08Z",
@@ -148285,19 +148323,19 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
-        1715.98,
-        1715.65,
-        1714.07,
-        1713.97,
-        1719.41,
-        1719.04,
-        1712.33,
-        1712.5,
-        1709.64,
-        1709.75,
         1709.84,
         1709.83,
         1713.49,
@@ -148527,19 +148565,19 @@
         1698.89,
         1698.62,
         1697.82,
-        1697.83
+        1697.83,
+        1698.93,
+        1698.11,
+        1689.13,
+        1690.19,
+        1697.1,
+        1696.33,
+        1699.12,
+        1699.03,
+        1697.79,
+        1696.5
       ],
       "change_pct": [
-        -2.249,
-        -2.293,
-        -2.221,
-        -2.253,
-        -2.19,
-        -2.208,
-        -2.831,
-        -2.761,
-        -2.766,
-        -2.815,
         -2.686,
         -2.661,
         -2.399,
@@ -148769,19 +148807,19 @@
         4.866,
         4.873,
         4.992,
-        4.967
+        4.967,
+        4.919,
+        4.877,
+        4.081,
+        4.113,
+        4.835,
+        4.828,
+        5.236,
+        5.295,
+        5.489,
+        5.457
       ],
       "rsi": [
-        39.03390551851327,
-        38.890863846427344,
-        39.20873929731327,
-        39.16383513074315,
-        41.46410803127223,
-        41.35991456034178,
-        38.673588768645814,
-        38.721721941577016,
-        37.95751399454574,
-        37.95751399454574,
         37.98204667863556,
         37.97931925894012,
         35.63424124513615,
@@ -149011,19 +149049,19 @@
         75.63581541688514,
         75.63421828908554,
         75.46210720887241,
-        75.46210720887241
+        75.46210720887241,
+        75.5910165484633,
+        75.50899387230673,
+        71.68834448794043,
+        71.88805875648976,
+        75.36616077937568,
+        74.97853793832128,
+        72.08320994965946,
+        72.0298860778221,
+        71.37516493182811,
+        70.70142317746146
       ],
       "macd": [
-        -11.546569737608252,
-        -11.572894523932973,
-        -10.467943445386027,
-        -10.475920653363119,
-        -10.051533188975554,
-        -10.071476208918739,
-        -10.60674686418929,
-        -10.593185610628097,
-        -10.812558830001308,
-        -10.812558830001308,
         -10.805379342821652,
         -10.806177063619543,
         -17.572912962116334,
@@ -149253,7 +149291,17 @@
         20.23702624999919,
         20.2362285292013,
         20.150872403845142,
-        20.150872403845142
+        20.150872403845142,
+        20.214690067663014,
+        20.17400630697898,
+        19.47759605056899,
+        19.512695765668468,
+        20.1038068767798,
+        20.032012004984836,
+        20.974377860562754,
+        20.966400652585435,
+        20.867483273668086,
+        20.7637795699643
       ],
       "signal_type": [
         "HOLD",
@@ -149442,16 +149490,6 @@
         "HOLD",
         "HOLD",
         "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
         "BUY",
         "BUY",
         "HOLD",
@@ -149490,6 +149528,16 @@
         "HOLD",
         "HOLD",
         "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "BUY",
+        "BUY",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -149592,7 +149640,17 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
         77.82,
@@ -149687,7 +149745,17 @@
         80.91,
         80.92,
         80.95,
-        80.98
+        80.98,
+        80.98,
+        80.96,
+        80.57,
+        80.57,
+        80.27,
+        80.26,
+        80.54,
+        80.52,
+        80.66,
+        80.59
       ],
       "change_pct": [
         4.836,
@@ -149782,7 +149850,17 @@
         4.535,
         4.588,
         4.83,
-        4.815
+        4.815,
+        4.788,
+        4.748,
+        3.667,
+        3.627,
+        3.414,
+        3.428,
+        4.34,
+        4.355,
+        4.794,
+        4.744
       ],
       "rsi": [
         50.43782837127844,
@@ -149877,7 +149955,17 @@
         65.50000000000006,
         65.50000000000006,
         65.62889165628897,
-        65.75682382134002
+        65.75682382134002,
+        65.75682382134002,
+        65.6716417910448,
+        63.09378806333746,
+        62.78787878787881,
+        60.798122065727746,
+        60.6557377049181,
+        61.4035087719299,
+        61.4805520702635,
+        62.03473945409432,
+        61.70212765957453
       ],
       "macd": [
         0.876531603475172,
@@ -149972,7 +150060,17 @@
         0.9704539677975674,
         0.9704539677975674,
         0.9728471301907433,
-        0.9752402925838908
+        0.9752402925838908,
+        0.9752402925838908,
+        0.9736448509884639,
+        0.944129181472789,
+        0.9409382982819068,
+        0.9193998367434375,
+        0.9178043951480106,
+        0.900333176982258,
+        0.9011308977799786,
+        0.9099058265549047,
+        0.9043217809708608
       ],
       "signal_type": [
         "HOLD",
@@ -150048,6 +150146,16 @@
         "BUY",
         "BUY",
         "BUY",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -150164,7 +150272,17 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
         420.63,
@@ -150259,7 +150377,17 @@
         438.45,
         438.45,
         438.73,
-        438.65
+        438.65,
+        438.18,
+        438.05,
+        436.36,
+        436.29,
+        436.37,
+        436.47,
+        438.6,
+        438.86,
+        438.09,
+        437.78
       ],
       "change_pct": [
         5.485,
@@ -150354,7 +150482,17 @@
         5.61,
         5.661,
         5.358,
-        5.371
+        5.371,
+        5.558,
+        5.503,
+        5.132,
+        5.087,
+        5.429,
+        5.481,
+        6.08,
+        6.218,
+        6.462,
+        6.379
       ],
       "rsi": [
         58.71345029239764,
@@ -150449,7 +150587,17 @@
         66.30602782071094,
         66.29951690821252,
         66.48087641745146,
-        66.4292589027911
+        66.4292589027911,
+        66.12276612276611,
+        66.03700097370981,
+        64.0121350018961,
+        63.92728649876919,
+        64.02427460648587,
+        64.14592437773136,
+        63.1027253668763,
+        63.39979013641129,
+        62.25439503619436,
+        62.02349062435601
       ],
       "macd": [
         5.361727070780432,
@@ -150544,7 +150692,17 @@
         7.101013811202506,
         7.1002160904047855,
         7.122552272740961,
-        7.116170506359197
+        7.116170506359197,
+        7.0786776288663305,
+        7.068307258495906,
+        6.933492443681132,
+        6.927908398097088,
+        6.934290164478853,
+        6.942267372456058,
+        7.227492627847141,
+        7.249031089385539,
+        7.175640775995305,
+        7.161281801636335
       ],
       "signal_type": [
         "HOLD",
@@ -150624,6 +150782,16 @@
         "HOLD",
         "BUY",
         "BUY",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -150736,7 +150904,17 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
         63.247,
@@ -150831,7 +151009,17 @@
         65.494,
         65.49,
         65.492,
-        65.508
+        65.508,
+        65.672,
+        65.578,
+        65.428,
+        65.386,
+        65.46,
+        65.443,
+        65.661,
+        65.634,
+        65.595,
+        65.552
       ],
       "change_pct": [
         -1.839,
@@ -150926,7 +151114,17 @@
         1.365,
         1.359,
         1.055,
-        1.08
+        1.08,
+        1.542,
+        1.396,
+        0.87,
+        0.805,
+        1.233,
+        1.206,
+        1.912,
+        1.864,
+        2.155,
+        2.031
       ],
       "rsi": [
         41.20610927413009,
@@ -151021,7 +151219,17 @@
         75.80576759966092,
         75.78008915304622,
         75.83650995340977,
-        75.8875739644972
+        75.8875739644972,
+        76.37681159420305,
+        75.93842260649532,
+        74.43850267379696,
+        74.90314248816198,
+        75.56745182012864,
+        75.5202746191806,
+        73.13364055299547,
+        73.31947331947357,
+        71.82620502376122,
+        70.81659973226252
       ],
       "macd": [
         -0.4699562608358576,
@@ -151116,9 +151324,29 @@
         0.4323603594437344,
         0.43196149904487413,
         0.43283899192236674,
-        0.4336367127200873
+        0.4336367127200873,
+        0.441454376537763,
+        0.43443443351782207,
+        0.4204743195576981,
+        0.4227877098710877,
+        0.42869084377421984,
+        0.42797289505627134,
+        0.4800960341662659,
+        0.4809735270437585,
+        0.4737940398642593,
+        0.46876839883861976
       ],
       "signal_type": [
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -151308,7 +151536,17 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
         0.629,
@@ -151403,7 +151641,17 @@
         0.636,
         0.636,
         0.636,
-        0.636
+        0.636,
+        0.635,
+        0.635,
+        0.633,
+        0.633,
+        0.633,
+        0.633,
+        0.634,
+        0.635,
+        0.634,
+        0.634
       ],
       "change_pct": [
         0.479,
@@ -151498,7 +151746,17 @@
         0.792,
         0.952,
         0.792,
-        0.792
+        0.792,
+        0.794,
+        0.794,
+        0.476,
+        0.317,
+        0.636,
+        0.636,
+        1.116,
+        1.276,
+        1.278,
+        1.278
       ],
       "rsi": [
         43.99999999999999,
@@ -151593,7 +151851,17 @@
         55.0,
         55.0,
         55.0,
-        55.0
+        55.0,
+        53.65853658536585,
+        53.65853658536585,
+        51.16279069767442,
+        51.16279069767442,
+        51.16279069767442,
+        51.16279069767442,
+        50.0,
+        51.21951219512195,
+        50.0,
+        50.0
       ],
       "macd": [
         0.00047208042794821825,
@@ -151688,9 +151956,29 @@
         0.002094135212392989,
         0.002094135212392989,
         0.002094135212392989,
-        0.002094135212392989
+        0.002094135212392989,
+        0.0020143631326210443,
+        0.0020143631326210443,
+        0.0018548189730768216,
+        0.0018548189730768216,
+        0.0018548189730768216,
+        0.0018548189730768216,
+        0.0020256783098543396,
+        0.0021054503896265064,
+        0.0020256783098543396,
+        0.0020256783098543396
       ],
       "signal_type": [
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -151880,7 +152168,17 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
         0.01333,
@@ -151975,7 +152273,17 @@
         0.01335,
         0.01335,
         0.01335,
-        0.01336
+        0.01336,
+        0.01337,
+        0.01336,
+        0.01332,
+        0.01332,
+        0.0133,
+        0.0133,
+        0.01328,
+        0.01328,
+        0.01326,
+        0.01326
       ],
       "change_pct": [
         2.067,
@@ -152070,7 +152378,17 @@
         2.064,
         2.064,
         1.986,
-        2.063
+        2.063,
+        1.983,
+        1.907,
+        1.524,
+        1.524,
+        1.372,
+        1.372,
+        1.142,
+        1.22,
+        1.531,
+        1.531
       ],
       "rsi": [
         57.812500000000014,
@@ -152165,7 +152483,17 @@
         52.08333333333333,
         52.08333333333333,
         52.08333333333333,
-        52.57731958762885
+        52.57731958762885,
+        52.57731958762885,
+        52.57731958762885,
+        50.50505050505048,
+        50.50505050505048,
+        49.50495049504944,
+        49.50495049504944,
+        44.21052631578944,
+        44.21052631578944,
+        43.29896907216488,
+        43.29896907216488
       ],
       "macd": [
         5.684207024662068e-05,
@@ -152260,9 +152588,29 @@
         7.533133046675952e-05,
         7.533133046675952e-05,
         7.533133046675952e-05,
-        7.612905126447994e-05
+        7.612905126447994e-05,
+        7.612905126447994e-05,
+        7.612905126447994e-05,
+        7.293816807359826e-05,
+        7.293816807359826e-05,
+        7.134272647815569e-05,
+        7.134272647815569e-05,
+        5.958856222175457e-05,
+        5.958856222175457e-05,
+        5.799312062631373e-05,
+        5.799312062631373e-05
       ],
       "signal_type": [
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -152452,7 +152800,17 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
         4087.800048828125,
@@ -152547,7 +152905,17 @@
         4140.60009765625,
         4139.7001953125,
         4141.5,
-        4141.10009765625
+        4141.10009765625,
+        4138.89990234375,
+        4139.7001953125,
+        4136.5,
+        4135.10009765625,
+        4116.7998046875,
+        4116.10009765625,
+        4129.2998046875,
+        4128.39990234375,
+        4129.7001953125,
+        4129.89990234375
       ],
       "change_pct": [
         1.8944114630588365,
@@ -152642,7 +153010,17 @@
         3.210530117664972,
         3.188098731932952,
         3.2329615033969916,
-        3.222993350974569
+        3.222993350974569,
+        3.1681502559618284,
+        3.188098731932952,
+        3.1083291703010154,
+        3.073434551259398,
+        2.617272909452358,
+        2.599831685494689,
+        2.9288537421922984,
+        2.9064223564602787,
+        2.9388340657409997,
+        2.9438120563890715
       ],
       "rsi": [
         47.269998192233174,
@@ -152737,7 +153115,17 @@
         74.56040804684073,
         74.14131217137768,
         74.98426887272592,
-        74.7953183987299
+        74.7953183987299,
+        72.61519059938878,
+        72.9942747027862,
+        71.50164658678393,
+        70.86772930173157,
+        63.50734015504736,
+        63.25614389557552,
+        68.35671088640821,
+        67.98299023584954,
+        68.52431321248365,
+        68.60821756227388
       ],
       "macd": [
         19.542300861215608,
@@ -152832,9 +153220,29 @@
         11.959429424324298,
         11.88764234277096,
         12.031216505876728,
-        11.999315464209758
+        11.999315464209758,
+        13.703251848268337,
+        13.767092882811994,
+        13.51180664705771,
+        13.400133525618912,
+        11.940281095063256,
+        11.884464009949625,
+        12.937432092214294,
+        12.865645010660955,
+        12.969372085090981,
+        12.985303130319153
       ],
       "signal_type": [
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -153024,7 +153432,17 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
         60.45000076293945,
@@ -153119,7 +153537,17 @@
         61.6150016784668,
         61.60499954223633,
         61.654998779296875,
-        61.63999938964844
+        61.63999938964844,
+        61.5099983215332,
+        61.529998779296875,
+        61.5,
+        61.48500061035156,
+        61.060001373291016,
+        61.040000915527344,
+        61.314998626708984,
+        61.314998626708984,
+        61.32500076293945,
+        61.29999923706055
       ],
       "change_pct": [
         4.893284127291872,
@@ -153214,7 +153642,17 @@
         6.914802249685071,
         6.897446469631125,
         6.984205512028939,
-        6.958178461238658
+        6.958178461238658,
+        6.73259965557183,
+        6.767304596389084,
+        6.715250494808524,
+        6.689223444018243,
+        5.9517616547008645,
+        5.9170567138836105,
+        6.394234756716909,
+        6.394234756716909,
+        6.411590536770855,
+        6.368207705926627
       ],
       "rsi": [
         46.46466981750045,
@@ -153309,7 +153747,17 @@
         62.29223583973066,
         62.18340524062568,
         62.73126799796729,
-        62.565902386698845
+        62.565902386698845,
+        59.020837296166285,
+        59.23565861982309,
+        58.91403021101311,
+        58.754522205803575,
+        54.56833168232302,
+        54.38597721252419,
+        57.0052437029134,
+        57.0052437029134,
+        57.105274253273116,
+        56.85589112291983
       ],
       "macd": [
         0.5218311950316092,
@@ -153404,9 +153852,29 @@
         0.32278284263544066,
         0.3219849514261739,
         0.32597349455350866,
-        0.324776962045938
+        0.324776962045938,
+        0.2868079070741416,
+        0.288403385186335,
+        0.28601032017120076,
+        0.2848137876636372,
+        0.2509107146217744,
+        0.24931523650956677,
+        0.27125237586309225,
+        0.27125237586309225,
+        0.272050267072359,
+        0.2700558433555216
       ],
       "signal_type": [
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -153596,7 +154064,17 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
         67.5199966430664,
@@ -153691,7 +154169,17 @@
         67.47000122070312,
         67.51000213623047,
         67.66000366210938,
-        67.66999816894531
+        67.66999816894531,
+        67.8499984741211,
+        67.8499984741211,
+        68.18000030517578,
+        68.19000244140625,
+        68.04000091552734,
+        68.04000091552734,
+        68.1500015258789,
+        68.19999694824219,
+        68.25,
+        68.26000213623047
       ],
       "change_pct": [
         -2.8349421229875125,
@@ -153786,7 +154274,17 @@
         -2.9068883366876395,
         -2.849324778251844,
         -2.6334641788991515,
-        -2.6190815236348195
+        -2.6190815236348195,
+        -2.36005100023682,
+        -2.36005100023682,
+        -1.885159877486127,
+        -1.870766243095639,
+        -2.086626842448332,
+        -2.086626842448332,
+        -1.9283298015314345,
+        -1.8563835878313075,
+        -1.7844263950050245,
+        -1.7700327606145367
       ],
       "rsi": [
         27.464633602510162,
@@ -153881,7 +154379,17 @@
         43.820186191643664,
         44.4866688520215,
         47.17742679767918,
-        47.36832351087883
+        47.36832351087883,
+        52.868855021981524,
+        52.868855021981524,
+        58.48381019533531,
+        58.63318138531584,
+        56.27382382121038,
+        56.27382382121038,
+        58.02927024859663,
+        58.7813688680819,
+        59.50709617104956,
+        59.6492073435166
       ],
       "macd": [
         -0.4597732565755024,
@@ -153976,9 +154484,29 @@
         -0.2804855662523238,
         -0.277294610027937,
         -0.26532867633959256,
-        -0.26453139374298473
+        -0.26453139374298473,
+        -0.11125785725718629,
+        -0.11125785725718629,
+        -0.08493292486535609,
+        -0.08413503365608221,
+        -0.09610096734444085,
+        -0.09610096734444085,
+        -0.08732598988049745,
+        -0.0833377510594886,
+        -0.0793489036258137,
+        -0.07855101241655404
       ],
       "signal_type": [
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -154168,7 +154696,17 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
         7485.02001953125,
@@ -154263,7 +154801,17 @@
         7475.60986328125,
         7474.58984375,
         7470.9501953125,
-        7472.18994140625
+        7472.18994140625,
+        7468.7099609375,
+        7470.0,
+        7461.85009765625,
+        7459.60009765625,
+        7458.9599609375,
+        7457.35986328125,
+        7448.14013671875,
+        7448.56982421875,
+        7432.85009765625,
+        7433.0400390625
       ],
       "change_pct": [
         0.9115022879553332,
@@ -154358,7 +154906,17 @@
         1.1153562693400663,
         1.1015594500583872,
         1.0523294400413283,
-        1.0690982883688454
+        1.0690982883688454,
+        1.0220279527917624,
+        1.0394770655453267,
+        0.9292412059806999,
+        0.8988076285513187,
+        0.8901491172644441,
+        0.8685061413017527,
+        0.7437998025383902,
+        0.7496117704502512,
+        0.5369862080020099,
+        0.539555361999412
       ],
       "rsi": [
         67.62717666487355,
@@ -154453,7 +155011,17 @@
         44.14221697678278,
         43.804717008754714,
         42.64138977760992,
-        43.03064295190534
+        43.03064295190534,
+        41.95557830235639,
+        42.34778362771739,
+        39.119825117351,
+        38.518268855347515,
+        38.35048874653624,
+        37.937426664168726,
+        35.720585641206554,
+        35.81813047512358,
+        32.564812228626565,
+        32.600590863643816
       ],
       "macd": [
         38.53763794006045,
@@ -154548,9 +155116,29 @@
         30.943825941704745,
         30.862456862289037,
         30.57211453678974,
-        30.67101166107841
+        30.67101166107841,
+        30.393406381519526,
+        30.496315480522753,
+        25.938671871218503,
+        25.759184691731207,
+        25.70811965433768,
+        25.580476536460992,
+        24.844999773639756,
+        24.879276839167687,
+        23.625281557828202,
+        23.640433578839293
       ],
       "signal_type": [
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -154740,7 +155328,17 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
         26049.15625,
@@ -154835,7 +155433,17 @@
         25863.20703125,
         25857.03515625,
         25830.990234375,
-        25836.1171875
+        25836.1171875,
+        25824.234375,
+        25824.927734375,
+        25776.9375,
+        25766.6796875,
+        25765.431640625,
+        25758.03125,
+        25712.640625,
+        25714.986328125,
+        25655.42578125,
+        25657.763671875
       ],
       "change_pct": [
         0.7907100505367942,
@@ -154930,7 +155538,17 @@
         0.7100068250581089,
         0.6859738591300096,
         0.5845562639872243,
-        0.6045203575192686
+        0.6045203575192686,
+        0.5582492927387132,
+        0.560949198721142,
+        0.37407767789224194,
+        0.334134280090224,
+        0.32927444932185207,
+        0.30045770631502683,
+        0.1237089315779939,
+        0.1328429797044645,
+        -0.09908274687065687,
+        -0.08997912022004462
       ],
       "rsi": [
         64.41587879867075,
@@ -155025,7 +155643,17 @@
         30.321269701795813,
         29.711373331117386,
         28.42758535051277,
-        28.630463979468104
+        28.630463979468104,
+        28.164599280025243,
+        28.191365477436577,
+        24.90934549240656,
+        24.57830837512715,
+        24.538631190426273,
+        24.305969140838087,
+        22.970141559184782,
+        23.035566485873716,
+        21.481966400976646,
+        21.538986914553206
       ],
       "macd": [
         215.25666450235803,
@@ -155120,9 +155748,29 @@
         148.04851788425003,
         147.55617457940753,
         145.47851699393505,
-        145.88750470761443
+        145.88750470761443,
+        144.93958804094655,
+        144.99489876031657,
+        117.37432372344483,
+        116.55603668640833,
+        116.45647739153355,
+        115.86613284025589,
+        112.24522828185218,
+        112.4323498986596,
+        107.68108120207762,
+        107.86757959951501
       ],
       "signal_type": [
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -155312,7 +155960,17 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
         52315.578125,
@@ -155407,7 +156065,17 @@
         52708.94140625,
         52708.26953125,
         52692.76171875,
-        52698.55078125
+        52698.55078125,
+        52675.9296875,
+        52682.1796875,
+        52649.26171875,
+        52625.6484375,
+        52645.6015625,
+        52637.23828125,
+        52629.23828125,
+        52626.609375,
+        52517.0703125,
+        52512.6484375
       ],
       "change_pct": [
         1.038373764159591,
@@ -155502,7 +156170,17 @@
         1.6005439983760164,
         1.599248907568315,
         1.5693564046231128,
-        1.5805152684429589
+        1.5805152684429589,
+        1.5369113680511037,
+        1.5489587244018148,
+        1.4855068044221629,
+        1.4399903862096322,
+        1.4784515713592776,
+        1.4623307026424823,
+        1.4469100865135718,
+        1.441842667248554,
+        1.230697688006902,
+        1.2221741833887738
       ],
       "rsi": [
         56.984019583992215,
@@ -155597,7 +156275,17 @@
         64.79586122794356,
         64.77701415605274,
         64.33631888460981,
-        64.50211425775123
+        64.50211425775123,
+        63.84534037067448,
+        64.02921833329626,
+        62.007337250046106,
+        60.79702680972939,
+        61.81658803715122,
+        61.38510892173675,
+        60.97797151388359,
+        60.84535716016869,
+        55.7898292429266,
+        55.60332989791187
       ],
       "macd": [
         132.75172345169995,
@@ -155692,9 +156380,29 @@
         165.2990511607568,
         165.24545429466525,
         164.00836383882415,
-        164.4701693943789
+        164.4701693943789,
+        162.66563769921777,
+        163.1642131977933,
+        164.6893349064485,
+        162.80565435089375,
+        164.39735663009196,
+        163.73020029105828,
+        163.09202365288365,
+        162.88231033379998,
+        154.1441515018887,
+        153.79140933664894
       ],
       "signal_type": [
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -155884,7 +156592,17 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
         101.1989974975586,
@@ -155979,7 +156697,17 @@
         100.77400207519531,
         100.77999877929688,
         100.75700378417969,
-        100.75499725341797
+        100.75499725341797,
+        100.76200103759766,
+        100.76799774169922,
+        100.81500244140625,
+        100.81700134277344,
+        100.83999633789062,
+        100.84100341796875,
+        100.80999755859375,
+        100.81700134277344,
+        100.81099700927734,
+        100.81300354003906
       ],
       "change_pct": [
         -0.2975359402955771,
@@ -156074,7 +156802,17 @@
         -0.7162465191699992,
         -0.7103384944864826,
         -0.7329934390108073,
-        -0.7349702971428236
+        -0.7349702971428236,
+        -0.7280700851078766,
+        -0.72216206042436,
+        -0.6758524674534362,
+        -0.673883125892264,
+        -0.6512281813679393,
+        -0.6502359940165089,
+        -0.6807833379272109,
+        -0.673883125892264,
+        -0.6797986671466247,
+        -0.6778218090146084
       ],
       "rsi": [
         23.85689354275742,
@@ -156169,7 +156907,17 @@
         23.492888014122514,
         23.897466949238066,
         22.666576243599735,
-        22.62622023043909
+        22.62622023043909,
+        23.3949324959068,
+        23.79684141669003,
+        26.806860073729766,
+        26.929600542765158,
+        28.312538068834726,
+        28.371909174755146,
+        26.49772403891346,
+        26.929600542765158,
+        26.55966548729495,
+        26.683706562714733
       ],
       "macd": [
         -0.004419780151636132,
@@ -156264,9 +157012,29 @@
         -0.1518099302008835,
         -0.15133156064291597,
         -0.15316591922776013,
-        -0.15332598435975342
+        -0.15332598435975342,
+        -0.16652528565076352,
+        -0.16604691609279598,
+        -0.16229725343811197,
+        -0.16213779691879893,
+        -0.16030343833394056,
+        -0.1602231014616251,
+        -0.16269650334908192,
+        -0.16213779691879893,
+        -0.1626167750894183,
+        -0.162456709957425
       ],
       "signal_type": [
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -156456,7 +157224,17 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
         16.56999969482422,
@@ -156551,7 +157329,17 @@
         16.59000015258789,
         16.59000015258789,
         16.700000762939453,
-        16.719999313354492
+        16.719999313354492,
+        16.68000030517578,
+        16.649999618530273,
+        16.59000015258789,
+        16.559999465942383,
+        16.65999984741211,
+        16.68000030517578,
+        16.6200008392334,
+        16.6299991607666,
+        16.670000076293945,
+        16.709999084472656
       ],
       "change_pct": [
         -14.011420336275354,
@@ -156646,7 +157434,17 @@
         -13.907629691290632,
         -13.907629691290632,
         -13.336791041895351,
-        -13.233010294931322
+        -13.233010294931322,
+        -13.440581686880074,
+        -13.596267654357158,
+        -13.907629691290632,
+        -14.063315658767717,
+        -13.544372331864796,
+        -13.440581686880074,
+        -13.751943723813548,
+        -13.70005829934188,
+        -13.492477009372436,
+        -13.284905617423684
       ],
       "rsi": [
         52.307673121333856,
@@ -156741,7 +157539,17 @@
         59.340652046938885,
         59.340652046938885,
         60.915492484788246,
-        61.18879066867182
+        61.18879066867182,
+        55.06072233595084,
+        54.4354640234542,
+        53.14959979514797,
+        52.529163098123675,
+        54.655855282615434,
+        55.06072233595084,
+        53.78486797511178,
+        53.999971008345014,
+        54.87803837953091,
+        55.59997131349845
       ],
       "macd": [
         -0.22802531767748846,
@@ -156836,9 +157644,29 @@
         -0.06812984682945711,
         -0.06812984682945711,
         -0.05935486936551371,
-        -0.05775954340647971
+        -0.05775954340647971,
+        -0.037541825807654305,
+        -0.03993504297595507,
+        -0.044721325159397196,
+        -0.04711454232769796,
+        -0.03913730391985837,
+        -0.037541825807654305,
+        -0.04232810799109288,
+        -0.041530521088159134,
+        -0.03833956486375456,
+        -0.0351487607925165
       ],
       "signal_type": [
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -157028,7 +157856,17 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
         101.1989974975586,
@@ -157123,7 +157961,17 @@
         100.77400207519531,
         100.77999877929688,
         100.75700378417969,
-        100.75499725341797
+        100.75499725341797,
+        100.76200103759766,
+        100.76799774169922,
+        100.81500244140625,
+        100.81700134277344,
+        100.83999633789062,
+        100.84100341796875,
+        100.80999755859375,
+        100.81700134277344,
+        100.81099700927734,
+        100.81300354003906
       ],
       "change_pct": [
         -0.2975359402955771,
@@ -157218,7 +158066,17 @@
         -0.7162465191699992,
         -0.7103384944864826,
         -0.7329934390108073,
-        -0.7349702971428236
+        -0.7349702971428236,
+        -0.7280700851078766,
+        -0.72216206042436,
+        -0.6758524674534362,
+        -0.673883125892264,
+        -0.6512281813679393,
+        -0.6502359940165089,
+        -0.6807833379272109,
+        -0.673883125892264,
+        -0.6797986671466247,
+        -0.6778218090146084
       ],
       "rsi": [
         23.85689354275742,
@@ -157313,7 +158171,17 @@
         23.492888014122514,
         23.897466949238066,
         22.666576243599735,
-        22.62622023043909
+        22.62622023043909,
+        23.3949324959068,
+        23.79684141669003,
+        26.806860073729766,
+        26.929600542765158,
+        28.312538068834726,
+        28.371909174755146,
+        26.49772403891346,
+        26.929600542765158,
+        26.55966548729495,
+        26.683706562714733
       ],
       "macd": [
         -0.004419780151636132,
@@ -157408,9 +158276,29 @@
         -0.1518099302008835,
         -0.15133156064291597,
         -0.15316591922776013,
-        -0.15332598435975342
+        -0.15332598435975342,
+        -0.16652528565076352,
+        -0.16604691609279598,
+        -0.16229725343811197,
+        -0.16213779691879893,
+        -0.16030343833394056,
+        -0.1602231014616251,
+        -0.16269650334908192,
+        -0.16213779691879893,
+        -0.1626167750894183,
+        -0.162456709957425
       ],
       "signal_type": [
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -157600,7 +158488,17 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
         1.1396011114120483,
@@ -157695,7 +158593,17 @@
         1.145081877708435,
         1.145081877708435,
         1.1449507474899292,
-        1.1449507474899292
+        1.1449507474899292,
+        1.144688606262207,
+        1.144688606262207,
+        1.1439030170440674,
+        1.1439030170440674,
+        1.1442956924438477,
+        1.1442956924438477,
+        1.1440337896347046,
+        1.1440337896347046,
+        1.1437721252441406,
+        1.1437721252441406
       ],
       "change_pct": [
         0.11395165835740793,
@@ -157790,7 +158698,17 @@
         0.5954369487388239,
         0.5954369487388239,
         0.5839171597310905,
-        0.5839171597310905
+        0.5839171597310905,
+        0.5608880542510849,
+        0.5608880542510849,
+        0.49187404555929937,
+        0.49187404555929937,
+        0.5263705773697306,
+        0.5263705773697306,
+        0.5033624169606482,
+        0.5033624169606482,
+        0.480375201622489,
+        0.480375201622489
       ],
       "rsi": [
         66.67688221473082,
@@ -157885,7 +158803,17 @@
         79.05980634944254,
         79.05980634944254,
         78.1461754231145,
-        78.1461754231145
+        78.1461754231145,
+        76.38161542726881,
+        76.38161542726881,
+        71.54054781872739,
+        71.54054781872739,
+        73.88113068870305,
+        73.88113068870305,
+        72.30338553057476,
+        72.30338553057476,
+        70.79296495802959,
+        70.79296495802959
       ],
       "macd": [
         -0.00025862229227113787,
@@ -157980,9 +158908,29 @@
         0.0017406904438270754,
         0.0017406904438270754,
         0.0017302299135761867,
-        0.0017302299135761867
+        0.0017302299135761867,
+        0.0017093183626466502,
+        0.0017093183626466502,
+        0.001646650276869055,
+        0.001646650276869055,
+        0.0016779748101849457,
+        0.0016779748101849457,
+        0.0017764637221242552,
+        0.0017764637221242552,
+        0.0017555902094867903,
+        0.0017555902094867903
       ],
       "signal_type": [
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -158172,7 +159120,17 @@
         "2026-07-02T16:00:11Z",
         "2026-07-02T16:00:23Z",
         "2026-07-02T16:05:07Z",
-        "2026-07-02T16:05:17Z"
+        "2026-07-02T16:05:17Z",
+        "2026-07-02T16:15:08Z",
+        "2026-07-02T16:15:19Z",
+        "2026-07-02T16:30:09Z",
+        "2026-07-02T16:30:30Z",
+        "2026-07-02T16:45:08Z",
+        "2026-07-02T16:45:18Z",
+        "2026-07-02T17:00:10Z",
+        "2026-07-02T17:00:20Z",
+        "2026-07-02T17:05:06Z",
+        "2026-07-02T17:05:14Z"
       ],
       "prices": [
         46.69049835205078,
@@ -158267,7 +159225,17 @@
         46.690399169921875,
         46.689998626708984,
         46.68980026245117,
-        46.69129943847656
+        46.69129943847656,
+        46.691200256347656,
+        46.69169998168945,
+        46.69129943847656,
+        46.69049835205078,
+        46.69160079956055,
+        46.69029998779297,
+        46.690399169921875,
+        46.690399169921875,
+        46.690399169921875,
+        46.69179916381836
       ],
       "change_pct": [
         0.47427904675953375,
@@ -158362,7 +159330,17 @@
         0.4740656146213492,
         0.4732036771402195,
         0.4727768128638505,
-        0.4760029217217932
+        0.4760029217217932,
+        0.4757894895836087,
+        0.4768648592029229,
+        0.4760029217217932,
+        0.47427904675953375,
+        0.4766514270647384,
+        0.47385218248316474,
+        0.4740656146213492,
+        0.4740656146213492,
+        0.4740656146213492,
+        0.47707829134110735
       ],
       "rsi": [
         70.69867168706202,
@@ -158457,7 +159435,17 @@
         69.98636905776112,
         69.36587013425653,
         69.06263135771333,
-        71.23039806996381
+        71.23039806996381,
+        71.16580310880829,
+        71.48834429169158,
+        71.23039806996381,
+        70.1417349726776,
+        71.42490372272144,
+        69.83168990139409,
+        69.77248104008667,
+        69.77248104008667,
+        69.77248104008667,
+        71.8760698390962
       ],
       "macd": [
         0.006372672487202635,
@@ -158552,9 +159540,29 @@
         0.007374815566706161,
         0.007342863401568422,
         0.007327039472173169,
-        0.007446631861661501
+        0.007446631861661501,
+        0.007438719896967427,
+        0.00747858402679924,
+        0.007446631861661501,
+        0.007382727531400235,
+        0.0074706720620980605,
+        0.007366903602004982,
+        0.008283863038201389,
+        0.008283863038201389,
+        0.008283863038201389,
+        0.008395543462988542
       ],
       "signal_type": [
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -158653,106 +159661,6 @@
   },
   "derivatives_history": {
     "BTC": [
-      {
-        "timestamp": "2026-06-19T06:05:16Z",
-        "funding_current": 0.00352815043027,
-        "long_short_value": 1.056,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1903074770.984006,
-        "liq_bias": "above",
-        "liq_level": 63983.79
-      },
-      {
-        "timestamp": "2026-06-19T06:15:06Z",
-        "funding_current": 0.00366147020529,
-        "long_short_value": 1.063,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1905258866.7698665,
-        "liq_bias": "above",
-        "liq_level": 63974.22
-      },
-      {
-        "timestamp": "2026-06-19T06:15:16Z",
-        "funding_current": 0.00366147020529,
-        "long_short_value": 1.063,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1905258866.7698665,
-        "liq_bias": "above",
-        "liq_level": 63978.74
-      },
-      {
-        "timestamp": "2026-06-19T06:30:07Z",
-        "funding_current": 0.00382368712304,
-        "long_short_value": 1.071,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1907564297.0220063,
-        "liq_bias": "above",
-        "liq_level": 63976.01
-      },
-      {
-        "timestamp": "2026-06-19T06:30:17Z",
-        "funding_current": 0.00382368712304,
-        "long_short_value": 1.071,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1907952545.0535061,
-        "liq_bias": "above",
-        "liq_level": 63989.43
-      },
-      {
-        "timestamp": "2026-06-19T06:45:08Z",
-        "funding_current": 0.00411570906528,
-        "long_short_value": 1.086,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1907801786.077806,
-        "liq_bias": "above",
-        "liq_level": 63946.7
-      },
-      {
-        "timestamp": "2026-06-19T06:45:17Z",
-        "funding_current": 0.00411570906528,
-        "long_short_value": 1.086,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1907631712.274496,
-        "liq_bias": "above",
-        "liq_level": 63935.02
-      },
-      {
-        "timestamp": "2026-06-19T07:00:09Z",
-        "funding_current": 0.00398581832004,
-        "long_short_value": 1.079,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1914791267.650966,
-        "liq_bias": "above",
-        "liq_level": 64021.18
-      },
-      {
-        "timestamp": "2026-06-19T07:00:20Z",
-        "funding_current": 0.00398581832004,
-        "long_short_value": 1.079,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1915501417.344006,
-        "liq_bias": "above",
-        "liq_level": 64033.19
-      },
-      {
-        "timestamp": "2026-06-19T07:05:09Z",
-        "funding_current": 0.00398581832004,
-        "long_short_value": 1.079,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1914791267.650966,
-        "liq_bias": "above",
-        "liq_level": 63981.18
-      },
       {
         "timestamp": "2026-06-19T07:05:17Z",
         "funding_current": 0.00398581832004,
@@ -161052,109 +161960,109 @@
         "oi_current": 1952487251.143745,
         "liq_bias": "above",
         "liq_level": 62762.32
+      },
+      {
+        "timestamp": "2026-07-02T16:15:08Z",
+        "funding_current": 0.0029797499533100002,
+        "long_short_value": 1.269,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1958430406.674065,
+        "liq_bias": "above",
+        "liq_level": 62774.46
+      },
+      {
+        "timestamp": "2026-07-02T16:15:19Z",
+        "funding_current": 0.0029797499533100002,
+        "long_short_value": 1.269,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1958430406.674065,
+        "liq_bias": "above",
+        "liq_level": 62747.48
+      },
+      {
+        "timestamp": "2026-07-02T16:30:09Z",
+        "funding_current": 0.00334431631727,
+        "long_short_value": 1.287,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1969802662.3236163,
+        "liq_bias": "above",
+        "liq_level": 62312.38
+      },
+      {
+        "timestamp": "2026-07-02T16:30:30Z",
+        "funding_current": 0.00334634168492,
+        "long_short_value": 1.287,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1969802662.3236163,
+        "liq_bias": "above",
+        "liq_level": 62338.26
+      },
+      {
+        "timestamp": "2026-07-02T16:45:08Z",
+        "funding_current": 0.0035320955633700002,
+        "long_short_value": 1.297,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1969391723.6149871,
+        "liq_bias": "above",
+        "liq_level": 62548.21
+      },
+      {
+        "timestamp": "2026-07-02T16:45:18Z",
+        "funding_current": 0.0035210690545000004,
+        "long_short_value": 1.296,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1968457751.5487273,
+        "liq_bias": "above",
+        "liq_level": 62541.14
+      },
+      {
+        "timestamp": "2026-07-02T17:00:10Z",
+        "funding_current": 0.0036187087900500002,
+        "long_short_value": 1.301,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1952959869.8090465,
+        "liq_bias": "above",
+        "liq_level": 62769.9
+      },
+      {
+        "timestamp": "2026-07-02T17:00:20Z",
+        "funding_current": 0.0036105502891199998,
+        "long_short_value": 1.301,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1952959869.8090465,
+        "liq_bias": "above",
+        "liq_level": 62776.93
+      },
+      {
+        "timestamp": "2026-07-02T17:05:06Z",
+        "funding_current": 0.0036187087900500002,
+        "long_short_value": 1.301,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1952959869.8090465,
+        "liq_bias": "above",
+        "liq_level": 62775.99
+      },
+      {
+        "timestamp": "2026-07-02T17:05:14Z",
+        "funding_current": 0.0036105502891199998,
+        "long_short_value": 1.301,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1952959869.8090465,
+        "liq_bias": "above",
+        "liq_level": 62755.63
       }
     ],
     "ETH": [
-      {
-        "timestamp": "2026-06-19T06:05:16Z",
-        "funding_current": -0.00472431453675,
-        "long_short_value": 0.66,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1247387630.2041032,
-        "liq_bias": "below",
-        "liq_level": 1669.49
-      },
-      {
-        "timestamp": "2026-06-19T06:15:06Z",
-        "funding_current": -0.00508612154873,
-        "long_short_value": 0.66,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1252087128.2696033,
-        "liq_bias": "below",
-        "liq_level": 1668.79
-      },
-      {
-        "timestamp": "2026-06-19T06:15:16Z",
-        "funding_current": -0.00508612154873,
-        "long_short_value": 0.66,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1252087128.2696033,
-        "liq_bias": "below",
-        "liq_level": 1669.0
-      },
-      {
-        "timestamp": "2026-06-19T06:30:07Z",
-        "funding_current": -0.00530728569368,
-        "long_short_value": 0.66,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1255622763.3272033,
-        "liq_bias": "below",
-        "liq_level": 1671.05
-      },
-      {
-        "timestamp": "2026-06-19T06:30:17Z",
-        "funding_current": -0.00530728569368,
-        "long_short_value": 0.66,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1255566659.8841133,
-        "liq_bias": "below",
-        "liq_level": 1671.7
-      },
-      {
-        "timestamp": "2026-06-19T06:45:08Z",
-        "funding_current": -0.00522399055047,
-        "long_short_value": 0.66,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1252272737.0515134,
-        "liq_bias": "below",
-        "liq_level": 1669.48
-      },
-      {
-        "timestamp": "2026-06-19T06:45:17Z",
-        "funding_current": -0.00524115353451,
-        "long_short_value": 0.66,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1252175047.7804234,
-        "liq_bias": "below",
-        "liq_level": 1668.99
-      },
-      {
-        "timestamp": "2026-06-19T07:00:09Z",
-        "funding_current": -0.00541062221784,
-        "long_short_value": 0.66,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1256180894.0979037,
-        "liq_bias": "below",
-        "liq_level": 1669.2
-      },
-      {
-        "timestamp": "2026-06-19T07:00:20Z",
-        "funding_current": -0.00541062221784,
-        "long_short_value": 0.66,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1256840958.8025036,
-        "liq_bias": "below",
-        "liq_level": 1669.75
-      },
-      {
-        "timestamp": "2026-06-19T07:05:09Z",
-        "funding_current": -0.00541062221784,
-        "long_short_value": 0.66,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1256180894.0979037,
-        "liq_bias": "below",
-        "liq_level": 1668.16
-      },
       {
         "timestamp": "2026-06-19T07:05:17Z",
         "funding_current": -0.00541062221784,
@@ -163454,109 +164362,109 @@
         "oi_current": 1310897394.5850022,
         "liq_bias": "above",
         "liq_level": 1728.39
+      },
+      {
+        "timestamp": "2026-07-02T16:15:08Z",
+        "funding_current": 0.0042452003192,
+        "long_short_value": 1.332,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1311125579.8613722,
+        "liq_bias": "above",
+        "liq_level": 1729.51
+      },
+      {
+        "timestamp": "2026-07-02T16:15:19Z",
+        "funding_current": 0.0042452003192,
+        "long_short_value": 1.332,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1311125579.8613722,
+        "liq_bias": "above",
+        "liq_level": 1728.68
+      },
+      {
+        "timestamp": "2026-07-02T16:30:09Z",
+        "funding_current": 0.00455604530833,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1301140258.5409915,
+        "liq_bias": "above",
+        "liq_level": 1719.53
+      },
+      {
+        "timestamp": "2026-07-02T16:30:30Z",
+        "funding_current": 0.00457548522799,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1301140258.5409915,
+        "liq_bias": "above",
+        "liq_level": 1720.61
+      },
+      {
+        "timestamp": "2026-07-02T16:45:08Z",
+        "funding_current": 0.00511159701086,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1310177793.219202,
+        "liq_bias": "above",
+        "liq_level": 1727.65
+      },
+      {
+        "timestamp": "2026-07-02T16:45:18Z",
+        "funding_current": 0.00513487849818,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1309447840.0130422,
+        "liq_bias": "above",
+        "liq_level": 1726.86
+      },
+      {
+        "timestamp": "2026-07-02T17:00:10Z",
+        "funding_current": 0.00597211457175,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1313374596.2724028,
+        "liq_bias": "above",
+        "liq_level": 1729.7
+      },
+      {
+        "timestamp": "2026-07-02T17:00:20Z",
+        "funding_current": 0.00597211457175,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1313374596.2724028,
+        "liq_bias": "above",
+        "liq_level": 1729.61
+      },
+      {
+        "timestamp": "2026-07-02T17:05:06Z",
+        "funding_current": 0.00597211457175,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1313374596.2724028,
+        "liq_bias": "above",
+        "liq_level": 1728.35
+      },
+      {
+        "timestamp": "2026-07-02T17:05:14Z",
+        "funding_current": 0.00597211457175,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1313374596.2724028,
+        "liq_bias": "above",
+        "liq_level": 1727.04
       }
     ],
     "SOL": [
-      {
-        "timestamp": "2026-06-19T06:05:16Z",
-        "funding_current": 0.01,
-        "long_short_value": 1.1,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 183845319.69000015,
-        "liq_bias": "above",
-        "liq_level": 70.05
-      },
-      {
-        "timestamp": "2026-06-19T06:15:06Z",
-        "funding_current": 0.01,
-        "long_short_value": 1.1,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 184839947.00080013,
-        "liq_bias": "above",
-        "liq_level": 70.02
-      },
-      {
-        "timestamp": "2026-06-19T06:15:16Z",
-        "funding_current": 0.01,
-        "long_short_value": 1.1,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 184839947.00080013,
-        "liq_bias": "above",
-        "liq_level": 70.05
-      },
-      {
-        "timestamp": "2026-06-19T06:30:07Z",
-        "funding_current": 0.01,
-        "long_short_value": 1.1,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 185171187.15340015,
-        "liq_bias": "above",
-        "liq_level": 70.0
-      },
-      {
-        "timestamp": "2026-06-19T06:30:17Z",
-        "funding_current": 0.01,
-        "long_short_value": 1.1,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 185250327.62500018,
-        "liq_bias": "above",
-        "liq_level": 70.01
-      },
-      {
-        "timestamp": "2026-06-19T06:45:08Z",
-        "funding_current": 0.01,
-        "long_short_value": 1.1,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 185074694.22400016,
-        "liq_bias": "above",
-        "liq_level": 69.87
-      },
-      {
-        "timestamp": "2026-06-19T06:45:17Z",
-        "funding_current": 0.01,
-        "long_short_value": 1.1,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 185023837.08900017,
-        "liq_bias": "above",
-        "liq_level": 69.84
-      },
-      {
-        "timestamp": "2026-06-19T07:00:09Z",
-        "funding_current": 0.01,
-        "long_short_value": 1.1,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 185488243.11990014,
-        "liq_bias": "above",
-        "liq_level": 69.94
-      },
-      {
-        "timestamp": "2026-06-19T07:00:20Z",
-        "funding_current": 0.01,
-        "long_short_value": 1.1,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 185609293.60680014,
-        "liq_bias": "above",
-        "liq_level": 69.99
-      },
-      {
-        "timestamp": "2026-06-19T07:05:09Z",
-        "funding_current": 0.01,
-        "long_short_value": 1.1,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 185488243.11990014,
-        "liq_bias": "above",
-        "liq_level": 69.89
-      },
       {
         "timestamp": "2026-06-19T07:05:17Z",
         "funding_current": 0.01,
@@ -165856,109 +166764,109 @@
         "oi_current": 270515927.24400014,
         "liq_bias": "above",
         "liq_level": 82.44
+      },
+      {
+        "timestamp": "2026-07-02T16:15:08Z",
+        "funding_current": 0.00806918083579,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 271030769.2128001,
+        "liq_bias": "above",
+        "liq_level": 82.44
+      },
+      {
+        "timestamp": "2026-07-02T16:15:19Z",
+        "funding_current": 0.00806918083579,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 271030769.2128001,
+        "liq_bias": "above",
+        "liq_level": 82.42
+      },
+      {
+        "timestamp": "2026-07-02T16:30:09Z",
+        "funding_current": 0.0079446664414,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 267804097.29760012,
+        "liq_bias": "above",
+        "liq_level": 82.02
+      },
+      {
+        "timestamp": "2026-07-02T16:30:30Z",
+        "funding_current": 0.0079446664414,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 267804097.29760012,
+        "liq_bias": "above",
+        "liq_level": 82.02
+      },
+      {
+        "timestamp": "2026-07-02T16:45:08Z",
+        "funding_current": 0.00812979477134,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 267048214.79920012,
+        "liq_bias": "above",
+        "liq_level": 81.71
+      },
+      {
+        "timestamp": "2026-07-02T16:45:18Z",
+        "funding_current": 0.00815395736117,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 266984761.7598001,
+        "liq_bias": "above",
+        "liq_level": 81.7
+      },
+      {
+        "timestamp": "2026-07-02T17:00:10Z",
+        "funding_current": 0.00864522097887,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 267967244.82500008,
+        "liq_bias": "above",
+        "liq_level": 81.99
+      },
+      {
+        "timestamp": "2026-07-02T17:00:20Z",
+        "funding_current": 0.00864522097887,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 267967244.82500008,
+        "liq_bias": "above",
+        "liq_level": 81.97
+      },
+      {
+        "timestamp": "2026-07-02T17:05:06Z",
+        "funding_current": 0.00864522097887,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 267967244.82500008,
+        "liq_bias": "above",
+        "liq_level": 82.11
+      },
+      {
+        "timestamp": "2026-07-02T17:05:14Z",
+        "funding_current": 0.00864522097887,
+        "long_short_value": 1.34,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 267967244.82500008,
+        "liq_bias": "above",
+        "liq_level": 82.04
       }
     ],
     "ZEC": [
-      {
-        "timestamp": "2026-06-19T06:05:16Z",
-        "funding_current": -0.00155198315263,
-        "long_short_value": 0.802,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 46397758.8858,
-        "liq_bias": "below",
-        "liq_level": 443.98
-      },
-      {
-        "timestamp": "2026-06-19T06:15:06Z",
-        "funding_current": -0.0020759275413800003,
-        "long_short_value": 0.776,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 46672449.6225,
-        "liq_bias": "below",
-        "liq_level": 444.02
-      },
-      {
-        "timestamp": "2026-06-19T06:15:16Z",
-        "funding_current": -0.0020759275413800003,
-        "long_short_value": 0.776,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 46672449.6225,
-        "liq_bias": "below",
-        "liq_level": 444.44
-      },
-      {
-        "timestamp": "2026-06-19T06:30:07Z",
-        "funding_current": -0.0035586250224399997,
-        "long_short_value": 0.702,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 46443586.0545,
-        "liq_bias": "below",
-        "liq_level": 442.19
-      },
-      {
-        "timestamp": "2026-06-19T06:30:17Z",
-        "funding_current": -0.0035586250224399997,
-        "long_short_value": 0.702,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 46466609.652,
-        "liq_bias": "below",
-        "liq_level": 442.31
-      },
-      {
-        "timestamp": "2026-06-19T06:45:08Z",
-        "funding_current": -0.00362451442329,
-        "long_short_value": 0.699,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 46459454.9313,
-        "liq_bias": "below",
-        "liq_level": 441.41
-      },
-      {
-        "timestamp": "2026-06-19T06:45:17Z",
-        "funding_current": -0.00381478414769,
-        "long_short_value": 0.689,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 46431815.8538,
-        "liq_bias": "below",
-        "liq_level": 441.18
-      },
-      {
-        "timestamp": "2026-06-19T07:00:09Z",
-        "funding_current": -0.00434856220233,
-        "long_short_value": 0.663,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 46784092.928,
-        "liq_bias": "below",
-        "liq_level": 442.66
-      },
-      {
-        "timestamp": "2026-06-19T07:00:20Z",
-        "funding_current": -0.00434856220233,
-        "long_short_value": 0.663,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 46835048.9805,
-        "liq_bias": "below",
-        "liq_level": 443.01
-      },
-      {
-        "timestamp": "2026-06-19T07:05:09Z",
-        "funding_current": -0.00434856220233,
-        "long_short_value": 0.663,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 46784092.928,
-        "liq_bias": "below",
-        "liq_level": 442.35
-      },
       {
         "timestamp": "2026-06-19T07:05:17Z",
         "funding_current": -0.00434856220233,
@@ -168258,6 +169166,106 @@
         "oi_current": 48616797.4455,
         "liq_bias": "below",
         "liq_level": 430.75
+      },
+      {
+        "timestamp": "2026-07-02T16:15:08Z",
+        "funding_current": -0.0016000354093299999,
+        "long_short_value": 1.04,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 48703861.6456,
+        "liq_bias": "below",
+        "liq_level": 430.29
+      },
+      {
+        "timestamp": "2026-07-02T16:15:19Z",
+        "funding_current": -0.0016000354093299999,
+        "long_short_value": 1.04,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 48703861.6456,
+        "liq_bias": "below",
+        "liq_level": 430.17
+      },
+      {
+        "timestamp": "2026-07-02T16:30:09Z",
+        "funding_current": -0.00214650194361,
+        "long_short_value": 1.013,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 48202973.0851,
+        "liq_bias": "below",
+        "liq_level": 428.51
+      },
+      {
+        "timestamp": "2026-07-02T16:30:30Z",
+        "funding_current": -0.00214650194361,
+        "long_short_value": 1.013,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 48254398.051,
+        "liq_bias": "below",
+        "liq_level": 428.44
+      },
+      {
+        "timestamp": "2026-07-02T16:45:08Z",
+        "funding_current": -0.00285724047034,
+        "long_short_value": 0.977,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 48072217.703,
+        "liq_bias": "below",
+        "liq_level": 428.52
+      },
+      {
+        "timestamp": "2026-07-02T16:45:18Z",
+        "funding_current": -0.00297434929841,
+        "long_short_value": 0.971,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 48087163.8648,
+        "liq_bias": "below",
+        "liq_level": 428.61
+      },
+      {
+        "timestamp": "2026-07-02T17:00:10Z",
+        "funding_current": -0.00344765911253,
+        "long_short_value": 0.948,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 48026471.4041,
+        "liq_bias": "below",
+        "liq_level": 430.71
+      },
+      {
+        "timestamp": "2026-07-02T17:00:20Z",
+        "funding_current": -0.00344765911253,
+        "long_short_value": 0.948,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 48026471.4041,
+        "liq_bias": "below",
+        "liq_level": 430.96
+      },
+      {
+        "timestamp": "2026-07-02T17:05:06Z",
+        "funding_current": -0.00344765911253,
+        "long_short_value": 0.948,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 48026471.4041,
+        "liq_bias": "below",
+        "liq_level": 430.2
+      },
+      {
+        "timestamp": "2026-07-02T17:05:14Z",
+        "funding_current": -0.00344765911253,
+        "long_short_value": 0.948,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 48026471.4041,
+        "liq_bias": "below",
+        "liq_level": 429.9
       }
     ]
   },
@@ -168268,8 +169276,8 @@
       "internal_structure": "bullish",
       "external_structure": "bullish",
       "htf_bias": "bullish",
-      "ltf_bias": "bullish",
-      "alignment_state": "aligned",
+      "ltf_bias": "bearish",
+      "alignment_state": "mixed",
       "pivots": [
         {
           "timestamp": "2026-07-01T22:00:00+00:00",
@@ -168650,7 +169658,6 @@
         "grade": "PASS",
         "execution_status": "PASS",
         "reasons": [
-          "HTF/LTF alignment present",
           "Recent BOS present",
           "Nearby liquidity pools identified",
           "Fair value gap present",
@@ -168659,10 +169666,11 @@
           "Trap/inducement behavior detected"
         ],
         "blocked_conditions": [
-          "Not in a major kill zone",
-          "Price has not retested bullish FVG yet"
+          "HTF/LTF alignment missing",
+          "Not in a major kill zone"
         ],
         "next_trigger_conditions": [
+          "Needs HTF/LTF alignment",
           "Needs London or New York kill zone timing"
         ],
         "watchlist_reason": "Waiting for confluence to improve",
@@ -168673,11 +169681,11 @@
         "target_2": null,
         "rr_estimate": null,
         "invalidation_level": null,
-        "invalidation_reason": "PASS diagnostics: Not in a major kill zone; Price has not retested bullish FVG yet",
+        "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing; Not in a major kill zone",
         "checklist": [
           {
             "name": "HTF/LTF aligned",
-            "ok": true
+            "ok": false
           },
           {
             "name": "In kill zone",
@@ -169135,12 +170143,6 @@
       "alignment_state": "mixed",
       "pivots": [
         {
-          "timestamp": "2026-07-01T20:00:00+00:00",
-          "price": 76.52999877929688,
-          "kind": "low",
-          "strength": "internal"
-        },
-        {
           "timestamp": "2026-07-01T22:00:00+00:00",
           "price": 78.77999877929688,
           "kind": "high",
@@ -169168,6 +170170,12 @@
           "timestamp": "2026-07-02T11:00:00+00:00",
           "price": 82.6500015258789,
           "kind": "high",
+          "strength": "internal"
+        },
+        {
+          "timestamp": "2026-07-02T15:00:00+00:00",
+          "price": 80.01000213623047,
+          "kind": "low",
           "strength": "internal"
         },
         {
@@ -170284,7 +171292,7 @@
   },
   "generator_health": {
     "status": "ok",
-    "summary": "Generator sees 7 market assets, 15 trading-bible assets, 7 signals, 1968 snapshots, and 16623 OHLC rows.",
+    "summary": "Generator sees 7 market assets, 15 trading-bible assets, 7 signals, 2128 snapshots, and 16627 OHLC rows.",
     "quiet_mode": false,
     "issues": []
   },
@@ -170311,8 +171319,8 @@
       "pressure_board": [
         {
           "symbol": "SOL",
-          "pressure_score": 43.67,
-          "funding": 0.00833845124539,
+          "pressure_score": 43.73,
+          "funding": 0.00864522097887,
           "long_short": 1.34,
           "liq_bias": "above",
           "confidence_label": "inferred",
@@ -170324,42 +171332,42 @@
         },
         {
           "symbol": "ETH",
-          "pressure_score": 41.74,
-          "funding": 0.0041761011536000005,
-          "long_short": 1.329,
+          "pressure_score": 43.19,
+          "funding": 0.00597211457175,
+          "long_short": 1.34,
           "liq_bias": "above",
           "confidence_label": "inferred",
           "crowding_state": "crowded_longs",
           "funding_delta_1h_pct": 0,
           "oi_delta_1h_pct": 0,
           "long_short_delta_1h_pct": 0,
-          "sparkline": "\u2588\u2588\u2588\u2588\u2581\u2581\u2581\u2581"
+          "sparkline": "\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584"
         },
         {
           "symbol": "BTC",
-          "pressure_score": 36.23,
-          "funding": 0.0031281537258499997,
-          "long_short": 1.276,
+          "pressure_score": 38.98,
+          "funding": 0.0036105502891199998,
+          "long_short": 1.301,
           "liq_bias": "above",
           "confidence_label": "inferred",
           "crowding_state": "crowded_longs",
-          "funding_delta_1h_pct": 0,
+          "funding_delta_1h_pct": -0.22545337034118573,
           "oi_delta_1h_pct": 0,
           "long_short_delta_1h_pct": 0,
-          "sparkline": "\u2588\u2588\u2583\u2583\u2581\u2581\u2581\u2581"
+          "sparkline": "\u2581\u2581\u2586\u2585\u2588\u2588\u2588\u2588"
         },
         {
           "symbol": "ZEC",
-          "pressure_score": 17.41,
-          "funding": -0.00054574832,
-          "long_short": 1.093,
+          "pressure_score": 13.89,
+          "funding": -0.00344765911253,
+          "long_short": 0.948,
           "liq_bias": "below",
           "confidence_label": "inferred",
           "crowding_state": "balanced",
           "funding_delta_1h_pct": 0,
           "oi_delta_1h_pct": 0,
           "long_short_delta_1h_pct": 0,
-          "sparkline": "\u2588\u2588\u2585\u2585\u2581\u2581\u2581\u2581"
+          "sparkline": "\u2588\u2588\u2584\u2583\u2581\u2581\u2581\u2581"
         }
       ]
     }
@@ -170395,7 +171403,7 @@
     "execution_mode": "paper_only_no_exchange_orders",
     "ledger_file": "simulated-trade-ledger.json",
     "data_file": "data/simulated-trade-ledger.json",
-    "generated_at_utc": "2026-07-02T16:05:17Z",
+    "generated_at_utc": "2026-07-02T17:05:14Z",
     "summary": {
       "open_position_count": 0,
       "closed_trade_count": 114,
