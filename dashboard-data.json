@@ -1,9 +1,9 @@
 {
   "schema_version": "1.5.0",
-  "generated_at_utc": "2026-07-05T15:05:16Z",
-  "generated_at_local": "2026-07-05 18:05:16 TRT",
+  "generated_at_utc": "2026-07-05T16:05:14Z",
+  "generated_at_local": "2026-07-05 19:05:14 TRT",
   "source": {
-    "upstream_report_time": "2026-07-05 18:05:02 TRT",
+    "upstream_report_time": "2026-07-05 19:05:02 TRT",
     "generator": "generate_dashboard_data.py",
     "input_file": "professional_briefing_test.json",
     "mode": "derived_with_binance_public_overlay",
@@ -24,8 +24,8 @@
       "v2.05: Binance public realtime crypto overlay, explicit provenance, and simulated ledger link"
     ],
     "tracked_assets": 18,
-    "market_bias": "BULLISH",
-    "avg_change_pct": 0.1563,
+    "market_bias": "BEARISH",
+    "avg_change_pct": -0.1164,
     "top_gainer": "SILVER",
     "top_loser": "VIX",
     "git_revision": null
@@ -34,8 +34,8 @@
     {
       "symbol": "BTC",
       "display_symbol": "BTC",
-      "price": 62886.01,
-      "change_pct": 0.225,
+      "price": 62718.06,
+      "change_pct": -0.381,
       "source": "binance-spot-public",
       "provenance": {
         "source_name": "Binance Spot Public",
@@ -51,23 +51,15 @@
         "method": "GET",
         "interval": "1h",
         "limit": 120,
-        "data_timestamp_utc": "2026-07-05T15:05:16Z",
-        "fetched_at_utc": "2026-07-05T15:05:17Z",
+        "data_timestamp_utc": "2026-07-05T16:05:15Z",
+        "fetched_at_utc": "2026-07-05T16:05:15Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-05T15:05:16Z",
+      "data_timestamp_utc": "2026-07-05T16:05:15Z",
       "symbol_pair": "BTCUSDT",
-      "volume": 9024.5185,
+      "volume": 8473.91497,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-05-17T13:00:00Z",
-          "open": 78364.83,
-          "high": 78364.83,
-          "low": 78173.15,
-          "close": 78202.91,
-          "volume": 260.27625
-        },
         {
           "timestamp": "2026-05-17T14:00:00Z",
           "open": 78202.91,
@@ -8055,10 +8047,18 @@
         {
           "timestamp": "2026-07-05T15:00:00Z",
           "open": 62812.25,
-          "high": 62940.0,
-          "low": 62793.72,
-          "close": 62886.01,
-          "volume": 45.00907
+          "high": 62943.59,
+          "low": 62679.76,
+          "close": 62740.01,
+          "volume": 243.82359
+        },
+        {
+          "timestamp": "2026-07-05T16:00:00Z",
+          "open": 62740.01,
+          "high": 62766.0,
+          "low": 62718.01,
+          "close": 62718.06,
+          "volume": 31.70876
         }
       ],
       "is_major": true,
@@ -8067,37 +8067,39 @@
         "symbol": "BTC",
         "type": "HOLD",
         "reason": "Trend state leans bearish",
-        "confidence": 95
+        "confidence": 40
       },
       "advisory": {
         "symbol": "BTC",
-        "state": "WATCHLIST",
+        "state": "PASS",
         "direction": "SHORT",
-        "score": 99,
-        "confidence": "VERY_HIGH",
-        "priority": 2,
+        "score": 38,
+        "confidence": "LOW",
+        "priority": 4,
         "reasons": [
           "Trend state leans bearish",
-          "In major kill zone timing",
           "Liquidity reference identified",
           "Fair value gap present",
           "Sweep/run context supports setup",
-          "Execution status marked WATCHLIST"
+          "MACD bearish"
         ],
         "blockers": [
           "HTF/LTF alignment missing",
+          "Not in a major kill zone",
+          "Entry zone undefined",
+          "Invalidation undefined",
+          "Target not defined",
           "Macro backdrop is risk-off"
         ],
         "triggers": [
-          "Needs HTF/LTF alignment"
+          "Needs HTF/LTF alignment",
+          "Needs London or New York kill zone timing"
         ],
-        "invalidators": [
-          "Lose invalidation level 62884.035156"
-        ],
-        "time_horizon": "INTRADAY",
+        "invalidators": [],
+        "time_horizon": "CONTEXT",
         "display_signal": "HOLD",
         "display_reason": "Trend state leans bearish",
-        "display_confidence": 95
+        "display_confidence": 40
       },
       "trading_bible": {
         "symbol": "BTC",
@@ -8410,19 +8412,28 @@
             "notes": [
               "equal_highs taken with continuation"
             ]
+          },
+          {
+            "timestamp": "2026-07-05T15:00:00+00:00",
+            "classification": "sweep",
+            "direction": "bearish",
+            "level": 62884.035156,
+            "notes": [
+              "equal_highs taken and rejected"
+            ]
           }
         ],
         "traps": [
           {
-            "timestamp": "2026-07-05T12:00:00+00:00",
+            "timestamp": "2026-07-05T04:00:00+00:00",
             "trap_type": "inducement",
-            "direction": "bullish",
+            "direction": "bearish",
             "notes": [
-              "swing_low taken and rejected"
+              "equal_highs taken and rejected"
             ]
           },
           {
-            "timestamp": "2026-07-05T04:00:00+00:00",
+            "timestamp": "2026-07-05T15:00:00+00:00",
             "trap_type": "inducement",
             "direction": "bearish",
             "notes": [
@@ -8433,7 +8444,7 @@
         "session": {
           "active_session": "New York",
           "london_kill_zone": false,
-          "new_york_kill_zone": true,
+          "new_york_kill_zone": false,
           "time_to_next_kill_zone_minutes": null,
           "asia_high": 63086.4609375,
           "asia_low": 57720.73046875,
@@ -8442,40 +8453,40 @@
           "new_york_high": 63394.640625,
           "new_york_low": 58449.80078125
         },
-        "session_narrative": "Active session: New York. Asia range: 57720.73 to 63086.46. London range: 58255.03 to 63043.95. NY range: 58449.80 to 63394.64. New York kill zone is active. Recent run detected near liquidity.",
+        "session_narrative": "Active session: New York. Asia range: 57720.73 to 63086.46. London range: 58255.03 to 63043.95. NY range: 58449.80 to 63394.64. Recent sweep detected near liquidity.",
         "premium_discount": {
           "range_high": 63404.859375,
           "range_low": 62274.16015625,
           "equilibrium": 62839.509765625,
-          "state": "equilibrium"
+          "state": "discount"
         },
         "setup": {
-          "bias": "short",
-          "grade": "B",
-          "execution_status": "WATCHLIST",
+          "bias": "pass",
+          "grade": "PASS",
+          "execution_status": "PASS",
           "reasons": [
-            "Within major kill zone",
             "Nearby liquidity pools identified",
             "Fair value gap present",
             "Sweep/run behavior detected",
-            "Trap/inducement behavior detected",
-            "Session expansion setup candidate"
+            "Trap/inducement behavior detected"
           ],
           "blocked_conditions": [
-            "HTF/LTF alignment missing"
+            "HTF/LTF alignment missing",
+            "Not in a major kill zone"
           ],
           "next_trigger_conditions": [
-            "Needs HTF/LTF alignment"
+            "Needs HTF/LTF alignment",
+            "Needs London or New York kill zone timing"
           ],
-          "watchlist_reason": "Waiting for confirmation / confluence",
-          "setup_type": "session-expansion",
-          "entry_zone_low": 62859.69921875,
-          "entry_zone_high": 62884.035156,
-          "target_1": 62640.710938,
-          "target_2": 62548.640625,
-          "rr_estimate": 9.0,
-          "invalidation_level": 62884.035156,
-          "invalidation_reason": "Template invalidation for session-expansion",
+          "watchlist_reason": "Waiting for confluence to improve",
+          "setup_type": null,
+          "entry_zone_low": null,
+          "entry_zone_high": null,
+          "target_1": null,
+          "target_2": null,
+          "rr_estimate": null,
+          "invalidation_level": null,
+          "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing; Not in a major kill zone",
           "checklist": [
             {
               "name": "HTF/LTF aligned",
@@ -8483,7 +8494,7 @@
             },
             {
               "name": "In kill zone",
-              "ok": true
+              "ok": false
             },
             {
               "name": "BOS present",
@@ -8510,141 +8521,41 @@
               "ok": false
             }
           ],
-          "no_trade_reason": null
+          "no_trade_reason": "Insufficient weighted confluence across structure, liquidity, session, and range position"
         }
       },
       "technical": {
-        "rsi": 49.93685670725721,
+        "rsi": 50.90451296591647,
         "rsi_status": "NEUTRAL",
-        "macd": -39.916514013348205,
+        "macd": -96.31038536073174,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
       "derivatives": {
         "oi_change_1h_pct": null,
-        "funding_current": 0.00220441030858,
+        "funding_current": 0.00210844733188,
         "funding_state": "balanced",
-        "long_short_value": 1.133,
+        "long_short_value": 1.067,
         "long_short_type": "funding_oi_price_proxy",
         "liq_bias": "above",
-        "liq_level": 63757.6,
+        "liq_level": 63589.65,
         "liq_confidence": "low",
-        "daily_change_pct": 0.225,
-        "recent_range_pct": 1.6305693428474815,
+        "daily_change_pct": -0.381,
+        "recent_range_pct": 1.6349357744802717,
         "source": {
           "oi": "okx",
           "funding": "okx",
           "long_short": "internal_proxy"
         },
         "confidence_label": "inferred",
-        "funding_change_1h_pct": -0.8039313860926288,
-        "funding_change_4h_pct": 1.8535769798630555,
-        "oi_change_hist_1h_pct": -0.02120580767907316,
-        "oi_change_hist_4h_pct": -0.024457568330432042,
-        "long_short_change_1h_pct": -0.17621145374449354,
-        "sparkline": "\u2582\u2582\u2581\u2581\u2585\u2583\u2588\u2587"
+        "funding_change_1h_pct": 0.0,
+        "funding_change_4h_pct": 10.594356568048156,
+        "oi_change_hist_1h_pct": 0.004250614107180348,
+        "oi_change_hist_4h_pct": 0.13787105587634663,
+        "long_short_change_1h_pct": -0.0936329588015086,
+        "sparkline": "\u2584\u2584\u2581\u2581\u2588\u2588\u2585\u2584"
       },
       "derivatives_history_rows": [
-        {
-          "timestamp": "2026-07-04T15:15:10Z",
-          "funding_current": 0.00777318698373,
-          "long_short_value": 1.317,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1932418057.614985,
-          "liq_bias": "above",
-          "liq_level": 63807.24
-        },
-        {
-          "timestamp": "2026-07-04T15:15:20Z",
-          "funding_current": 0.00777318698373,
-          "long_short_value": 1.311,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1932418057.614985,
-          "liq_bias": "above",
-          "liq_level": 63771.24
-        },
-        {
-          "timestamp": "2026-07-04T15:30:12Z",
-          "funding_current": 0.007244145329120001,
-          "long_short_value": 1.34,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1931593180.9422653,
-          "liq_bias": "above",
-          "liq_level": 63883.24
-        },
-        {
-          "timestamp": "2026-07-04T15:30:22Z",
-          "funding_current": 0.007244145329120001,
-          "long_short_value": 1.34,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1932026380.0660853,
-          "liq_bias": "above",
-          "liq_level": 63889.23
-        },
-        {
-          "timestamp": "2026-07-04T15:45:07Z",
-          "funding_current": 0.006734638617869999,
-          "long_short_value": 1.34,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1923596120.5332556,
-          "liq_bias": "above",
-          "liq_level": 63909.24
-        },
-        {
-          "timestamp": "2026-07-04T15:45:16Z",
-          "funding_current": 0.006734638617869999,
-          "long_short_value": 1.34,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1923596120.5332556,
-          "liq_bias": "above",
-          "liq_level": 63909.24
-        },
-        {
-          "timestamp": "2026-07-04T16:00:08Z",
-          "funding_current": 0.00641244909295,
-          "long_short_value": 1.34,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1921459379.221535,
-          "liq_bias": "above",
-          "liq_level": 63789.69
-        },
-        {
-          "timestamp": "2026-07-04T16:00:19Z",
-          "funding_current": 0.00641244909295,
-          "long_short_value": 1.34,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1921459379.221535,
-          "liq_bias": "above",
-          "liq_level": 63785.69
-        },
-        {
-          "timestamp": "2026-07-04T16:05:06Z",
-          "funding_current": 0.00641244909295,
-          "long_short_value": 1.34,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1921459379.221535,
-          "liq_bias": "above",
-          "liq_level": 63811.32
-        },
-        {
-          "timestamp": "2026-07-04T16:05:15Z",
-          "funding_current": 0.00641244909295,
-          "long_short_value": 1.34,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1921459379.221535,
-          "liq_bias": "above",
-          "liq_level": 63813.69
-        },
         {
           "timestamp": "2026-07-04T16:15:08Z",
           "funding_current": 0.006317235569230001,
@@ -10944,6 +10855,106 @@
           "oi_current": 1944889651.1846578,
           "liq_bias": "above",
           "liq_level": 63757.6
+        },
+        {
+          "timestamp": "2026-07-05T15:15:08Z",
+          "funding_current": 0.00194782324201,
+          "long_short_value": 1.091,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1930371171.8835475,
+          "liq_bias": "above",
+          "liq_level": 63661.6
+        },
+        {
+          "timestamp": "2026-07-05T15:15:18Z",
+          "funding_current": 0.00194782324201,
+          "long_short_value": 1.096,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1930371171.8835475,
+          "liq_bias": "above",
+          "liq_level": 63647.6
+        },
+        {
+          "timestamp": "2026-07-05T15:30:09Z",
+          "funding_current": 0.0017344826383,
+          "long_short_value": 1.066,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1927070024.535367,
+          "liq_bias": "above",
+          "liq_level": 63640.97
+        },
+        {
+          "timestamp": "2026-07-05T15:30:20Z",
+          "funding_current": 0.0017269781794199998,
+          "long_short_value": 1.067,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1927255229.201387,
+          "liq_bias": "above",
+          "liq_level": 63640.96
+        },
+        {
+          "timestamp": "2026-07-05T15:45:07Z",
+          "funding_current": 0.00190646918822,
+          "long_short_value": 1.058,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1925715415.033627,
+          "liq_bias": "above",
+          "liq_level": 63557.31
+        },
+        {
+          "timestamp": "2026-07-05T15:45:18Z",
+          "funding_current": 0.00190646918822,
+          "long_short_value": 1.058,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1925715415.033627,
+          "liq_bias": "above",
+          "liq_level": 63555.59
+        },
+        {
+          "timestamp": "2026-07-05T16:00:07Z",
+          "funding_current": 0.00210844733188,
+          "long_short_value": 1.075,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1928288455.1084075,
+          "liq_bias": "above",
+          "liq_level": 63611.6
+        },
+        {
+          "timestamp": "2026-07-05T16:00:18Z",
+          "funding_current": 0.00210844733188,
+          "long_short_value": 1.075,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1928370419.2095075,
+          "liq_bias": "above",
+          "liq_level": 63616.88
+        },
+        {
+          "timestamp": "2026-07-05T16:05:06Z",
+          "funding_current": 0.00210844733188,
+          "long_short_value": 1.068,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1928288455.1084075,
+          "liq_bias": "above",
+          "liq_level": 63589.61
+        },
+        {
+          "timestamp": "2026-07-05T16:05:14Z",
+          "funding_current": 0.00210844733188,
+          "long_short_value": 1.067,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1928370419.2095075,
+          "liq_bias": "above",
+          "liq_level": 63589.65
         }
       ],
       "signal_change": null
@@ -10951,8 +10962,8 @@
     {
       "symbol": "ETH",
       "display_symbol": "ETH",
-      "price": 1776.12,
-      "change_pct": -0.005,
+      "price": 1775.36,
+      "change_pct": -0.884,
       "source": "binance-spot-public",
       "provenance": {
         "source_name": "Binance Spot Public",
@@ -10968,23 +10979,15 @@
         "method": "GET",
         "interval": "1h",
         "limit": 120,
-        "data_timestamp_utc": "2026-07-05T15:05:17Z",
-        "fetched_at_utc": "2026-07-05T15:05:17Z",
+        "data_timestamp_utc": "2026-07-05T16:05:15Z",
+        "fetched_at_utc": "2026-07-05T16:05:16Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-05T15:05:17Z",
+      "data_timestamp_utc": "2026-07-05T16:05:15Z",
       "symbol_pair": "ETHUSDT",
-      "volume": 425319.5276,
+      "volume": 404174.8095,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-05-17T13:00:00Z",
-          "open": 2194.3,
-          "high": 2194.93,
-          "low": 2187.29,
-          "close": 2192.12,
-          "volume": 4823.5227
-        },
         {
           "timestamp": "2026-05-17T14:00:00Z",
           "open": 2192.12,
@@ -18973,9 +18976,17 @@
           "timestamp": "2026-07-05T15:00:00Z",
           "open": 1772.56,
           "high": 1781.28,
-          "low": 1771.22,
-          "close": 1775.96,
-          "volume": 2191.069
+          "low": 1770.11,
+          "close": 1774.67,
+          "volume": 8462.2846
+        },
+        {
+          "timestamp": "2026-07-05T16:00:00Z",
+          "open": 1774.66,
+          "high": 1777.5,
+          "low": 1774.15,
+          "close": 1775.37,
+          "volume": 460.046
         }
       ],
       "is_major": true,
@@ -18984,37 +18995,39 @@
         "symbol": "ETH",
         "type": "HOLD",
         "reason": "Trend state leans bearish",
-        "confidence": 95
+        "confidence": 44
       },
       "advisory": {
         "symbol": "ETH",
-        "state": "WATCHLIST",
+        "state": "PASS",
         "direction": "SHORT",
-        "score": 100,
-        "confidence": "VERY_HIGH",
-        "priority": 2,
+        "score": 44,
+        "confidence": "LOW",
+        "priority": 4,
         "reasons": [
           "Trend state leans bearish",
-          "In major kill zone timing",
           "Liquidity reference identified",
           "Fair value gap present",
           "Sweep/run context supports setup",
-          "Execution status marked WATCHLIST"
+          "MACD bearish"
         ],
         "blockers": [
           "HTF/LTF alignment missing",
+          "Not in a major kill zone",
+          "Entry zone undefined",
+          "Invalidation undefined",
+          "Target not defined",
           "Macro backdrop is risk-off"
         ],
         "triggers": [
-          "Needs HTF/LTF alignment"
+          "Needs HTF/LTF alignment",
+          "Needs London or New York kill zone timing"
         ],
-        "invalidators": [
-          "Lose invalidation level 1804.800048828125"
-        ],
-        "time_horizon": "INTRADAY",
+        "invalidators": [],
+        "time_horizon": "CONTEXT",
         "display_signal": "HOLD",
         "display_reason": "Trend state leans bearish",
-        "display_confidence": 95
+        "display_confidence": 44
       },
       "trading_bible": {
         "symbol": "ETH",
@@ -19192,13 +19205,6 @@
         ],
         "fvgs": [
           {
-            "timestamp": "2026-07-04T02:00:00+00:00",
-            "direction": "bearish",
-            "upper": 1754.699951171875,
-            "lower": 1749.1800537109375,
-            "status": "open"
-          },
-          {
             "timestamp": "2026-07-04T04:00:00+00:00",
             "direction": "bullish",
             "upper": 1750.31005859375,
@@ -19257,8 +19263,15 @@
           {
             "timestamp": "2026-07-05T15:00:00+00:00",
             "direction": "bullish",
-            "upper": 1769.81005859375,
+            "upper": 1769.1099853515625,
             "lower": 1766.0400390625,
+            "status": "open"
+          },
+          {
+            "timestamp": "2026-07-05T16:00:00+00:00",
+            "direction": "bullish",
+            "upper": 1772.7099609375,
+            "lower": 1771.0799560546875,
             "status": "open"
           }
         ],
@@ -19455,7 +19468,7 @@
         "session": {
           "active_session": "New York",
           "london_kill_zone": false,
-          "new_york_kill_zone": true,
+          "new_york_kill_zone": false,
           "time_to_next_kill_zone_minutes": null,
           "asia_high": 1779.2900390625,
           "asia_low": 1550.8599853515625,
@@ -19464,7 +19477,7 @@
           "new_york_high": 1804.800048828125,
           "new_york_low": 1567.8299560546875
         },
-        "session_narrative": "Active session: New York. Asia range: 1550.86 to 1779.29. London range: 1563.77 to 1771.06. NY range: 1567.83 to 1804.80. New York kill zone is active. Recent run detected near liquidity. Latest BOS: bullish. Latest CHoCH: bullish.",
+        "session_narrative": "Active session: New York. Asia range: 1550.86 to 1779.29. London range: 1563.77 to 1771.06. NY range: 1567.83 to 1804.80. Recent run detected near liquidity. Latest BOS: bullish. Latest CHoCH: bullish.",
         "premium_discount": {
           "range_high": 1804.800048828125,
           "range_low": 1742.6300048828125,
@@ -19472,35 +19485,35 @@
           "state": "equilibrium"
         },
         "setup": {
-          "bias": "short",
-          "grade": "B",
-          "execution_status": "WATCHLIST",
+          "bias": "pass",
+          "grade": "PASS",
+          "execution_status": "PASS",
           "reasons": [
-            "Within major kill zone",
             "Recent BOS present",
             "Recent CHoCH present",
             "Nearby liquidity pools identified",
             "Fair value gap present",
             "Order block candidate present",
             "Sweep/run behavior detected",
-            "Trap/inducement behavior detected",
-            "Session expansion setup candidate"
+            "Trap/inducement behavior detected"
           ],
           "blocked_conditions": [
-            "HTF/LTF alignment missing"
+            "HTF/LTF alignment missing",
+            "Not in a major kill zone"
           ],
           "next_trigger_conditions": [
-            "Needs HTF/LTF alignment"
+            "Needs HTF/LTF alignment",
+            "Needs London or New York kill zone timing"
           ],
-          "watchlist_reason": "Waiting for confirmation / confluence",
-          "setup_type": "session-expansion",
-          "entry_zone_low": 1775.699951171875,
-          "entry_zone_high": 1804.800048828125,
-          "target_1": 1771.06005859375,
-          "target_2": 1755.6600341796875,
-          "rr_estimate": 0.16,
-          "invalidation_level": 1804.800048828125,
-          "invalidation_reason": "Template invalidation for session-expansion",
+          "watchlist_reason": "Waiting for confluence to improve",
+          "setup_type": null,
+          "entry_zone_low": null,
+          "entry_zone_high": null,
+          "target_1": null,
+          "target_2": null,
+          "rr_estimate": null,
+          "invalidation_level": null,
+          "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing; Not in a major kill zone",
           "checklist": [
             {
               "name": "HTF/LTF aligned",
@@ -19508,7 +19521,7 @@
             },
             {
               "name": "In kill zone",
-              "ok": true
+              "ok": false
             },
             {
               "name": "BOS present",
@@ -19535,141 +19548,41 @@
               "ok": false
             }
           ],
-          "no_trade_reason": null
+          "no_trade_reason": "Insufficient weighted confluence across structure, liquidity, session, and range position"
         }
       },
       "technical": {
-        "rsi": 58.748594979393225,
+        "rsi": 65.3985122210413,
         "rsi_status": "NEUTRAL",
-        "macd": -3.0497953717087967,
+        "macd": -5.039787508922473,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
       "derivatives": {
         "oi_change_1h_pct": null,
-        "funding_current": 0.00479136540506,
+        "funding_current": 0.00565171859641,
         "funding_state": "balanced",
-        "long_short_value": 1.22,
+        "long_short_value": 1.132,
         "long_short_type": "funding_oi_price_proxy",
         "liq_bias": "above",
-        "liq_level": 1808.09,
+        "liq_level": 1807.32,
         "liq_confidence": "low",
-        "daily_change_pct": -0.005,
-        "recent_range_pct": 3.313965272616722,
+        "daily_change_pct": -0.884,
+        "recent_range_pct": 3.3153839221341097,
         "source": {
           "oi": "okx",
           "funding": "okx",
           "long_short": "internal_proxy"
         },
         "confidence_label": "inferred",
-        "funding_change_1h_pct": -0.8473088877606944,
-        "funding_change_4h_pct": -1.121154059342082,
-        "oi_change_hist_1h_pct": -0.011568475521898831,
-        "oi_change_hist_4h_pct": -0.17257749356736024,
-        "long_short_change_1h_pct": -0.24529844644318183,
-        "sparkline": "\u2581\u2581\u2584\u2584\u2584\u2584\u2588\u2587"
+        "funding_change_1h_pct": 0.0,
+        "funding_change_4h_pct": 3.8733028216067935,
+        "oi_change_hist_1h_pct": 0.016397141732979355,
+        "oi_change_hist_4h_pct": 0.14841354964353384,
+        "long_short_change_1h_pct": 0.0884173297966304,
+        "sparkline": "\u2584\u2584\u2581\u2581\u2586\u2588\u2587\u2587"
       },
       "derivatives_history_rows": [
-        {
-          "timestamp": "2026-07-04T15:15:10Z",
-          "funding_current": 0.00041722365307,
-          "long_short_value": 1.141,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1345042456.3704815,
-          "liq_bias": "above",
-          "liq_level": 1817.4
-        },
-        {
-          "timestamp": "2026-07-04T15:15:20Z",
-          "funding_current": 0.00041722365307,
-          "long_short_value": 1.141,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1345042456.3704815,
-          "liq_bias": "above",
-          "liq_level": 1815.51
-        },
-        {
-          "timestamp": "2026-07-04T15:30:12Z",
-          "funding_current": 0.00077980003198,
-          "long_short_value": 1.159,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1364493623.3973012,
-          "liq_bias": "above",
-          "liq_level": 1824.59
-        },
-        {
-          "timestamp": "2026-07-04T15:30:22Z",
-          "funding_current": 0.00077980003198,
-          "long_short_value": 1.159,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1364748328.8214812,
-          "liq_bias": "above",
-          "liq_level": 1824.81
-        },
-        {
-          "timestamp": "2026-07-04T15:45:07Z",
-          "funding_current": 0.00151742682545,
-          "long_short_value": 1.196,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1371122306.3518214,
-          "liq_bias": "above",
-          "liq_level": 1823.28
-        },
-        {
-          "timestamp": "2026-07-04T15:45:16Z",
-          "funding_current": 0.00151742682545,
-          "long_short_value": 1.196,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1371122306.3518214,
-          "liq_bias": "above",
-          "liq_level": 1823.08
-        },
-        {
-          "timestamp": "2026-07-04T16:00:08Z",
-          "funding_current": 0.0024024952812,
-          "long_short_value": 1.24,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1379362654.4207418,
-          "liq_bias": "above",
-          "liq_level": 1823.2
-        },
-        {
-          "timestamp": "2026-07-04T16:00:19Z",
-          "funding_current": 0.0024024952812,
-          "long_short_value": 1.24,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1379362654.4207418,
-          "liq_bias": "above",
-          "liq_level": 1822.47
-        },
-        {
-          "timestamp": "2026-07-04T16:05:06Z",
-          "funding_current": 0.0024024952812,
-          "long_short_value": 1.24,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1379362654.4207418,
-          "liq_bias": "above",
-          "liq_level": 1823.67
-        },
-        {
-          "timestamp": "2026-07-04T16:05:15Z",
-          "funding_current": 0.0024024952812,
-          "long_short_value": 1.24,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 1379362654.4207418,
-          "liq_bias": "above",
-          "liq_level": 1823.43
-        },
         {
           "timestamp": "2026-07-04T16:15:08Z",
           "funding_current": 0.00315041162894,
@@ -21969,6 +21882,106 @@
           "oi_current": 1307374628.5201523,
           "liq_bias": "above",
           "liq_level": 1808.09
+        },
+        {
+          "timestamp": "2026-07-05T15:15:08Z",
+          "funding_current": 0.00482191034317,
+          "long_short_value": 1.155,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1306237523.875682,
+          "liq_bias": "above",
+          "liq_level": 1806.18
+        },
+        {
+          "timestamp": "2026-07-05T15:15:18Z",
+          "funding_current": 0.00482191034317,
+          "long_short_value": 1.164,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1306237523.875682,
+          "liq_bias": "above",
+          "liq_level": 1805.87
+        },
+        {
+          "timestamp": "2026-07-05T15:30:09Z",
+          "funding_current": 0.00513243655191,
+          "long_short_value": 1.121,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1313294516.237502,
+          "liq_bias": "above",
+          "liq_level": 1806.62
+        },
+        {
+          "timestamp": "2026-07-05T15:30:20Z",
+          "funding_current": 0.0051431865161099995,
+          "long_short_value": 1.121,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1313409339.8253021,
+          "liq_bias": "above",
+          "liq_level": 1806.79
+        },
+        {
+          "timestamp": "2026-07-05T15:45:07Z",
+          "funding_current": 0.00544097322689,
+          "long_short_value": 1.107,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1310315720.5531023,
+          "liq_bias": "above",
+          "liq_level": 1802.68
+        },
+        {
+          "timestamp": "2026-07-05T15:45:18Z",
+          "funding_current": 0.00544097322689,
+          "long_short_value": 1.107,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1310315720.5531023,
+          "liq_bias": "above",
+          "liq_level": 1802.4
+        },
+        {
+          "timestamp": "2026-07-05T16:00:07Z",
+          "funding_current": 0.00565171859641,
+          "long_short_value": 1.129,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1312045268.7032022,
+          "liq_bias": "above",
+          "liq_level": 1806.49
+        },
+        {
+          "timestamp": "2026-07-05T16:00:18Z",
+          "funding_current": 0.00565171859641,
+          "long_short_value": 1.133,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1312260406.6255124,
+          "liq_bias": "above",
+          "liq_level": 1806.72
+        },
+        {
+          "timestamp": "2026-07-05T16:05:06Z",
+          "funding_current": 0.00565171859641,
+          "long_short_value": 1.131,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1312045268.7032022,
+          "liq_bias": "above",
+          "liq_level": 1807.34
+        },
+        {
+          "timestamp": "2026-07-05T16:05:14Z",
+          "funding_current": 0.00565171859641,
+          "long_short_value": 1.132,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 1312260406.6255124,
+          "liq_bias": "above",
+          "liq_level": 1807.32
         }
       ],
       "signal_change": null
@@ -21976,8 +21989,8 @@
     {
       "symbol": "SOL",
       "display_symbol": "SOL",
-      "price": 81.54,
-      "change_pct": -0.415,
+      "price": 81.36,
+      "change_pct": -1.13,
       "source": "binance-spot-public",
       "provenance": {
         "source_name": "Binance Spot Public",
@@ -21993,23 +22006,15 @@
         "method": "GET",
         "interval": "1h",
         "limit": 120,
-        "data_timestamp_utc": "2026-07-05T15:05:17Z",
-        "fetched_at_utc": "2026-07-05T15:05:18Z",
+        "data_timestamp_utc": "2026-07-05T16:05:15Z",
+        "fetched_at_utc": "2026-07-05T16:05:16Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-05T15:05:17Z",
+      "data_timestamp_utc": "2026-07-05T16:05:15Z",
       "symbol_pair": "SOLUSDT",
-      "volume": 1474828.777,
+      "volume": 1413985.232,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-05-17T13:00:00Z",
-          "open": 86.76,
-          "high": 86.78,
-          "low": 86.3,
-          "close": 86.41,
-          "volume": 71335.876
-        },
         {
           "timestamp": "2026-05-17T14:00:00Z",
           "open": 86.41,
@@ -29998,9 +30003,17 @@
           "timestamp": "2026-07-05T15:00:00Z",
           "open": 81.45,
           "high": 81.75,
-          "low": 81.34,
-          "close": 81.54,
-          "volume": 8987.82
+          "low": 81.12,
+          "close": 81.36,
+          "volume": 43155.888
+        },
+        {
+          "timestamp": "2026-07-05T16:00:00Z",
+          "open": 81.36,
+          "high": 81.48,
+          "low": 81.35,
+          "close": 81.36,
+          "volume": 2760.336
         }
       ],
       "is_major": true,
@@ -30009,37 +30022,39 @@
         "symbol": "SOL",
         "type": "HOLD",
         "reason": "Trend state leans bearish",
-        "confidence": 95
+        "confidence": 41
       },
       "advisory": {
         "symbol": "SOL",
-        "state": "WATCHLIST",
+        "state": "PASS",
         "direction": "SHORT",
-        "score": 100,
-        "confidence": "VERY_HIGH",
-        "priority": 2,
+        "score": 41,
+        "confidence": "LOW",
+        "priority": 4,
         "reasons": [
           "Trend state leans bearish",
-          "In major kill zone timing",
           "Liquidity reference identified",
           "Fair value gap present",
           "Sweep/run context supports setup",
-          "Execution status marked WATCHLIST"
+          "MACD bearish"
         ],
         "blockers": [
           "HTF/LTF alignment missing",
+          "Not in a major kill zone",
+          "Entry zone undefined",
+          "Invalidation undefined",
+          "Target not defined",
           "Macro backdrop is risk-off"
         ],
         "triggers": [
-          "Needs HTF/LTF alignment"
+          "Needs HTF/LTF alignment",
+          "Needs London or New York kill zone timing"
         ],
-        "invalidators": [
-          "Lose invalidation level 82.695004"
-        ],
-        "time_horizon": "INTRADAY",
+        "invalidators": [],
+        "time_horizon": "CONTEXT",
         "display_signal": "HOLD",
         "display_reason": "Trend state leans bearish",
-        "display_confidence": 95
+        "display_confidence": 41
       },
       "trading_bible": {
         "symbol": "SOL",
@@ -30185,6 +30200,13 @@
         ],
         "fvgs": [
           {
+            "timestamp": "2026-07-03T18:00:00+00:00",
+            "direction": "bullish",
+            "upper": 81.56999969482422,
+            "lower": 81.48999786376953,
+            "status": "open"
+          },
+          {
             "timestamp": "2026-07-03T19:00:00+00:00",
             "direction": "bullish",
             "upper": 82.0,
@@ -30246,13 +30268,6 @@
             "upper": 80.62999725341797,
             "lower": 80.58000183105469,
             "status": "open"
-          },
-          {
-            "timestamp": "2026-07-05T15:00:00+00:00",
-            "direction": "bullish",
-            "upper": 81.26000213623047,
-            "lower": 81.18000030517578,
-            "status": "open"
           }
         ],
         "order_blocks": [
@@ -30311,6 +30326,13 @@
             "upper": 80.47000122070312,
             "lower": 79.63999938964844,
             "reason": "Last bearish candle before bullish structural impulse"
+          },
+          {
+            "timestamp": "2026-07-05T15:00:00+00:00",
+            "direction": "bullish",
+            "upper": 81.62000274658203,
+            "lower": 81.04000091552734,
+            "reason": "Last bearish candle before bullish structural impulse"
           }
         ],
         "sweeps": [
@@ -30325,11 +30347,11 @@
           },
           {
             "timestamp": "2026-07-05T15:00:00+00:00",
-            "classification": "sweep",
-            "direction": "bullish",
+            "classification": "run",
+            "direction": "bearish",
             "level": 81.30000305175781,
             "notes": [
-              "swing_low taken and rejected"
+              "swing_low taken with continuation"
             ]
           },
           {
@@ -30362,14 +30384,6 @@
         ],
         "traps": [
           {
-            "timestamp": "2026-07-05T15:00:00+00:00",
-            "trap_type": "inducement",
-            "direction": "bullish",
-            "notes": [
-              "swing_low taken and rejected"
-            ]
-          },
-          {
             "timestamp": "2026-07-05T02:00:00+00:00",
             "trap_type": "inducement",
             "direction": "bullish",
@@ -30381,7 +30395,7 @@
         "session": {
           "active_session": "New York",
           "london_kill_zone": false,
-          "new_york_kill_zone": true,
+          "new_york_kill_zone": false,
           "time_to_next_kill_zone_minutes": null,
           "asia_high": 83.9000015258789,
           "asia_low": 72.16999816894531,
@@ -30390,7 +30404,7 @@
           "new_york_high": 83.0999984741211,
           "new_york_low": 74.51000213623047
         },
-        "session_narrative": "Active session: New York. Asia range: 72.17 to 83.90. London range: 74.00 to 82.76. NY range: 74.51 to 83.10. New York kill zone is active. Recent run detected near liquidity. Latest CHoCH: bullish.",
+        "session_narrative": "Active session: New York. Asia range: 72.17 to 83.90. London range: 74.00 to 82.76. NY range: 74.51 to 83.10. Recent run detected near liquidity. Latest CHoCH: bullish.",
         "premium_discount": {
           "range_high": 83.9000015258789,
           "range_low": 79.63999938964844,
@@ -30398,34 +30412,34 @@
           "state": "discount"
         },
         "setup": {
-          "bias": "short",
-          "grade": "B",
-          "execution_status": "WATCHLIST",
+          "bias": "pass",
+          "grade": "PASS",
+          "execution_status": "PASS",
           "reasons": [
-            "Within major kill zone",
             "Recent CHoCH present",
             "Nearby liquidity pools identified",
             "Fair value gap present",
             "Order block candidate present",
             "Sweep/run behavior detected",
-            "Trap/inducement behavior detected",
-            "Session expansion setup candidate"
+            "Trap/inducement behavior detected"
           ],
           "blocked_conditions": [
-            "HTF/LTF alignment missing"
+            "HTF/LTF alignment missing",
+            "Not in a major kill zone"
           ],
           "next_trigger_conditions": [
-            "Needs HTF/LTF alignment"
+            "Needs HTF/LTF alignment",
+            "Needs London or New York kill zone timing"
           ],
-          "watchlist_reason": "Waiting for confirmation / confluence",
-          "setup_type": "session-expansion",
-          "entry_zone_low": 81.47000122070312,
-          "entry_zone_high": 82.695004,
-          "target_1": 81.30000305175781,
-          "target_2": 81.30000305175781,
-          "rr_estimate": 0.14,
-          "invalidation_level": 82.695004,
-          "invalidation_reason": "Template invalidation for session-expansion",
+          "watchlist_reason": "Waiting for confluence to improve",
+          "setup_type": null,
+          "entry_zone_low": null,
+          "entry_zone_high": null,
+          "target_1": null,
+          "target_2": null,
+          "rr_estimate": null,
+          "invalidation_level": null,
+          "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing; Not in a major kill zone",
           "checklist": [
             {
               "name": "HTF/LTF aligned",
@@ -30433,7 +30447,7 @@
             },
             {
               "name": "In kill zone",
-              "ok": true
+              "ok": false
             },
             {
               "name": "BOS present",
@@ -30460,141 +30474,41 @@
               "ok": false
             }
           ],
-          "no_trade_reason": null
+          "no_trade_reason": "Insufficient weighted confluence across structure, liquidity, session, and range position"
         }
       },
       "technical": {
-        "rsi": 59.887005649717615,
+        "rsi": 66.23376623376646,
         "rsi_status": "NEUTRAL",
-        "macd": -0.24905329371148355,
+        "macd": -0.2782693853927469,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
       "derivatives": {
         "oi_change_1h_pct": null,
-        "funding_current": 6.668283127999999e-05,
+        "funding_current": -0.00059680442663,
         "funding_state": "balanced",
-        "long_short_value": 0.962,
+        "long_short_value": 0.857,
         "long_short_type": "funding_oi_price_proxy",
         "liq_bias": "below",
-        "liq_level": 80.07,
+        "liq_level": 79.9,
         "liq_confidence": "low",
-        "daily_change_pct": -0.415,
-        "recent_range_pct": 3.8631346578366337,
+        "daily_change_pct": -1.13,
+        "recent_range_pct": 3.871681415929193,
         "source": {
           "oi": "okx",
           "funding": "okx",
           "long_short": "internal_proxy"
         },
         "confidence_label": "inferred",
-        "funding_change_1h_pct": 0.0,
-        "funding_change_4h_pct": -82.51105816167939,
-        "oi_change_hist_1h_pct": -0.06281211751996603,
-        "oi_change_hist_4h_pct": 0.24263744724485123,
-        "long_short_change_1h_pct": -0.6198347107438021,
-        "sparkline": "\u2581\u2581\u2588\u2587\u2584\u2582\u2588\u2586"
+        "funding_change_1h_pct": -0.0,
+        "funding_change_4h_pct": 15.119498877336598,
+        "oi_change_hist_1h_pct": 0.012354020584752427,
+        "oi_change_hist_4h_pct": 0.1519823330017783,
+        "long_short_change_1h_pct": -0.11655011655011666,
+        "sparkline": "\u2581\u2581\u2584\u2584\u2587\u2588\u2585\u2584"
       },
       "derivatives_history_rows": [
-        {
-          "timestamp": "2026-07-04T15:15:10Z",
-          "funding_current": 0.0073177996585200005,
-          "long_short_value": 1.27,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 278581483.08040017,
-          "liq_bias": "above",
-          "liq_level": 83.54
-        },
-        {
-          "timestamp": "2026-07-04T15:15:20Z",
-          "funding_current": 0.0073177996585200005,
-          "long_short_value": 1.262,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 278581483.08040017,
-          "liq_bias": "above",
-          "liq_level": 83.46
-        },
-        {
-          "timestamp": "2026-07-04T15:30:12Z",
-          "funding_current": 0.00614690550135,
-          "long_short_value": 1.338,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 279322084.3966002,
-          "liq_bias": "above",
-          "liq_level": 83.71
-        },
-        {
-          "timestamp": "2026-07-04T15:30:22Z",
-          "funding_current": 0.00614690550135,
-          "long_short_value": 1.34,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 279603588.34750015,
-          "liq_bias": "above",
-          "liq_level": 83.74
-        },
-        {
-          "timestamp": "2026-07-04T15:45:07Z",
-          "funding_current": 0.004806537826840001,
-          "long_short_value": 1.34,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 278693335.89360017,
-          "liq_bias": "above",
-          "liq_level": 83.7
-        },
-        {
-          "timestamp": "2026-07-04T15:45:16Z",
-          "funding_current": 0.004806537826840001,
-          "long_short_value": 1.336,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 278693335.89360017,
-          "liq_bias": "above",
-          "liq_level": 83.67
-        },
-        {
-          "timestamp": "2026-07-04T16:00:08Z",
-          "funding_current": 0.00415013957205,
-          "long_short_value": 1.324,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 276928280.43440014,
-          "liq_bias": "above",
-          "liq_level": 83.68
-        },
-        {
-          "timestamp": "2026-07-04T16:00:19Z",
-          "funding_current": 0.00415013957205,
-          "long_short_value": 1.323,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 276928280.43440014,
-          "liq_bias": "above",
-          "liq_level": 83.68
-        },
-        {
-          "timestamp": "2026-07-04T16:05:06Z",
-          "funding_current": 0.00415013957205,
-          "long_short_value": 1.328,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 276928280.43440014,
-          "liq_bias": "above",
-          "liq_level": 83.75
-        },
-        {
-          "timestamp": "2026-07-04T16:05:15Z",
-          "funding_current": 0.00415013957205,
-          "long_short_value": 1.327,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 276928280.43440014,
-          "liq_bias": "above",
-          "liq_level": 83.77
-        },
         {
           "timestamp": "2026-07-04T16:15:08Z",
           "funding_current": 0.00377326314107,
@@ -32894,6 +32808,106 @@
           "oi_current": 275025657.85240006,
           "liq_bias": "below",
           "liq_level": 80.07
+        },
+        {
+          "timestamp": "2026-07-05T15:15:08Z",
+          "funding_current": -0.00054859679213,
+          "long_short_value": 0.88,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 274057413.9975,
+          "liq_bias": "below",
+          "liq_level": 79.84
+        },
+        {
+          "timestamp": "2026-07-05T15:15:18Z",
+          "funding_current": -0.00054859679213,
+          "long_short_value": 0.885,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 274057413.9975,
+          "liq_bias": "below",
+          "liq_level": 79.82
+        },
+        {
+          "timestamp": "2026-07-05T15:30:09Z",
+          "funding_current": -0.00087308787453,
+          "long_short_value": 0.837,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 275169946.94,
+          "liq_bias": "below",
+          "liq_level": 79.78
+        },
+        {
+          "timestamp": "2026-07-05T15:30:20Z",
+          "funding_current": -0.0008703089587,
+          "long_short_value": 0.836,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 275335763.45100003,
+          "liq_bias": "below",
+          "liq_level": 79.8
+        },
+        {
+          "timestamp": "2026-07-05T15:45:07Z",
+          "funding_current": -0.0005184216683099999,
+          "long_short_value": 0.854,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 275096525.65680003,
+          "liq_bias": "below",
+          "liq_level": 79.67
+        },
+        {
+          "timestamp": "2026-07-05T15:45:18Z",
+          "funding_current": -0.0005184216683099999,
+          "long_short_value": 0.854,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 275096525.65680003,
+          "liq_bias": "below",
+          "liq_level": 79.68
+        },
+        {
+          "timestamp": "2026-07-05T16:00:07Z",
+          "funding_current": -0.00059680442663,
+          "long_short_value": 0.87,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 275480590.8456,
+          "liq_bias": "below",
+          "liq_level": 79.92
+        },
+        {
+          "timestamp": "2026-07-05T16:00:18Z",
+          "funding_current": -0.00059680442663,
+          "long_short_value": 0.873,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 275514623.7745001,
+          "liq_bias": "below",
+          "liq_level": 79.93
+        },
+        {
+          "timestamp": "2026-07-05T16:05:06Z",
+          "funding_current": -0.00059680442663,
+          "long_short_value": 0.858,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 275480590.8456,
+          "liq_bias": "below",
+          "liq_level": 79.9
+        },
+        {
+          "timestamp": "2026-07-05T16:05:14Z",
+          "funding_current": -0.00059680442663,
+          "long_short_value": 0.857,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 275514623.7745001,
+          "liq_bias": "below",
+          "liq_level": 79.9
         }
       ],
       "signal_change": null
@@ -32901,8 +32915,8 @@
     {
       "symbol": "ZEC",
       "display_symbol": "ZEC",
-      "price": 464.67,
-      "change_pct": -0.614,
+      "price": 461.94,
+      "change_pct": -0.675,
       "source": "binance-spot-public",
       "provenance": {
         "source_name": "Binance Spot Public",
@@ -32918,23 +32932,15 @@
         "method": "GET",
         "interval": "1h",
         "limit": 120,
-        "data_timestamp_utc": "2026-07-05T15:05:17Z",
-        "fetched_at_utc": "2026-07-05T15:05:18Z",
+        "data_timestamp_utc": "2026-07-05T16:05:16Z",
+        "fetched_at_utc": "2026-07-05T16:05:17Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-05T15:05:17Z",
+      "data_timestamp_utc": "2026-07-05T16:05:16Z",
       "symbol_pair": "ZECUSDT",
-      "volume": 119058.995,
+      "volume": 113072.848,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-05-17T13:00:00Z",
-          "open": 513.82,
-          "high": 517.97,
-          "low": 508.93,
-          "close": 514.88,
-          "volume": 5704.438
-        },
         {
           "timestamp": "2026-05-17T14:00:00Z",
           "open": 514.87,
@@ -40923,9 +40929,17 @@
           "timestamp": "2026-07-05T15:00:00Z",
           "open": 464.77,
           "high": 466.93,
-          "low": 464.34,
-          "close": 464.72,
-          "volume": 4154.097
+          "low": 461.53,
+          "close": 462.98,
+          "volume": 7430.885
+        },
+        {
+          "timestamp": "2026-07-05T16:00:00Z",
+          "open": 462.98,
+          "high": 463.02,
+          "low": 461.9,
+          "close": 461.94,
+          "volume": 349.527
         }
       ],
       "is_major": true,
@@ -40946,15 +40960,18 @@
         "reasons": [
           "Trend state leans bullish",
           "HTF/LTF alignment present",
-          "In major kill zone timing",
           "Liquidity reference identified",
           "Fair value gap present",
-          "Sweep/run context supports setup"
+          "Sweep/run context supports setup",
+          "Execution status marked WATCHLIST"
         ],
         "blockers": [
+          "Not in a major kill zone",
           "Macro backdrop is risk-off"
         ],
-        "triggers": [],
+        "triggers": [
+          "Needs London or New York kill zone timing"
+        ],
         "invalidators": [
           "Lose invalidation level 461.1300048828125"
         ],
@@ -41218,11 +41235,11 @@
           },
           {
             "timestamp": "2026-07-05T15:00:00+00:00",
-            "classification": "run",
-            "direction": "bullish",
+            "classification": "sweep",
+            "direction": "bearish",
             "level": 464.7300109863281,
             "notes": [
-              "session_high taken with continuation"
+              "session_high taken and rejected"
             ]
           }
         ],
@@ -41258,12 +41275,20 @@
             "notes": [
               "equal_lows taken and rejected"
             ]
+          },
+          {
+            "timestamp": "2026-07-05T15:00:00+00:00",
+            "trap_type": "inducement",
+            "direction": "bearish",
+            "notes": [
+              "session_high taken and rejected"
+            ]
           }
         ],
         "session": {
           "active_session": "New York",
           "london_kill_zone": false,
-          "new_york_kill_zone": true,
+          "new_york_kill_zone": false,
           "time_to_next_kill_zone_minutes": null,
           "asia_high": 464.7300109863281,
           "asia_low": 385.8500061035156,
@@ -41272,37 +41297,40 @@
           "new_york_high": 474.54998779296875,
           "new_york_low": 396.7099914550781
         },
-        "session_narrative": "Active session: New York. Asia range: 385.85 to 464.73. London range: 392.88 to 467.25. NY range: 396.71 to 474.55. New York kill zone is active. Recent run detected near liquidity.",
+        "session_narrative": "Active session: New York. Asia range: 385.85 to 464.73. London range: 392.88 to 467.25. NY range: 396.71 to 474.55. Recent sweep detected near liquidity.",
         "premium_discount": {
           "range_high": 474.54998779296875,
           "range_low": 450.9599914550781,
           "equilibrium": 462.75498962402344,
-          "state": "premium"
+          "state": "discount"
         },
         "setup": {
           "bias": "long",
-          "grade": "B",
+          "grade": "A",
           "execution_status": "WATCHLIST",
           "reasons": [
-            "Within major kill zone",
             "HTF/LTF alignment present",
             "Nearby liquidity pools identified",
             "Fair value gap present",
             "Sweep/run behavior detected",
             "Trap/inducement behavior detected",
-            "Session expansion setup candidate"
+            "A+ long session sweep-reversal candidate"
           ],
-          "blocked_conditions": [],
-          "next_trigger_conditions": [],
+          "blocked_conditions": [
+            "Not in a major kill zone"
+          ],
+          "next_trigger_conditions": [
+            "Needs London or New York kill zone timing"
+          ],
           "watchlist_reason": "Waiting for confirmation / confluence",
-          "setup_type": "session-expansion",
+          "setup_type": "sweep-reversal",
           "entry_zone_low": 461.1300048828125,
-          "entry_zone_high": 465.010009765625,
+          "entry_zone_high": 461.7200012207031,
           "target_1": 474.534988,
           "target_2": 474.54998779296875,
-          "rr_estimate": 2.45,
+          "rr_estimate": 21.72,
           "invalidation_level": 461.1300048828125,
-          "invalidation_reason": "Template invalidation for session-expansion",
+          "invalidation_reason": "Template invalidation for sweep-reversal",
           "checklist": [
             {
               "name": "HTF/LTF aligned",
@@ -41310,7 +41338,7 @@
             },
             {
               "name": "In kill zone",
-              "ok": true
+              "ok": false
             },
             {
               "name": "BOS present",
@@ -41341,23 +41369,23 @@
         }
       },
       "technical": {
-        "rsi": 61.03042876901811,
+        "rsi": 63.512054695933784,
         "rsi_status": "NEUTRAL",
-        "macd": -1.234816720661513,
+        "macd": -1.0583736053896473,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
       "derivatives": {
         "oi_change_1h_pct": null,
-        "funding_current": -0.00293851248838,
+        "funding_current": -0.00066418895885,
         "funding_state": "balanced",
-        "long_short_value": 0.792,
+        "long_short_value": 0.899,
         "long_short_type": "funding_oi_price_proxy",
         "liq_bias": "below",
-        "liq_level": 456.31,
+        "liq_level": 453.63,
         "liq_confidence": "low",
-        "daily_change_pct": -0.614,
-        "recent_range_pct": 5.0465922052209065,
+        "daily_change_pct": -0.675,
+        "recent_range_pct": 5.076416850673246,
         "source": {
           "oi": "okx",
           "funding": "okx",
@@ -41365,113 +41393,13 @@
         },
         "confidence_label": "inferred",
         "funding_change_1h_pct": -0.0,
-        "funding_change_4h_pct": -1.1933014940788338,
-        "oi_change_hist_1h_pct": -0.06698345862302889,
-        "oi_change_hist_4h_pct": 0.00917851294997549,
-        "long_short_change_1h_pct": -1.492537313432837,
-        "sparkline": "\u2581\u2581\u2585\u2586\u2588\u2587\u2586\u2584"
+        "funding_change_4h_pct": -19.633986551723286,
+        "oi_change_hist_1h_pct": -0.02129617522004815,
+        "oi_change_hist_4h_pct": 0.10379122325645228,
+        "long_short_change_1h_pct": -0.5530973451327439,
+        "sparkline": "\u2581\u2581\u2584\u2584\u2587\u2588\u2586\u2586"
       },
       "derivatives_history_rows": [
-        {
-          "timestamp": "2026-07-04T15:15:10Z",
-          "funding_current": -0.00136665345671,
-          "long_short_value": 0.981,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 54377002.4234,
-          "liq_bias": "below",
-          "liq_level": 461.06
-        },
-        {
-          "timestamp": "2026-07-04T15:15:20Z",
-          "funding_current": -0.00136665345671,
-          "long_short_value": 0.978,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 54377002.4234,
-          "liq_bias": "below",
-          "liq_level": 460.8
-        },
-        {
-          "timestamp": "2026-07-04T15:30:12Z",
-          "funding_current": -0.0027028860620599998,
-          "long_short_value": 0.903,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 53928920.8848,
-          "liq_bias": "below",
-          "liq_level": 458.73
-        },
-        {
-          "timestamp": "2026-07-04T15:30:22Z",
-          "funding_current": -0.0027028860620599998,
-          "long_short_value": 0.913,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 53934703.9392,
-          "liq_bias": "below",
-          "liq_level": 458.91
-        },
-        {
-          "timestamp": "2026-07-04T15:45:07Z",
-          "funding_current": -0.00375814743917,
-          "long_short_value": 0.861,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 53762035.4476,
-          "liq_bias": "below",
-          "liq_level": 457.63
-        },
-        {
-          "timestamp": "2026-07-04T15:45:16Z",
-          "funding_current": -0.00375814743917,
-          "long_short_value": 0.856,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 53762035.4476,
-          "liq_bias": "below",
-          "liq_level": 457.43
-        },
-        {
-          "timestamp": "2026-07-04T16:00:08Z",
-          "funding_current": -0.00464493220801,
-          "long_short_value": 0.889,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 53815296.976,
-          "liq_bias": "below",
-          "liq_level": 456.8
-        },
-        {
-          "timestamp": "2026-07-04T16:00:19Z",
-          "funding_current": -0.00464493220801,
-          "long_short_value": 0.882,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 53815296.976,
-          "liq_bias": "below",
-          "liq_level": 456.64
-        },
-        {
-          "timestamp": "2026-07-04T16:05:06Z",
-          "funding_current": -0.00464493220801,
-          "long_short_value": 0.892,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 53815296.976,
-          "liq_bias": "below",
-          "liq_level": 456.83
-        },
-        {
-          "timestamp": "2026-07-04T16:05:15Z",
-          "funding_current": -0.00464493220801,
-          "long_short_value": 0.889,
-          "long_short_type": "funding_oi_price_proxy",
-          "confidence_label": "inferred",
-          "oi_current": 53815296.976,
-          "liq_bias": "below",
-          "liq_level": 456.71
-        },
         {
           "timestamp": "2026-07-04T16:15:08Z",
           "funding_current": -0.00498289196947,
@@ -43771,6 +43699,106 @@
           "oi_current": 53427393.795,
           "liq_bias": "below",
           "liq_level": 456.31
+        },
+        {
+          "timestamp": "2026-07-05T15:15:08Z",
+          "funding_current": -0.00309843577245,
+          "long_short_value": 0.737,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 53584310.5504,
+          "liq_bias": "below",
+          "liq_level": 456.06
+        },
+        {
+          "timestamp": "2026-07-05T15:15:18Z",
+          "funding_current": -0.00309843577245,
+          "long_short_value": 0.736,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 53584310.5504,
+          "liq_bias": "below",
+          "liq_level": 455.94
+        },
+        {
+          "timestamp": "2026-07-05T15:30:09Z",
+          "funding_current": -0.00153489112825,
+          "long_short_value": 0.822,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 53314520.973,
+          "liq_bias": "below",
+          "liq_level": 454.12
+        },
+        {
+          "timestamp": "2026-07-05T15:30:20Z",
+          "funding_current": -0.00141756139711,
+          "long_short_value": 0.828,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 53350377.6936,
+          "liq_bias": "below",
+          "liq_level": 454.3
+        },
+        {
+          "timestamp": "2026-07-05T15:45:07Z",
+          "funding_current": -0.0008264550278800001,
+          "long_short_value": 0.869,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 53289051.1015,
+          "liq_bias": "below",
+          "liq_level": 453.54
+        },
+        {
+          "timestamp": "2026-07-05T15:45:18Z",
+          "funding_current": -0.0008264550278800001,
+          "long_short_value": 0.868,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 53289051.1015,
+          "liq_bias": "below",
+          "liq_level": 453.3
+        },
+        {
+          "timestamp": "2026-07-05T16:00:07Z",
+          "funding_current": -0.00066418895885,
+          "long_short_value": 0.914,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 53355723.1878,
+          "liq_bias": "below",
+          "liq_level": 454.49
+        },
+        {
+          "timestamp": "2026-07-05T16:00:18Z",
+          "funding_current": -0.00066418895885,
+          "long_short_value": 0.922,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 53344360.4595,
+          "liq_bias": "below",
+          "liq_level": 454.58
+        },
+        {
+          "timestamp": "2026-07-05T16:05:06Z",
+          "funding_current": -0.00066418895885,
+          "long_short_value": 0.904,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 53355723.1878,
+          "liq_bias": "below",
+          "liq_level": 453.79
+        },
+        {
+          "timestamp": "2026-07-05T16:05:14Z",
+          "funding_current": -0.00066418895885,
+          "long_short_value": 0.899,
+          "long_short_type": "funding_oi_price_proxy",
+          "confidence_label": "inferred",
+          "oi_current": 53344360.4595,
+          "liq_bias": "below",
+          "liq_level": 453.63
         }
       ],
       "signal_change": null
@@ -43778,8 +43806,8 @@
     {
       "symbol": "HYPE",
       "display_symbol": "HYPE",
-      "price": 69.749,
-      "change_pct": -1.266,
+      "price": 69.434,
+      "change_pct": -1.95,
       "source": "binance-usdm-futures-public",
       "provenance": {
         "source_name": "Binance USD-M Futures Public",
@@ -43795,23 +43823,15 @@
         "method": "GET",
         "interval": "1h",
         "limit": 120,
-        "data_timestamp_utc": "2026-07-05T15:05:14Z",
-        "fetched_at_utc": "2026-07-05T15:05:19Z",
+        "data_timestamp_utc": "2026-07-05T16:05:08Z",
+        "fetched_at_utc": "2026-07-05T16:05:18Z",
         "fallback_reason": "Binance spot unavailable/unsupported (spot HYPEUSDT: HTTP 400: {\"code\":-1121,\"msg\":\"Invalid symbol.\"}); used Binance public USD-M futures market data."
       },
-      "data_timestamp_utc": "2026-07-05T15:05:14Z",
+      "data_timestamp_utc": "2026-07-05T16:05:08Z",
       "symbol_pair": "HYPEUSDT",
-      "volume": 6213310.23,
+      "volume": 6041136.57,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-05-17T13:00:00Z",
-          "open": 43.187,
-          "high": 43.274,
-          "low": 42.507,
-          "close": 42.818,
-          "volume": 859466.34
-        },
         {
           "timestamp": "2026-05-17T14:00:00Z",
           "open": 42.818,
@@ -51799,10 +51819,18 @@
         {
           "timestamp": "2026-07-05T15:00:00Z",
           "open": 69.438,
-          "high": 69.8,
-          "low": 69.396,
-          "close": 69.739,
-          "volume": 72565.65
+          "high": 69.866,
+          "low": 69.346,
+          "close": 69.537,
+          "volume": 250103.59
+        },
+        {
+          "timestamp": "2026-07-05T16:00:00Z",
+          "open": 69.537,
+          "high": 69.554,
+          "low": 69.425,
+          "close": 69.434,
+          "volume": 10159.39
         }
       ],
       "is_major": false,
@@ -51840,9 +51868,9 @@
       },
       "trading_bible": null,
       "technical": {
-        "rsi": 62.05298013245055,
+        "rsi": 65.72327044025154,
         "rsi_status": "NEUTRAL",
-        "macd": -0.3022526456062593,
+        "macd": -0.31317235668794297,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
@@ -51852,7 +51880,7 @@
       "symbol": "ASTER",
       "display_symbol": "ASTER",
       "price": 0.642,
-      "change_pct": -0.619,
+      "change_pct": -1.079,
       "source": "binance-spot-public",
       "provenance": {
         "source_name": "Binance Spot Public",
@@ -51868,23 +51896,15 @@
         "method": "GET",
         "interval": "1h",
         "limit": 120,
-        "data_timestamp_utc": "2026-07-05T15:05:17Z",
-        "fetched_at_utc": "2026-07-05T15:05:20Z",
+        "data_timestamp_utc": "2026-07-05T16:05:15Z",
+        "fetched_at_utc": "2026-07-05T16:05:19Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-05T15:05:17Z",
+      "data_timestamp_utc": "2026-07-05T16:05:15Z",
       "symbol_pair": "ASTERUSDT",
-      "volume": 5003592.48,
+      "volume": 4674651.04,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-05-17T13:00:00Z",
-          "open": 0.667,
-          "high": 0.667,
-          "low": 0.662,
-          "close": 0.663,
-          "volume": 309650.16
-        },
         {
           "timestamp": "2026-05-17T14:00:00Z",
           "open": 0.664,
@@ -59872,10 +59892,18 @@
         {
           "timestamp": "2026-07-05T15:00:00Z",
           "open": 0.641,
-          "high": 0.642,
-          "low": 0.64,
+          "high": 0.643,
+          "low": 0.639,
+          "close": 0.641,
+          "volume": 303829.88
+        },
+        {
+          "timestamp": "2026-07-05T16:00:00Z",
+          "open": 0.641,
+          "high": 0.643,
+          "low": 0.641,
           "close": 0.642,
-          "volume": 43276.27
+          "volume": 4715.22
         }
       ],
       "is_major": false,
@@ -59913,9 +59941,9 @@
       },
       "trading_bible": null,
       "technical": {
-        "rsi": 51.85185185185185,
+        "rsi": 58.33333333333333,
         "rsi_status": "NEUTRAL",
-        "macd": -0.0016727217148778672,
+        "macd": -0.0020770493009432123,
         "macd_status": "BEARISH",
         "sample_data_used": false
       },
@@ -59924,8 +59952,8 @@
     {
       "symbol": "SENT",
       "display_symbol": "SENT",
-      "price": 0.01473,
-      "change_pct": 0.89,
+      "price": 0.01458,
+      "change_pct": -0.613,
       "source": "binance-spot-public",
       "provenance": {
         "source_name": "Binance Spot Public",
@@ -59941,23 +59969,15 @@
         "method": "GET",
         "interval": "1h",
         "limit": 120,
-        "data_timestamp_utc": "2026-07-05T15:05:18Z",
-        "fetched_at_utc": "2026-07-05T15:05:20Z",
+        "data_timestamp_utc": "2026-07-05T16:05:17Z",
+        "fetched_at_utc": "2026-07-05T16:05:18Z",
         "fallback_reason": null
       },
-      "data_timestamp_utc": "2026-07-05T15:05:18Z",
+      "data_timestamp_utc": "2026-07-05T16:05:17Z",
       "symbol_pair": "SENTUSDT",
-      "volume": 455360165.0,
+      "volume": 440821503.0,
       "market_cap": null,
       "ohlc": [
-        {
-          "timestamp": "2026-05-17T13:00:00Z",
-          "open": 0.01549,
-          "high": 0.01551,
-          "low": 0.01541,
-          "close": 0.01549,
-          "volume": 1017524.0
-        },
         {
           "timestamp": "2026-05-17T14:00:00Z",
           "open": 0.01547,
@@ -67946,9 +67966,17 @@
           "timestamp": "2026-07-05T15:00:00Z",
           "open": 0.01472,
           "high": 0.01475,
-          "low": 0.01466,
-          "close": 0.01473,
-          "volume": 1746863.0
+          "low": 0.01456,
+          "close": 0.01457,
+          "volume": 14432927.0
+        },
+        {
+          "timestamp": "2026-07-05T16:00:00Z",
+          "open": 0.01457,
+          "high": 0.01463,
+          "low": 0.01456,
+          "close": 0.01458,
+          "volume": 2055070.0
         }
       ],
       "is_major": false,
@@ -67986,9 +68014,9 @@
       },
       "trading_bible": null,
       "technical": {
-        "rsi": 49.33333333333332,
+        "rsi": 44.3965517241379,
         "rsi_status": "NEUTRAL",
-        "macd": 9.200777509098257e-05,
+        "macd": 3.534302455749164e-05,
         "macd_status": "BULLISH",
         "sample_data_used": false
       },
@@ -68015,7 +68043,7 @@
         "interval": "1h",
         "limit": 240,
         "data_timestamp_utc": "2026-07-02T23:00:00-04:00",
-        "fetched_at_utc": "2026-07-05T15:05:21Z",
+        "fetched_at_utc": "2026-07-05T16:05:20Z",
         "fallback_reason": null
       },
       "data_timestamp_utc": "2026-07-02T23:00:00-04:00",
@@ -76129,7 +76157,7 @@
         "interval": "1h",
         "limit": 240,
         "data_timestamp_utc": "2026-07-02T23:00:00-04:00",
-        "fetched_at_utc": "2026-07-05T15:05:21Z",
+        "fetched_at_utc": "2026-07-05T16:05:20Z",
         "fallback_reason": null
       },
       "data_timestamp_utc": "2026-07-02T23:00:00-04:00",
@@ -84243,7 +84271,7 @@
         "interval": "1h",
         "limit": 240,
         "data_timestamp_utc": "2026-07-02T23:00:00-04:00",
-        "fetched_at_utc": "2026-07-05T15:05:21Z",
+        "fetched_at_utc": "2026-07-05T16:05:20Z",
         "fallback_reason": null
       },
       "data_timestamp_utc": "2026-07-02T23:00:00-04:00",
@@ -92357,7 +92385,7 @@
         "interval": "1h",
         "limit": 240,
         "data_timestamp_utc": "2026-07-02T15:30:00-04:00",
-        "fetched_at_utc": "2026-07-05T15:05:21Z",
+        "fetched_at_utc": "2026-07-05T16:05:20Z",
         "fallback_reason": null
       },
       "data_timestamp_utc": "2026-07-02T15:30:00-04:00",
@@ -96855,7 +96883,7 @@
         "interval": "1h",
         "limit": 240,
         "data_timestamp_utc": "2026-07-02T15:30:00-04:00",
-        "fetched_at_utc": "2026-07-05T15:05:21Z",
+        "fetched_at_utc": "2026-07-05T16:05:20Z",
         "fallback_reason": null
       },
       "data_timestamp_utc": "2026-07-02T15:30:00-04:00",
@@ -101353,7 +101381,7 @@
         "interval": "1h",
         "limit": 240,
         "data_timestamp_utc": "2026-07-02T15:30:00-04:00",
-        "fetched_at_utc": "2026-07-05T15:05:21Z",
+        "fetched_at_utc": "2026-07-05T16:05:20Z",
         "fallback_reason": null
       },
       "data_timestamp_utc": "2026-07-02T15:30:00-04:00",
@@ -105851,7 +105879,7 @@
         "interval": "1h",
         "limit": 240,
         "data_timestamp_utc": "2026-07-02T23:00:00-04:00",
-        "fetched_at_utc": "2026-07-05T15:05:21Z",
+        "fetched_at_utc": "2026-07-05T16:05:20Z",
         "fallback_reason": null
       },
       "data_timestamp_utc": "2026-07-02T23:00:00-04:00",
@@ -113965,7 +113993,7 @@
         "interval": "1h",
         "limit": 240,
         "data_timestamp_utc": "2026-07-03T10:00:00-05:00",
-        "fetched_at_utc": "2026-07-05T15:05:21Z",
+        "fetched_at_utc": "2026-07-05T16:05:20Z",
         "fallback_reason": null
       },
       "data_timestamp_utc": "2026-07-03T10:00:00-05:00",
@@ -122079,7 +122107,7 @@
         "interval": "1h",
         "limit": 240,
         "data_timestamp_utc": "2026-07-02T23:00:00-04:00",
-        "fetched_at_utc": "2026-07-05T15:05:21Z",
+        "fetched_at_utc": "2026-07-05T16:05:21Z",
         "fallback_reason": null
       },
       "data_timestamp_utc": "2026-07-02T23:00:00-04:00",
@@ -130193,7 +130221,7 @@
         "interval": "1h",
         "limit": 240,
         "data_timestamp_utc": "2026-07-03T22:00:00+01:00",
-        "fetched_at_utc": "2026-07-05T15:05:21Z",
+        "fetched_at_utc": "2026-07-05T16:05:21Z",
         "fallback_reason": null
       },
       "data_timestamp_utc": "2026-07-03T22:00:00+01:00",
@@ -138307,7 +138335,7 @@
         "interval": "1h",
         "limit": 240,
         "data_timestamp_utc": "2026-07-03T22:00:00+01:00",
-        "fetched_at_utc": "2026-07-05T15:05:21Z",
+        "fetched_at_utc": "2026-07-05T16:05:21Z",
         "fallback_reason": null
       },
       "data_timestamp_utc": "2026-07-03T22:00:00+01:00",
@@ -146435,8 +146463,8 @@
     {
       "symbol": "ASTER",
       "type": "HOLD",
-      "reason": "Mixed or neutral momentum",
-      "confidence": 63
+      "reason": "MACD bullish, waiting for stronger entry",
+      "confidence": 67
     },
     {
       "symbol": "SENT",
@@ -146451,7 +146479,7 @@
       "public_endpoint_only": true,
       "private_credentials_used": false,
       "real_order": false,
-      "generated_at_utc": "2026-07-05T15:05:16Z",
+      "generated_at_utc": "2026-07-05T16:05:14Z",
       "preferred_market_type": "spot",
       "kline_interval": "1h",
       "kline_limit": 120,
@@ -146483,8 +146511,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-05T15:05:16Z",
-          "fetched_at_utc": "2026-07-05T15:05:17Z",
+          "data_timestamp_utc": "2026-07-05T16:05:15Z",
+          "fetched_at_utc": "2026-07-05T16:05:15Z",
           "fallback_reason": null
         },
         "ETH": {
@@ -146501,8 +146529,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-05T15:05:17Z",
-          "fetched_at_utc": "2026-07-05T15:05:17Z",
+          "data_timestamp_utc": "2026-07-05T16:05:15Z",
+          "fetched_at_utc": "2026-07-05T16:05:16Z",
           "fallback_reason": null
         },
         "SOL": {
@@ -146519,8 +146547,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-05T15:05:17Z",
-          "fetched_at_utc": "2026-07-05T15:05:18Z",
+          "data_timestamp_utc": "2026-07-05T16:05:15Z",
+          "fetched_at_utc": "2026-07-05T16:05:16Z",
           "fallback_reason": null
         },
         "ZEC": {
@@ -146537,8 +146565,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-05T15:05:17Z",
-          "fetched_at_utc": "2026-07-05T15:05:18Z",
+          "data_timestamp_utc": "2026-07-05T16:05:16Z",
+          "fetched_at_utc": "2026-07-05T16:05:17Z",
           "fallback_reason": null
         },
         "HYPE": {
@@ -146555,8 +146583,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-05T15:05:14Z",
-          "fetched_at_utc": "2026-07-05T15:05:19Z",
+          "data_timestamp_utc": "2026-07-05T16:05:08Z",
+          "fetched_at_utc": "2026-07-05T16:05:18Z",
           "fallback_reason": "Binance spot unavailable/unsupported (spot HYPEUSDT: HTTP 400: {\"code\":-1121,\"msg\":\"Invalid symbol.\"}); used Binance public USD-M futures market data."
         },
         "SENT": {
@@ -146573,8 +146601,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-05T15:05:18Z",
-          "fetched_at_utc": "2026-07-05T15:05:20Z",
+          "data_timestamp_utc": "2026-07-05T16:05:17Z",
+          "fetched_at_utc": "2026-07-05T16:05:18Z",
           "fallback_reason": null
         },
         "ASTER": {
@@ -146591,8 +146619,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-05T15:05:17Z",
-          "fetched_at_utc": "2026-07-05T15:05:20Z",
+          "data_timestamp_utc": "2026-07-05T16:05:15Z",
+          "fetched_at_utc": "2026-07-05T16:05:19Z",
           "fallback_reason": null
         }
       }
@@ -146609,7 +146637,7 @@
       "public_endpoint_only": true,
       "private_credentials_used": false,
       "real_order": false,
-      "generated_at_utc": "2026-07-05T15:05:16Z",
+      "generated_at_utc": "2026-07-05T16:05:14Z",
       "preferred_market_type": "spot",
       "kline_interval": "1h",
       "kline_limit": 120,
@@ -146641,8 +146669,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-05T15:05:16Z",
-          "fetched_at_utc": "2026-07-05T15:05:17Z",
+          "data_timestamp_utc": "2026-07-05T16:05:15Z",
+          "fetched_at_utc": "2026-07-05T16:05:15Z",
           "fallback_reason": null
         },
         "ETH": {
@@ -146659,8 +146687,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-05T15:05:17Z",
-          "fetched_at_utc": "2026-07-05T15:05:17Z",
+          "data_timestamp_utc": "2026-07-05T16:05:15Z",
+          "fetched_at_utc": "2026-07-05T16:05:16Z",
           "fallback_reason": null
         },
         "SOL": {
@@ -146677,8 +146705,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-05T15:05:17Z",
-          "fetched_at_utc": "2026-07-05T15:05:18Z",
+          "data_timestamp_utc": "2026-07-05T16:05:15Z",
+          "fetched_at_utc": "2026-07-05T16:05:16Z",
           "fallback_reason": null
         },
         "ZEC": {
@@ -146695,8 +146723,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-05T15:05:17Z",
-          "fetched_at_utc": "2026-07-05T15:05:18Z",
+          "data_timestamp_utc": "2026-07-05T16:05:16Z",
+          "fetched_at_utc": "2026-07-05T16:05:17Z",
           "fallback_reason": null
         },
         "HYPE": {
@@ -146713,8 +146741,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-05T15:05:14Z",
-          "fetched_at_utc": "2026-07-05T15:05:19Z",
+          "data_timestamp_utc": "2026-07-05T16:05:08Z",
+          "fetched_at_utc": "2026-07-05T16:05:18Z",
           "fallback_reason": "Binance spot unavailable/unsupported (spot HYPEUSDT: HTTP 400: {\"code\":-1121,\"msg\":\"Invalid symbol.\"}); used Binance public USD-M futures market data."
         },
         "SENT": {
@@ -146731,8 +146759,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-05T15:05:18Z",
-          "fetched_at_utc": "2026-07-05T15:05:20Z",
+          "data_timestamp_utc": "2026-07-05T16:05:17Z",
+          "fetched_at_utc": "2026-07-05T16:05:18Z",
           "fallback_reason": null
         },
         "ASTER": {
@@ -146749,8 +146777,8 @@
           "method": "GET",
           "interval": "1h",
           "limit": 120,
-          "data_timestamp_utc": "2026-07-05T15:05:17Z",
-          "fetched_at_utc": "2026-07-05T15:05:20Z",
+          "data_timestamp_utc": "2026-07-05T16:05:15Z",
+          "fetched_at_utc": "2026-07-05T16:05:19Z",
           "fallback_reason": null
         }
       }
@@ -146761,14 +146789,14 @@
     "score": 55,
     "factors": [
       "Tracked assets: 18",
-      "Average change: +0.16%",
+      "Average change: -0.12%",
       "Snapshots stored: 4320",
       "OHLC rows stored: 16644"
     ]
   },
   "regime": {
-    "current": "BULLISH",
-    "score": 0.65,
+    "current": "BEARISH",
+    "score": 0.35,
     "previous": "NEUTRAL"
   },
   "watchlists": {
@@ -146812,10 +146840,10 @@
       },
       {
         "symbol": "HYPE",
-        "price": 69.749,
-        "change_pct": -1.266,
-        "rsi": 62.05298013245055,
-        "macd": -0.3022526456062593
+        "price": 69.434,
+        "change_pct": -1.95,
+        "rsi": 65.72327044025154,
+        "macd": -0.31317235668794297
       }
     ],
     "strongest_rsi": [
@@ -146843,6 +146871,22 @@
     ]
   },
   "alerts": [
+    {
+      "timestamp": "2026-07-05T16:00:07Z",
+      "symbol": "ZEC",
+      "type": "signal_change",
+      "message": "ZEC: SELL -> HOLD",
+      "from": "SELL",
+      "to": "HOLD"
+    },
+    {
+      "timestamp": "2026-07-05T15:45:07Z",
+      "symbol": "ZEC",
+      "type": "signal_change",
+      "message": "ZEC: HOLD -> SELL",
+      "from": "HOLD",
+      "to": "SELL"
+    },
     {
       "timestamp": "2026-07-05T14:45:07Z",
       "symbol": "ZEC",
@@ -146970,29 +147014,11 @@
       "message": "ETH: HOLD -> BUY",
       "from": "HOLD",
       "to": "BUY"
-    },
-    {
-      "timestamp": "2026-07-04T16:00:08Z",
-      "symbol": "SOL",
-      "type": "signal_change",
-      "message": "SOL: BUY -> HOLD",
-      "from": "BUY",
-      "to": "HOLD"
     }
   ],
   "history": {
     "BTC": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -147222,19 +147248,19 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
-        62818.0,
-        62782.0,
-        62894.0,
-        62899.99,
-        62920.0,
-        62920.0,
-        62934.01,
-        62930.01,
-        62955.64,
-        62958.01,
         62788.7,
         62786.01,
         62870.01,
@@ -147464,19 +147490,19 @@
         62809.09,
         62801.93,
         62894.0,
-        62886.01
+        62886.01,
+        62790.01,
+        62776.01,
+        62769.38,
+        62769.37,
+        62685.72,
+        62684.0,
+        62740.01,
+        62745.29,
+        62718.02,
+        62718.06
       ],
       "change_pct": [
-        0.975,
-        0.906,
-        1.422,
-        1.438,
-        1.74,
-        1.735,
-        1.615,
-        1.589,
-        1.6,
-        1.599,
         1.377,
         1.369,
         1.281,
@@ -147706,19 +147732,19 @@
         0.164,
         0.14,
         0.239,
-        0.225
+        0.225,
+        -0.062,
+        -0.01,
+        -0.205,
+        -0.198,
+        -0.372,
+        -0.375,
+        -0.308,
+        -0.305,
+        -0.377,
+        -0.381
       ],
       "rsi": [
-        64.77630110581289,
-        63.5195124727471,
-        66.84280893868954,
-        67.05960484808205,
-        67.57261604557742,
-        67.57261604557742,
-        65.84141343663028,
-        65.52558065288514,
-        66.74939945571916,
-        66.73081376314539,
         58.969680862525834,
         58.855536995748786,
         62.62691759033937,
@@ -147948,19 +147974,19 @@
         47.295341195194894,
         47.063843150105015,
         50.19723223933441,
-        49.93685670725721
+        49.93685670725721,
+        46.68427289656341,
+        46.245539188065095,
+        46.04108509529965,
+        46.04077761972501,
+        43.604842382229414,
+        43.557181397170694,
+        51.743134414614715,
+        51.93361492169114,
+        50.90300953956109,
+        50.90451296591647
       ],
       "macd": [
-        123.73772734725208,
-        120.4870150965362,
-        129.6185250680428,
-        130.2782401677614,
-        131.87447948400222,
-        131.87447948400222,
-        148.45398147076776,
-        147.97455127134162,
-        150.42435184114584,
-        150.36851138529892,
         136.8630982798859,
         136.6477136645044,
         143.34856836536346,
@@ -148190,7 +148216,17 @@
         -46.052582389413146,
         -46.624548201376456,
         -39.27913509596692,
-        -39.916514013348205
+        -39.916514013348205,
+        -47.57463367145829,
+        -48.69224050906632,
+        -49.2203316771629,
+        -49.22112939794897,
+        -55.89406387089548,
+        -56.032069568900624,
+        -94.55938820973824,
+        -94.13819162853906,
+        -96.31357624391967,
+        -96.31038536073174
       ],
       "signal_type": [
         "HOLD",
@@ -148437,16 +148473,6 @@
     },
     "ETH": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -148676,19 +148702,19 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
-        1785.27,
-        1783.41,
-        1792.33,
-        1792.54,
-        1791.04,
-        1790.84,
-        1790.96,
-        1790.25,
-        1791.42,
-        1791.19,
         1783.52,
         1783.76,
         1787.8,
@@ -148918,19 +148944,19 @@
         1772.06,
         1771.65,
         1776.58,
-        1776.12
+        1776.12,
+        1774.24,
+        1773.94,
+        1774.68,
+        1774.84,
+        1770.81,
+        1770.53,
+        1774.55,
+        1774.77,
+        1775.38,
+        1775.36
       ],
       "change_pct": [
-        2.489,
-        2.388,
-        3.383,
-        3.399,
-        3.343,
-        3.33,
-        3.436,
-        3.394,
-        3.471,
-        3.448,
         3.168,
         3.181,
         3.102,
@@ -149160,19 +149186,19 @@
         -0.104,
         -0.104,
         0.027,
-        -0.005
+        -0.005,
+        -0.645,
+        -0.557,
+        -0.995,
+        -0.987,
+        -1.13,
+        -1.134,
+        -0.906,
+        -0.865,
+        -0.895,
+        -0.884
       ],
       "rsi": [
-        80.30180107090689,
-        79.6888070938597,
-        82.32382061735572,
-        82.37770358542592,
-        81.9881305637981,
-        81.93183509450797,
-        81.47476579026899,
-        80.46560214893312,
-        81.71411357132092,
-        81.6505441354292,
         73.2310199646883,
         73.26086956521735,
         77.76175367753095,
@@ -149402,19 +149428,19 @@
         55.38827258320136,
         55.19147256217951,
         59.24486396446428,
-        58.748594979393225
+        58.748594979393225,
+        57.36689254598275,
+        57.12616822429927,
+        57.735124760076985,
+        57.87258465659086,
+        54.344023323615225,
+        53.758892520669214,
+        64.70841403055718,
+        64.95156081808389,
+        65.40586485337869,
+        65.3985122210413
       ],
       "macd": [
-        8.860215082614104,
-        8.711839014237967,
-        9.422608245007268,
-        9.439360381759343,
-        9.320499982899037,
-        9.303747846146734,
-        10.583959579131488,
-        10.517748752920397,
-        10.619857015028629,
-        10.601509436681226,
         9.989657584829274,
         9.992050747222493,
         10.331879807051564,
@@ -149644,7 +149670,17 @@
         -3.3609064828197006,
         -3.3752654571787843,
         -2.9979435198570172,
-        -3.0497953717087967
+        -3.0497953717087967,
+        -3.1878010697143964,
+        -3.2109349728482357,
+        -3.151903633817028,
+        -3.138342380255608,
+        -3.4382854001987653,
+        -3.4829577648711165,
+        -5.105200614335672,
+        -5.087650756785706,
+        -5.038989788125036,
+        -5.039787508922473
       ],
       "signal_type": [
         "HOLD",
@@ -149655,16 +149691,6 @@
         "HOLD",
         "HOLD",
         "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
         "BUY",
         "BUY",
         "BUY",
@@ -149675,6 +149701,16 @@
         "HOLD",
         "BUY",
         "BUY",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -149891,16 +149927,6 @@
     },
     "SOL": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -150130,19 +150156,19 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
-        82.06,
-        81.98,
-        82.23,
-        82.26,
-        82.22,
-        82.19,
-        82.2,
-        82.2,
-        82.27,
-        82.29,
         82.04,
         82.06,
         82.28,
@@ -150372,19 +150398,19 @@
         81.44,
         81.41,
         81.59,
-        81.54
+        81.54,
+        81.3,
+        81.28,
+        81.24,
+        81.26,
+        81.13,
+        81.14,
+        81.38,
+        81.4,
+        81.36,
+        81.36
       ],
       "change_pct": [
-        0.502,
-        0.416,
-        1.181,
-        1.231,
-        1.206,
-        1.157,
-        1.169,
-        1.157,
-        1.218,
-        1.193,
         1.01,
         1.047,
         1.131,
@@ -150614,19 +150640,19 @@
         -0.477,
         -0.525,
         -0.354,
-        -0.415
+        -0.415,
+        -0.926,
+        -0.878,
+        -1.192,
+        -1.216,
+        -1.314,
+        -1.29,
+        -0.998,
+        -0.973,
+        -1.118,
+        -1.13
       ],
       "rsi": [
-        51.203501094091905,
-        50.33407572383075,
-        52.95358649789032,
-        53.24947589098536,
-        52.75423728813551,
-        52.55319148936166,
-        50.22026431718058,
-        50.22026431718058,
-        51.09649122807013,
-        51.203501094091905,
         48.510638297872326,
         48.717948717948666,
         51.09649122807013,
@@ -150856,19 +150882,19 @@
         58.620689655172434,
         58.11965811965811,
         60.44568245125355,
-        59.887005649717615
+        59.887005649717615,
+        56.35359116022097,
+        56.043956043956086,
+        55.585831062670316,
+        55.73770491803288,
+        53.825857519788855,
+        53.96825396825397,
+        66.55948553054687,
+        66.66666666666697,
+        66.23376623376646,
+        66.23376623376646
       ],
       "macd": [
-        0.11186687904407222,
-        0.10548511266230776,
-        0.1254281326053217,
-        0.1278212949984976,
-        0.1238326910098948,
-        0.12223724941445369,
-        0.1659499601860972,
-        0.1659499601860972,
-        0.17233172656786166,
-        0.17312944736558222,
         0.15318642742255406,
         0.15478186901799518,
         0.17233172656786166,
@@ -151098,19 +151124,19 @@
         -0.25703050168868913,
         -0.2594236640818366,
         -0.24506468972286655,
-        -0.24905329371148355
+        -0.24905329371148355,
+        -0.26819859285677694,
+        -0.26979403445220385,
+        -0.27218719684537973,
+        -0.2713894760476592,
+        -0.2817598464180264,
+        -0.28096212562030587,
+        -0.27587622299958525,
+        -0.2750785022018505,
+        -0.2782693853927469,
+        -0.2782693853927469
       ],
       "signal_type": [
-        "BUY",
-        "BUY",
-        "BUY",
-        "BUY",
-        "BUY",
-        "BUY",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -151289,6 +151315,16 @@
         "SELL",
         "SELL",
         "SELL",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -151345,16 +151381,6 @@
     },
     "ZEC": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -151584,19 +151610,19 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
-        469.51,
-        469.25,
-        467.14,
-        467.32,
-        466.02,
-        465.81,
-        465.17,
-        465.01,
-        465.2,
-        465.08,
         463.67,
         463.81,
         463.6,
@@ -151826,19 +151852,19 @@
         464.74,
         464.58,
         465.19,
-        464.67
+        464.67,
+        464.42,
+        464.3,
+        462.44,
+        462.63,
+        461.85,
+        461.61,
+        462.82,
+        462.91,
+        462.11,
+        461.94
       ],
       "change_pct": [
-        0.492,
-        0.46,
-        0.378,
-        0.482,
-        0.492,
-        0.438,
-        1.091,
-        1.021,
-        1.122,
-        1.085,
         1.05,
         1.088,
         0.671,
@@ -152068,19 +152094,19 @@
         -0.339,
         -0.354,
         -0.486,
-        -0.614
+        -0.614,
+        -1.084,
+        -1.089,
+        -1.01,
+        -1.014,
+        -0.893,
+        -0.902,
+        -0.531,
+        -0.449,
+        -0.626,
+        -0.675
       ],
       "rsi": [
-        66.46291768541153,
-        66.10378912685334,
-        62.87776274244469,
-        63.176733780760586,
-        60.84081247047702,
-        60.27140851661204,
-        65.28129751647248,
-        64.36781609195403,
-        65.38071065989848,
-        64.98486377396569,
         60.668864813942626,
         61.07159791370323,
         60.469483568075226,
@@ -152310,19 +152336,19 @@
         61.07266435986168,
         60.694635488308194,
         61.68543159331292,
-        61.03042876901811
+        61.03042876901811,
+        60.403832991102085,
+        59.850796880298425,
+        56.57051282051287,
+        56.91712350854567,
+        55.4334170854272,
+        55.15625000000002,
+        65.56463595839526,
+        65.66220238095245,
+        63.90296886314268,
+        63.512054695933784
       ],
       "macd": [
-        1.0102645905602117,
-        0.9895238498194772,
-        0.8212047615003826,
-        0.8355637358593526,
-        0.7318600321556801,
-        0.7159056162012121,
-        1.0600970127790106,
-        1.0377608304427781,
-        1.0624901751721154,
-        1.0529175255994687,
         0.9404388931208132,
         0.9516069842889578,
         0.9348548475368261,
@@ -152552,7 +152578,17 @@
         -1.233221279066072,
         -1.247580253425042,
         -1.1973238431686468,
-        -1.234816720661513
+        -1.234816720661513,
+        -1.2587483445931298,
+        -1.2802868061315849,
+        -1.4166970625418571,
+        -1.4015403673851665,
+        -1.4677511935959728,
+        -1.4805147263595018,
+        -0.9889718959879588,
+        -0.9857810127970765,
+        -1.0448123518284547,
+        -1.0583736053896473
       ],
       "signal_type": [
         "HOLD",
@@ -152707,16 +152743,6 @@
         "HOLD",
         "HOLD",
         "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
-        "HOLD",
         "SELL",
         "SELL",
         "SELL",
@@ -152791,6 +152817,16 @@
         "SELL",
         "HOLD",
         "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "HOLD",
+        "SELL",
+        "SELL",
         "HOLD",
         "HOLD",
         "HOLD",
@@ -152799,16 +152835,6 @@
     },
     "HYPE": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -153038,19 +153064,19 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
-        70.951,
-        70.905,
-        70.968,
-        70.999,
-        70.719,
-        70.712,
-        70.646,
-        70.612,
-        70.843,
-        70.843,
         70.596,
         70.583,
         70.592,
@@ -153280,19 +153306,19 @@
         69.426,
         69.397,
         69.751,
-        69.749
+        69.749,
+        69.583,
+        69.586,
+        69.414,
+        69.46,
+        69.375,
+        69.372,
+        69.537,
+        69.528,
+        69.434,
+        69.434
       ],
       "change_pct": [
-        0.725,
-        0.66,
-        0.768,
-        0.812,
-        0.978,
-        0.968,
-        0.932,
-        0.932,
-        1.053,
-        1.053,
         0.794,
         0.775,
         0.192,
@@ -153522,19 +153548,19 @@
         -1.604,
         -1.645,
         -1.263,
-        -1.266
+        -1.266,
+        -1.929,
+        -1.925,
+        -2.248,
+        -2.183,
+        -1.863,
+        -1.867,
+        -1.381,
+        -1.581,
+        -1.95,
+        -1.95
       ],
       "rsi": [
-        59.216013344453685,
-        58.676056338028175,
-        59.34035476718396,
-        59.3516209476309,
-        56.35227610830101,
-        56.24813599761404,
-        47.85232516861918,
-        46.77307425399017,
-        51.504132231404874,
-        51.278644968449,
         46.5952298651918,
         46.75685050294835,
         47.2816555594528,
@@ -153764,19 +153790,19 @@
         57.61904761904789,
         56.99275362318864,
         61.850865512649946,
-        62.05298013245055
+        62.05298013245055,
+        59.93006993007,
+        60.02790373212431,
+        57.45069393718049,
+        58.19044144472826,
+        56.56238763034901,
+        56.66426512968312,
+        68.18923327895588,
+        68.24489795918387,
+        65.62009419152297,
+        65.72327044025154
       ],
       "macd": [
-        0.16858927381234423,
-        0.1648399860630576,
-        0.16946676668982263,
-        0.1695465387696089,
-        0.14976306298612485,
-        0.1491248863479484,
-        0.14613808761203018,
-        0.14095290242684655,
-        0.16304976852372022,
-        0.16193295940691144,
         0.14007540954935394,
         0.1408731303470745,
         0.14342583689978028,
@@ -154006,7 +154032,17 @@
         -0.3271415344951407,
         -0.3295346968883024,
         -0.3035289988826122,
-        -0.3022526456062593
+        -0.3022526456062593,
+        -0.31501617836978824,
+        -0.31445777381138384,
+        -0.3277797111333314,
+        -0.3245090558626629,
+        -0.33120991056351556,
+        -0.3308110501646553,
+        -0.30583332534891383,
+        -0.3056737811893697,
+        -0.3134914450070454,
+        -0.31317235668794297
       ],
       "signal_type": [
         "HOLD",
@@ -154253,16 +154289,6 @@
     },
     "ASTER": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -154492,19 +154518,19 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
-        0.648,
-        0.648,
-        0.648,
-        0.649,
-        0.648,
-        0.648,
-        0.649,
-        0.649,
-        0.649,
-        0.649,
         0.649,
         0.649,
         0.65,
@@ -154731,22 +154757,22 @@
         0.641,
         0.64,
         0.64,
+        0.641,
+        0.641,
+        0.642,
+        0.642,
+        0.641,
+        0.641,
+        0.64,
+        0.64,
+        0.641,
+        0.641,
         0.641,
         0.641,
         0.642,
         0.642
       ],
       "change_pct": [
-        0.31,
-        0.31,
-        0.465,
-        0.62,
-        0.621,
-        0.621,
-        0.776,
-        0.776,
-        0.62,
-        0.776,
         0.933,
         0.933,
         0.775,
@@ -154976,19 +155002,19 @@
         -0.774,
         -0.62,
         -0.619,
-        -0.619
+        -0.619,
+        -1.08,
+        -1.08,
+        -1.387,
+        -1.235,
+        -1.233,
+        -1.233,
+        -1.233,
+        -1.233,
+        -1.079,
+        -1.079
       ],
       "rsi": [
-        55.55555555555556,
-        55.55555555555556,
-        55.55555555555556,
-        57.89473684210526,
-        55.55555555555556,
-        55.55555555555556,
-        55.55555555555556,
-        55.55555555555556,
-        55.55555555555556,
-        55.55555555555556,
         55.55555555555556,
         55.55555555555556,
         57.89473684210526,
@@ -155218,19 +155244,19 @@
         50.0,
         50.0,
         51.85185185185185,
-        51.85185185185185
+        51.85185185185185,
+        50.0,
+        50.0,
+        48.14814814814815,
+        48.14814814814815,
+        50.0,
+        50.0,
+        56.52173913043478,
+        56.52173913043478,
+        58.33333333333333,
+        58.33333333333333
       ],
       "macd": [
-        -0.001081108635640926,
-        -0.001081108635640926,
-        -0.001081108635640926,
-        -0.0010013365558688703,
-        -0.001081108635640926,
-        -0.001081108635640926,
-        -0.0008977572270356671,
-        -0.0008977572270356671,
-        -0.0008977572270356671,
-        -0.0008977572270356671,
         -0.0008977572270356671,
         -0.0008977572270356671,
         -0.0008179851472636113,
@@ -155460,7 +155486,17 @@
         -0.001752493794649923,
         -0.001752493794649923,
         -0.0016727217148778672,
-        -0.0016727217148778672
+        -0.0016727217148778672,
+        -0.001752493794649923,
+        -0.001752493794649923,
+        -0.0018322658744220899,
+        -0.0018322658744220899,
+        -0.001752493794649923,
+        -0.001752493794649923,
+        -0.002156821380715268,
+        -0.002156821380715268,
+        -0.0020770493009432123,
+        -0.0020770493009432123
       ],
       "signal_type": [
         "HOLD",
@@ -155707,16 +155743,6 @@
     },
     "SENT": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -155946,19 +155972,19 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
-        0.01473,
-        0.01472,
-        0.0147,
-        0.0147,
-        0.01476,
-        0.01477,
-        0.01469,
-        0.01468,
-        0.01468,
-        0.01467,
         0.01468,
         0.01472,
         0.01468,
@@ -156188,19 +156214,19 @@
         0.01472,
         0.01474,
         0.01472,
-        0.01473
+        0.01473,
+        0.01468,
+        0.01468,
+        0.0147,
+        0.01471,
+        0.01462,
+        0.01461,
+        0.01456,
+        0.01457,
+        0.01457,
+        0.01458
       ],
       "change_pct": [
-        1.586,
-        1.517,
-        0.754,
-        0.892,
-        0.477,
-        0.476,
-        0.616,
-        0.686,
-        0.41,
-        0.411,
         1.874,
         2.151,
         -0.204,
@@ -156430,19 +156456,19 @@
         1.447,
         1.515,
         0.822,
-        0.89
+        0.89,
+        -0.339,
+        -0.339,
+        0.0,
+        0.0,
+        -1.016,
+        -1.083,
+        -0.885,
+        -0.749,
+        -0.682,
+        -0.613
       ],
       "rsi": [
-        53.112033195020764,
-        52.91666666666669,
-        52.52100840336135,
-        52.32067510548525,
-        53.68852459016396,
-        53.877551020408184,
-        48.927038626609445,
-        48.927038626609445,
-        48.71794871794874,
-        48.71794871794874,
         48.927038626609445,
         49.781659388646304,
         48.927038626609445,
@@ -156672,19 +156698,19 @@
         49.107142857142854,
         49.55752212389378,
         49.107142857142854,
-        49.33333333333332
+        49.33333333333332,
+        48.24561403508771,
+        48.24561403508771,
+        48.88888888888889,
+        48.67256637168139,
+        47.21030042918456,
+        46.808510638297854,
+        44.15584415584413,
+        44.15584415584413,
+        44.15584415584413,
+        44.3965517241379
       ],
       "macd": [
-        1.1863850742163326e-05,
-        1.1066129944442907e-05,
-        9.470688348998599e-06,
-        8.67296755127818e-06,
-        1.4257013135324584e-05,
-        1.5054733933045003e-05,
-        -5.445713423232919e-05,
-        -5.445713423232919e-05,
-        -5.525485503005134e-05,
-        -5.525485503005134e-05,
         -5.445713423232919e-05,
         -5.1266251041445776e-05,
         -5.445713423232919e-05,
@@ -156914,7 +156940,17 @@
         9.121005429326041e-05,
         9.280549588870125e-05,
         9.121005429326041e-05,
-        9.200777509098257e-05
+        9.200777509098257e-05,
+        8.801917110237874e-05,
+        8.801917110237874e-05,
+        9.041233349554e-05,
+        8.961461269781958e-05,
+        8.40305671137749e-05,
+        8.243512551833233e-05,
+        3.454530375977122e-05,
+        3.454530375977122e-05,
+        3.454530375977122e-05,
+        3.534302455749164e-05
       ],
       "signal_type": [
         "HOLD",
@@ -157161,16 +157197,6 @@
     },
     "GOLD": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -157400,7 +157426,17 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
         4188.5,
@@ -157761,16 +157797,16 @@
         4.404505434499167,
         4.404505434499167,
         4.404505434499167,
-        4.404505434499167,
-        4.404505434499167,
-        4.404505434499167,
-        4.404505434499167,
-        4.404505434499167,
-        4.404505434499167,
-        4.404505434499167,
-        4.404505434499167,
-        4.404505434499167,
-        4.404505434499167,
+        4.015594248811354,
+        4.015594248811354,
+        4.015594248811354,
+        4.015594248811354,
+        4.015594248811354,
+        4.015594248811354,
+        4.015594248811354,
+        4.015594248811354,
+        4.015594248811354,
+        4.015594248811354,
         4.015594248811354,
         4.015594248811354,
         4.015594248811354,
@@ -158615,16 +158651,6 @@
     },
     "SILVER": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -158854,7 +158880,17 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
         62.720001220703125,
@@ -159215,16 +159251,16 @@
         8.83220554962651,
         8.83220554962651,
         8.83220554962651,
-        8.83220554962651,
-        8.83220554962651,
-        8.83220554962651,
-        8.83220554962651,
-        8.83220554962651,
-        8.83220554962651,
-        8.83220554962651,
-        8.83220554962651,
-        8.83220554962651,
-        8.83220554962651,
+        11.048161701560318,
+        11.048161701560318,
+        11.048161701560318,
+        11.048161701560318,
+        11.048161701560318,
+        11.048161701560318,
+        11.048161701560318,
+        11.048161701560318,
+        11.048161701560318,
+        11.048161701560318,
         11.048161701560318,
         11.048161701560318,
         11.048161701560318,
@@ -160069,16 +160105,6 @@
     },
     "CRUDE": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -160308,7 +160334,17 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
         69.01000213623047,
@@ -160669,16 +160705,16 @@
         -0.6907407429772294,
         -0.6907407429772294,
         -0.6907407429772294,
-        -0.6907407429772294,
-        -0.6907407429772294,
-        -0.6907407429772294,
-        -0.6907407429772294,
-        -0.6907407429772294,
-        -0.6907407429772294,
-        -0.6907407429772294,
-        -0.6907407429772294,
-        -0.6907407429772294,
-        -0.6907407429772294,
+        -1.988355990715999,
+        -1.988355990715999,
+        -1.988355990715999,
+        -1.988355990715999,
+        -1.988355990715999,
+        -1.988355990715999,
+        -1.988355990715999,
+        -1.988355990715999,
+        -1.988355990715999,
+        -1.988355990715999,
         -1.988355990715999,
         -1.988355990715999,
         -1.988355990715999,
@@ -161523,16 +161559,6 @@
     },
     "SPX": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -161762,7 +161788,17 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
         7477.6298828125,
@@ -162977,16 +163013,6 @@
     },
     "NDX": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -163216,7 +163242,17 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
         25818.466796875,
@@ -164431,16 +164467,6 @@
     },
     "DJI": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -164670,7 +164696,17 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
         52864.6796875,
@@ -165885,16 +165921,6 @@
     },
     "DXY": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -166124,7 +166150,17 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
         100.80000305175781,
@@ -166485,16 +166521,16 @@
         -0.690630045733072,
         -0.690630045733072,
         -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
+        -0.5760273991158138,
+        -0.5760273991158138,
+        -0.5760273991158138,
+        -0.5760273991158138,
+        -0.5760273991158138,
+        -0.5760273991158138,
+        -0.5760273991158138,
+        -0.5760273991158138,
+        -0.5760273991158138,
+        -0.5760273991158138,
         -0.5760273991158138,
         -0.5760273991158138,
         -0.5760273991158138,
@@ -167339,16 +167375,6 @@
     },
     "VIX": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -167578,7 +167604,17 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
         15.8100004196167,
@@ -168793,16 +168829,6 @@
     },
     "USD": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -169032,7 +169058,17 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
         100.80000305175781,
@@ -169393,16 +169429,16 @@
         -0.690630045733072,
         -0.690630045733072,
         -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
-        -0.690630045733072,
+        -0.5760273991158138,
+        -0.5760273991158138,
+        -0.5760273991158138,
+        -0.5760273991158138,
+        -0.5760273991158138,
+        -0.5760273991158138,
+        -0.5760273991158138,
+        -0.5760273991158138,
+        -0.5760273991158138,
+        -0.5760273991158138,
         -0.5760273991158138,
         -0.5760273991158138,
         -0.5760273991158138,
@@ -170247,16 +170283,6 @@
     },
     "EUR": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -170486,7 +170512,17 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
         1.1440337896347046,
@@ -171701,16 +171737,6 @@
     },
     "TRY": {
       "dates": [
-        "2026-07-04T15:15:10Z",
-        "2026-07-04T15:15:20Z",
-        "2026-07-04T15:30:12Z",
-        "2026-07-04T15:30:22Z",
-        "2026-07-04T15:45:07Z",
-        "2026-07-04T15:45:16Z",
-        "2026-07-04T16:00:08Z",
-        "2026-07-04T16:00:19Z",
-        "2026-07-04T16:05:06Z",
-        "2026-07-04T16:05:15Z",
         "2026-07-04T16:15:08Z",
         "2026-07-04T16:15:17Z",
         "2026-07-04T16:30:07Z",
@@ -171940,7 +171966,17 @@
         "2026-07-05T15:00:10Z",
         "2026-07-05T15:00:19Z",
         "2026-07-05T15:05:07Z",
-        "2026-07-05T15:05:16Z"
+        "2026-07-05T15:05:16Z",
+        "2026-07-05T15:15:08Z",
+        "2026-07-05T15:15:18Z",
+        "2026-07-05T15:30:09Z",
+        "2026-07-05T15:30:20Z",
+        "2026-07-05T15:45:07Z",
+        "2026-07-05T15:45:18Z",
+        "2026-07-05T16:00:07Z",
+        "2026-07-05T16:00:18Z",
+        "2026-07-05T16:05:06Z",
+        "2026-07-05T16:05:14Z"
       ],
       "prices": [
         46.75299835205078,
@@ -173156,106 +173192,6 @@
   },
   "derivatives_history": {
     "BTC": [
-      {
-        "timestamp": "2026-07-04T15:15:10Z",
-        "funding_current": 0.00777318698373,
-        "long_short_value": 1.317,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1932418057.614985,
-        "liq_bias": "above",
-        "liq_level": 63807.24
-      },
-      {
-        "timestamp": "2026-07-04T15:15:20Z",
-        "funding_current": 0.00777318698373,
-        "long_short_value": 1.311,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1932418057.614985,
-        "liq_bias": "above",
-        "liq_level": 63771.24
-      },
-      {
-        "timestamp": "2026-07-04T15:30:12Z",
-        "funding_current": 0.007244145329120001,
-        "long_short_value": 1.34,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1931593180.9422653,
-        "liq_bias": "above",
-        "liq_level": 63883.24
-      },
-      {
-        "timestamp": "2026-07-04T15:30:22Z",
-        "funding_current": 0.007244145329120001,
-        "long_short_value": 1.34,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1932026380.0660853,
-        "liq_bias": "above",
-        "liq_level": 63889.23
-      },
-      {
-        "timestamp": "2026-07-04T15:45:07Z",
-        "funding_current": 0.006734638617869999,
-        "long_short_value": 1.34,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1923596120.5332556,
-        "liq_bias": "above",
-        "liq_level": 63909.24
-      },
-      {
-        "timestamp": "2026-07-04T15:45:16Z",
-        "funding_current": 0.006734638617869999,
-        "long_short_value": 1.34,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1923596120.5332556,
-        "liq_bias": "above",
-        "liq_level": 63909.24
-      },
-      {
-        "timestamp": "2026-07-04T16:00:08Z",
-        "funding_current": 0.00641244909295,
-        "long_short_value": 1.34,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1921459379.221535,
-        "liq_bias": "above",
-        "liq_level": 63789.69
-      },
-      {
-        "timestamp": "2026-07-04T16:00:19Z",
-        "funding_current": 0.00641244909295,
-        "long_short_value": 1.34,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1921459379.221535,
-        "liq_bias": "above",
-        "liq_level": 63785.69
-      },
-      {
-        "timestamp": "2026-07-04T16:05:06Z",
-        "funding_current": 0.00641244909295,
-        "long_short_value": 1.34,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1921459379.221535,
-        "liq_bias": "above",
-        "liq_level": 63811.32
-      },
-      {
-        "timestamp": "2026-07-04T16:05:15Z",
-        "funding_current": 0.00641244909295,
-        "long_short_value": 1.34,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1921459379.221535,
-        "liq_bias": "above",
-        "liq_level": 63813.69
-      },
       {
         "timestamp": "2026-07-04T16:15:08Z",
         "funding_current": 0.006317235569230001,
@@ -175555,109 +175491,109 @@
         "oi_current": 1944889651.1846578,
         "liq_bias": "above",
         "liq_level": 63757.6
+      },
+      {
+        "timestamp": "2026-07-05T15:15:08Z",
+        "funding_current": 0.00194782324201,
+        "long_short_value": 1.091,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1930371171.8835475,
+        "liq_bias": "above",
+        "liq_level": 63661.6
+      },
+      {
+        "timestamp": "2026-07-05T15:15:18Z",
+        "funding_current": 0.00194782324201,
+        "long_short_value": 1.096,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1930371171.8835475,
+        "liq_bias": "above",
+        "liq_level": 63647.6
+      },
+      {
+        "timestamp": "2026-07-05T15:30:09Z",
+        "funding_current": 0.0017344826383,
+        "long_short_value": 1.066,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1927070024.535367,
+        "liq_bias": "above",
+        "liq_level": 63640.97
+      },
+      {
+        "timestamp": "2026-07-05T15:30:20Z",
+        "funding_current": 0.0017269781794199998,
+        "long_short_value": 1.067,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1927255229.201387,
+        "liq_bias": "above",
+        "liq_level": 63640.96
+      },
+      {
+        "timestamp": "2026-07-05T15:45:07Z",
+        "funding_current": 0.00190646918822,
+        "long_short_value": 1.058,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1925715415.033627,
+        "liq_bias": "above",
+        "liq_level": 63557.31
+      },
+      {
+        "timestamp": "2026-07-05T15:45:18Z",
+        "funding_current": 0.00190646918822,
+        "long_short_value": 1.058,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1925715415.033627,
+        "liq_bias": "above",
+        "liq_level": 63555.59
+      },
+      {
+        "timestamp": "2026-07-05T16:00:07Z",
+        "funding_current": 0.00210844733188,
+        "long_short_value": 1.075,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1928288455.1084075,
+        "liq_bias": "above",
+        "liq_level": 63611.6
+      },
+      {
+        "timestamp": "2026-07-05T16:00:18Z",
+        "funding_current": 0.00210844733188,
+        "long_short_value": 1.075,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1928370419.2095075,
+        "liq_bias": "above",
+        "liq_level": 63616.88
+      },
+      {
+        "timestamp": "2026-07-05T16:05:06Z",
+        "funding_current": 0.00210844733188,
+        "long_short_value": 1.068,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1928288455.1084075,
+        "liq_bias": "above",
+        "liq_level": 63589.61
+      },
+      {
+        "timestamp": "2026-07-05T16:05:14Z",
+        "funding_current": 0.00210844733188,
+        "long_short_value": 1.067,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1928370419.2095075,
+        "liq_bias": "above",
+        "liq_level": 63589.65
       }
     ],
     "ETH": [
-      {
-        "timestamp": "2026-07-04T15:15:10Z",
-        "funding_current": 0.00041722365307,
-        "long_short_value": 1.141,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1345042456.3704815,
-        "liq_bias": "above",
-        "liq_level": 1817.4
-      },
-      {
-        "timestamp": "2026-07-04T15:15:20Z",
-        "funding_current": 0.00041722365307,
-        "long_short_value": 1.141,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1345042456.3704815,
-        "liq_bias": "above",
-        "liq_level": 1815.51
-      },
-      {
-        "timestamp": "2026-07-04T15:30:12Z",
-        "funding_current": 0.00077980003198,
-        "long_short_value": 1.159,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1364493623.3973012,
-        "liq_bias": "above",
-        "liq_level": 1824.59
-      },
-      {
-        "timestamp": "2026-07-04T15:30:22Z",
-        "funding_current": 0.00077980003198,
-        "long_short_value": 1.159,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1364748328.8214812,
-        "liq_bias": "above",
-        "liq_level": 1824.81
-      },
-      {
-        "timestamp": "2026-07-04T15:45:07Z",
-        "funding_current": 0.00151742682545,
-        "long_short_value": 1.196,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1371122306.3518214,
-        "liq_bias": "above",
-        "liq_level": 1823.28
-      },
-      {
-        "timestamp": "2026-07-04T15:45:16Z",
-        "funding_current": 0.00151742682545,
-        "long_short_value": 1.196,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1371122306.3518214,
-        "liq_bias": "above",
-        "liq_level": 1823.08
-      },
-      {
-        "timestamp": "2026-07-04T16:00:08Z",
-        "funding_current": 0.0024024952812,
-        "long_short_value": 1.24,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1379362654.4207418,
-        "liq_bias": "above",
-        "liq_level": 1823.2
-      },
-      {
-        "timestamp": "2026-07-04T16:00:19Z",
-        "funding_current": 0.0024024952812,
-        "long_short_value": 1.24,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1379362654.4207418,
-        "liq_bias": "above",
-        "liq_level": 1822.47
-      },
-      {
-        "timestamp": "2026-07-04T16:05:06Z",
-        "funding_current": 0.0024024952812,
-        "long_short_value": 1.24,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1379362654.4207418,
-        "liq_bias": "above",
-        "liq_level": 1823.67
-      },
-      {
-        "timestamp": "2026-07-04T16:05:15Z",
-        "funding_current": 0.0024024952812,
-        "long_short_value": 1.24,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 1379362654.4207418,
-        "liq_bias": "above",
-        "liq_level": 1823.43
-      },
       {
         "timestamp": "2026-07-04T16:15:08Z",
         "funding_current": 0.00315041162894,
@@ -177957,109 +177893,109 @@
         "oi_current": 1307374628.5201523,
         "liq_bias": "above",
         "liq_level": 1808.09
+      },
+      {
+        "timestamp": "2026-07-05T15:15:08Z",
+        "funding_current": 0.00482191034317,
+        "long_short_value": 1.155,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1306237523.875682,
+        "liq_bias": "above",
+        "liq_level": 1806.18
+      },
+      {
+        "timestamp": "2026-07-05T15:15:18Z",
+        "funding_current": 0.00482191034317,
+        "long_short_value": 1.164,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1306237523.875682,
+        "liq_bias": "above",
+        "liq_level": 1805.87
+      },
+      {
+        "timestamp": "2026-07-05T15:30:09Z",
+        "funding_current": 0.00513243655191,
+        "long_short_value": 1.121,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1313294516.237502,
+        "liq_bias": "above",
+        "liq_level": 1806.62
+      },
+      {
+        "timestamp": "2026-07-05T15:30:20Z",
+        "funding_current": 0.0051431865161099995,
+        "long_short_value": 1.121,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1313409339.8253021,
+        "liq_bias": "above",
+        "liq_level": 1806.79
+      },
+      {
+        "timestamp": "2026-07-05T15:45:07Z",
+        "funding_current": 0.00544097322689,
+        "long_short_value": 1.107,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1310315720.5531023,
+        "liq_bias": "above",
+        "liq_level": 1802.68
+      },
+      {
+        "timestamp": "2026-07-05T15:45:18Z",
+        "funding_current": 0.00544097322689,
+        "long_short_value": 1.107,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1310315720.5531023,
+        "liq_bias": "above",
+        "liq_level": 1802.4
+      },
+      {
+        "timestamp": "2026-07-05T16:00:07Z",
+        "funding_current": 0.00565171859641,
+        "long_short_value": 1.129,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1312045268.7032022,
+        "liq_bias": "above",
+        "liq_level": 1806.49
+      },
+      {
+        "timestamp": "2026-07-05T16:00:18Z",
+        "funding_current": 0.00565171859641,
+        "long_short_value": 1.133,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1312260406.6255124,
+        "liq_bias": "above",
+        "liq_level": 1806.72
+      },
+      {
+        "timestamp": "2026-07-05T16:05:06Z",
+        "funding_current": 0.00565171859641,
+        "long_short_value": 1.131,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1312045268.7032022,
+        "liq_bias": "above",
+        "liq_level": 1807.34
+      },
+      {
+        "timestamp": "2026-07-05T16:05:14Z",
+        "funding_current": 0.00565171859641,
+        "long_short_value": 1.132,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 1312260406.6255124,
+        "liq_bias": "above",
+        "liq_level": 1807.32
       }
     ],
     "SOL": [
-      {
-        "timestamp": "2026-07-04T15:15:10Z",
-        "funding_current": 0.0073177996585200005,
-        "long_short_value": 1.27,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 278581483.08040017,
-        "liq_bias": "above",
-        "liq_level": 83.54
-      },
-      {
-        "timestamp": "2026-07-04T15:15:20Z",
-        "funding_current": 0.0073177996585200005,
-        "long_short_value": 1.262,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 278581483.08040017,
-        "liq_bias": "above",
-        "liq_level": 83.46
-      },
-      {
-        "timestamp": "2026-07-04T15:30:12Z",
-        "funding_current": 0.00614690550135,
-        "long_short_value": 1.338,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 279322084.3966002,
-        "liq_bias": "above",
-        "liq_level": 83.71
-      },
-      {
-        "timestamp": "2026-07-04T15:30:22Z",
-        "funding_current": 0.00614690550135,
-        "long_short_value": 1.34,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 279603588.34750015,
-        "liq_bias": "above",
-        "liq_level": 83.74
-      },
-      {
-        "timestamp": "2026-07-04T15:45:07Z",
-        "funding_current": 0.004806537826840001,
-        "long_short_value": 1.34,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 278693335.89360017,
-        "liq_bias": "above",
-        "liq_level": 83.7
-      },
-      {
-        "timestamp": "2026-07-04T15:45:16Z",
-        "funding_current": 0.004806537826840001,
-        "long_short_value": 1.336,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 278693335.89360017,
-        "liq_bias": "above",
-        "liq_level": 83.67
-      },
-      {
-        "timestamp": "2026-07-04T16:00:08Z",
-        "funding_current": 0.00415013957205,
-        "long_short_value": 1.324,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 276928280.43440014,
-        "liq_bias": "above",
-        "liq_level": 83.68
-      },
-      {
-        "timestamp": "2026-07-04T16:00:19Z",
-        "funding_current": 0.00415013957205,
-        "long_short_value": 1.323,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 276928280.43440014,
-        "liq_bias": "above",
-        "liq_level": 83.68
-      },
-      {
-        "timestamp": "2026-07-04T16:05:06Z",
-        "funding_current": 0.00415013957205,
-        "long_short_value": 1.328,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 276928280.43440014,
-        "liq_bias": "above",
-        "liq_level": 83.75
-      },
-      {
-        "timestamp": "2026-07-04T16:05:15Z",
-        "funding_current": 0.00415013957205,
-        "long_short_value": 1.327,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 276928280.43440014,
-        "liq_bias": "above",
-        "liq_level": 83.77
-      },
       {
         "timestamp": "2026-07-04T16:15:08Z",
         "funding_current": 0.00377326314107,
@@ -180359,109 +180295,109 @@
         "oi_current": 275025657.85240006,
         "liq_bias": "below",
         "liq_level": 80.07
+      },
+      {
+        "timestamp": "2026-07-05T15:15:08Z",
+        "funding_current": -0.00054859679213,
+        "long_short_value": 0.88,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 274057413.9975,
+        "liq_bias": "below",
+        "liq_level": 79.84
+      },
+      {
+        "timestamp": "2026-07-05T15:15:18Z",
+        "funding_current": -0.00054859679213,
+        "long_short_value": 0.885,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 274057413.9975,
+        "liq_bias": "below",
+        "liq_level": 79.82
+      },
+      {
+        "timestamp": "2026-07-05T15:30:09Z",
+        "funding_current": -0.00087308787453,
+        "long_short_value": 0.837,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 275169946.94,
+        "liq_bias": "below",
+        "liq_level": 79.78
+      },
+      {
+        "timestamp": "2026-07-05T15:30:20Z",
+        "funding_current": -0.0008703089587,
+        "long_short_value": 0.836,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 275335763.45100003,
+        "liq_bias": "below",
+        "liq_level": 79.8
+      },
+      {
+        "timestamp": "2026-07-05T15:45:07Z",
+        "funding_current": -0.0005184216683099999,
+        "long_short_value": 0.854,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 275096525.65680003,
+        "liq_bias": "below",
+        "liq_level": 79.67
+      },
+      {
+        "timestamp": "2026-07-05T15:45:18Z",
+        "funding_current": -0.0005184216683099999,
+        "long_short_value": 0.854,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 275096525.65680003,
+        "liq_bias": "below",
+        "liq_level": 79.68
+      },
+      {
+        "timestamp": "2026-07-05T16:00:07Z",
+        "funding_current": -0.00059680442663,
+        "long_short_value": 0.87,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 275480590.8456,
+        "liq_bias": "below",
+        "liq_level": 79.92
+      },
+      {
+        "timestamp": "2026-07-05T16:00:18Z",
+        "funding_current": -0.00059680442663,
+        "long_short_value": 0.873,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 275514623.7745001,
+        "liq_bias": "below",
+        "liq_level": 79.93
+      },
+      {
+        "timestamp": "2026-07-05T16:05:06Z",
+        "funding_current": -0.00059680442663,
+        "long_short_value": 0.858,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 275480590.8456,
+        "liq_bias": "below",
+        "liq_level": 79.9
+      },
+      {
+        "timestamp": "2026-07-05T16:05:14Z",
+        "funding_current": -0.00059680442663,
+        "long_short_value": 0.857,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 275514623.7745001,
+        "liq_bias": "below",
+        "liq_level": 79.9
       }
     ],
     "ZEC": [
-      {
-        "timestamp": "2026-07-04T15:15:10Z",
-        "funding_current": -0.00136665345671,
-        "long_short_value": 0.981,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 54377002.4234,
-        "liq_bias": "below",
-        "liq_level": 461.06
-      },
-      {
-        "timestamp": "2026-07-04T15:15:20Z",
-        "funding_current": -0.00136665345671,
-        "long_short_value": 0.978,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 54377002.4234,
-        "liq_bias": "below",
-        "liq_level": 460.8
-      },
-      {
-        "timestamp": "2026-07-04T15:30:12Z",
-        "funding_current": -0.0027028860620599998,
-        "long_short_value": 0.903,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 53928920.8848,
-        "liq_bias": "below",
-        "liq_level": 458.73
-      },
-      {
-        "timestamp": "2026-07-04T15:30:22Z",
-        "funding_current": -0.0027028860620599998,
-        "long_short_value": 0.913,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 53934703.9392,
-        "liq_bias": "below",
-        "liq_level": 458.91
-      },
-      {
-        "timestamp": "2026-07-04T15:45:07Z",
-        "funding_current": -0.00375814743917,
-        "long_short_value": 0.861,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 53762035.4476,
-        "liq_bias": "below",
-        "liq_level": 457.63
-      },
-      {
-        "timestamp": "2026-07-04T15:45:16Z",
-        "funding_current": -0.00375814743917,
-        "long_short_value": 0.856,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 53762035.4476,
-        "liq_bias": "below",
-        "liq_level": 457.43
-      },
-      {
-        "timestamp": "2026-07-04T16:00:08Z",
-        "funding_current": -0.00464493220801,
-        "long_short_value": 0.889,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 53815296.976,
-        "liq_bias": "below",
-        "liq_level": 456.8
-      },
-      {
-        "timestamp": "2026-07-04T16:00:19Z",
-        "funding_current": -0.00464493220801,
-        "long_short_value": 0.882,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 53815296.976,
-        "liq_bias": "below",
-        "liq_level": 456.64
-      },
-      {
-        "timestamp": "2026-07-04T16:05:06Z",
-        "funding_current": -0.00464493220801,
-        "long_short_value": 0.892,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 53815296.976,
-        "liq_bias": "below",
-        "liq_level": 456.83
-      },
-      {
-        "timestamp": "2026-07-04T16:05:15Z",
-        "funding_current": -0.00464493220801,
-        "long_short_value": 0.889,
-        "long_short_type": "funding_oi_price_proxy",
-        "confidence_label": "inferred",
-        "oi_current": 53815296.976,
-        "liq_bias": "below",
-        "liq_level": 456.71
-      },
       {
         "timestamp": "2026-07-04T16:15:08Z",
         "funding_current": -0.00498289196947,
@@ -182761,6 +182697,106 @@
         "oi_current": 53427393.795,
         "liq_bias": "below",
         "liq_level": 456.31
+      },
+      {
+        "timestamp": "2026-07-05T15:15:08Z",
+        "funding_current": -0.00309843577245,
+        "long_short_value": 0.737,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 53584310.5504,
+        "liq_bias": "below",
+        "liq_level": 456.06
+      },
+      {
+        "timestamp": "2026-07-05T15:15:18Z",
+        "funding_current": -0.00309843577245,
+        "long_short_value": 0.736,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 53584310.5504,
+        "liq_bias": "below",
+        "liq_level": 455.94
+      },
+      {
+        "timestamp": "2026-07-05T15:30:09Z",
+        "funding_current": -0.00153489112825,
+        "long_short_value": 0.822,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 53314520.973,
+        "liq_bias": "below",
+        "liq_level": 454.12
+      },
+      {
+        "timestamp": "2026-07-05T15:30:20Z",
+        "funding_current": -0.00141756139711,
+        "long_short_value": 0.828,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 53350377.6936,
+        "liq_bias": "below",
+        "liq_level": 454.3
+      },
+      {
+        "timestamp": "2026-07-05T15:45:07Z",
+        "funding_current": -0.0008264550278800001,
+        "long_short_value": 0.869,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 53289051.1015,
+        "liq_bias": "below",
+        "liq_level": 453.54
+      },
+      {
+        "timestamp": "2026-07-05T15:45:18Z",
+        "funding_current": -0.0008264550278800001,
+        "long_short_value": 0.868,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 53289051.1015,
+        "liq_bias": "below",
+        "liq_level": 453.3
+      },
+      {
+        "timestamp": "2026-07-05T16:00:07Z",
+        "funding_current": -0.00066418895885,
+        "long_short_value": 0.914,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 53355723.1878,
+        "liq_bias": "below",
+        "liq_level": 454.49
+      },
+      {
+        "timestamp": "2026-07-05T16:00:18Z",
+        "funding_current": -0.00066418895885,
+        "long_short_value": 0.922,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 53344360.4595,
+        "liq_bias": "below",
+        "liq_level": 454.58
+      },
+      {
+        "timestamp": "2026-07-05T16:05:06Z",
+        "funding_current": -0.00066418895885,
+        "long_short_value": 0.904,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 53355723.1878,
+        "liq_bias": "below",
+        "liq_level": 453.79
+      },
+      {
+        "timestamp": "2026-07-05T16:05:14Z",
+        "funding_current": -0.00066418895885,
+        "long_short_value": 0.899,
+        "long_short_type": "funding_oi_price_proxy",
+        "confidence_label": "inferred",
+        "oi_current": 53344360.4595,
+        "liq_bias": "below",
+        "liq_level": 453.63
       }
     ]
   },
@@ -183076,19 +183112,28 @@
           "notes": [
             "equal_highs taken with continuation"
           ]
+        },
+        {
+          "timestamp": "2026-07-05T15:00:00+00:00",
+          "classification": "sweep",
+          "direction": "bearish",
+          "level": 62884.035156,
+          "notes": [
+            "equal_highs taken and rejected"
+          ]
         }
       ],
       "traps": [
         {
-          "timestamp": "2026-07-05T12:00:00+00:00",
+          "timestamp": "2026-07-05T04:00:00+00:00",
           "trap_type": "inducement",
-          "direction": "bullish",
+          "direction": "bearish",
           "notes": [
-            "swing_low taken and rejected"
+            "equal_highs taken and rejected"
           ]
         },
         {
-          "timestamp": "2026-07-05T04:00:00+00:00",
+          "timestamp": "2026-07-05T15:00:00+00:00",
           "trap_type": "inducement",
           "direction": "bearish",
           "notes": [
@@ -183099,7 +183144,7 @@
       "session": {
         "active_session": "New York",
         "london_kill_zone": false,
-        "new_york_kill_zone": true,
+        "new_york_kill_zone": false,
         "time_to_next_kill_zone_minutes": null,
         "asia_high": 63086.4609375,
         "asia_low": 57720.73046875,
@@ -183108,40 +183153,40 @@
         "new_york_high": 63394.640625,
         "new_york_low": 58449.80078125
       },
-      "session_narrative": "Active session: New York. Asia range: 57720.73 to 63086.46. London range: 58255.03 to 63043.95. NY range: 58449.80 to 63394.64. New York kill zone is active. Recent run detected near liquidity.",
+      "session_narrative": "Active session: New York. Asia range: 57720.73 to 63086.46. London range: 58255.03 to 63043.95. NY range: 58449.80 to 63394.64. Recent sweep detected near liquidity.",
       "premium_discount": {
         "range_high": 63404.859375,
         "range_low": 62274.16015625,
         "equilibrium": 62839.509765625,
-        "state": "equilibrium"
+        "state": "discount"
       },
       "setup": {
-        "bias": "short",
-        "grade": "B",
-        "execution_status": "WATCHLIST",
+        "bias": "pass",
+        "grade": "PASS",
+        "execution_status": "PASS",
         "reasons": [
-          "Within major kill zone",
           "Nearby liquidity pools identified",
           "Fair value gap present",
           "Sweep/run behavior detected",
-          "Trap/inducement behavior detected",
-          "Session expansion setup candidate"
+          "Trap/inducement behavior detected"
         ],
         "blocked_conditions": [
-          "HTF/LTF alignment missing"
+          "HTF/LTF alignment missing",
+          "Not in a major kill zone"
         ],
         "next_trigger_conditions": [
-          "Needs HTF/LTF alignment"
+          "Needs HTF/LTF alignment",
+          "Needs London or New York kill zone timing"
         ],
-        "watchlist_reason": "Waiting for confirmation / confluence",
-        "setup_type": "session-expansion",
-        "entry_zone_low": 62859.69921875,
-        "entry_zone_high": 62884.035156,
-        "target_1": 62640.710938,
-        "target_2": 62548.640625,
-        "rr_estimate": 9.0,
-        "invalidation_level": 62884.035156,
-        "invalidation_reason": "Template invalidation for session-expansion",
+        "watchlist_reason": "Waiting for confluence to improve",
+        "setup_type": null,
+        "entry_zone_low": null,
+        "entry_zone_high": null,
+        "target_1": null,
+        "target_2": null,
+        "rr_estimate": null,
+        "invalidation_level": null,
+        "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing; Not in a major kill zone",
         "checklist": [
           {
             "name": "HTF/LTF aligned",
@@ -183149,7 +183194,7 @@
           },
           {
             "name": "In kill zone",
-            "ok": true
+            "ok": false
           },
           {
             "name": "BOS present",
@@ -183176,7 +183221,7 @@
             "ok": false
           }
         ],
-        "no_trade_reason": null
+        "no_trade_reason": "Insufficient weighted confluence across structure, liquidity, session, and range position"
       }
     },
     "ETH": {
@@ -183355,13 +183400,6 @@
       ],
       "fvgs": [
         {
-          "timestamp": "2026-07-04T02:00:00+00:00",
-          "direction": "bearish",
-          "upper": 1754.699951171875,
-          "lower": 1749.1800537109375,
-          "status": "open"
-        },
-        {
           "timestamp": "2026-07-04T04:00:00+00:00",
           "direction": "bullish",
           "upper": 1750.31005859375,
@@ -183420,8 +183458,15 @@
         {
           "timestamp": "2026-07-05T15:00:00+00:00",
           "direction": "bullish",
-          "upper": 1769.81005859375,
+          "upper": 1769.1099853515625,
           "lower": 1766.0400390625,
+          "status": "open"
+        },
+        {
+          "timestamp": "2026-07-05T16:00:00+00:00",
+          "direction": "bullish",
+          "upper": 1772.7099609375,
+          "lower": 1771.0799560546875,
           "status": "open"
         }
       ],
@@ -183618,7 +183663,7 @@
       "session": {
         "active_session": "New York",
         "london_kill_zone": false,
-        "new_york_kill_zone": true,
+        "new_york_kill_zone": false,
         "time_to_next_kill_zone_minutes": null,
         "asia_high": 1779.2900390625,
         "asia_low": 1550.8599853515625,
@@ -183627,7 +183672,7 @@
         "new_york_high": 1804.800048828125,
         "new_york_low": 1567.8299560546875
       },
-      "session_narrative": "Active session: New York. Asia range: 1550.86 to 1779.29. London range: 1563.77 to 1771.06. NY range: 1567.83 to 1804.80. New York kill zone is active. Recent run detected near liquidity. Latest BOS: bullish. Latest CHoCH: bullish.",
+      "session_narrative": "Active session: New York. Asia range: 1550.86 to 1779.29. London range: 1563.77 to 1771.06. NY range: 1567.83 to 1804.80. Recent run detected near liquidity. Latest BOS: bullish. Latest CHoCH: bullish.",
       "premium_discount": {
         "range_high": 1804.800048828125,
         "range_low": 1742.6300048828125,
@@ -183635,35 +183680,35 @@
         "state": "equilibrium"
       },
       "setup": {
-        "bias": "short",
-        "grade": "B",
-        "execution_status": "WATCHLIST",
+        "bias": "pass",
+        "grade": "PASS",
+        "execution_status": "PASS",
         "reasons": [
-          "Within major kill zone",
           "Recent BOS present",
           "Recent CHoCH present",
           "Nearby liquidity pools identified",
           "Fair value gap present",
           "Order block candidate present",
           "Sweep/run behavior detected",
-          "Trap/inducement behavior detected",
-          "Session expansion setup candidate"
+          "Trap/inducement behavior detected"
         ],
         "blocked_conditions": [
-          "HTF/LTF alignment missing"
+          "HTF/LTF alignment missing",
+          "Not in a major kill zone"
         ],
         "next_trigger_conditions": [
-          "Needs HTF/LTF alignment"
+          "Needs HTF/LTF alignment",
+          "Needs London or New York kill zone timing"
         ],
-        "watchlist_reason": "Waiting for confirmation / confluence",
-        "setup_type": "session-expansion",
-        "entry_zone_low": 1775.699951171875,
-        "entry_zone_high": 1804.800048828125,
-        "target_1": 1771.06005859375,
-        "target_2": 1755.6600341796875,
-        "rr_estimate": 0.16,
-        "invalidation_level": 1804.800048828125,
-        "invalidation_reason": "Template invalidation for session-expansion",
+        "watchlist_reason": "Waiting for confluence to improve",
+        "setup_type": null,
+        "entry_zone_low": null,
+        "entry_zone_high": null,
+        "target_1": null,
+        "target_2": null,
+        "rr_estimate": null,
+        "invalidation_level": null,
+        "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing; Not in a major kill zone",
         "checklist": [
           {
             "name": "HTF/LTF aligned",
@@ -183671,7 +183716,7 @@
           },
           {
             "name": "In kill zone",
-            "ok": true
+            "ok": false
           },
           {
             "name": "BOS present",
@@ -183698,7 +183743,7 @@
             "ok": false
           }
         ],
-        "no_trade_reason": null
+        "no_trade_reason": "Insufficient weighted confluence across structure, liquidity, session, and range position"
       }
     },
     "SOL": {
@@ -183845,6 +183890,13 @@
       ],
       "fvgs": [
         {
+          "timestamp": "2026-07-03T18:00:00+00:00",
+          "direction": "bullish",
+          "upper": 81.56999969482422,
+          "lower": 81.48999786376953,
+          "status": "open"
+        },
+        {
           "timestamp": "2026-07-03T19:00:00+00:00",
           "direction": "bullish",
           "upper": 82.0,
@@ -183906,13 +183958,6 @@
           "upper": 80.62999725341797,
           "lower": 80.58000183105469,
           "status": "open"
-        },
-        {
-          "timestamp": "2026-07-05T15:00:00+00:00",
-          "direction": "bullish",
-          "upper": 81.26000213623047,
-          "lower": 81.18000030517578,
-          "status": "open"
         }
       ],
       "order_blocks": [
@@ -183971,6 +184016,13 @@
           "upper": 80.47000122070312,
           "lower": 79.63999938964844,
           "reason": "Last bearish candle before bullish structural impulse"
+        },
+        {
+          "timestamp": "2026-07-05T15:00:00+00:00",
+          "direction": "bullish",
+          "upper": 81.62000274658203,
+          "lower": 81.04000091552734,
+          "reason": "Last bearish candle before bullish structural impulse"
         }
       ],
       "sweeps": [
@@ -183985,11 +184037,11 @@
         },
         {
           "timestamp": "2026-07-05T15:00:00+00:00",
-          "classification": "sweep",
-          "direction": "bullish",
+          "classification": "run",
+          "direction": "bearish",
           "level": 81.30000305175781,
           "notes": [
-            "swing_low taken and rejected"
+            "swing_low taken with continuation"
           ]
         },
         {
@@ -184022,14 +184074,6 @@
       ],
       "traps": [
         {
-          "timestamp": "2026-07-05T15:00:00+00:00",
-          "trap_type": "inducement",
-          "direction": "bullish",
-          "notes": [
-            "swing_low taken and rejected"
-          ]
-        },
-        {
           "timestamp": "2026-07-05T02:00:00+00:00",
           "trap_type": "inducement",
           "direction": "bullish",
@@ -184041,7 +184085,7 @@
       "session": {
         "active_session": "New York",
         "london_kill_zone": false,
-        "new_york_kill_zone": true,
+        "new_york_kill_zone": false,
         "time_to_next_kill_zone_minutes": null,
         "asia_high": 83.9000015258789,
         "asia_low": 72.16999816894531,
@@ -184050,7 +184094,7 @@
         "new_york_high": 83.0999984741211,
         "new_york_low": 74.51000213623047
       },
-      "session_narrative": "Active session: New York. Asia range: 72.17 to 83.90. London range: 74.00 to 82.76. NY range: 74.51 to 83.10. New York kill zone is active. Recent run detected near liquidity. Latest CHoCH: bullish.",
+      "session_narrative": "Active session: New York. Asia range: 72.17 to 83.90. London range: 74.00 to 82.76. NY range: 74.51 to 83.10. Recent run detected near liquidity. Latest CHoCH: bullish.",
       "premium_discount": {
         "range_high": 83.9000015258789,
         "range_low": 79.63999938964844,
@@ -184058,34 +184102,34 @@
         "state": "discount"
       },
       "setup": {
-        "bias": "short",
-        "grade": "B",
-        "execution_status": "WATCHLIST",
+        "bias": "pass",
+        "grade": "PASS",
+        "execution_status": "PASS",
         "reasons": [
-          "Within major kill zone",
           "Recent CHoCH present",
           "Nearby liquidity pools identified",
           "Fair value gap present",
           "Order block candidate present",
           "Sweep/run behavior detected",
-          "Trap/inducement behavior detected",
-          "Session expansion setup candidate"
+          "Trap/inducement behavior detected"
         ],
         "blocked_conditions": [
-          "HTF/LTF alignment missing"
+          "HTF/LTF alignment missing",
+          "Not in a major kill zone"
         ],
         "next_trigger_conditions": [
-          "Needs HTF/LTF alignment"
+          "Needs HTF/LTF alignment",
+          "Needs London or New York kill zone timing"
         ],
-        "watchlist_reason": "Waiting for confirmation / confluence",
-        "setup_type": "session-expansion",
-        "entry_zone_low": 81.47000122070312,
-        "entry_zone_high": 82.695004,
-        "target_1": 81.30000305175781,
-        "target_2": 81.30000305175781,
-        "rr_estimate": 0.14,
-        "invalidation_level": 82.695004,
-        "invalidation_reason": "Template invalidation for session-expansion",
+        "watchlist_reason": "Waiting for confluence to improve",
+        "setup_type": null,
+        "entry_zone_low": null,
+        "entry_zone_high": null,
+        "target_1": null,
+        "target_2": null,
+        "rr_estimate": null,
+        "invalidation_level": null,
+        "invalidation_reason": "PASS diagnostics: HTF/LTF alignment missing; Not in a major kill zone",
         "checklist": [
           {
             "name": "HTF/LTF aligned",
@@ -184093,7 +184137,7 @@
           },
           {
             "name": "In kill zone",
-            "ok": true
+            "ok": false
           },
           {
             "name": "BOS present",
@@ -184120,7 +184164,7 @@
             "ok": false
           }
         ],
-        "no_trade_reason": null
+        "no_trade_reason": "Insufficient weighted confluence across structure, liquidity, session, and range position"
       }
     },
     "ZEC": {
@@ -184378,11 +184422,11 @@
         },
         {
           "timestamp": "2026-07-05T15:00:00+00:00",
-          "classification": "run",
-          "direction": "bullish",
+          "classification": "sweep",
+          "direction": "bearish",
           "level": 464.7300109863281,
           "notes": [
-            "session_high taken with continuation"
+            "session_high taken and rejected"
           ]
         }
       ],
@@ -184418,12 +184462,20 @@
           "notes": [
             "equal_lows taken and rejected"
           ]
+        },
+        {
+          "timestamp": "2026-07-05T15:00:00+00:00",
+          "trap_type": "inducement",
+          "direction": "bearish",
+          "notes": [
+            "session_high taken and rejected"
+          ]
         }
       ],
       "session": {
         "active_session": "New York",
         "london_kill_zone": false,
-        "new_york_kill_zone": true,
+        "new_york_kill_zone": false,
         "time_to_next_kill_zone_minutes": null,
         "asia_high": 464.7300109863281,
         "asia_low": 385.8500061035156,
@@ -184432,37 +184484,40 @@
         "new_york_high": 474.54998779296875,
         "new_york_low": 396.7099914550781
       },
-      "session_narrative": "Active session: New York. Asia range: 385.85 to 464.73. London range: 392.88 to 467.25. NY range: 396.71 to 474.55. New York kill zone is active. Recent run detected near liquidity.",
+      "session_narrative": "Active session: New York. Asia range: 385.85 to 464.73. London range: 392.88 to 467.25. NY range: 396.71 to 474.55. Recent sweep detected near liquidity.",
       "premium_discount": {
         "range_high": 474.54998779296875,
         "range_low": 450.9599914550781,
         "equilibrium": 462.75498962402344,
-        "state": "premium"
+        "state": "discount"
       },
       "setup": {
         "bias": "long",
-        "grade": "B",
+        "grade": "A",
         "execution_status": "WATCHLIST",
         "reasons": [
-          "Within major kill zone",
           "HTF/LTF alignment present",
           "Nearby liquidity pools identified",
           "Fair value gap present",
           "Sweep/run behavior detected",
           "Trap/inducement behavior detected",
-          "Session expansion setup candidate"
+          "A+ long session sweep-reversal candidate"
         ],
-        "blocked_conditions": [],
-        "next_trigger_conditions": [],
+        "blocked_conditions": [
+          "Not in a major kill zone"
+        ],
+        "next_trigger_conditions": [
+          "Needs London or New York kill zone timing"
+        ],
         "watchlist_reason": "Waiting for confirmation / confluence",
-        "setup_type": "session-expansion",
+        "setup_type": "sweep-reversal",
         "entry_zone_low": 461.1300048828125,
-        "entry_zone_high": 465.010009765625,
+        "entry_zone_high": 461.7200012207031,
         "target_1": 474.534988,
         "target_2": 474.54998779296875,
-        "rr_estimate": 2.45,
+        "rr_estimate": 21.72,
         "invalidation_level": 461.1300048828125,
-        "invalidation_reason": "Template invalidation for session-expansion",
+        "invalidation_reason": "Template invalidation for sweep-reversal",
         "checklist": [
           {
             "name": "HTF/LTF aligned",
@@ -184470,7 +184525,7 @@
           },
           {
             "name": "In kill zone",
-            "ok": true
+            "ok": false
           },
           {
             "name": "BOS present",
@@ -185016,64 +185071,64 @@
     "crowding": "balanced",
     "liquidation_risk": "balanced",
     "regime": {
-      "summary": "Derivatives regime leans crowded long / upside squeeze watch.",
+      "summary": "Derivatives regime leans crowded short / downside flush watch.",
       "crowding": {
-        "longs": 2,
-        "shorts": 1,
+        "longs": 1,
+        "shorts": 2,
         "balanced": 1
       },
       "pressure_board": [
         {
-          "symbol": "ETH",
-          "pressure_score": 31.68,
-          "funding": 0.00479136540506,
-          "long_short": 1.22,
-          "liq_bias": "above",
-          "confidence_label": "inferred",
-          "crowding_state": "crowded_longs",
-          "funding_delta_1h_pct": -0.8473088877606944,
-          "oi_delta_1h_pct": -0.011568475521898831,
-          "long_short_delta_1h_pct": -0.24529844644318183,
-          "sparkline": "\u2581\u2581\u2584\u2584\u2584\u2584\u2588\u2587"
-        },
-        {
-          "symbol": "ZEC",
-          "pressure_score": 30.16,
-          "funding": -0.00293851248838,
-          "long_short": 0.792,
+          "symbol": "SOL",
+          "pressure_score": 22.48,
+          "funding": -0.00059680442663,
+          "long_short": 0.857,
           "liq_bias": "below",
           "confidence_label": "inferred",
           "crowding_state": "crowded_shorts",
           "funding_delta_1h_pct": 0,
-          "oi_delta_1h_pct": -0.06698345862302889,
-          "long_short_delta_1h_pct": -1.492537313432837,
-          "sparkline": "\u2581\u2581\u2585\u2586\u2588\u2587\u2586\u2584"
+          "oi_delta_1h_pct": 0.012354020584752427,
+          "long_short_delta_1h_pct": -0.11655011655011666,
+          "sparkline": "\u2581\u2581\u2584\u2584\u2587\u2588\u2585\u2584"
         },
         {
-          "symbol": "BTC",
-          "pressure_score": 22.4,
-          "funding": 0.00220441030858,
-          "long_short": 1.133,
+          "symbol": "ETH",
+          "pressure_score": 22.38,
+          "funding": 0.00565171859641,
+          "long_short": 1.132,
           "liq_bias": "above",
           "confidence_label": "inferred",
           "crowding_state": "crowded_longs",
-          "funding_delta_1h_pct": -0.8039313860926288,
-          "oi_delta_1h_pct": -0.02120580767907316,
-          "long_short_delta_1h_pct": -0.17621145374449354,
-          "sparkline": "\u2582\u2582\u2581\u2581\u2585\u2583\u2588\u2587"
+          "funding_delta_1h_pct": 0,
+          "oi_delta_1h_pct": 0.016397141732979355,
+          "long_short_delta_1h_pct": 0.0884173297966304,
+          "sparkline": "\u2584\u2584\u2581\u2581\u2586\u2588\u2587\u2587"
         },
         {
-          "symbol": "SOL",
-          "pressure_score": 12.15,
-          "funding": 6.668283127999999e-05,
-          "long_short": 0.962,
+          "symbol": "ZEC",
+          "pressure_score": 18.52,
+          "funding": -0.00066418895885,
+          "long_short": 0.899,
           "liq_bias": "below",
+          "confidence_label": "inferred",
+          "crowding_state": "crowded_shorts",
+          "funding_delta_1h_pct": 0,
+          "oi_delta_1h_pct": -0.02129617522004815,
+          "long_short_delta_1h_pct": -0.5530973451327439,
+          "sparkline": "\u2581\u2581\u2584\u2584\u2587\u2588\u2586\u2586"
+        },
+        {
+          "symbol": "BTC",
+          "pressure_score": 15.17,
+          "funding": 0.00210844733188,
+          "long_short": 1.067,
+          "liq_bias": "above",
           "confidence_label": "inferred",
           "crowding_state": "balanced",
           "funding_delta_1h_pct": 0,
-          "oi_delta_1h_pct": -0.06281211751996603,
-          "long_short_delta_1h_pct": -0.6198347107438021,
-          "sparkline": "\u2581\u2581\u2588\u2587\u2584\u2582\u2588\u2586"
+          "oi_delta_1h_pct": 0.004250614107180348,
+          "long_short_delta_1h_pct": -0.0936329588015086,
+          "sparkline": "\u2584\u2584\u2581\u2581\u2588\u2588\u2585\u2584"
         }
       ]
     }
@@ -185109,12 +185164,12 @@
     "execution_mode": "paper_only_no_exchange_orders",
     "ledger_file": "simulated-trade-ledger.json",
     "data_file": "data/simulated-trade-ledger.json",
-    "generated_at_utc": "2026-07-05T15:05:16Z",
+    "generated_at_utc": "2026-07-05T16:05:14Z",
     "summary": {
-      "open_position_count": 1,
-      "closed_trade_count": 133,
+      "open_position_count": 2,
+      "closed_trade_count": 134,
       "event_count": 19,
-      "watch_only_no_fill_count": 4,
+      "watch_only_no_fill_count": 1,
       "ready_candidate_no_auto_fill_count": 0,
       "linked_existing_simulated_position_count": 0
     },
